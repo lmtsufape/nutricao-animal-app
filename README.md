@@ -3,7 +3,8 @@
 * Este projeto é um template para usar usar nos aplicativos do flutter
 Muitas coisas já foram configuradas. O Template vem com uma implementação básica do provider. 
 O template vem com diversos comentários de documentação. Siga-os. 
-
+## Geral
+		### É aconselhável, por motivos de performance, que rodemos o app na versão desktop com o device preview ativo. Dessa forma, não precisaremos utilizar o emulador do Android Studio, tendo em vista que este tem consumo em demasia dos recursos da máquina. Flutter compila tanto para Linux quanto para Windows.
 ## Pacotes usados
   ### Device Preview
     - Device Preview torna muito mais leve o desenvolvimento com o flutter. O flutter tem suporte para desktop, seja linux ou Windows. Com o Device Preview
