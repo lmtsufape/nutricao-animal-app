@@ -14,9 +14,9 @@ O template vem com diversos comentários de documentação. Siga-os.
    ### Provider
    -  Provider é um gerenciador de estados para o flutter. É um pacote simples de gerenciamento, mas também poderosíssimo. Sua implementação é feita baseada em árvores. No caso, a implementação deve ser feita no topo da árvore e seus decendentes podem acessar de qualquer lugar do app. Alguns exemplos estão implementados no app. Documentação: https://pub.dev/packages/provider
    ### Firebase
-    - Firebase é um conjunto de ferramentas para gerenciamento de pequenos serviços de back end, como Storage, Notifications, Database etc. Este pacote é recomendadíssimo pois sua instalação é fácil e seu uso é extenso.
+   -  Firebase é um conjunto de ferramentas para gerenciamento de pequenos serviços de back end, como Storage, Notifications, Database etc. Este pacote é recomendadíssimo pois sua instalação é fácil e seu uso é extenso.
    ### Intl
-    - INTL é usado para internacionalização, conversão de horários, moedas etc. O melhor pacote quando se trata de converter e usar valores monetários etc.
+   - INTL é usado para internacionalização, conversão de horários, moedas etc. O melhor pacote quando se trata de converter e usar valores monetários etc.
    ### Url_launcher
     - Necessário para apontar links na web externamente.
    ### Path Provider
