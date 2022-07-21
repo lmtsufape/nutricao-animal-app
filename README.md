@@ -6,7 +6,7 @@ O template vem com diversos comentários de documentação. Siga-os.
 ## Geral
 		### É aconselhável, por motivos de performance, que rodemos o app na versão desktop com o device preview ativo. Dessa forma, não precisaremos utilizar o emulador do Android Studio, tendo em vista que este tem consumo em demasia dos recursos da máquina. Flutter compila tanto para Linux quanto para Windows.
 ## Pacotes usados
-  ### Device Preview
+  Device Preview
     - Device Preview torna muito mais leve o desenvolvimento com o flutter. O flutter tem suporte para desktop, seja linux ou Windows. Com o Device Preview
     , rodaremos o nosso app no desktop e as resoluções que serão aplicadas no projeto serão de mobile. Isso permite que possamos mudar as resouções dos
     dispositivos móveis de forma dinâmica. **PROBLEMAS**: Este método é problemático quando queremos utilizar bibliotecas que não têm suporte para windows,
