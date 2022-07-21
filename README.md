@@ -6,11 +6,12 @@ O template vem com diversos comentários de documentação. Siga-os.
 ## Geral
 É aconselhável, por motivos de performance, que rodemos o app na versão desktop com o device preview ativo. Dessa forma, não precisaremos utilizar o emulador do Android Studio, tendo em vista que este tem consumo em demasia dos recursos da máquina. Flutter compila tanto para Linux quanto para Windows.
 ## Pacotes usados
-  Device Preview
+   ### Device Preview
     - Device Preview torna muito mais leve o desenvolvimento com o flutter. O flutter tem suporte para desktop, seja linux ou Windows. Com o Device Preview
     , rodaremos o nosso app no desktop e as resoluções que serão aplicadas no projeto serão de mobile. Isso permite que possamos mudar as resouções dos
     dispositivos móveis de forma dinâmica. **PROBLEMAS**: Este método é problemático quando queremos utilizar bibliotecas que não têm suporte para windows,
     como o Firebase, Google Maps etc. Siga a documentação do Device Preview para implementá-la no projeto. 
+   ### Provider
    -  Provider é um gerenciador de estados para o flutter. É um pacote simples de gerenciamento, mas também poderosíssimo. Sua implementação é feita baseada em árvores. No caso, a implementação deve ser feita no topo da árvore e seus decendentes podem acessar de qualquer lugar do app. Alguns exemplos estão implementados no app. Documentação: https://pub.dev/packages/provider
    ### Firebase
     - Firebase é um conjunto de ferramentas para gerenciamento de pequenos serviços de back end, como Storage, Notifications, Database etc. Este pacote é recomendadíssimo pois sua instalação é fácil e seu uso é extenso.
