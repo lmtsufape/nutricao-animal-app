@@ -45,7 +45,8 @@ O template vem com diversos comentários de documentação. Siga-os.
          Onde o nome da tela deve ser o prefixo para o controller e o repositório.
     ##Componentes
       - Os componentes são de dois tipos: os locais e os globais. Os locais são componentes que pertencem a determinada tela ou outro componente, estes não são compartilhados por todo o projeto, ser vido apenas para um propósito local. Já os componentes globais são aqueles que são compartilhados por todo o app, podendo ser reutilizado em qualquer tela ou outro componente. Esses componentes devem ficar numa pasta chamada "shared". 
-    
+## Componentes
+-  O projeto vem com diversos componentes prontos. Estes componentes visam facilitar ainda mais a criação dos aplicativos por meio de regras já aplicadas. Vide referências.
 ## Como começar
 Baixe o template, renomeie suas dependências de caminho
 Dê um flutter pub get para pegar as dependências.
