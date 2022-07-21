@@ -33,7 +33,7 @@ O template vem com diversos comentários de documentação. Siga-os.
     - API de logger, bom para capturar logs no flutter.
 # Arquitetura, organização de pastas ETC.
   ## O projeto já vem com um padrão de pastas pré definido. É aconselhável que se siga esse padrão para melhor manutenção de código e para padronização do projeto.
-    ### Assets:
+   ### Assets:
       - Esta pasta guarda todos os arquivos de assets do projeto. Coloque aqui todos os arquivos 
       externos do projeto como: imagens, ícones, jsons pré carregados etc...
     ##Uso do Gerenciador de estado e estrutura de arquivos e pastas
@@ -48,9 +48,9 @@ O template vem com diversos comentários de documentação. Siga-os.
     
 ## Como começar
 Baixe o template, renomeie suas dependências de caminho
-### Dê um flutter pub get para pegar as dependências.
-   flutter pub get
-Diversos comentários de todo estão feitos no app, você deve mudar o nome do app nos seguintes arquivos:
+Dê um flutter pub get para pegar as dependências.
+
+Diversos comentários estão feitos no app, você deve mudar o nome do app nos seguintes arquivos:
 - Pubspec.yaml
 - AndroidManifest nível app
 - AndroidManifest nível projeto
