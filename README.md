@@ -48,8 +48,8 @@ O template vem com diversos comentários de documentação. Siga-os.
     
 ## Como começar
 Baixe o template, renomeie suas dependências de caminho
-Dê um flutter pub get para pegar as dependências.
-- flutter pub get
+### Dê um flutter pub get para pegar as dependências.
+   flutter pub get
 Diversos comentários de todo estão feitos no app, você deve mudar o nome do app nos seguintes arquivos:
 - Pubspec.yaml
 - AndroidManifest nível app
