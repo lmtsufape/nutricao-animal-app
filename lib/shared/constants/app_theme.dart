@@ -4,7 +4,7 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 class AppTheme {
   static ThemeData getLightTheme() {
     return ThemeData(
-      scaffoldBackgroundColor: kPrimaryColor,
+      scaffoldBackgroundColor: kBackgroundColor,
       fontFamily: kDefaultFontFamily,
     );
   }

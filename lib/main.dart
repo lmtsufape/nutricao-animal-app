@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -16,5 +17,7 @@ main() {
     ChangeNotifierProvider(create: (_) => SelectedItem())
   ], child: const App());
 
-  runApp(const App());
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) =>  const App()));
 }
