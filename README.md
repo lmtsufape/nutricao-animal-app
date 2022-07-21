@@ -11,6 +11,8 @@ O template vem com diversos comentários de documentação. Siga-os.
     rodaremos o nosso app no desktop e as resoluções que serão aplicadas no projeto serão de mobile. Isso permite que possamos mudar as resouções dos
     dispositivos móveis de forma dinâmica. **PROBLEMAS**: Este método é problemático quando queremos utilizar bibliotecas que não têm suporte para windows,
     como o Firebase, Google Maps etc. Siga a documentação do Device Preview para implementá-la no projeto. 
+   ### Responsive Framework
+   -  Responsive Framework faz um auto scale do seu app. É extramamente útil porque com ele, não precisamos nos preocupar muito com a assertividade da nossa responsividade nos aplicativos. 
    ### Provider
    -  Provider é um gerenciador de estados para o flutter. É um pacote simples de gerenciamento, mas também poderosíssimo. Sua implementação é feita baseada em árvores. No caso, a implementação deve ser feita no topo da árvore e seus decendentes podem acessar de qualquer lugar do app. Alguns exemplos estão implementados no app. Documentação: https://pub.dev/packages/provider
    ### Firebase
