@@ -9,11 +9,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ChangeNotifierProvider(
-      create: (context) => SignInController(context),
-      builder: ((context, child) =>
-          Center(child: Text(context.read<SignInController>().email))),
-    ));
+    return Scaffold();
   }
 }
