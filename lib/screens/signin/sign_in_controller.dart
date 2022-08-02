@@ -16,26 +16,38 @@ class SignInController with ChangeNotifier {
   final SignInRepository _repository = SignInRepository();
   String? email;
   String? password;
+  
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
+  
+  String? errorMessage = '';
 var status = SignInStatus.idle;
   void signIn(BuildContext context) async{
     try {
-      _repository.signIn(
-        email: email!,
-        password: password!,
+      await _repository.signIn(
+        email: emailController.text,
+        password: emailController.text,
         onSuccess: (){
-          print('success');
-          // status = SignInStatus.done;
-          // notifyListeners();
-          // Navigator.pushNamed(context, Screens.home);
+          status = SignInStatus.done;
+          notifyListeners();
+          Navigator.pushNamed(context, Screens.home);
         },
       );
       status = SignInStatus.done;
     } catch (e) {
       status = SignInStatus.error;
+      setupErrorMessage(e.toString());
+      notifyListeners();
     }
+  }
+  void setupErrorMessage(String value) async{
+    errorMessage = value;
+    notifyListeners();
+    await Future.delayed(const Duration(seconds: 2));
+    errorMessage = null;
+    notifyListeners();
   }
 }

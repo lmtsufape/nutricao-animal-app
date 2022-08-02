@@ -35,6 +35,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return SizedBox(
       child: TextFormField(
         obscureText: _obscureText,
+        controller: widget.controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(kDefaultBorderRadius),

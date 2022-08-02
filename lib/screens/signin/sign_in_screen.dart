@@ -24,10 +24,11 @@ class SignInScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(kDefaultPadding),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(),
                     const Text('Faça seu login'),
+                    const VerticalSpacerBox(size: SpacerSize.small),
                     CustomTextFormField(
                       hintText: 'Seu email',
                       controller: controller.emailController,
@@ -38,6 +39,10 @@ class SignInScreen extends StatelessWidget {
                       isPassword: true,
                       controller: controller.passwordController,
                     ),
+                    const VerticalSpacerBox(size: SpacerSize.small),
+                    controller.errorMessage != null ? Text(controller.errorMessage!, style: const TextStyle(
+                      color: Colors.red
+                    ),) : const SizedBox(),
                     const Spacer(),
                     controller.status == SignInStatus.loading
                         ? const CircularProgressIndicator()
