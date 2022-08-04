@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 /**FONT CONFIGURATION*/
 final kDefaultFontFamily = GoogleFonts.poppins().fontFamily;
+final kLabelFontFamily = GoogleFonts.inter().fontFamily;
 /**COLORS */
 const Color kPrimaryColor = Color(0xFF2E5870);
 const Color kBackgroundColor = Color(0xFFF4F4F4);

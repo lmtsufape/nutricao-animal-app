@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({Key? key,  this.label, this.controller, this.keyboardType,  this.hintText, this.isPassword}) : super(key: key);
+  const CustomTextFormField(
+      {Key? key,
+      this.label,
+      this.controller,
+      this.keyboardType,
+      this.hintText,
+      this.isPassword})
+      : super(key: key);
   final String? label;
   final String? hintText;
   final TextEditingController? controller;
@@ -16,22 +24,23 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-   bool _obscureText = false;
-   @override
+  bool _obscureText = false;
+  @override
   void initState() {
-    if(widget.isPassword != null) {
+    if (widget.isPassword != null) {
       _obscureText = widget.isPassword!;
     }
     super.initState();
   }
-   void _toggleVisibility() {
-      setState(() {
-        _obscureText = !_obscureText;
-      });
-    }
+
+  void _toggleVisibility() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    
     return SizedBox(
       child: TextFormField(
         obscureText: _obscureText,
@@ -42,14 +51,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           ),
           labelText: widget.label,
           filled: true,
-          fillColor: Colors.white,
+          fillColor: kBackgroundColor.withOpacity(0.65),
           hintText: widget.hintText,
-          suffixIcon: widget.isPassword == true ? InkWell(
-            onTap: () => _toggleVisibility(),
-            child: Icon(
-              _obscureText ? Icons.visibility : Icons.visibility_off,
-             ),
-          ) : null,
+          suffixIcon: widget.isPassword == true
+              ? InkWell(
+                  onTap: () => _toggleVisibility(),
+                  child: Icon(
+                    _obscureText ? Icons.visibility : Icons.visibility_off,
+                  ),
+                )
+              : null,
         ),
       ),
     );

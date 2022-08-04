@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     _controller = SplashScreenController(context);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      // _controller.initApplication();
+      _controller.initApplication();
     });
   }
 
