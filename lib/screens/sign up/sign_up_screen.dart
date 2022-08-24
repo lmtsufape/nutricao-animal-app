@@ -1,19 +1,87 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:thunderapp/components/forms/custom_text_form_field.dart';
+import 'package:thunderapp/screens/sign%20up/sign_up_controller.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
-class SignUpScreen extends StatefulWidget {
+import '../../components/buttons/primary_button.dart';
+import '../../components/utils/vertical_spacer_box.dart';
+import '../../shared/constants/app_enums.dart';
+import '../screens_index.dart';
+
+class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('SIGNUP')),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SignUpController()),
+      ],
+      builder: (context, child) {
+        return Consumer<SignUpController>(
+          builder: (context, controller, child) => Scaffold(
+            backgroundColor: kPrimaryColor,
+            //Padding = espaçamento
+            body: Padding(
+                padding: const EdgeInsets.all(kDefaultPadding),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Spacer(),
+                    const Text(
+                      'Cadastro de Usuário',
+                      style: TextStyle(color: kBackgroundColor),
+                    ),
+                    const Text(
+                      'Nome de exibição',
+                      style: TextStyle(color: kBackgroundColor),
+                    ),
+                    CustomTextFormField(
+                      hintText: 'Ana Vieira',
+                      // controller: controller.nomeController,
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.small),
+                    const Text(
+                      'E-mail',
+                      style: TextStyle(color: kBackgroundColor),
+                    ),
+                    CustomTextFormField(
+                      hintText: 'email@example.com',
+                      // controller: controller.emailController,
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.small),
+                    const Text('Senha',
+                        style: TextStyle(color: kBackgroundColor)),
+                    CustomTextFormField(
+                      hintText: '********',
+                      //  isPassword: true,
+                      // controller: controller.passwordController,
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.small),
+                    const Text('Confirmar senha',
+                        style: TextStyle(color: kBackgroundColor)),
+                    CustomTextFormField(
+                      hintText: '********',
+                      //isPassword: true,
+                      // controller: controller.passwordController,
+                    ),
+                    const VerticalSpacerBox(size: SpacerSize.small),
+                    const SizedBox(),
+                    PrimaryButton(
+                        text: 'Finalizar',
+                        //Criar rota
+                        onPressed: () => controller.signUp(context)),
+                    const Spacer(),
+                  ],
+                )),
+          ),
+        );
+      },
     );
   }
 }
