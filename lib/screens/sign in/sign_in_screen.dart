@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/components/buttons/primary_button.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
+import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign%20in/sign_in_controller.dart';
 
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
@@ -57,7 +59,19 @@ class SignInScreen extends StatelessWidget {
                         : PrimaryButton(
                             text: 'Continuar',
                             onPressed: () => controller.signIn(context)),
-                    const Spacer()
+                    Row(
+                      children: <Widget>[
+                        TextButton(
+                          child: const Text('Ou cadastre-se'),
+                          style: TextButton.styleFrom(primary: kDetailColor),
+                          onPressed: () {
+                            Navigator.pushNamed(context, Screens.signup);
+                          },
+                        ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    const Spacer(),
                   ],
                 ),
               ),
