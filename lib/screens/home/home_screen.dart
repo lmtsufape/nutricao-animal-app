@@ -9,7 +9,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nutrição Animal')),
+      appBar: AppBar(
+        title: const Text('Olá, Ana'),
+      ),
+      body: Container(),
     );
   }
 }

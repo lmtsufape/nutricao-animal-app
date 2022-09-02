@@ -56,20 +56,30 @@ class SignInScreen extends StatelessWidget {
                         : const SizedBox(),
                     controller.status == SignInStatus.loading
                         ? const CircularProgressIndicator()
-                        : PrimaryButton(
-                            text: 'Continuar',
-                            onPressed: () => controller.signIn(context)),
+                        : Center(
+                            child: PrimaryButton(
+                                text: const Text(
+                                  'Entrar',
+                                  style: TextStyle(fontSize: kMediumLargeSize),
+                                ),
+                                onPressed: () => controller.signIn(context)),
+                          ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         TextButton(
-                          child: const Text('Ou cadastre-se'),
                           style: TextButton.styleFrom(primary: kDetailColor),
                           onPressed: () {
                             Navigator.pushNamed(context, Screens.signup);
                           },
+                          child: const Text(
+                            'Ou cadastre-se',
+                            style: TextStyle(
+                                fontSize: kMediumSize,
+                                decoration: TextDecoration.underline),
+                          ),
                         ),
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                     const Spacer(),
                   ],

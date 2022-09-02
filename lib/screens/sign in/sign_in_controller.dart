@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/screens_index.dart';
-
 import 'sign_in_repository.dart';
 
 enum SignInStatus {
@@ -22,7 +21,7 @@ class SignInController with ChangeNotifier {
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
 
-  String? errorMessage = '';
+  String? errorMessage;
   var status = SignInStatus.idle;
   void signIn(BuildContext context) async {
     try {
@@ -32,7 +31,7 @@ class SignInController with ChangeNotifier {
         onSuccess: () {
           status = SignInStatus.done;
           notifyListeners();
-          Navigator.pushNamed(context, Screens.home);
+          Navigator.popAndPushNamed(context, Screens.home);
         },
       );
       status = SignInStatus.done;

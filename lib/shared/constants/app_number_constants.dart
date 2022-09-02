@@ -5,5 +5,6 @@ const double kDefaultBorderRadius = 8.0;
 const double kTinySize = 8;
 const double kSmallSize = 12;
 const double kMediumSize = 16;
+const double kMediumLargeSize = 18.0;
 const double kLargeSize = 24;
 const double kHugeSize = 32;

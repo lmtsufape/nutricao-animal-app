@@ -4,17 +4,18 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({Key? key, required this.text, required this.onPressed})
       : super(key: key);
-  final String text;
+  final Text text;
   final Function onPressed;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.06,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(primary: kDetailColor),
         onPressed: () => onPressed(),
-        child: Text(text),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          child: text,
+        ),
       ),
     );
   }

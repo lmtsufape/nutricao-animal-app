@@ -24,6 +24,7 @@ class SignUpScreen extends StatelessWidget {
       builder: (context, child) {
         return Consumer<SignUpController>(
           builder: (context, controller, child) => Scaffold(
+            appBar: AppBar(backgroundColor: kPrimaryColor),
             backgroundColor: kPrimaryColor,
             //Padding = espaçamento
             body: Padding(
@@ -35,13 +36,17 @@ class SignUpScreen extends StatelessWidget {
                     const Spacer(),
                     const Text(
                       'Cadastro de Usuário',
-                      style: TextStyle(color: kBackgroundColor),
+                      style: TextStyle(
+                          color: kBackgroundColor, fontSize: kLargeSize),
+                    ),
+                    const SizedBox(
+                      height: 30,
                     ),
                     const Text(
                       'Nome de exibição',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    CustomTextFormField(
+                    const CustomTextFormField(
                       hintText: 'Ana Vieira',
                       // controller: controller.nomeController,
                     ),
@@ -50,14 +55,14 @@ class SignUpScreen extends StatelessWidget {
                       'E-mail',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    CustomTextFormField(
+                    const CustomTextFormField(
                       hintText: 'email@example.com',
                       // controller: controller.emailController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Senha',
                         style: TextStyle(color: kBackgroundColor)),
-                    CustomTextFormField(
+                    const CustomTextFormField(
                       hintText: '********',
                       //  isPassword: true,
                       // controller: controller.passwordController,
@@ -65,17 +70,24 @@ class SignUpScreen extends StatelessWidget {
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Confirmar senha',
                         style: TextStyle(color: kBackgroundColor)),
-                    CustomTextFormField(
+                    const CustomTextFormField(
                       hintText: '********',
                       //isPassword: true,
                       // controller: controller.passwordController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
-                    const SizedBox(),
-                    PrimaryButton(
-                        text: 'Finalizar',
-                        //Criar rota
-                        onPressed: () => controller.signUp(context)),
+                    const SizedBox(
+                      height: kMediumSize,
+                    ),
+                    Center(
+                      child: PrimaryButton(
+                          text: const Text(
+                            'Finalizar',
+                            style: TextStyle(fontSize: kMediumLargeSize),
+                          ),
+                          //Criar rota
+                          onPressed: () => controller.signUp(context)),
+                    ),
                     const Spacer(),
                   ],
                 )),
