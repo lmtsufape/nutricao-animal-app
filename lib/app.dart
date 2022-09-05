@@ -4,6 +4,7 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign%20in/sign_in_screen.dart';
 import 'package:thunderapp/screens/sign%20up/sign_up_screen.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 
 import 'screens/home/home_screen.dart';
@@ -39,6 +40,7 @@ class App extends StatelessWidget {
         Screens.home: (BuildContext context) => const HomeScreen(),
         Screens.signin: (BuildContext context) => const SignInScreen(),
         Screens.signup: (BuildContext context) => const SignUpScreen(),
+        Screens.user: (BuildContext context) => const UserScreen(),
       },
     );
   }
