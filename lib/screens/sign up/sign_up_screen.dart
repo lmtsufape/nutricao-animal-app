@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/screens/sign%20up/sign_up_controller.dart';
@@ -12,8 +17,23 @@ import '../../components/utils/vertical_spacer_box.dart';
 import '../../shared/constants/app_enums.dart';
 import '../screens_index.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final _nomeController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
+
+  TextEditingController get nomeController => _nomeController;
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
 
   @override
   Widget build(BuildContext context) {
@@ -46,26 +66,26 @@ class SignUpScreen extends StatelessWidget {
                       'Nome de exibição',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                       hintText: 'Ana Vieira',
-                      // controller: controller.nomeController,
+                      controller: nomeController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text(
                       'E-mail',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    const CustomTextFormField(
-                      hintText: 'email@example.com',
-                      // controller: controller.emailController,
+                    TextFormField(
+                      //hintText: 'email@example.com',
+                      controller: emailController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Senha',
                         style: TextStyle(color: kBackgroundColor)),
-                    const CustomTextFormField(
-                      hintText: '********',
-                      //  isPassword: true,
-                      // controller: controller.passwordController,
+                    TextFormField(
+                      //hintText: '********',
+                      //isPassword: true,
+                      controller: passwordController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Confirmar senha',
@@ -86,7 +106,12 @@ class SignUpScreen extends StatelessWidget {
                             style: TextStyle(fontSize: kMediumLargeSize),
                           ),
                           //Criar rota
-                          onPressed: () => controller.signUp(context)),
+                          onPressed: () {
+                            signUp(
+                                nomeController.text.toString(),
+                                emailController.text.toString(),
+                                passwordController.text.toString());
+                          }),
                     ),
                     const Spacer(),
                   ],
@@ -95,5 +120,30 @@ class SignUpScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void signUp(String nome, email, senha) async {
+    print(nomeController.text);
+    print(emailController.text);
+    try {
+      Response response =
+          await post(Uri.parse('http://127.0.0.1:8000/api/user'), body: {
+        'name': nomeController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+      });
+
+      print(response.statusCode);
+
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body.toString());
+        print('Account Created!');
+      } else {
+        print('Failed');
+      }
+    } catch (e) {
+      print(e.toString());
+      print('Failed');
+    }
   }
 }
