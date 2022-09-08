@@ -10,6 +10,7 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarCustom(context),
+      body: Container(),
     );
   }
 }
