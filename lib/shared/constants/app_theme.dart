@@ -13,10 +13,14 @@ class AppTheme {
 }
 
 AppBar AppBarCustom(BuildContext context) {
-  return AppBar(title: const Text('Olá Ana!'), actions: [
-    IconButton(
-      icon: const Icon(Icons.person),
-      onPressed: () => Navigator.pushNamed(context, Screens.user),
-    ),
-  ]);
+  return AppBar(
+      title: Text(
+        'Olá Ana!',
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.person),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]);
 }

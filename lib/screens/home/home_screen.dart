@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 100,
         width: 100,
         child: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: Icon(Icons.add, size: 65,),
           onPressed: () {},
         ),
       ),
@@ -61,17 +61,15 @@ class CardHomeScreen extends StatelessWidget {
 
   //CardHomeScreen(this._animal);
 
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color orange = Color(0xFFFF9800);
-
   static ButtonStyle style = ElevatedButton.styleFrom(
-      backgroundColor: orange,
+      backgroundColor: kDetailColor,
       textStyle: const TextStyle(fontSize: 20),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      //exemplo
       onTap: () => Navigator.pushNamed(context, Screens.user),
       child: Ink(
         child: Padding(
@@ -81,33 +79,51 @@ class CardHomeScreen extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            child:
-            Column(
+            child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                const ListTile(
+                ListTile(
                   leading: Padding(
-                    padding: EdgeInsets.only(top: 105.0, left: 70.0),
+                    padding: EdgeInsets.only(top: 90.0, left: 80.0),
                     child: Icon(Icons.add_photo_alternate_outlined),
                   ),
-                  title: Padding(
-                    padding: EdgeInsets.only(top: 110.0, left: 100.0),
-                    child: Text(
-                      'ANIMAL NAME',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: white,
-                          fontWeight: FontWeight.w700),
-                    ),
+                  title: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24, right: 16),
+                        child: Text(
+                          'AGE',
+                          style:
+                              TextStyle(fontSize: 15, color: kBackgroundColor),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 30.0, left: 48.0),
+                        child: Text(
+                          'NAME',
+                          style: TextStyle(
+                              fontSize: 35.0,
+                              color: kBackgroundColor,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                    ],
                   ),
                   subtitle: Padding(
-                    padding: EdgeInsets.only(left: 100.0, bottom: 25),
+                    padding: EdgeInsets.only(left: 80.0, bottom: 25),
                     child: Text(
-                      'ANIMAL BREED',
+                      'BREED',
                       style: TextStyle(
-                        fontSize: 15.0,
-                        color: white,
+                        fontSize: 20.0,
+                        color: kBackgroundColor,
                       ),
+                    ),
+                  ),
+                  trailing: Padding(
+                    padding: EdgeInsets.only(right: 20.0, top: 10.0),
+                    child: Text(
+                      'WEIGHT',
+                      style: TextStyle(color: kBackgroundColor, fontSize: 15.0),
                     ),
                   ),
                 ),
@@ -121,26 +137,22 @@ class CardHomeScreen extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton.icon(
                           style: style,
-                          onPressed: () => Navigator.pushNamed(context, Screens.home),
+                          //exemplo
+                          onPressed: () =>
+                              Navigator.pushNamed(context, Screens.home),
                           icon: Icon(
                             Icons.restaurant_menu,
-                            color: white,
+                            color: kBackgroundColor,
                             size: 28.0,
                             textDirection: TextDirection.ltr,
                           ),
                           label: Text(
                             'Alimentar',
                             style: TextStyle(
-                                color: white,
+                                color: kBackgroundColor,
                                 fontSize: 25,
                                 fontWeight: FontWeight.w800),
                           ),
-                          /*child: Wrap(
-                            children: [
-                              Icon(Icons.restaurant, color: white, size: 24,),
-                              Text('ALimentar', style: TextStyle(fontSize: 20, color: white, fontWeight: FontWeight.w800)),
-                            ],
-                          ),*/
                         ),
                       ),
                     ),
