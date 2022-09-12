@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -25,13 +24,13 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _nomeController = TextEditingController();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  TextEditingController get nomeController => _nomeController;
+  TextEditingController get nameController => _nameController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
 
@@ -66,9 +65,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       'Nome de exibição',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    CustomTextFormField(
-                      hintText: 'Ana Vieira',
-                      controller: nomeController,
+                    TextFormField(
+                      //hintText: 'Ana Vieira',
+                      controller: nameController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text(
@@ -100,17 +99,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: kMediumSize,
                     ),
                     Center(
-                      child: PrimaryButton(
-                          text: const Text(
-                            'Finalizar',
-                            style: TextStyle(fontSize: kMediumLargeSize),
-                          ),
-                          //Criar rota
+                      child: ElevatedButton(
+                          child: const Text('Finalizar'),
                           onPressed: () {
-                            signUp(
-                                nomeController.text.toString(),
-                                emailController.text.toString(),
-                                passwordController.text.toString());
+                            signUpt();
                           }),
                     ),
                     const Spacer(),
@@ -122,28 +114,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  void signUp(String nome, email, senha) async {
-    print(nomeController.text);
-    print(emailController.text);
-    try {
-      Response response =
-          await post(Uri.parse('http://127.0.0.1:8000/api/user'), body: {
-        'name': nomeController.text,
-        'email': emailController.text,
-        'password': passwordController.text,
-      });
+  void signUp(name, email, password) async {
+    Response response =
+        await http.post(Uri.parse('http://127.0.0.1:8000/api/user/'), body: {
+      'name': nameController.text,
+      'email': emailController.text,
+      'password': passwordController.text
+    });
+    print(response.statusCode);
+  }
 
-      print(response.statusCode);
-
-      if (response.statusCode == 201) {
-        var data = jsonDecode(response.body.toString());
-        print('Account Created!');
-      } else {
-        print('Failed');
-      }
-    } catch (e) {
-      print(e.toString());
-      print('Failed');
-    }
+  void signUpt() async {
+    Response response = await http.get(
+      Uri.parse('http://127.0.0.1:8000/api/user/'),
+    );
+    print(response.statusCode);
   }
 }

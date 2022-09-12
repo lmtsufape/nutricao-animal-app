@@ -23,12 +23,12 @@ class SignUpController with ChangeNotifier {
   String? confirmPassword;
 
   //TextEditingController = recupera os valores dos campos
-  final TextEditingController _nomeController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   //Recebe uma string
-  TextEditingController get nomeController => _nomeController;
+  TextEditingController get nameController => _nameController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
 
