@@ -10,6 +10,6 @@ final kDefaultFontFamily = GoogleFonts.poppins().fontFamily;
 final kLabelFontFamily = GoogleFonts.inter().fontFamily;
 /**COLORS */
 const Color kPrimaryColor = Color(0xFF2E5870);
-const Color kBackgroundColor = Color(0xFFF4F4F4);
+const Color kBackgroundColor = Color(0xFFE8EFF3);
 const Color kSecondaryColor = Color(0xFF1AA3F0);
 const Color kDetailColor = Color(0xFFF0951A);

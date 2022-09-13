@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 100,
         child: FloatingActionButton(
           child: Icon(Icons.add, size: 65,),
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(context, Screens.addAnimal),
         ),
       ),
     );
