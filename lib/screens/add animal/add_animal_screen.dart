@@ -10,11 +10,8 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 class AddAnimalScreen extends StatelessWidget {
   const AddAnimalScreen({Key? key}) : super(key: key);
 
-  static ButtonStyle style = ElevatedButton.styleFrom(
-      backgroundColor: kBackgroundColor,
-      shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)));
-
+  static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
+      backgroundColor: kSecondaryColor,);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +36,8 @@ class AddAnimalScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 15, bottom: 15),
               child: SizedBox(
-                width: 120,
-                height: 120,
+                width: 110,
+                height: 110,
                 child: FloatingActionButton(
                   backgroundColor: kBackgroundColor,
                   onPressed: () {},
@@ -69,7 +66,7 @@ class AddAnimalScreen extends StatelessWidget {
               style: TextStyle(color: kSecondaryColor),
             ),
           ),*/
-          TextFieldCustom('Raça'),
+          TextFieldButton('Raça'),
           Padding(
             padding: const EdgeInsets.only(left: 16),
             child: Text(
@@ -89,6 +86,20 @@ class AddAnimalScreen extends StatelessWidget {
             ),
           ),
           CastratedWidget(),
+          TextFieldButton('Nível de atividade'),
+          Center(
+            child: SizedBox(
+              height: 50,
+              width: 130,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 5),
+                child: ElevatedButton(
+                  style: styleAdicionar,
+                  child: Text('Adicionar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w400, fontSize: 20)),
+                  onPressed: () {},),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -125,7 +136,52 @@ class TextFieldCustom extends StatelessWidget {
   }
 }
 
+class TextFieldButton extends StatelessWidget {
+  final String _buttonFieldLabel;
 
+  TextFieldButton(this._buttonFieldLabel);
+
+  static ButtonStyle styleButton = ElevatedButton.styleFrom(
+    backgroundColor: kDetailColor,);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: Ink(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _buttonFieldLabel,
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Selecione',
+                    hintStyle: TextStyle(fontSize: 18),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.arrow_circle_down_sharp, size: 35, color: kDetailColor,),
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.all(14),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 
 
