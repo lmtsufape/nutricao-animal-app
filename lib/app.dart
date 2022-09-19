@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:thunderapp/screens/add%20animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign%20in/sign_in_screen.dart';
 import 'package:thunderapp/screens/sign%20up/sign_up_screen.dart';
@@ -43,6 +44,7 @@ class App extends StatelessWidget {
         Screens.signup: (BuildContext context) => const SignUpScreen(),
         Screens.user: (BuildContext context) => const UserScreen(),
         Screens.addAnimal: (BuildContext context) => const AddAnimalScreen(),
+        Screens.food: (BuildContext context) => const FoodScreen(),
       },
     );
   }
