@@ -1,20 +1,41 @@
-import 'dart:developer';
-
+import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:thunderapp/shared/constants/app_text_constants.dart';
+import 'package:thunderapp/shared/core/models/user_model.dart';
+import 'package:dio/dio.dart' as dio;
 
 class SignInRepository {
-   Future<void> signIn({
-    required String email,
-    required String password,
-    required VoidCallback onSuccess,}
-  ) async {
-    await Future.delayed(const Duration(seconds: 1));
-    if(email != 'teste@teste.com' && password!= '12345678'){
-      throw 'Email ou senha inválidos';
-    }else{
-      onSuccess();
-      log('Fine. Successfully signed in. Now pushing to /home screen');
+  final _dio = Dio();
+
+  Future<bool> login(String email, String password) async {
+    final UserModel userModel = UserModel();
+
+    try {
+      var response = await _dio.post('$kBaseUrl/user/login',
+          options: Options(
+            headers: {"Content-Type": "application/json"},
+          ),
+          data: {
+            "email": email,
+            "password": password,
+          });
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        userModel.setUser(
+          response.data['name'],
+          response.data['email'],
+          response.data['token'],
+          response.data['pic'],
+        );
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("Lascou");
+
+      return false;
     }
   }
-  
 }
