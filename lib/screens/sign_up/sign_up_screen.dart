@@ -6,8 +6,8 @@ import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:provider/provider.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
-import 'package:thunderapp/screens/sign%20up/sign_up_controller.dart';
-import 'package:thunderapp/screens/sign%20up/sign_up_repository.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_controller.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_repository.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
