@@ -5,7 +5,7 @@ import 'package:thunderapp/components/buttons/primary_button.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/screens_index.dart';
-import 'package:thunderapp/screens/sign%20in/sign_in_controller.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
