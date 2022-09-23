@@ -4,10 +4,10 @@ class UserModel {
   String token = '';
   String pic = '';
 
-  setUser(name, email, token, pic) {
+  setUser(name, email, token) {
     this.name = name;
     this.email = email;
     this.token = token;
-    this.pic = pic;
+    //this.pic = pic;
   }
 }

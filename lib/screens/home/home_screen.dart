@@ -35,14 +35,17 @@ class _HomeScreenState extends State<HomeScreen> {
           return CardHomeScreen(animais);
         },
         ),*/
-         CardHomeScreen(),
+          CardHomeScreen(),
         ],
       ),
       floatingActionButton: SizedBox(
         height: 100,
         width: 100,
         child: FloatingActionButton(
-          child: Icon(Icons.add, size: 65,),
+          child: Icon(
+            Icons.add,
+            size: 65,
+          ),
           onPressed: () => Navigator.pushNamed(context, Screens.addAnimal),
         ),
       ),
@@ -51,13 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomeScreen extends StatefulWidget {
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class CardHomeScreen extends StatelessWidget {
-
   static ButtonStyle style = ElevatedButton.styleFrom(
       backgroundColor: kDetailColor,
       textStyle: const TextStyle(fontSize: kMediumSize),
@@ -87,11 +88,14 @@ class CardHomeScreen extends StatelessWidget {
                   title: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 24, right: 16,),
+                        padding: const EdgeInsets.only(
+                          top: 24,
+                          right: 16,
+                        ),
                         child: Text(
                           'AGE',
                           style:
-                          TextStyle(fontSize: 15, color: kBackgroundColor),
+                              TextStyle(fontSize: 15, color: kBackgroundColor),
                         ),
                       ),
                       Padding(
@@ -136,7 +140,7 @@ class CardHomeScreen extends StatelessWidget {
                           style: style,
                           //exemplo
                           onPressed: () =>
-                              Navigator.pushNamed(context, Screens.home),
+                              Navigator.pushNamed(context, Screens.food),
                           icon: Icon(
                             Icons.restaurant_menu,
                             color: kBackgroundColor,

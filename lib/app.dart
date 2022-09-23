@@ -7,6 +7,7 @@ import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/screens/sign_in/sign_in_screen.dart';
 import 'package:thunderapp/screens/sign_up/sign_up_screen.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen.dart';
 
 import 'package:thunderapp/shared/constants/app_theme.dart';
 

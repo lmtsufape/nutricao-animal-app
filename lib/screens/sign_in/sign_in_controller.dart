@@ -30,11 +30,12 @@ class SignInController with ChangeNotifier {
       if (succ) {
         status = SignInStatus.done;
         notifyListeners();
-        //Navigator.popAndPushNamed(context, Screens.home);
+        Navigator.popAndPushNamed(context, Screens.home);
       }
 
       status = SignInStatus.done;
     } catch (e) {
+      print('SALVE');
       status = SignInStatus.error;
       setupErrorMessage(e.toString());
       notifyListeners();
