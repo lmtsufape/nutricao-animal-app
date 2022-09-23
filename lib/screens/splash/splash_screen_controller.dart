@@ -31,7 +31,9 @@ class SplashScreenController {
       ///or we can use the following code to go to the sign in screen:
       ///Navigator.pushNamed(context, Screens.signin);
       await configDefaultAppSettings();
-      Navigator.popAndPushNamed(context, Screens.food);
+      // ignore: use_build_context_synchronously
+      Navigator.popAndPushNamed(context, Screens.signin);
+
     });
   }
 
