@@ -11,94 +11,104 @@ class AddAnimalScreen extends StatelessWidget {
   const AddAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
-      backgroundColor: kSecondaryColor,);
+    backgroundColor: kSecondaryColor,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBarCustom(context),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 15.0),
-            child: Text(
-              'Adicionar Pet',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                fontSize: kLargeSize,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 15),
-              child: SizedBox(
-                width: 110,
-                height: 110,
-                child: FloatingActionButton(
-                  backgroundColor: kBackgroundColor,
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.photo,
-                    color: kSecondaryColor,
-                    size: 50,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0, left: 15.0),
+                child: Text(
+                  'Adicionar Pet',
+                  textDirection: TextDirection.ltr,
+                  style: TextStyle(
+                    fontSize: kLargeSize,
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
-            ),
-          ),
-          TextFieldCustom('Nome'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Espécie',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          SpecieWidget(),
-          /*Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Raça',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),*/
-          TextFieldButton('Raça'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Sexo',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          AnimalSexWidget(),
-          TextFieldCustom('Peso'),
-          TextFieldCustom('Altura'),
-          TextFieldCustom('Idade'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Seu animal é castrado(a)?',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          CastratedWidget(),
-          TextFieldButton('Nível de atividade'),
-          Center(
-            child: SizedBox(
-              height: 50,
-              width: 130,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 5),
-                child: ElevatedButton(
-                  style: styleAdicionar,
-                  child: Text('Adicionar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w400, fontSize: 20)),
-                  onPressed: () {},),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15, bottom: 15),
+                  child: SizedBox(
+                    width: 110,
+                    height: 110,
+                    child: FloatingActionButton(
+                      backgroundColor: kBackgroundColor,
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.photo,
+                        color: kSecondaryColor,
+                        size: 50,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-            ),
+              TextFieldCustom('Nome'),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  'Espécie',
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+              ),
+              SpecieWidget(),
+              /*Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Raça',
+                style: TextStyle(color: kSecondaryColor),
+              ),
+            ),*/
+              TextFieldButton('Raça'),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  'Sexo',
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+              ),
+              AnimalSexWidget(),
+              TextFieldCustom('Peso'),
+              TextFieldCustom('Altura'),
+              TextFieldCustom('Idade'),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: Text(
+                  'Seu animal é castrado(a)?',
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+              ),
+              CastratedWidget(),
+              TextFieldButton('Nível de atividade'),
+              Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 130,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 5),
+                    child: ElevatedButton(
+                      style: styleAdicionar,
+                      child: Text('Adicionar',
+                          style: TextStyle(
+                              color: kBackgroundColor,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 20)),
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -142,7 +152,8 @@ class TextFieldButton extends StatelessWidget {
   TextFieldButton(this._buttonFieldLabel);
 
   static ButtonStyle styleButton = ElevatedButton.styleFrom(
-    backgroundColor: kDetailColor,);
+    backgroundColor: kDetailColor,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +178,11 @@ class TextFieldButton extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 10.0),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.arrow_circle_down_sharp, size: 35, color: kDetailColor,),
+                        icon: Icon(
+                          Icons.arrow_circle_down_sharp,
+                          size: 35,
+                          color: kDetailColor,
+                        ),
                       ),
                     ),
                     contentPadding: EdgeInsets.all(14),
@@ -182,8 +197,6 @@ class TextFieldButton extends StatelessWidget {
     );
   }
 }
-
-
 
 enum Specie { dog, cat }
 
