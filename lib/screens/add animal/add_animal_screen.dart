@@ -16,91 +16,88 @@ class AddAnimalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      drawer: NavigationDrawerWidget(),
       appBar: AppBarCustom(context),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0, left: 15.0),
-            child: Text(
-              'Adicionar Pet',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                fontSize: kLargeSize,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w900,
+      body: ListView(
+        children: [Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+              child: Text(
+                'Adicionar Pet',
+                textDirection: TextDirection.ltr,
+                style: TextStyle(
+                  fontSize: kLargeSize,
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
-          ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 15, bottom: 15),
-              child: SizedBox(
-                width: 110,
-                height: 110,
-                child: FloatingActionButton(
-                  backgroundColor: kBackgroundColor,
-                  onPressed: () {},
-                  child: Icon(
-                    Icons.photo,
-                    color: kSecondaryColor,
-                    size: 50,
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                child: SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: FloatingActionButton(
+                    backgroundColor: kBackgroundColor,
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.photo,
+                      color: kSecondaryColor,
+                      size: 50,
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          TextFieldCustom('Nome'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Espécie',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          SpecieWidget(),
-          /*Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Raça',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),*/
-          TextFieldButton('Raça'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Sexo',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          AnimalSexWidget(),
-          TextFieldCustom('Peso'),
-          TextFieldCustom('Altura'),
-          TextFieldCustom('Idade'),
-          Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Text(
-              'Seu animal é castrado(a)?',
-              style: TextStyle(color: kSecondaryColor),
-            ),
-          ),
-          CastratedWidget(),
-          TextFieldButton('Nível de atividade'),
-          Center(
-            child: SizedBox(
-              height: 50,
-              width: 130,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 5),
-                child: ElevatedButton(
-                  style: styleAdicionar,
-                  child: Text('Adicionar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w400, fontSize: 20)),
-                  onPressed: () {},),
+            TextFieldCustom('Nome'),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                'Espécie',
+                style: TextStyle(color: kSecondaryColor),
               ),
             ),
-          ),
-        ],
+            const SpecieWidget(),
+            TextFieldButton('Raça'),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                'Sexo',
+                style: TextStyle(color: kSecondaryColor),
+              ),
+            ),
+            const AnimalSexWidget(),
+            TextFieldCustom('Peso'),
+            TextFieldCustom('Altura'),
+            TextFieldCustom('Idade'),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
+              child: Text(
+                'Seu animal é castrado(a)?',
+                style: TextStyle(color: kSecondaryColor),
+              ),
+            ),
+            const CastratedWidget(),
+            TextFieldButton('Nível de atividade'),
+            Center(
+              child: SizedBox(
+                height: 50,
+                width: 130,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 5),
+                  child: ElevatedButton(
+                    style: styleAdicionar,
+                    child: const Text('Adicionar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w400, fontSize: 20)),
+                    onPressed: () {},),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
       ),
     );
   }
@@ -113,24 +110,22 @@ class TextFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _fieldLabel,
-              style: TextStyle(color: kSecondaryColor),
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _fieldLabel,
+            style: const TextStyle(color: kSecondaryColor),
+          ),
+          const TextField(
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(14),
+              border: OutlineInputBorder(),
             ),
-            TextField(
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(14),
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -149,33 +144,31 @@ class TextFieldButton extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Ink(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _buttonFieldLabel,
-                  style: TextStyle(color: kSecondaryColor),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Selecione',
-                    hintStyle: TextStyle(fontSize: 18),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.arrow_circle_down_sharp, size: 35, color: kDetailColor,),
-                      ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                _buttonFieldLabel,
+                style: const TextStyle(color: kSecondaryColor),
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  hintText: 'Selecione',
+                  hintStyle: const TextStyle(fontSize: 18),
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.arrow_circle_down_sharp, size: 35, color: kDetailColor,),
                     ),
-                    contentPadding: EdgeInsets.all(14),
-                    border: OutlineInputBorder(),
                   ),
+                  contentPadding: const EdgeInsets.all(14),
+                  border: const OutlineInputBorder(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

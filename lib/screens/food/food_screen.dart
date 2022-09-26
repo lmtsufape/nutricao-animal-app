@@ -20,6 +20,7 @@ class FoodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBarCustom(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
