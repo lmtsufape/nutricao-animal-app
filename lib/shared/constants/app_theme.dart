@@ -57,7 +57,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   width: 215,
                   child: ElevatedButton.icon(
                     style: style,
-                    onPressed: () {},
+                    onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
                     icon: const Icon(Icons.edit_rounded, color: kBackgroundColor,),
                     label: const Text('Editar informações', style: TextStyle(color: kBackgroundColor, fontSize: kMediumSize, fontWeight: FontWeight.w600),),
                   ),
