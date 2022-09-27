@@ -1,8 +1,10 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:thunderapp/screens/add%20animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/edit_animal/edit_animal_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
+import 'package:thunderapp/screens/no_reg_food/no_reg_food_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/screens/sign_in/sign_in_screen.dart';
@@ -47,6 +49,8 @@ class App extends StatelessWidget {
         Screens.user: (BuildContext context) => const UserScreen(),
         Screens.addAnimal: (BuildContext context) => const AddAnimalScreen(),
         Screens.food: (BuildContext context) => const FoodScreen(),
+        Screens.editAnimal: (BuildContext context) => const EditAnimalScreen(),
+        Screens.noRegFood: (BuildContext context) => const NoRegFoodScreen(),
       },
     );
   }
