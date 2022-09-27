@@ -49,7 +49,7 @@ class EditProfileScreen extends StatelessWidget {
                 child: ElevatedButton(
                     style: styleSal,
                     onPressed: () {},
-                    child: const Text('Salvar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w900, fontSize: kMediumLargeSize),),
+                    child: const Text('Salvar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w700, fontSize: kMediumLargeSize),),
                 ),
               ),
             ),

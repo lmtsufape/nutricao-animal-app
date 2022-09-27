@@ -38,7 +38,7 @@ class EditAnimalScreen extends StatelessWidget {
             ),
             const Padding(
               padding: EdgeInsets.only(left: 15),
-              child: Text('Name', style: TextStyle(color: kSecondaryColor),),
+              child: Text('Name', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
             ),
             Center(
               child: Padding(

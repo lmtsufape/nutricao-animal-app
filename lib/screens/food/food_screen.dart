@@ -40,7 +40,7 @@ class FoodScreen extends StatelessWidget {
               left: 19,
               bottom: 16,
             ),
-            child: Text('ANIMAL NAME',
+            child: Text('Name',
                 style:
                     TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
           ),
