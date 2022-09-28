@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/edit_animal/edit_animal_screen.dart';
+import 'package:thunderapp/screens/edit_food/edit_food_screen.dart';
 import 'package:thunderapp/screens/edit_profile/edit_profile_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/no_reg_food/no_reg_food_screen.dart';
@@ -57,6 +58,7 @@ class App extends StatelessWidget {
         Screens.editProfile: (BuildContext context) => const EditProfileScreen(),
         Screens.shareTutoring: (BuildContext context) => const ShareTutoringScreen(),
         Screens.privateMenu: (BuildContext context) => PrivateMenuScreen(),
+        Screens.editFood: (BuildContext context) => const EditFoodScreen(),
       },
     );
   }
