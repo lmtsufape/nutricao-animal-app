@@ -63,7 +63,6 @@ class FoodDetailsScreen extends StatelessWidget {
   }
 }
 
-
 class CardDetails extends StatelessWidget {
   const CardDetails({Key? key}) : super(key: key);
 
