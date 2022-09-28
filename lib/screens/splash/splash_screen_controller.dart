@@ -32,7 +32,7 @@ class SplashScreenController {
       ///Navigator.pushNamed(context, Screens.signin);
       await configDefaultAppSettings();
       // ignore: use_build_context_synchronously
-      Navigator.popAndPushNamed(context, Screens.addAnimal);
+      Navigator.popAndPushNamed(context, Screens.home);
     });
   }
 

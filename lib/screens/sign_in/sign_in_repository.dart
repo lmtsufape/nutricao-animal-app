@@ -22,9 +22,9 @@ class SignInRepository {
           "email": email,
           "password": password,
         });
-
     print(response.statusCode);
     if (response.statusCode == 200) {
+      userModel.setUser(response.data['name'], response.data['token']);
       return true;
     } else {
       return false;
