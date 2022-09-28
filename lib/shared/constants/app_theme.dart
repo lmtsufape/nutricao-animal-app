@@ -82,7 +82,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () => Navigator.pushNamed(context, Screens.noRegFood),
                       title: const Text('Sugerir nova comida', style: TextStyle(color: kBackgroundColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
                       ),
                   ),
