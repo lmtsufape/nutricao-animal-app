@@ -14,4 +14,5 @@ class Screens {
   static const String noRegFood = '/no_reg_food';
   static const String editProfile = '/edit_profile';
   static const String shareTutoring = '/share_tutoring';
+  static const String privateMenu = '/private_menu';
 }
