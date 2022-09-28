@@ -6,6 +6,7 @@ import 'package:thunderapp/screens/edit_animal/edit_animal_screen.dart';
 import 'package:thunderapp/screens/edit_food/edit_food_screen.dart';
 import 'package:thunderapp/screens/edit_profile/edit_profile_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
+import 'package:thunderapp/screens/food_details/food_details_screen.dart';
 import 'package:thunderapp/screens/no_reg_food/no_reg_food_screen.dart';
 import 'package:thunderapp/screens/private_menu/private_menu_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -59,6 +60,7 @@ class App extends StatelessWidget {
         Screens.shareTutoring: (BuildContext context) => const ShareTutoringScreen(),
         Screens.privateMenu: (BuildContext context) => PrivateMenuScreen(),
         Screens.editFood: (BuildContext context) => const EditFoodScreen(),
+        Screens.foodDetails: (BuildContext context) => const FoodDetailsScreen(),
       },
     );
   }
