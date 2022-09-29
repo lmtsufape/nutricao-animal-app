@@ -14,8 +14,20 @@ class FoodDetailsScreen extends StatelessWidget {
 
   static ButtonStyle styleDelete = ElevatedButton.styleFrom(
       backgroundColor: Colors.redAccent,
-      textStyle: const TextStyle(fontSize: kMediumSize),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+  );
+
+  static ButtonStyle styleNao = ElevatedButton.styleFrom(
+      backgroundColor: kSecondaryColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+  );
+
+  static ButtonStyle styleSim = ElevatedButton.styleFrom(
+      backgroundColor: Colors.redAccent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+  );
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +46,58 @@ class FoodDetailsScreen extends StatelessWidget {
                 child: FoodTable(),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 14),
+              padding: const EdgeInsets.only(top: 20),
               child: Center(
                 child: SizedBox(
-                  height: 40,
-                  width: 240,
+                  height: 50,
+                  width: 270,
                   child: ElevatedButton.icon(
                     style: styleDelete,
-                    onPressed: () {},
-                    icon: const Icon(Icons.delete, color: kBackgroundColor, size: 30,),
-                    label: const Text('Remover do cardápio', style: TextStyle(color: kBackgroundColor, fontSize: 17, fontWeight: FontWeight.w500),),
+                    onPressed: () {
+                      showDialog(
+                          context: context, builder: (context) => Padding(
+                            padding: const EdgeInsets.only(bottom: 435),
+                            child: AlertDialog(
+                              insetPadding: EdgeInsets.symmetric(horizontal: 15),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              backgroundColor: kBackgroundColor,
+                              content: Text('Tem certeza que deseja remover Food do cardápio de Name?', style: TextStyle(color: kPrimaryColor, fontSize: kLargeSize, fontWeight: FontWeight.bold),),
+                              actions: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 28, bottom: 12),
+                                    child: SizedBox(
+                                      width: 100,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                        style: styleNao,
+                                        onPressed: () {},
+                                        child: const Text('Não', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w700),),
+                                    ),
+                                  ),
+                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: SizedBox(
+                                      width: 100,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                        style: styleSim,
+                                        onPressed: () {},
+                                        child: const Text('Sim', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w800),),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                          ),);
+                    },
+                    icon: const Icon(Icons.delete, color: kBackgroundColor, size: 35,),
+                    label: const Text('Remover do cardápio', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w500),),
           ),
                 ),
               ),
