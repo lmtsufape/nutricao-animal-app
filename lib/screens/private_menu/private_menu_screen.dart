@@ -49,9 +49,9 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         width: 100,
         height: 100,
         child: FloatingActionButton(
-          child: const Icon(Icons.add, size: 65, color: kBackgroundColor,),
           onPressed: () => Navigator.pushNamed(context, Screens.food),
           backgroundColor: kSecondaryColor,
+          child: const Icon(Icons.add, size: 65, color: kBackgroundColor,),
         ),
       ),
     );
