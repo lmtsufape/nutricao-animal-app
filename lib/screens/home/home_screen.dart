@@ -12,11 +12,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
+      drawer: NavigationDrawerWidget(),
       appBar: AppBarCustom(context),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15.0),
+          const Padding(
+            padding: EdgeInsets.only(top: 15.0),
             child: Text(
               'Animais Cadastrados',
               textDirection: TextDirection.ltr,
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         height: 100,
         width: 100,
         child: FloatingActionButton(
-          child: Icon(Icons.add, size: 65,),
+          child: const Icon(Icons.add, size: 65,),
           onPressed: () => Navigator.pushNamed(context, Screens.addAnimal),
         ),
       ),
@@ -80,14 +81,14 @@ class CardHomeScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 ListTile(
-                  leading: Padding(
+                  leading: const Padding(
                     padding: EdgeInsets.only(top: 100.0, left: 80.0),
                     child: Icon(Icons.add_photo_alternate_outlined),
                   ),
                   title: Column(
-                    children: [
+                    children: const [
                       Padding(
-                        padding: const EdgeInsets.only(top: 24, right: 16,),
+                        padding: EdgeInsets.only(top: 24, right: 16,),
                         child: Text(
                           'AGE',
                           style:
@@ -106,7 +107,7 @@ class CardHomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  subtitle: Padding(
+                  subtitle: const Padding(
                     padding: EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
                       'BREED',
@@ -116,7 +117,7 @@ class CardHomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  trailing: Padding(
+                  trailing: const Padding(
                     padding: EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
                       'WEIGHT',
@@ -136,14 +137,14 @@ class CardHomeScreen extends StatelessWidget {
                           style: style,
                           //exemplo
                           onPressed: () =>
-                              Navigator.pushNamed(context, Screens.home),
-                          icon: Icon(
-                            Icons.restaurant_menu,
+                              Navigator.pushNamed(context, Screens.food),
+                          icon: const Icon(
+                            Icons.restaurant_outlined,
                             color: kBackgroundColor,
                             size: 28.0,
                             textDirection: TextDirection.ltr,
                           ),
-                          label: Text(
+                          label: const Text(
                             'Alimentar',
                             style: TextStyle(
                                 color: kBackgroundColor,

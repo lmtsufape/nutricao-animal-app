@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:thunderapp/screens/add%20animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
@@ -20,6 +20,7 @@ class FoodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBarCustom(context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +40,7 @@ class FoodScreen extends StatelessWidget {
               left: 19,
               bottom: 16,
             ),
-            child: Text('ANIMAL NAME',
+            child: Text('Name',
                 style:
                     TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
           ),
