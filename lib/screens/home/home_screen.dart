@@ -137,7 +137,7 @@ class CardHomeScreen extends StatelessWidget {
                           style: style,
                           //exemplo
                           onPressed: () =>
-                              Navigator.pushNamed(context, Screens.home),
+                              Navigator.pushNamed(context, Screens.food),
                           icon: const Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,
