@@ -66,7 +66,7 @@ class CardAnimal extends StatelessWidget {
                       children: const [
                         Text('Nome', style: TextStyle(color: kDetailColor, fontSize: kMediumSize),),
                         Padding(
-                          padding: EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(left: 27),
                           child: Text('Johnny', style: TextStyle(color: kBackgroundColor, fontSize: kLargeSize, fontWeight: FontWeight.w900),),
                         ),
                       ],
@@ -82,7 +82,7 @@ class CardAnimal extends StatelessWidget {
                           child: Text('Raça', style: TextStyle(color: kDetailColor, fontSize: kMediumSize),),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 20),
+                          padding: EdgeInsets.only(left: 60),
                           child: Text('Sem raça definida', style: TextStyle(color: kBackgroundColor, fontSize: kLargeSize, fontWeight: FontWeight.w900),),
                         ),
                       ],

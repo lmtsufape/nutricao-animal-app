@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.only(top: 16.0),
             child: Text(
               'Animais Cadastrados',
               textDirection: TextDirection.ltr,

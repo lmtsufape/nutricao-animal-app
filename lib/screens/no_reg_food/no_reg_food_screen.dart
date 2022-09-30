@@ -25,7 +25,7 @@ class NoRegFoodScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 25, left: 20, bottom: 15),
+            padding: EdgeInsets.only(top: 25, left: 16, bottom: 16),
             child: Text('Sugestão de comida não cadastrada', style: TextStyle(color: kPrimaryColor, fontSize: 20, fontWeight: FontWeight.w900),),
           ),
           TextFieldCustom('Nome'),

@@ -25,11 +25,11 @@ class EditFoodScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 20, left: 20),
+            padding: EdgeInsets.only(top: 16, left: 16),
             child: Text('Editar Comida', style: TextStyle(color: kPrimaryColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 20, bottom: 16),
+            padding: EdgeInsets.only(left: 16, bottom: 16),
             child: Text('Name > Cardápio Particular > Food', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
           ),
           TextFieldCustom('Apelido'),
@@ -37,7 +37,7 @@ class EditFoodScreen extends StatelessWidget {
           TextFieldButton('Comida'),
           TextFieldCustom('Quantidade(em gramas)'),
           Padding(
-            padding: const EdgeInsets.only(top: 8),
+            padding: const EdgeInsets.only(top: 16),
             child: Center(
               child: SizedBox(
                 height: 40,
