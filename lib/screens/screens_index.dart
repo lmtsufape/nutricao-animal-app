@@ -10,4 +10,5 @@ class Screens {
   static const String user = '/user';
   static const String addAnimal = '/add_animal';
   static const String food = '/food';
+  static const String animal = '/animal';
 }

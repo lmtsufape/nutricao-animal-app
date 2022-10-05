@@ -15,15 +15,16 @@ class AddAnimalScreen extends StatelessWidget {
   );
   @override
   Widget build(BuildContext context) {
+    final AppTheme formCustom = AppTheme();
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBarCustom(context),
+      //appBar: formCustom.appBarCustom(context),
       body: ListView(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: const EdgeInsets.only(top: 25.0, left: 15.0),
                 child: Text(
                   'Adicionar Pet',

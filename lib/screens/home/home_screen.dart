@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import '../../shared/core/models/user_model.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
 class _HomeScreenState extends State<HomeScreen> {
+  final AppTheme formCustom = AppTheme();
   @override
   Widget build(BuildContext context) {
+    String? userName = Provider.of<UserModel>(context, listen: false).name;
+    print(userName);
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBarCustom(context),
+      appBar: formCustom.appBarCustom(context, userName!),
       body: Column(
         children: [
           const Padding(
@@ -43,11 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class HomeScreen extends StatefulWidget {
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class CardHomeScreen extends StatelessWidget {

@@ -8,7 +8,7 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-enum PrivateMenu {yes, no}
+enum PrivateMenu { yes, no }
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({Key? key}) : super(key: key);
@@ -19,8 +19,9 @@ class FoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppTheme formCustom = AppTheme();
     return Scaffold(
-      appBar: AppBarCustom(context),
+      //appBar: formCustom.appBarCustom(context, userName!),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -78,7 +79,9 @@ class FoodScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: styleAlimentar,
                   onPressed: () {},
-                  child: const Text('Alimentar', style: TextStyle(color: kBackgroundColor, fontSize: kMediumSize)),
+                  child: const Text('Alimentar',
+                      style: TextStyle(
+                          color: kBackgroundColor, fontSize: kMediumSize)),
                 ),
               ),
             ),
@@ -102,35 +105,31 @@ class _MenuWidgetState extends State<MenuWidget> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-          title: const Text(
-      'Adicionar no cárdapio particular?',
-      style: TextStyle(
-          color: kPrimaryColor,
-          fontWeight: FontWeight.w900,
-          fontSize: 20),
-    ),
-          leading: Transform.scale(
-            scale: 2,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 2),
-              child: Radio<PrivateMenu>(
-              toggleable: true,
-              activeColor: kDetailColor,
-              value: PrivateMenu.yes,
-              groupValue: _privateMenu,
-              onChanged: (PrivateMenu? value) {
-                setState(() {
-                  _privateMenu = value;
-                });
-              },
-              ),
-            ),
+      title: const Text(
+        'Adicionar no cárdapio particular?',
+        style: TextStyle(
+            color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: 20),
+      ),
+      leading: Transform.scale(
+        scale: 2,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 2),
+          child: Radio<PrivateMenu>(
+            toggleable: true,
+            activeColor: kDetailColor,
+            value: PrivateMenu.yes,
+            groupValue: _privateMenu,
+            onChanged: (PrivateMenu? value) {
+              setState(() {
+                _privateMenu = value;
+              });
+            },
           ),
-        );
+        ),
+      ),
+    );
   }
 }
-
-
 
 class TextFieldButtonPC extends StatelessWidget {
   final String _buttonPCFieldLabel;
@@ -185,5 +184,3 @@ class TextFieldButtonPC extends StatelessWidget {
     );
   }
 }
-
-
