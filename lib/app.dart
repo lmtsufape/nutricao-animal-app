@@ -42,8 +42,7 @@ class App extends StatelessWidget {
       theme: AppTheme.getLightTheme(),
       routes: {
         Screens.splash: (BuildContext context) => const SplashScreen(),
-        Screens.home: (BuildContext context) => HomeScreen(),
-        Screens.signin: (BuildContext context) => const SignInScreen(),
+        Screens.signin: (BuildContext context) => SignInScreen(),
         Screens.signup: (BuildContext context) => const SignUpScreen(),
         Screens.user: (BuildContext context) => const UserScreen(),
         Screens.addAnimal: (BuildContext context) => const AddAnimalScreen(),

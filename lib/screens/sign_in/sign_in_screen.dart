@@ -6,21 +6,29 @@ import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
 
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/user_model.dart';
 
 import '../../shared/constants/app_enums.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
+  final UserModel userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
+    SignInRepository repository = SignInRepository();
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => SignInController()),
+          ChangeNotifierProvider<SignInController>(
+              create: (BuildContext context) {
+            return SignInController();
+          }),
+          ChangeNotifierProvider<UserModel>.value(value: userModel),
         ],
         builder: (context, child) {
           return Consumer<SignInController>(
@@ -62,7 +70,10 @@ class SignInScreen extends StatelessWidget {
                                   'Entrar',
                                   style: TextStyle(fontSize: kMediumLargeSize),
                                 ),
-                                onPressed: () => controller.signIn(context)),
+                                onPressed: () => controller.signIn(
+                                    context,
+                                    controller.email.toString(),
+                                    controller.password.toString())),
                           ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/core/models/user_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  UserModel userModel = UserModel();
+  HomeScreen(this.userModel, {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -17,40 +19,52 @@ class _HomeScreenState extends State<HomeScreen> {
   final AppTheme formCustom = AppTheme();
   @override
   Widget build(BuildContext context) {
-    String? userName = Provider.of<UserModel>(context, listen: false).name;
-    print(userName);
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, userName!),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Text(
-              'Animais Cadastrados',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                fontSize: 30.0,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ),
-          CardHomeScreen(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<SignInController>(
+              create: (BuildContext context) {
+            return SignInController();
+          }),
+          ChangeNotifierProvider<UserModel>.value(value: widget.userModel),
         ],
-      ),
-      floatingActionButton: SizedBox(
-        height: 100,
-        width: 100,
-        child: FloatingActionButton(
-          child: const Icon(
-            Icons.add,
-            size: 65,
-          ),
-          onPressed: () => Navigator.pushNamed(context, Screens.addAnimal),
-        ),
-      ),
-    );
+        builder: (context, child) {
+          return Consumer<UserModel>(builder: (context, userModel, child) {
+            return Scaffold(
+              backgroundColor: kBackgroundColor,
+              appBar: formCustom.appBarCustom(
+                  context, widget.userModel.name.toString()),
+              body: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: Text(
+                      'Animais Cadastrados',
+                      textDirection: TextDirection.ltr,
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+                  CardHomeScreen(),
+                ],
+              ),
+              floatingActionButton: SizedBox(
+                height: 100,
+                width: 100,
+                child: FloatingActionButton(
+                  child: const Icon(
+                    Icons.add,
+                    size: 65,
+                  ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, Screens.addAnimal),
+                ),
+              ),
+            );
+          });
+        });
   }
 }
 

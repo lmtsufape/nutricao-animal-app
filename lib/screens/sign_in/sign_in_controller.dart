@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:thunderapp/screens/home/home_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
+import '../../shared/core/models/user_model.dart';
 import 'sign_in_repository.dart';
 
 enum SignInStatus {
@@ -23,16 +26,19 @@ class SignInController with ChangeNotifier {
 
   String? errorMessage;
   var status = SignInStatus.idle;
-  void signIn(BuildContext context) async {
+
+  void signIn(BuildContext context, String email, String password) async {
+    final UserModel userModel = Provider.of<UserModel>(context, listen: false);
     try {
       var succ = await _repository.login(
-          emailController.text, passwordController.text);
+          context, emailController.text, passwordController.text, userModel);
+
       if (succ) {
         status = SignInStatus.done;
         notifyListeners();
-        Navigator.popAndPushNamed(context, Screens.home);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => HomeScreen(userModel)));
       }
-
       status = SignInStatus.done;
     } catch (e) {
       print('SALVE');

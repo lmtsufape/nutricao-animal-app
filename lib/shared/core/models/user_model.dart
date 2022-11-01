@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class UserModel extends ChangeNotifier {
+class UserModel with ChangeNotifier {
   String? name;
   String? token;
 
@@ -9,5 +9,4 @@ class UserModel extends ChangeNotifier {
     this.token = token;
     notifyListeners();
   }
-
 }
