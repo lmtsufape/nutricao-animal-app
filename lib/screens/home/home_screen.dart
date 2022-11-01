@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -5,11 +7,14 @@ import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import '../../shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
+import '../add animal/add_animal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   UserModel userModel = UserModel();
-  HomeScreen(this.userModel, {super.key});
+  AnimalModel animalModel = AnimalModel();
+  HomeScreen(this.userModel, this.animalModel, {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -47,7 +52,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  CardHomeScreen(),
+                  CardHomeScreen(
+                    widget.animalModel.age,
+                    widget.animalModel.name,
+                    widget.animalModel.weight,
+                  ),
                 ],
               ),
               floatingActionButton: SizedBox(
@@ -58,8 +67,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     Icons.add,
                     size: 65,
                   ),
-                  onPressed: () =>
-                      Navigator.pushNamed(context, Screens.addAnimal),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              AddAnimalScreen(widget.userModel))),
                 ),
               ),
             );
@@ -68,42 +80,51 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class CardHomeScreen extends StatelessWidget {
-  static ButtonStyle style = ElevatedButton.styleFrom(
-      backgroundColor: kDetailColor,
-      textStyle: const TextStyle(fontSize: kMediumSize),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
+class CardHomeScreen extends StatefulWidget {
+  String? age;
+  String? name;
+  String? weight;
+
+  CardHomeScreen(this.age, this.name, this.weight, {super.key});
 
   @override
+  State<CardHomeScreen> createState() => _CardHomeScreenState();
+}
+
+class _CardHomeScreenState extends State<CardHomeScreen> {
+  @override
   Widget build(BuildContext context) {
+    ButtonStyle style = ElevatedButton.styleFrom(
+        backgroundColor: kDetailColor,
+        textStyle: const TextStyle(fontSize: kMediumSize),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
     return InkWell(
       //exemplo
       onTap: () => Navigator.pushNamed(context, Screens.user),
       child: Ink(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Card(
-            color: kPrimaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
+            padding: const EdgeInsets.all(10.0),
+            child: Card(
+              color: kPrimaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Column(mainAxisSize: MainAxisSize.max, children: [
                 ListTile(
                   leading: const Padding(
                     padding: EdgeInsets.only(top: 100.0, left: 80.0),
                     child: Icon(Icons.add_photo_alternate_outlined),
                   ),
                   title: Column(
-                    children: const [
+                    children: [
                       Padding(
                         padding: EdgeInsets.only(
                           top: 24,
                           right: 16,
                         ),
                         child: Text(
-                          'AGE',
+                          widget.age.toString(),
                           style:
                               TextStyle(fontSize: 15, color: kBackgroundColor),
                         ),
@@ -111,7 +132,7 @@ class CardHomeScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
-                          'NAME',
+                          widget.name.toString(),
                           style: TextStyle(
                               fontSize: 35.0,
                               color: kBackgroundColor,
@@ -130,10 +151,10 @@ class CardHomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  trailing: const Padding(
+                  trailing: Padding(
                     padding: EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
-                      'WEIGHT',
+                      widget.weight.toString(),
                       style: TextStyle(color: kBackgroundColor, fontSize: 15.0),
                     ),
                   ),
@@ -167,13 +188,10 @@ class CardHomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 50),
                   ],
                 ),
-              ],
-            ),
-          ),
-        ),
+              ]),
+            )),
       ),
     );
   }

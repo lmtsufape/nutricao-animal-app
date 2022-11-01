@@ -19,6 +19,9 @@ class FoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController foodController = TextEditingController();
+    TextEditingController quantController = TextEditingController();
+
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       //appBar: formCustom.appBarCustom(context, userName!),
@@ -67,8 +70,8 @@ class FoodScreen extends StatelessWidget {
             ),
           ),
           TextFieldButton('Tipo'),
-          TextFieldCustom('Comida'),
-          TextFieldCustom('Quantidade(em gramas)'),
+          TextFieldCustom('Comida', foodController),
+          TextFieldCustom('Quantidade(em gramas)', quantController),
           const MenuWidget(),
           Center(
             child: Padding(

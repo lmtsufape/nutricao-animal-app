@@ -2,116 +2,140 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:thunderapp/screens/add%20animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/animal_model.dart';
 
-class AddAnimalScreen extends StatelessWidget {
-  const AddAnimalScreen({Key? key}) : super(key: key);
+import '../../shared/core/models/user_model.dart';
+
+class AddAnimalScreen extends StatefulWidget {
+  UserModel userModel = UserModel();
+  AddAnimalScreen(this.userModel, {Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
   );
+
+  @override
+  State<AddAnimalScreen> createState() => _AddAnimalScreenState();
+}
+
+class _AddAnimalScreenState extends State<AddAnimalScreen> {
   @override
   Widget build(BuildContext context) {
+    AddAnimalController controller = AddAnimalController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController weightController = TextEditingController();
+    TextEditingController heightController = TextEditingController();
+    TextEditingController ageController = TextEditingController();
+
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      //appBar: formCustom.appBarCustom(context),
-      body: ListView(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: const EdgeInsets.only(top: 25.0, left: 15.0),
-                child: Text(
-                  'Adicionar Pet',
-                  textDirection: TextDirection.ltr,
-                  style: TextStyle(
-                    fontSize: kLargeSize,
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w900,
-                  ),
+      appBar:
+          formCustom.appBarCustom(context, widget.userModel.name.toString()),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+              child: Text(
+                'Adicionar Pet',
+                textDirection: TextDirection.ltr,
+                style: TextStyle(
+                  fontSize: kLargeSize,
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.w900,
                 ),
               ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15, bottom: 15),
-                  child: SizedBox(
-                    width: 110,
-                    height: 110,
-                    child: FloatingActionButton(
-                      backgroundColor: kBackgroundColor,
-                      onPressed: () {},
-                      child: Icon(
-                        Icons.photo,
-                        color: kSecondaryColor,
-                        size: 50,
-                      ),
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                child: SizedBox(
+                  width: 110,
+                  height: 110,
+                  child: FloatingActionButton(
+                    backgroundColor: kBackgroundColor,
+                    onPressed: () {},
+                    child: Icon(
+                      Icons.photo,
+                      color: kSecondaryColor,
+                      size: 50,
                     ),
                   ),
                 ),
               ),
-              TextFieldCustom('Nome'),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  'Espécie',
-                  style: TextStyle(color: kSecondaryColor),
-                ),
+            ),
+            TextFieldCustom('Nome', nameController),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Espécie',
+                style: TextStyle(color: kSecondaryColor),
               ),
-              SpecieWidget(),
-              /*Padding(
+            ),
+            SpecieWidget(),
+            /*Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Text(
                 'Raça',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),*/
-              TextFieldButton('Raça'),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  'Sexo',
-                  style: TextStyle(color: kSecondaryColor),
-                ),
+            TextFieldButton('Raça'),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Sexo',
+                style: TextStyle(color: kSecondaryColor),
               ),
-              AnimalSexWidget(),
-              TextFieldCustom('Peso'),
-              TextFieldCustom('Altura'),
-              TextFieldCustom('Idade'),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(
-                  'Seu animal é castrado(a)?',
-                  style: TextStyle(color: kSecondaryColor),
-                ),
+            ),
+            AnimalSexWidget(),
+            TextFieldCustom('Peso', weightController),
+            TextFieldCustom('Altura', heightController),
+            TextFieldCustom('Idade', ageController),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Seu animal é castrado(a)?',
+                style: TextStyle(color: kSecondaryColor),
               ),
-              CastratedWidget(),
-              TextFieldButton('Nível de atividade'),
-              Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 130,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 5),
-                    child: ElevatedButton(
-                      style: styleAdicionar,
-                      child: Text('Adicionar',
-                          style: TextStyle(
-                              color: kBackgroundColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20)),
-                      onPressed: () {},
-                    ),
+            ),
+            CastratedWidget(),
+            TextFieldButton('Nível de atividade'),
+            Center(
+              child: SizedBox(
+                height: 50,
+                width: 130,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 5),
+                  child: ElevatedButton(
+                    style: AddAnimalScreen.styleAdicionar,
+                    child: Text('Adicionar',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20)),
+                    onPressed: () {
+                      controller.adicionarAnimal(
+                        widget.userModel,
+                        context,
+                        nameController.text,
+                        weightController.text,
+                        ageController.text,
+                      );
+                    },
                   ),
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -119,8 +143,9 @@ class AddAnimalScreen extends StatelessWidget {
 
 class TextFieldCustom extends StatelessWidget {
   final String _fieldLabel;
+  final TextEditingController controller;
 
-  TextFieldCustom(this._fieldLabel);
+  TextFieldCustom(this._fieldLabel, this.controller);
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +160,7 @@ class TextFieldCustom extends StatelessWidget {
               style: TextStyle(color: kSecondaryColor),
             ),
             TextField(
+              controller: controller,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(14),
                 border: OutlineInputBorder(),
