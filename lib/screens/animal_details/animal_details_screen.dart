@@ -7,6 +7,7 @@ import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class AnimalDetailsScreen extends StatelessWidget {
   const AnimalDetailsScreen({Key? key}) : super(key: key);
@@ -17,9 +18,12 @@ class AnimalDetailsScreen extends StatelessWidget {
       appBar: AppBarCustom(context),
       drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
-      body: Column(
-        children: const [
-          CardAnimal(),
+      body: ListView(
+        children: [ Column(
+          children: const [
+            CardAnimal(),
+          ],
+        ),
         ],
       ),
       floatingActionButton: SizedBox(
@@ -44,8 +48,8 @@ class CardAnimal extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 12),
         child: Container(
-          width: 460,
-          height: 600,
+          width: 458,
+          height: 655,
           child: Card(
             color: kPrimaryColor,
             shape: RoundedRectangleBorder(
@@ -127,6 +131,10 @@ class CardAnimal extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: StaggeredGridAnimal(),
+                ),
               ],
             ),
             ),
@@ -135,3 +143,77 @@ class CardAnimal extends StatelessWidget {
     );
   }
 }
+
+class StaggeredGridAnimal extends StatelessWidget {
+  const StaggeredGridAnimal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 448,
+      child: Card(
+        color: kBackgroundColor,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
+        ),
+        child: StaggeredGrid.count(
+          crossAxisCount: 4,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
+          children: const [
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 1', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 2', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 3', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 4', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 5', style: TextStyle(fontSize: kLargeSize),),
+              ),
+              ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 6', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 7', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
