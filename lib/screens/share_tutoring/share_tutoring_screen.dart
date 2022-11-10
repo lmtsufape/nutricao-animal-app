@@ -24,15 +24,15 @@ class ShareTutoringScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 25, left: 20),
+            padding: EdgeInsets.only(top: 25, left: 16),
             child: Text('Compartilhar tutoria', style: TextStyle(color: kPrimaryColor, fontSize: kHugeSize, fontWeight: FontWeight.w900,),),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 16),
             child: Text('Name', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize,),),
           ),
           const Padding(
-            padding: EdgeInsets.only(top: 16, left: 20, right: 10),
+            padding: EdgeInsets.only(top: 16, left: 16, right: 10),
             child: Text('Informe o e-mail ou usuário da pessoa com quem gostaria de compartilhar a tutoria do seu pet.', style: TextStyle(color: kPrimaryColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w900),),
           ),
           TextFieldCustom(''),

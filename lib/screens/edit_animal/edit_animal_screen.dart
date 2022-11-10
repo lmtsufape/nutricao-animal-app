@@ -25,7 +25,7 @@ class EditAnimalScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+              padding: EdgeInsets.only(top: 25.0, left: 16.0),
               child: Text(
                 'Editar informações',
                 textDirection: TextDirection.ltr,
@@ -37,12 +37,12 @@ class EditAnimalScreen extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.only(left: 15),
+              padding: EdgeInsets.only(left: 16),
               child: Text('Name', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: SizedBox(
                   width: 110,
                   height: 110,
@@ -58,6 +58,7 @@ class EditAnimalScreen extends StatelessWidget {
                 ),
               ),
             ),
+            TextFieldCustom('Nome'),
             const Padding(
               padding: EdgeInsets.only(left: 16),
               child: Text(
@@ -65,7 +66,6 @@ class EditAnimalScreen extends StatelessWidget {
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            TextFieldCustom('Nome'),
             const SpecieWidget(),
             TextFieldButton('Raça'),
             const Padding(

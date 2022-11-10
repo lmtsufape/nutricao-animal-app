@@ -131,6 +131,10 @@ class CardAnimal extends StatelessWidget {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: StaggeredGridAnimal(),
+                ),
               ],
             ),
           ),
@@ -140,5 +144,76 @@ class CardAnimal extends StatelessWidget {
   }
 }
 
+class StaggeredGridAnimal extends StatelessWidget {
+  const StaggeredGridAnimal({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 448,
+      child: Card(
+        color: kBackgroundColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
+        ),
+        child: StaggeredGrid.count(
+          crossAxisCount: 4,
+          mainAxisSpacing: 4,
+          crossAxisSpacing: 4,
+          children: const [
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 1', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 2', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 3', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 4', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 2,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 5', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 6', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+            StaggeredGridTile.count(
+              crossAxisCellCount: 4,
+              mainAxisCellCount: 0.6,
+              child: ListTile(
+                title: Text('Teste 7', style: TextStyle(fontSize: kLargeSize),),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 

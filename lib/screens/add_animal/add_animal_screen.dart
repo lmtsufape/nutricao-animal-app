@@ -23,7 +23,7 @@ class AddAnimalScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+              padding: EdgeInsets.only(top: 25.0, left: 16.0),
               child: Text(
                 'Adicionar Pet',
                 textDirection: TextDirection.ltr,
@@ -36,7 +36,7 @@ class AddAnimalScreen extends StatelessWidget {
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: SizedBox(
                   width: 110,
                   height: 110,
@@ -111,7 +111,7 @@ class TextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 14),
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -121,7 +121,7 @@ class TextFieldCustom extends StatelessWidget {
           ),
           const TextField(
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(14),
+              contentPadding: EdgeInsets.all(16),
               border: OutlineInputBorder(),
             ),
           ),
@@ -145,7 +145,7 @@ class TextFieldButton extends StatelessWidget {
       onTap: () {},
       child: Ink(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
