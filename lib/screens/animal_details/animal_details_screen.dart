@@ -49,7 +49,7 @@ class CardAnimal extends StatelessWidget {
         padding: const EdgeInsets.only(top: 12),
         child: Container(
           width: 458,
-          height: 655,
+          height: 671,
           child: Card(
             color: kPrimaryColor,
             shape: RoundedRectangleBorder(
@@ -151,69 +151,164 @@ class StaggeredGridAnimal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 448,
-      child: Card(
-        color: kBackgroundColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-        ),
-        child: StaggeredGrid.count(
-          crossAxisCount: 4,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          children: const [
-            StaggeredGridTile.count(
-              crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 1', style: TextStyle(fontSize: kLargeSize),),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Card(
+          color: kBackgroundColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
+          ),
+          child: StaggeredGrid.count(
+            crossAxisCount: 4,
+            mainAxisSpacing: 4,
+            crossAxisSpacing: 4,
+            children: [
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: const RoundedRectangleBorder(
+                      side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Espécie: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text: 'Gato', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 2', style: TextStyle(fontSize: kLargeSize),),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Idade: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'3 anos', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                    ),
+                  ),
+                ),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 4,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Sexo: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'Masculino', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 3', style: TextStyle(fontSize: kLargeSize),),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Peso: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'4,6Kg', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(right: 0, top: 5),
+                    child: SizedBox(
+                      height: 50,
+                      width: 46,
+                      child: FloatingActionButton(
+                        onPressed: () {},
+                        backgroundColor: kDetailColor,
+                        child: Icon(Icons.ssid_chart_sharp, color: kBackgroundColor,),
+                      ),
+                    ),
+                  )
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 4', style: TextStyle(fontSize: kLargeSize),),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 2,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Altura: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'38cm', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 5', style: TextStyle(fontSize: kLargeSize),),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 4,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Castrado: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'Sim', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 6', style: TextStyle(fontSize: kLargeSize),),
+              StaggeredGridTile.count(
+                crossAxisCellCount: 4,
+                mainAxisCellCount: 0.6,
+                child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: kPrimaryColor, width: 3.5, strokeAlign: StrokeAlign.outside),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      text: 'Nível de atividade: ',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: kSecondaryColor, fontSize: 23),
+                      children: <TextSpan>[
+                        TextSpan(text:'Ativo', style: TextStyle(fontWeight: FontWeight.w600, color: kPrimaryColor, fontSize: 23),),
+                      ],
+                    ),
+                  ),
+                ),
               ),
-            ),
-            StaggeredGridTile.count(
-              crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                title: Text('Teste 7', style: TextStyle(fontSize: kLargeSize),),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+
+
 
