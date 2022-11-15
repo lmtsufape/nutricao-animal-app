@@ -16,6 +16,7 @@ import 'package:thunderapp/screens/share_tutoring/share_tutoring_screen.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_screen.dart';
 import 'package:thunderapp/screens/sign_up/sign_up_screen.dart';
 import 'package:thunderapp/screens/user%20screen/user_screen.dart';
+import 'package:thunderapp/screens/weight_history/weight_history_screen.dart';
 
 import 'package:thunderapp/shared/constants/app_theme.dart';
 
@@ -63,6 +64,7 @@ class App extends StatelessWidget {
         Screens.editFood: (BuildContext context) => const EditFoodScreen(),
         Screens.foodDetails: (BuildContext context) => const FoodDetailsScreen(),
         Screens.animalDetails: (BuildContext context) => const AnimalDetailsScreen(),
+        Screens.weightHistory: (BuildContext context) => const WeightHistoryScreen(),
       },
     );
   }
