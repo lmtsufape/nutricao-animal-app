@@ -41,7 +41,7 @@ class NoRegFoodScreen extends StatelessWidget {
           TextFieldCustom('Cálcio'),
           TextFieldCustom('Fibra'),
           Padding(
-            padding: const EdgeInsets.only(top: 12),
+            padding: const EdgeInsets.only(top: 6),
             child: Center(
               child: SizedBox(
                 width: 140,
