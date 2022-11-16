@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -42,35 +43,7 @@ class WeightHistoryScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16, bottom: 16),
-            child: CustomRadioButton(
-              wrapAlignment: WrapAlignment.start,
-              enableShape: true,
-              width: 110,
-              elevation: 0,
-              unSelectedColor: kBackgroundColor,
-              unSelectedBorderColor: kSecondaryColor,
-              buttonLables: const [
-                'Semana',
-                'Mês',
-                'Ano',
-              ],
-              buttonValues: const [
-                "SEMANA",
-                "MÊS",
-                "ANO",
-              ],
-              buttonTextStyle: const ButtonTextStyle(
-                  selectedColor: kBackgroundColor,
-                  unSelectedColor: kSecondaryColor,
-                  textStyle: TextStyle(
-                      fontSize: kMediumSize,
-                      color: kSecondaryColor,
-                      fontWeight: FontWeight.w700)),
-              radioButtonValue: (value) {
-                print(value);
-              },
-              selectedColor: kSecondaryColor,
-            ),
+            child: TimeRadioButtons(),
           ),
         ],
       ),
@@ -78,4 +51,39 @@ class WeightHistoryScreen extends StatelessWidget {
   }
 }
 
+class TimeRadioButtons extends StatelessWidget {
+  const TimeRadioButtons({Key? key}) : super(key: key);
+
+  Widget build(BuildContext context) {
+    return CustomRadioButton(
+      wrapAlignment: WrapAlignment.start,
+      enableShape: true,
+      width: 110,
+      elevation: 0,
+      unSelectedColor: kBackgroundColor,
+      unSelectedBorderColor: kSecondaryColor,
+      buttonLables: const [
+        'Semana',
+        'Mês',
+        'Ano',
+      ],
+      buttonValues: const [
+        "SEMANA",
+        "MÊS",
+        "ANO",
+      ],
+      buttonTextStyle: const ButtonTextStyle(
+          selectedColor: kBackgroundColor,
+          unSelectedColor: kSecondaryColor,
+          textStyle: TextStyle(
+              fontSize: kMediumSize,
+              color: kSecondaryColor,
+              fontWeight: FontWeight.w700)),
+        radioButtonValue: (value) {
+              print(value);
+      },
+      selectedColor: kSecondaryColor,
+    );
+  }
+}
 
