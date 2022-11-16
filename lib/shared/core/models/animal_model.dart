@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AnimalModel extends ChangeNotifier {
-  String? name;
-  String? weight;
+  final String? name;
+  final String? weight;
 
-  String? age;
+  final String? age;
 
-  setAnimal(name, weight, age) {
-    this.name = name;
-    this.weight = weight;
-    this.age = age;
-    notifyListeners();
-  }
+  AnimalModel(this.name, this.weight, this.age);
 }

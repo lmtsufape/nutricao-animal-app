@@ -18,7 +18,6 @@ class SignInController with ChangeNotifier {
   final SignInRepository _repository = SignInRepository();
   String? email;
   String? password;
-  AnimalModel modelNull = AnimalModel();
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -38,10 +37,8 @@ class SignInController with ChangeNotifier {
       if (succ) {
         status = SignInStatus.done;
         notifyListeners();
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>  HomeScreen(userModel, modelNull)));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => HomeScreen(userModel)));
       }
       status = SignInStatus.done;
     } catch (e) {

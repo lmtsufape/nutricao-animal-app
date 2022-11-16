@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
@@ -13,14 +14,22 @@ import '../add animal/add_animal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   UserModel userModel = UserModel();
-  AnimalModel animalModel = AnimalModel();
-  HomeScreen(this.userModel, this.animalModel, {super.key});
+
+  HomeScreen(this.userModel, {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  HomeScreenController _controller = HomeScreenController();
+
+  @override
+  void initState() {
+    _controller.populateList();
+    super.initState();
+  }
+
   final AppTheme formCustom = AppTheme();
   @override
   Widget build(BuildContext context) {
@@ -52,11 +61,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  CardHomeScreen(
-                    widget.animalModel.age,
-                    widget.animalModel.name,
-                    widget.animalModel.weight,
-                  ),
+                  Expanded(
+                    child: ListView.separated(
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return CardHomeScreen(
+                              _controller.animals[index].age,
+                              _controller.animals[index].name,
+                              _controller.animals[index].weight);
+                        },
+                        separatorBuilder: (context, index) {
+                          return Divider();
+                        },
+                        itemCount: _controller.animals.length),
+                  )
                 ],
               ),
               floatingActionButton: SizedBox(

@@ -32,16 +32,16 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             // Image.asset(Assets.logo),//* if you want to use some logo, uncomment this line and pass the path
             Text(
               'LOGO',
               style: TextStyle(fontSize: 78),
             ),
-            const SizedBox(
+            SizedBox(
               height: kLargeSize,
             ),
-            const CircularProgressIndicator(
+            CircularProgressIndicator(
               color: kDetailColor,
               strokeWidth: kTinySize,
             ),
