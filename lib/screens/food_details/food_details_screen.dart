@@ -73,7 +73,7 @@ class FoodDetailsScreen extends StatelessWidget {
                                       height: 40,
                                       child: ElevatedButton(
                                         style: styleNao,
-                                        onPressed: () {},
+                                        onPressed: () => Navigator.pushNamed(context, Screens.foodDetails),
                                         child: const Text('Não', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w700),),
                                     ),
                                   ),
@@ -85,7 +85,7 @@ class FoodDetailsScreen extends StatelessWidget {
                                       height: 40,
                                       child: ElevatedButton(
                                         style: styleSim,
-                                        onPressed: () {},
+                                        onPressed: () => Navigator.pushNamed(context, Screens.privateMenu),
                                         child: const Text('Sim', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w800),),
                                     ),
                                   ),
