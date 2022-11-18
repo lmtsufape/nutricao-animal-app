@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
-import 'package:thunderapp/screens/sign%20up/sign_up_controller.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_controller.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_repository.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
@@ -11,10 +15,16 @@ import '../../components/buttons/primary_button.dart';
 import '../../components/utils/vertical_spacer_box.dart';
 import '../../shared/constants/app_enums.dart';
 import '../screens_index.dart';
+import 'sign_up_repository.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -46,34 +56,33 @@ class SignUpScreen extends StatelessWidget {
                       'Nome de exibição',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                       hintText: 'Ana Vieira',
-                      // controller: controller.nomeController,
+                      controller: controller.nameController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text(
                       'E-mail',
                       style: TextStyle(color: kBackgroundColor),
                     ),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                       hintText: 'email@example.com',
-                      // controller: controller.emailController,
+                      controller: controller.emailController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Senha',
                         style: TextStyle(color: kBackgroundColor)),
-                    const CustomTextFormField(
+                    CustomTextFormField(
                       hintText: '********',
-                      //  isPassword: true,
-                      // controller: controller.passwordController,
+                      isPassword: true,
+                      controller: controller.passwordController,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const Text('Confirmar senha',
                         style: TextStyle(color: kBackgroundColor)),
                     const CustomTextFormField(
                       hintText: '********',
-                      //isPassword: true,
-                      // controller: controller.passwordController,
+                      isPassword: true,
                     ),
                     const VerticalSpacerBox(size: SpacerSize.small),
                     const SizedBox(
@@ -81,12 +90,14 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Center(
                       child: PrimaryButton(
-                          text: const Text(
-                            'Finalizar',
-                            style: TextStyle(fontSize: kMediumLargeSize),
-                          ),
-                          //Criar rota
-                          onPressed: () => controller.signUp(context)),
+                          text: const Text('Finalizar'),
+                          onPressed: () {
+                            SignUpRepository.signUp(
+                              controller.nameController.text,
+                              controller.emailController.text,
+                              controller.passwordController.text,
+                            );
+                          }),
                     ),
                     const Spacer(),
                   ],

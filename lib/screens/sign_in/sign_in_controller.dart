@@ -25,15 +25,14 @@ class SignInController with ChangeNotifier {
   var status = SignInStatus.idle;
   void signIn(BuildContext context) async {
     try {
-      await _repository.signIn(
-        email: emailController.text,
-        password: emailController.text,
-        onSuccess: () {
-          status = SignInStatus.done;
-          notifyListeners();
-          Navigator.popAndPushNamed(context, Screens.home);
-        },
-      );
+      var succ = await _repository.login(
+          emailController.text, passwordController.text);
+      if (succ) {
+        status = SignInStatus.done;
+        notifyListeners();
+        //Navigator.popAndPushNamed(context, Screens.home);
+      }
+
       status = SignInStatus.done;
     } catch (e) {
       status = SignInStatus.error;
