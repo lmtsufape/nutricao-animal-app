@@ -26,7 +26,7 @@ class FoodScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(left: 18, top: 20),
+            padding: EdgeInsets.only(left: 16, top: 16),
             child: Text(
               'Alimentar',
               style: TextStyle(
@@ -37,7 +37,7 @@ class FoodScreen extends StatelessWidget {
           ),
           const Padding(
             padding: EdgeInsets.only(
-              left: 19,
+              left: 16,
               bottom: 16,
             ),
             child: Text('Name',
@@ -45,19 +45,33 @@ class FoodScreen extends StatelessWidget {
                     TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
           ),
           TextFieldButtonPC('Escolher do cardápio'),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(top: 16, bottom: 16),
-            child: Center(
-                child: Text(
-              '-------------------- OU --------------------',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: kMediumLargeSize,
-                  fontWeight: FontWeight.w900),
-            )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding:const EdgeInsets.symmetric(horizontal:10.0),
+                  child:Container(
+                    height: 3,
+                    width: 190,
+                    color: kPrimaryColor,
+                  ),
+                ),
+                const Text('OU', style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: kLargeSize),),
+                Padding(
+                  padding:const EdgeInsets.symmetric(horizontal:10.0),
+                  child:Container(
+                    height: 3,
+                    width: 190,
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ],
+            ),
           ),
           const Padding(
-            padding: EdgeInsets.only(left: 22, bottom: 8),
+            padding: EdgeInsets.only(left: 16, bottom: 16),
             child: Text(
               'Comida fora do cardápio',
               style: TextStyle(
@@ -79,7 +93,7 @@ class FoodScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: styleAlimentar,
                   onPressed: () {},
-                  child: const Text('Alimentar', style: TextStyle(color: kBackgroundColor, fontSize: kMediumSize)),
+                  child: const Text('Alimentar', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w700)),
                 ),
               ),
             ),
@@ -148,7 +162,7 @@ class TextFieldButtonPC extends StatelessWidget {
       onTap: () {},
       child: Ink(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

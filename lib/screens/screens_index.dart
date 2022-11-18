@@ -17,4 +17,7 @@ class Screens {
   static const String privateMenu = '/private_menu';
   static const String editFood = '/edit_food';
   static const String foodDetails = '/food_details';
+  static const String animalDetails = '/animal_details';
+  static const String weightHistory = '/weight_history';
+
 }

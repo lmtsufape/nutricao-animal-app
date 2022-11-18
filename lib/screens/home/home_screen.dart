@@ -15,9 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: NavigationDrawerWidget(),
       appBar: AppBarCustom(context),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.only(top: 16.0),
             child: Text(
               'Animais Cadastrados',
               textDirection: TextDirection.ltr,
@@ -68,7 +69,7 @@ class CardHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       //exemplo
-      onTap: () => Navigator.pushNamed(context, Screens.user),
+      onTap: () => Navigator.pushNamed(context, Screens.animalDetails),
       child: Ink(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
