@@ -26,11 +26,20 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         children: [
           Padding(
             padding: EdgeInsets.only(top: 16, left: 16),
-            child: Text('Cardápio particular', style: TextStyle(color: kPrimaryColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
+            child: Text(
+              'Cardápio particular',
+              style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: kHugeSize,
+                  fontWeight: FontWeight.w900),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 16, bottom: 16),
-            child: Text('Name', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
+            child: Text(
+              'Name',
+              style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
+            ),
           ),
           CardMenu(),
           CardMenu(),
@@ -51,7 +60,11 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         child: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, Screens.food),
           backgroundColor: kSecondaryColor,
-          child: const Icon(Icons.add, size: 65, color: kBackgroundColor,),
+          child: const Icon(
+            Icons.add,
+            size: 65,
+            color: kBackgroundColor,
+          ),
         ),
       ),
     );
@@ -63,30 +76,49 @@ class CardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-      child: SizedBox(
-        height: 90,
-        child: Card(
-          color: kBackgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Text('Food - Amount', style: TextStyle(color: kPrimaryColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w900),),
-                ),
-                subtitle: Text('Type', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
-                trailing: Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Icon(Icons.arrow_forward_ios_rounded, color: kDetailColor, size: 30,),
-                ),
-              )
-            ],
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, Screens.foodDetails),
+      child: Ink(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+          child: SizedBox(
+            height: 90,
+            child: Card(
+              color: kBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                    title: Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Text(
+                        'Food - Amount',
+                        style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: kMediumLargeSize,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Type',
+                      style: TextStyle(
+                          color: kSecondaryColor, fontSize: kMediumSize),
+                    ),
+                    trailing: Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: kDetailColor,
+                        size: 30,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
       ),
