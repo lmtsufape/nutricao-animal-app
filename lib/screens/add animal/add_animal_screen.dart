@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/add%20animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/add%20animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
@@ -24,6 +28,18 @@ class AddAnimalScreen extends StatefulWidget {
 }
 
 class _AddAnimalScreenState extends State<AddAnimalScreen> {
+  selectImage() async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      XFile? file = await picker.pickImage(source: ImageSource.gallery);
+      if (file != null) setState(() => photo = file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  XFile? photo;
   @override
   Widget build(BuildContext context) {
     AddAnimalController controller = AddAnimalController();
@@ -61,12 +77,14 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   height: 110,
                   child: FloatingActionButton(
                     backgroundColor: kBackgroundColor,
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.photo,
-                      color: kSecondaryColor,
-                      size: 50,
-                    ),
+                    onPressed: () => selectImage,
+                    child: photo != null
+                        ? Image.file(File(photo!.path))
+                        : Icon(
+                            Icons.photo,
+                            color: kSecondaryColor,
+                            size: 50,
+                          ),
                   ),
                 ),
               ),
@@ -239,6 +257,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
 
   @override
   Widget build(BuildContext context) {
+    AddAnimalRepository _repository = AddAnimalRepository();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -259,6 +278,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
+                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
@@ -283,6 +303,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
+                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },

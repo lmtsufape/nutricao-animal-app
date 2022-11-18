@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class SignInRepository with ChangeNotifier {
           "email": email,
           "password": password,
         });
+
     print(response.statusCode);
     if (response.statusCode == 200) {
       userModel.setUser(response.data['name'], response.data['token']);
