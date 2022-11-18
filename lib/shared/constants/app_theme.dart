@@ -4,30 +4,32 @@ import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:provider/provider.dart';
 
-class AppTheme {
+import '../core/models/user_model.dart';
+
+class AppTheme extends ChangeNotifier {
   static ThemeData getLightTheme() {
     return ThemeData(
       scaffoldBackgroundColor: kBackgroundColor,
       fontFamily: kDefaultFontFamily,
     );
   }
-}
 
-AppBar AppBarCustom(BuildContext context) {
-  return AppBar(title: const Text('Olá, Ana!'), actions: [
-    IconButton(
-      icon: const Icon(Icons.account_circle_rounded),
-      onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
-    ),
-  ]);
+  AppBar appBarCustom(BuildContext context, String userName) {
+    return AppBar(title: Text('Olá $userName'), actions: [
+      IconButton(
+        icon: const Icon(Icons.account_circle_rounded),
+        onPressed: () => Navigator.pushNamed(context, Screens.user),
+      ),
+    ]);
+  }
 }
 
 class NavigationDrawerWidget extends StatelessWidget {
-
   static ButtonStyle style = ElevatedButton.styleFrom(
-      backgroundColor: kDetailColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
+    backgroundColor: kDetailColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
   );
 
   @override
@@ -42,12 +44,28 @@ class NavigationDrawerWidget extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(top: 12),
               child: ListTile(
-                leading: Icon(Icons.portrait_rounded, color: kBackgroundColor, size: 125,),
+                leading: Icon(
+                  Icons.portrait_rounded,
+                  color: kBackgroundColor,
+                  size: 125,
+                ),
                 title: Padding(
                   padding: EdgeInsets.only(top: 37),
-                  child: Text('Ana Vieira', style: TextStyle(color: kBackgroundColor, fontSize: 27, fontWeight: FontWeight.w900),),
+                  child: Text(
+                    'Ana Vieira',
+                    style: TextStyle(
+                        color: kBackgroundColor,
+                        fontSize: 27,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
-                subtitle: Text('example@email.com', style: TextStyle(color: kBackgroundColor, fontSize: kMediumSize, fontWeight: FontWeight.w500),),
+                subtitle: Text(
+                  'example@email.com',
+                  style: TextStyle(
+                      color: kBackgroundColor,
+                      fontSize: kMediumSize,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
             ),
             Padding(
@@ -57,19 +75,29 @@ class NavigationDrawerWidget extends StatelessWidget {
                   width: 215,
                   child: ElevatedButton.icon(
                     style: style,
-                    onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
-                    icon: const Icon(Icons.edit_rounded, color: kBackgroundColor,),
-                    label: const Text('Editar informações', style: TextStyle(color: kBackgroundColor, fontSize: kMediumSize, fontWeight: FontWeight.w600),),
+                    onPressed: () =>
+                        Navigator.pushNamed(context, Screens.editProfile),
+                    icon: const Icon(
+                      Icons.edit_rounded,
+                      color: kBackgroundColor,
+                    ),
+                    label: const Text(
+                      'Editar informações',
+                      style: TextStyle(
+                          color: kBackgroundColor,
+                          fontSize: kMediumSize,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),
             ),
             Center(
               child: Padding(
-                padding:const EdgeInsets.symmetric(horizontal:10.0),
-                child:Container(
-                  height:3,
-                  width:335,
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Container(
+                  height: 3,
+                  width: 335,
                   color: kBackgroundColor,
                 ),
               ),
@@ -82,28 +110,53 @@ class NavigationDrawerWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
-                      onTap: () => Navigator.pushNamed(context, Screens.noRegFood),
-                      title: const Text('Sugerir nova comida', style: TextStyle(color: kBackgroundColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
+                      onTap: () =>
+                          Navigator.pushNamed(context, Screens.noRegFood),
+                      title: const Text(
+                        'Sugerir nova comida',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: kHugeSize,
+                            fontWeight: FontWeight.w900),
                       ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ListTile(
-                      onTap: (){},
-                      title: const Text('Lorem ipsum', style: TextStyle(color: kBackgroundColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
-                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
                       onTap: () {},
-                      title: const Text('Lorem ipsum', style: TextStyle(color: kBackgroundColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
+                      title: const Text(
+                        'Lorem ipsum',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: kHugeSize,
+                            fontWeight: FontWeight.w900),
+                      ),
                     ),
                   ),
-                   ListTile(
-                     onTap: () {},
-                     title: const Text('Lorem ipsum', style: TextStyle(color: kBackgroundColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
-                     ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: ListTile(
+                      onTap: () {},
+                      title: const Text(
+                        'Lorem ipsum',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: kHugeSize,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () {},
+                    title: const Text(
+                      'Lorem ipsum',
+                      style: TextStyle(
+                          color: kBackgroundColor,
+                          fontSize: kHugeSize,
+                          fontWeight: FontWeight.w900),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -113,20 +166,32 @@ class NavigationDrawerWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 15),
                   child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: TextButton(onPressed: () {}, child: const Text('Sair', style: TextStyle(color: kBackgroundColor, fontSize: 28),)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 220),
-                      child: IconButton(onPressed: () {}, icon: const Icon(Icons.door_back_door_outlined, color: kBackgroundColor, size: 40,)),
-                    ),
-                  ],
-              ),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              'Sair',
+                              style: TextStyle(
+                                  color: kBackgroundColor, fontSize: 28),
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 220),
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.door_back_door_outlined,
+                              color: kBackgroundColor,
+                              size: 40,
+                            )),
+                      ),
+                    ],
+                  ),
                 ),
-            ),
+              ),
             ),
           ],
         ),
@@ -134,4 +199,3 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 }
-

@@ -1,29 +1,65 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
+import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/animal_model.dart';
 
-class AddAnimalScreen extends StatelessWidget {
-  const AddAnimalScreen({Key? key}) : super(key: key);
+import '../../shared/core/models/user_model.dart';
+
+class AddAnimalScreen extends StatefulWidget {
+  UserModel userModel = UserModel();
+  AddAnimalScreen(this.userModel, {Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
-      backgroundColor: kSecondaryColor,);
+    backgroundColor: kSecondaryColor,
+  );
+
+  @override
+  State<AddAnimalScreen> createState() => _AddAnimalScreenState();
+}
+
+class _AddAnimalScreenState extends State<AddAnimalScreen> {
+  selectImage() async {
+    final ImagePicker picker = ImagePicker();
+
+    try {
+      XFile? file = await picker.pickImage(source: ImageSource.gallery);
+      if (file != null) setState(() => photo = file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  XFile? photo;
   @override
   Widget build(BuildContext context) {
+    AddAnimalController controller = AddAnimalController();
+    TextEditingController nameController = TextEditingController();
+    TextEditingController weightController = TextEditingController();
+    TextEditingController heightController = TextEditingController();
+    TextEditingController ageController = TextEditingController();
+
+    final AppTheme formCustom = AppTheme();
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      drawer: NavigationDrawerWidget(),
-      appBar: AppBarCustom(context),
-      body: ListView(
-        children: [Column(
+      appBar:
+          formCustom.appBarCustom(context, widget.userModel.name.toString()),
+      body: SingleChildScrollView(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 16.0),
+              padding: EdgeInsets.only(top: 25.0, left: 15.0),
               child: Text(
                 'Adicionar Pet',
                 textDirection: TextDirection.ltr,
@@ -36,51 +72,60 @@ class AddAnimalScreen extends StatelessWidget {
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
                 child: SizedBox(
                   width: 110,
                   height: 110,
                   child: FloatingActionButton(
                     backgroundColor: kBackgroundColor,
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.photo,
-                      color: kSecondaryColor,
-                      size: 50,
-                    ),
+                    onPressed: () => selectImage,
+                    child: photo != null
+                        ? Image.file(File(photo!.path))
+                        : Icon(
+                            Icons.photo,
+                            color: kSecondaryColor,
+                            size: 50,
+                          ),
                   ),
                 ),
               ),
             ),
-            TextFieldCustom('Nome'),
-            const Padding(
-              padding: EdgeInsets.only(left: 16),
+            TextFieldCustom('Nome', nameController),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
                 'Espécie',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            const SpecieWidget(),
+            SpecieWidget(),
+            /*Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Raça',
+                style: TextStyle(color: kSecondaryColor),
+              ),
+            ),*/
             TextFieldButton('Raça'),
-            const Padding(
-              padding: EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
                 'Sexo',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            const AnimalSexWidget(),
-            TextFieldCustom('Peso'),
-            TextFieldCustom('Altura'),
-            TextFieldCustom('Idade'),
-            const Padding(
-              padding: EdgeInsets.only(left: 16),
+            AnimalSexWidget(),
+            TextFieldCustom('Peso', weightController),
+            TextFieldCustom('Altura', heightController),
+            TextFieldCustom('Idade', ageController),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            const CastratedWidget(),
+            CastratedWidget(),
             TextFieldButton('Nível de atividade'),
             Center(
               child: SizedBox(
@@ -89,15 +134,27 @@ class AddAnimalScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 5),
                   child: ElevatedButton(
-                    style: styleAdicionar,
-                    child: const Text('Adicionar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w400, fontSize: 20)),
-                    onPressed: () {},),
+                    style: AddAnimalScreen.styleAdicionar,
+                    child: Text('Adicionar',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20)),
+                    onPressed: () {
+                      controller.adicionarAnimal(
+                        widget.userModel,
+                        context,
+                        nameController.text,
+                        weightController.text,
+                        ageController.text,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
           ],
         ),
-      ],
       ),
     );
   }
@@ -105,29 +162,32 @@ class AddAnimalScreen extends StatelessWidget {
 
 class TextFieldCustom extends StatelessWidget {
   final String _fieldLabel;
+  final TextEditingController controller;
 
-  TextFieldCustom(this._fieldLabel);
+  TextFieldCustom(this._fieldLabel, this.controller);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+    return Container(
+        child: Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             _fieldLabel,
-            style: const TextStyle(color: kSecondaryColor),
+            style: TextStyle(color: kSecondaryColor),
           ),
-          const TextField(
+          TextField(
+            controller: controller,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16),
+              contentPadding: EdgeInsets.all(14),
               border: OutlineInputBorder(),
             ),
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -137,46 +197,48 @@ class TextFieldButton extends StatelessWidget {
   TextFieldButton(this._buttonFieldLabel);
 
   static ButtonStyle styleButton = ElevatedButton.styleFrom(
-    backgroundColor: kDetailColor,);
+    backgroundColor: kDetailColor,
+  );
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      child: Ink(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _buttonFieldLabel,
-                style: const TextStyle(color: kSecondaryColor),
-              ),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Selecione',
-                  hintStyle: const TextStyle(fontSize: 18),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 10.0),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.arrow_circle_down_sharp, size: 35, color: kDetailColor,),
+        onTap: () {},
+        child: Ink(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _buttonFieldLabel,
+                    style: TextStyle(color: kSecondaryColor),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Selecione',
+                      hintStyle: TextStyle(fontSize: 18),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_circle_down_sharp,
+                            size: 35,
+                            color: kDetailColor,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  contentPadding: const EdgeInsets.all(14),
-                  border: const OutlineInputBorder(),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
-
-
 
 enum Specie { dog, cat }
 
@@ -192,6 +254,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
 
   @override
   Widget build(BuildContext context) {
+    AddAnimalRepository _repository = AddAnimalRepository();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -212,6 +275,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
+                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
@@ -236,6 +300,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
+                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },

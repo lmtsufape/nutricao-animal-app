@@ -9,8 +9,7 @@ class UserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
     );
   }
 }

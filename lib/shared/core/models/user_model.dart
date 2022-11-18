@@ -1,13 +1,12 @@
-class UserModel {
-  String name = '';
-  String email = '';
-  String token = '';
-  String pic = '';
+import 'package:flutter/material.dart';
 
-  setUser(name, email, token, pic) {
+class UserModel with ChangeNotifier {
+  String? name;
+  String? token;
+
+  setUser(name, token) {
     this.name = name;
-    this.email = email;
     this.token = token;
-    this.pic = pic;
+    notifyListeners();
   }
 }

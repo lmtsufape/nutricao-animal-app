@@ -5,5 +5,5 @@
 ///the text should be in the following format: start the variable with the letter 'K' and then
 ///use camel case to separate the words
 
-const String kBaseUrl = 'http://127.0.0.1:8000/api';
-const String kAppTitle = 'Thunderapp';
+const String kBaseUrl = 'http://127.0.0.1:8001/api';
+const String kAppTitle = 'NutriPet';
