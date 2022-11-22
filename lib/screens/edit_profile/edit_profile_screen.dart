@@ -12,13 +12,18 @@ class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleSal = ElevatedButton.styleFrom(
-    backgroundColor: kSecondaryColor,);
+    backgroundColor: kSecondaryColor,
+  );
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,14 +37,18 @@ class EditProfileScreen extends StatelessWidget {
                 child: FloatingActionButton(
                   backgroundColor: kBackgroundColor,
                   onPressed: () {},
-                  child: const Icon(Icons.photo, color: kSecondaryColor, size: 50,),
+                  child: const Icon(
+                    Icons.photo,
+                    color: kSecondaryColor,
+                    size: 50,
+                  ),
                 ),
               ),
             ),
           ),
-          TextFieldCustom('Nome de Exibição'),
-          TextFieldCustom('E-mail'),
-          TextFieldCustom('Senha'),
+          TextFieldCustom('Nome de Exibição', nameController),
+          TextFieldCustom('E-mail', emailController),
+          TextFieldCustom('Senha', passwordController),
           Padding(
             padding: const EdgeInsets.only(top: 10),
             child: Center(
@@ -47,9 +56,15 @@ class EditProfileScreen extends StatelessWidget {
                 width: 110,
                 height: 40,
                 child: ElevatedButton(
-                    style: styleSal,
-                    onPressed: () {},
-                    child: const Text('Salvar', style: TextStyle(color: kBackgroundColor, fontWeight: FontWeight.w700, fontSize: kMediumLargeSize),),
+                  style: styleSal,
+                  onPressed: () {},
+                  child: const Text(
+                    'Salvar',
+                    style: TextStyle(
+                        color: kBackgroundColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: kMediumLargeSize),
+                  ),
                 ),
               ),
             ),

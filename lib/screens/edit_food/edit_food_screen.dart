@@ -11,14 +11,16 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 class EditFoodScreen extends StatelessWidget {
   const EditFoodScreen({Key? key}) : super(key: key);
 
-  static ButtonStyle styleSave = ElevatedButton.styleFrom(
-      backgroundColor: kSecondaryColor
-      );
+  static ButtonStyle styleSave =
+      ElevatedButton.styleFrom(backgroundColor: kSecondaryColor);
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nickController = TextEditingController();
+    TextEditingController quantController = TextEditingController();
+
     return Scaffold(
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: Column(
@@ -26,16 +28,25 @@ class EditFoodScreen extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 16, left: 16),
-            child: Text('Editar Comida', style: TextStyle(color: kPrimaryColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
+            child: Text(
+              'Editar Comida',
+              style: TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: kHugeSize,
+                  fontWeight: FontWeight.w900),
+            ),
           ),
           const Padding(
             padding: EdgeInsets.only(left: 16, bottom: 16),
-            child: Text('Name > Cardápio Particular > Food', style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),),
+            child: Text(
+              'Name > Cardápio Particular > Food',
+              style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
+            ),
           ),
-          TextFieldCustom('Apelido'),
+          TextFieldCustom('Apelido', nickController),
           TextFieldButton('Tipo'),
           TextFieldButton('Comida'),
-          TextFieldCustom('Quantidade(em gramas)'),
+          TextFieldCustom('Quantidade(em gramas)', quantController),
           Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Center(
@@ -44,15 +55,20 @@ class EditFoodScreen extends StatelessWidget {
                 width: 110,
                 child: ElevatedButton(
                   style: styleSave,
-                    onPressed: () {},
-                    child: const Text('Salvar', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w700),),
+                  onPressed: () {},
+                  child: const Text(
+                    'Salvar',
+                    style: TextStyle(
+                        color: kBackgroundColor,
+                        fontSize: kMediumLargeSize,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
               ),
             ),
           ),
         ],
       ),
-
     );
   }
 }

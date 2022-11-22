@@ -50,6 +50,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
     TextEditingController ageController = TextEditingController();
 
     final AppTheme formCustom = AppTheme();
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar:
@@ -254,7 +255,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
 
   @override
   Widget build(BuildContext context) {
-    AddAnimalRepository _repository = AddAnimalRepository();
+    AddAnimalRepository repository = AddAnimalRepository();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -275,7 +276,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    _repository.getBreed();
+                    repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
@@ -300,7 +301,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    _repository.getBreed();
+                    repository.getBreed();
                     _animalSpecie = value;
                   });
                 },

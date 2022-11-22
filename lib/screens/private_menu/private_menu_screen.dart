@@ -20,7 +20,7 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       body: ListView(
         children: [

@@ -15,7 +15,7 @@ class AnimalDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: ListView(

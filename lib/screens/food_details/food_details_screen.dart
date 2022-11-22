@@ -8,100 +8,131 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-
 class FoodDetailsScreen extends StatelessWidget {
   const FoodDetailsScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleDelete = ElevatedButton.styleFrom(
-      backgroundColor: Colors.redAccent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+    backgroundColor: Colors.redAccent,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
   );
 
   static ButtonStyle styleNao = ElevatedButton.styleFrom(
-      backgroundColor: kSecondaryColor,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+    backgroundColor: kSecondaryColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
   );
 
   static ButtonStyle styleSim = ElevatedButton.styleFrom(
-      backgroundColor: Colors.redAccent,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+    backgroundColor: Colors.redAccent,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
   );
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-            Padding(
-              padding: EdgeInsets.only(top: 16),
-              child: CardDetails(),
-            ),
-            Center(
-                child: FoodTable(),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 270,
-                  child: ElevatedButton.icon(
-                    style: styleDelete,
-                    onPressed: () {
-                      showDialog(
-                          context: context, builder: (context) => Padding(
-                            padding: const EdgeInsets.only(bottom: 435),
-                            child: AlertDialog(
-                              insetPadding: EdgeInsets.symmetric(horizontal: 15),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                              backgroundColor: kBackgroundColor,
-                              content: Text('Tem certeza que deseja remover Food do cardápio de Name?', style: TextStyle(color: kPrimaryColor, fontSize: kLargeSize, fontWeight: FontWeight.bold),),
-                              actions: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 28, bottom: 12),
-                                    child: SizedBox(
-                                      width: 100,
-                                      height: 40,
-                                      child: ElevatedButton(
-                                        style: styleNao,
-                                        onPressed: () => Navigator.pushNamed(context, Screens.foodDetails),
-                                        child: const Text('Não', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w700),),
+          Padding(
+            padding: EdgeInsets.only(top: 16),
+            child: CardDetails(),
+          ),
+          Center(
+            child: FoodTable(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: Center(
+              child: SizedBox(
+                height: 50,
+                width: 270,
+                child: ElevatedButton.icon(
+                  style: styleDelete,
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Padding(
+                        padding: const EdgeInsets.only(bottom: 435),
+                        child: AlertDialog(
+                          insetPadding: EdgeInsets.symmetric(horizontal: 15),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0)),
+                          backgroundColor: kBackgroundColor,
+                          content: Text(
+                            'Tem certeza que deseja remover Food do cardápio de Name?',
+                            style: TextStyle(
+                                color: kPrimaryColor,
+                                fontSize: kLargeSize,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          actions: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 28, bottom: 12),
+                                  child: SizedBox(
+                                    width: 100,
+                                    height: 40,
+                                    child: ElevatedButton(
+                                      style: styleNao,
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, Screens.foodDetails),
+                                      child: const Text(
+                                        'Não',
+                                        style: TextStyle(
+                                            color: kBackgroundColor,
+                                            fontSize: kMediumLargeSize,
+                                            fontWeight: FontWeight.w700),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
-                                    child: SizedBox(
-                                      width: 100,
-                                      height: 40,
-                                      child: ElevatedButton(
-                                        style: styleSim,
-                                        onPressed: () => Navigator.pushNamed(context, Screens.privateMenu),
-                                        child: const Text('Sim', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w800),),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child: SizedBox(
+                                    width: 100,
+                                    height: 40,
+                                    child: ElevatedButton(
+                                      style: styleSim,
+                                      onPressed: () => Navigator.pushNamed(
+                                          context, Screens.privateMenu),
+                                      child: const Text(
+                                        'Sim',
+                                        style: TextStyle(
+                                            color: kBackgroundColor,
+                                            fontSize: kMediumLargeSize,
+                                            fontWeight: FontWeight.w800),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
-                        ],
+                          ],
+                        ),
                       ),
-                          ),);
-                    },
-                    icon: const Icon(Icons.delete, color: kBackgroundColor, size: 35,),
-                    label: const Text('Remover do cardápio', style: TextStyle(color: kBackgroundColor, fontSize: kMediumLargeSize, fontWeight: FontWeight.w500),),
-          ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    color: kBackgroundColor,
+                    size: 35,
+                  ),
+                  label: const Text(
+                    'Remover do cardápio',
+                    style: TextStyle(
+                        color: kBackgroundColor,
+                        fontSize: kMediumLargeSize,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
             ),
+          ),
         ],
       ),
       floatingActionButton: SizedBox(
@@ -110,7 +141,11 @@ class FoodDetailsScreen extends StatelessWidget {
         child: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, Screens.editFood),
           backgroundColor: kSecondaryColor,
-          child: const Icon(Icons.edit, size: 55, color: kBackgroundColor,),
+          child: const Icon(
+            Icons.edit,
+            size: 55,
+            color: kBackgroundColor,
+          ),
         ),
       ),
     );
@@ -138,11 +173,20 @@ class CardDetails extends StatelessWidget {
               ListTile(
                 title: Padding(
                   padding: const EdgeInsets.only(left: 4),
-                  child: Text('Food', style: TextStyle(color: kPrimaryColor, fontSize: kHugeSize, fontWeight: FontWeight.w900),),
+                  child: Text(
+                    'Food',
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontSize: kHugeSize,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(left: 4),
-                  child: Text('Name > Cardápio Particular > Food', style: TextStyle(color: kSecondaryColor),),
+                  child: Text(
+                    'Name > Cardápio Particular > Food',
+                    style: TextStyle(color: kSecondaryColor),
+                  ),
                 ),
               )
             ],
@@ -188,13 +232,22 @@ _createLineTable(String food_label, String food_value) {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8, top: 6, bottom: 6),
-              child: Text(label + ': ', style: const TextStyle(fontSize: kMediumLargeSize, color: kSecondaryColor, fontWeight: FontWeight.w700),),
+              child: Text(
+                label + ': ',
+                style: const TextStyle(
+                    fontSize: kMediumLargeSize,
+                    color: kSecondaryColor,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 6, bottom: 6),
               child: Text(
                 food_value,
-                style: const TextStyle(fontSize: kMediumLargeSize, color: kPrimaryColor, fontWeight: FontWeight.w700),
+                style: const TextStyle(
+                    fontSize: kMediumLargeSize,
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w700),
               ),
             ),
           ],
@@ -203,6 +256,3 @@ _createLineTable(String food_label, String food_value) {
     }).toList(),
   );
 }
-
-
-

@@ -16,10 +16,18 @@ class NoRegFoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController umidadeController = TextEditingController();
+    TextEditingController energyController = TextEditingController();
+    TextEditingController proteinaController = TextEditingController();
+    TextEditingController lipidioController = TextEditingController();
+    TextEditingController carboidratosController = TextEditingController();
+    TextEditingController calcioController = TextEditingController();
+    TextEditingController fibraController = TextEditingController();
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      drawer: NavigationDrawerWidget(),
-      appBar: AppBarCustom(context),
+      appBar: AppBar(),
       body: ListView(
         children: [
           Column(
@@ -35,18 +43,18 @@ class NoRegFoodScreen extends StatelessWidget {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              TextFieldCustom('Nome'),
+              TextFieldCustom('Nome', nameController),
               TextFieldButton('Categoria'),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
-                child: TextFieldCustom('Umidade'),
+                child: TextFieldCustom('Umidade', umidadeController),
               ),
-              TextFieldCustom("Valor energético"),
-              TextFieldCustom('Valor proteico'),
-              TextFieldCustom('Lipídios'),
-              TextFieldCustom('Carboidratos'),
-              TextFieldCustom('Cálcio'),
-              TextFieldCustom('Fibra'),
+              TextFieldCustom("Valor energético", energyController),
+              TextFieldCustom('Valor proteico', proteinaController),
+              TextFieldCustom('Lipídios', lipidioController),
+              TextFieldCustom('Carboidratos', carboidratosController),
+              TextFieldCustom('Cálcio', calcioController),
+              TextFieldCustom('Fibra', fibraController),
               Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Center(
