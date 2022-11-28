@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
@@ -13,7 +14,7 @@ import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  UserModel userModel = UserModel();
+   UserModel userModel = UserModel();
 
   HomeScreen(this.userModel, {super.key});
 
@@ -22,79 +23,72 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  HomeScreenController _controller = HomeScreenController();
+  final HomeScreenController _controller = HomeScreenController();
+  final SignInController newController = SignInController();
+  final UserModel user = UserModel();
 
   @override
   void initState() {
-    _controller.populateList();
     super.initState();
+    newController.getInstance(user);
+    _controller.populateList();
   }
 
   final AppTheme formCustom = AppTheme();
+
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<SignInController>(
-              create: (BuildContext context) {
-            return SignInController();
-          }),
-          ChangeNotifierProvider<UserModel>.value(value: widget.userModel),
+    return Scaffold(
+      backgroundColor: kBackgroundColor,
+      appBar: formCustom.appBarCustom(
+        context,
+        user.name.toString(),
+      ),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(top: 15.0),
+            child: Text(
+              'Animais Cadastrados',
+              textDirection: TextDirection.ltr,
+              style: TextStyle(
+                fontSize: 30.0,
+                color: kPrimaryColor,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return CardHomeScreen(
+                      _controller.animals[index].age,
+                      _controller.animals[index].name,
+                      _controller.animals[index].weight);
+                },
+                separatorBuilder: (context, index) {
+                  return Divider();
+                },
+                itemCount: _controller.animals.length),
+          )
         ],
-        builder: (context, child) {
-          return Consumer<UserModel>(builder: (context, userModel, child) {
-            return Scaffold(
-              backgroundColor: kBackgroundColor,
-              appBar: formCustom.appBarCustom(
-                  context, widget.userModel.name.toString()),
-              body: Column(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 15.0),
-                    child: Text(
-                      'Animais Cadastrados',
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return CardHomeScreen(
-                              _controller.animals[index].age,
-                              _controller.animals[index].name,
-                              _controller.animals[index].weight);
-                        },
-                        separatorBuilder: (context, index) {
-                          return Divider();
-                        },
-                        itemCount: _controller.animals.length),
-                  )
-                ],
-              ),
-              floatingActionButton: SizedBox(
-                height: 100,
-                width: 100,
-                child: FloatingActionButton(
-                  child: const Icon(
-                    Icons.add,
-                    size: 65,
-                  ),
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              AddAnimalScreen(widget.userModel))),
-                ),
-              ),
-            );
-          });
-        });
+      ),
+      floatingActionButton: SizedBox(
+        height: 100,
+        width: 100,
+        child: FloatingActionButton(
+          child: const Icon(
+            Icons.add,
+            size: 65,
+          ),
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AddAnimalScreen(widget.userModel))),
+        ),
+      ),
+    );
   }
 }
 
