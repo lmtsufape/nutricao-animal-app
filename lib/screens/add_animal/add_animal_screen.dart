@@ -18,8 +18,8 @@ import 'package:thunderapp/shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
-  UserModel userModel = UserModel();
-  AddAnimalScreen(this.userModel, {Key? key}) : super(key: key);
+ 
+  const AddAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
@@ -141,7 +141,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontSize: 20)),
                     onPressed: () {
                       controller.adicionarAnimal(
-                        widget.userModel,
+                      
                         context,
                         nameController.text,
                         weightController.text,

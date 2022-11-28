@@ -30,7 +30,6 @@ class SplashScreenController {
       if (await userHasToken()) {
         signIn(context);
       } else {
-        await configDefaultAppSettings();
         // ignore: use_build_context_synchronously
         Navigator.popAndPushNamed(context, Screens.signin);
       }
@@ -65,9 +64,11 @@ class SplashScreenController {
 
   Future<bool> userHasToken() async {
     final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString('email');
     final token = prefs.getString('token');
     if (token != null) {
       log('user has token');
+      log(email!);
       log(token);
       return true;
     } else {

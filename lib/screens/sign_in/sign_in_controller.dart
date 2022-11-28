@@ -30,7 +30,6 @@ class SignInController with ChangeNotifier {
   var status = SignInStatus.idle;
 
   void signIn(BuildContext context, String email, String password) async {
-    final UserModel userModel = Provider.of<UserModel>(context, listen: false);
     try {
       var succ = await _repository.login(
           context, emailController.text, passwordController.text);
@@ -39,8 +38,7 @@ class SignInController with ChangeNotifier {
         status = SignInStatus.done;
         notifyListeners();
         // ignore: use_build_context_synchronously
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomeScreen(userModel)));
+        Navigator.popAndPushNamed(context, Screens.home);
       }
       status = SignInStatus.done;
     } catch (e) {

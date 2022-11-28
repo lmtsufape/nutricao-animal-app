@@ -14,9 +14,9 @@ import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-   UserModel userModel = UserModel();
 
-  HomeScreen(this.userModel, {super.key});
+
+  const HomeScreen( {super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => AddAnimalScreen(widget.userModel))),
+                  builder: (context) => AddAnimalScreen())),
         ),
       ),
     );
