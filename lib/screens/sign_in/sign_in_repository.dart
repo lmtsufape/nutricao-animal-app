@@ -11,8 +11,8 @@ import 'package:dio/dio.dart' as dio;
 class SignInRepository with ChangeNotifier {
   final _dio = Dio();
 
-  Future<bool> login(BuildContext context, String email, String password,
-      UserModel userModel) async {
+  Future<bool> login(
+      BuildContext context, String email, String password) async {
     var response = await _dio.post('$kBaseUrl/login',
         options: Options(
           headers: {
@@ -27,9 +27,6 @@ class SignInRepository with ChangeNotifier {
 
     print(response.statusCode);
     if (response.statusCode == 200) {
-      userModel.setUser(response.data['name'], response.data['token'],
-          response.data['email']);
-
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('email', email);
       prefs.setString('password', password);

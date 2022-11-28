@@ -33,7 +33,7 @@ class SignInController with ChangeNotifier {
     final UserModel userModel = Provider.of<UserModel>(context, listen: false);
     try {
       var succ = await _repository.login(
-          context, emailController.text, passwordController.text, userModel);
+          context, emailController.text, passwordController.text);
 
       if (succ) {
         status = SignInStatus.done;
