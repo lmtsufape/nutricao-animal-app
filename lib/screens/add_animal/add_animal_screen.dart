@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -29,18 +30,18 @@ class AddAnimalScreen extends StatefulWidget {
 }
 
 class _AddAnimalScreenState extends State<AddAnimalScreen> {
-  selectImage() async {
-    final ImagePicker picker = ImagePicker();
+  final SignInController signInController = SignInController();
+  final UserModel user = UserModel();
+  final AddAnimalRepository repository = AddAnimalRepository();
 
-    try {
-      XFile? file = await picker.pickImage(source: ImageSource.gallery);
-      if (file != null) setState(() => photo = file);
-    } catch (e) {
-      print(e);
-    }
+  @override
+  void initState() {
+    super.initState();
+    signInController.getInstance(user);
+    repository.getBreedCat();
+    repository.getBreedDog();
   }
 
-  XFile? photo;
   @override
   Widget build(BuildContext context) {
     AddAnimalController controller = AddAnimalController();
@@ -53,8 +54,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar:
-          formCustom.appBarCustom(context, widget.userModel.name.toString()),
+      appBar: formCustom.appBarCustom(context, user.name.toString()),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,21 +79,19 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   height: 110,
                   child: FloatingActionButton(
                     backgroundColor: kBackgroundColor,
-                    onPressed: () => selectImage,
-                    child: photo != null
-                        ? Image.file(File(photo!.path))
-                        : Icon(
-                            Icons.photo,
-                            color: kSecondaryColor,
-                            size: 50,
-                          ),
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.photo,
+                      color: kSecondaryColor,
+                      size: 50,
+                    ),
                   ),
                 ),
               ),
             ),
             TextFieldCustom('Nome', nameController),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
+            const Padding(
+              padding: EdgeInsets.only(left: 16),
               child: Text(
                 'Espécie',
                 style: TextStyle(color: kSecondaryColor),
@@ -276,7 +274,6 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
@@ -301,7 +298,6 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    repository.getBreed();
                     _animalSpecie = value;
                   });
                 },

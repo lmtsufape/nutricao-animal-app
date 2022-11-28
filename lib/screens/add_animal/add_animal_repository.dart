@@ -8,10 +8,21 @@ import 'package:dio/dio.dart';
 import 'package:thunderapp/shared/core/models/breed_model.dart';
 
 class AddAnimalRepository {
-  Future<bool> getBreed() async {
+  Future<bool> getBreedCat() async {
     Dio dio = Dio();
 
-    var response = await dio.get('$kBaseUrl/users/breed/cat');
+    var response = await dio.get('$kBaseUrl/users/breed/species');
+
+    print(response.statusCode);
+    print(response.data);
+
+    return true;
+  }
+
+  Future<bool> getBreedDog() async {
+    Dio dio = Dio();
+
+    var response = await dio.get('$kBaseUrl/user/breeds/dog');
 
     print(response.statusCode);
     print(response.data);
