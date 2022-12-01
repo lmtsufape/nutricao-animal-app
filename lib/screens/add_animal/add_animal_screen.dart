@@ -91,41 +91,49 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             ),
             TextFieldCustom('Nome', nameController),
             const Padding(
-              padding: EdgeInsets.only(left: 16),
+              padding: EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Espécie',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             SpecieWidget(),
-            /*Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Raça',
-                style: TextStyle(color: kSecondaryColor),
-              ),
-            ),*/
-            TextFieldButton('Raça'),
             Padding(
-              padding: const EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldButton('Raça'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Sexo',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             AnimalSexWidget(),
-            TextFieldCustom('Peso', weightController),
-            TextFieldCustom('Altura', heightController),
-            TextFieldCustom('Idade', ageController),
             Padding(
-              padding: const EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Peso', weightController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Altura', heightController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Idade', ageController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             CastratedWidget(),
-            TextFieldButton('Nível de atividade'),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldButton('Nível de atividade'),
+            ),
             Center(
               child: SizedBox(
                 height: 50,
