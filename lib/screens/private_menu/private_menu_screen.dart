@@ -21,7 +21,6 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       body: ListView(
         children: [
           Padding(

@@ -20,7 +20,6 @@ class AnimalDetailsScreen extends StatelessWidget {
     final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: ListView(
         children: [

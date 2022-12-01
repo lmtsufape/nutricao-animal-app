@@ -25,7 +25,7 @@ class FoodScreen extends StatelessWidget {
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       //appBar: formCustom.appBarCustom(context, userName!),
-      drawer: NavigationDrawerWidget(),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

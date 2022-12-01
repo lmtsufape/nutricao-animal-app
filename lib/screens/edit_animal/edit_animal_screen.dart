@@ -24,7 +24,6 @@ class EditAnimalScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      drawer: NavigationDrawerWidget(),
       appBar: AppBar(),
       body: ListView(
         children: [

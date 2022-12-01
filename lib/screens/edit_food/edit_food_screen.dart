@@ -21,7 +21,6 @@ class EditFoodScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
