@@ -78,7 +78,7 @@ class EditAnimalScreen extends StatelessWidget {
                 ),
               ),
               const SpecieWidget(),
-              TextFieldButton('Raça'),
+              DropDownCustom(['Labrador', 'Pitbull', 'Rotweiller', 'Pastor Alemão'],'Raça'),
               const Padding(
                 padding: EdgeInsets.only(left: 16),
                 child: Text(
@@ -98,7 +98,7 @@ class EditAnimalScreen extends StatelessWidget {
                 ),
               ),
               const CastratedWidget(),
-              TextFieldButton('Nível de atividade'),
+              DropDownCustom(['SIM', 'NÃO'],'Nível de atividade'),
               Center(
                 child: SizedBox(
                   height: 50,
