@@ -5,9 +5,11 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:thunderapp/screens/add%20animal/add_animal_controller.dart';
-import 'package:thunderapp/screens/add%20animal/add_animal_repository.dart';
+
+import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -16,8 +18,8 @@ import 'package:thunderapp/shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
-  UserModel userModel = UserModel();
-  AddAnimalScreen(this.userModel, {Key? key}) : super(key: key);
+ 
+  const AddAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
@@ -28,18 +30,18 @@ class AddAnimalScreen extends StatefulWidget {
 }
 
 class _AddAnimalScreenState extends State<AddAnimalScreen> {
-  selectImage() async {
-    final ImagePicker picker = ImagePicker();
+  final SignInController signInController = SignInController();
+  final UserModel user = UserModel();
+  final AddAnimalRepository repository = AddAnimalRepository();
 
-    try {
-      XFile? file = await picker.pickImage(source: ImageSource.gallery);
-      if (file != null) setState(() => photo = file);
-    } catch (e) {
-      print(e);
-    }
+  @override
+  void initState() {
+    super.initState();
+    signInController.getInstance(user);
+    repository.getBreedCat();
+    repository.getBreedDog();
   }
 
-  XFile? photo;
   @override
   Widget build(BuildContext context) {
     AddAnimalController controller = AddAnimalController();
@@ -49,10 +51,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
     TextEditingController ageController = TextEditingController();
 
     final AppTheme formCustom = AppTheme();
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar:
-          formCustom.appBarCustom(context, widget.userModel.name.toString()),
+      appBar: formCustom.appBarCustom(context, user.name.toString()),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,55 +79,61 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   height: 110,
                   child: FloatingActionButton(
                     backgroundColor: kBackgroundColor,
-                    onPressed: () => selectImage,
-                    child: photo != null
-                        ? Image.file(File(photo!.path))
-                        : Icon(
-                            Icons.photo,
-                            color: kSecondaryColor,
-                            size: 50,
-                          ),
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.photo,
+                      color: kSecondaryColor,
+                      size: 50,
+                    ),
                   ),
                 ),
               ),
             ),
             TextFieldCustom('Nome', nameController),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Espécie',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             SpecieWidget(),
-            /*Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Raça',
-                style: TextStyle(color: kSecondaryColor),
-              ),
-            ),*/
-            TextFieldButton('Raça'),
             Padding(
-              padding: const EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldButton('Raça'),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Sexo',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             AnimalSexWidget(),
-            TextFieldCustom('Peso', weightController),
-            TextFieldCustom('Altura', heightController),
-            TextFieldCustom('Idade', ageController),
             Padding(
-              padding: const EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Peso', weightController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Altura', heightController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldCustom('Idade', ageController),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
             CastratedWidget(),
-            TextFieldButton('Nível de atividade'),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: TextFieldButton('Nível de atividade'),
+            ),
             Center(
               child: SizedBox(
                 height: 50,
@@ -141,7 +149,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontSize: 20)),
                     onPressed: () {
                       controller.adicionarAnimal(
-                        widget.userModel,
+                      
                         context,
                         nameController.text,
                         weightController.text,
@@ -168,26 +176,25 @@ class TextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              _fieldLabel,
-              style: TextStyle(color: kSecondaryColor),
+        child: Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _fieldLabel,
+            style: TextStyle(color: kSecondaryColor),
+          ),
+          TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(14),
+              border: OutlineInputBorder(),
             ),
-            TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(14),
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
+    ));
   }
 }
 
@@ -203,43 +210,40 @@ class TextFieldButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      child: Ink(
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _buttonFieldLabel,
-                  style: TextStyle(color: kSecondaryColor),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Selecione',
-                    hintStyle: TextStyle(fontSize: 18),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 10.0),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_circle_down_sharp,
-                          size: 35,
-                          color: kDetailColor,
+        onTap: () {},
+        child: Ink(
+          child: Container(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _buttonFieldLabel,
+                    style: TextStyle(color: kSecondaryColor),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Selecione',
+                      hintStyle: TextStyle(fontSize: 18),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_circle_down_sharp,
+                            size: 35,
+                            color: kDetailColor,
+                          ),
                         ),
                       ),
                     ),
-                    contentPadding: EdgeInsets.all(14),
-                    border: OutlineInputBorder(),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
 
@@ -257,7 +261,7 @@ class _SpecieWidgetState extends State<SpecieWidget> {
 
   @override
   Widget build(BuildContext context) {
-    AddAnimalRepository _repository = AddAnimalRepository();
+    AddAnimalRepository repository = AddAnimalRepository();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -278,7 +282,6 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
@@ -303,7 +306,6 @@ class _SpecieWidgetState extends State<SpecieWidget> {
                 groupValue: _animalSpecie,
                 onChanged: (Specie? value) {
                   setState(() {
-                    _repository.getBreed();
                     _animalSpecie = value;
                   });
                 },
