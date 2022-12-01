@@ -56,6 +56,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: formCustom.appBarCustom(context, user.name.toString()),
+      drawer: NavigationDrawerWidget(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

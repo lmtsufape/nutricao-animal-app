@@ -28,6 +28,7 @@ class NoRegFoodScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(),
+      drawer: NavigationDrawerWidget(),
       body: ListView(
         children: [
           Column(
