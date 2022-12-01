@@ -44,7 +44,7 @@ class NoRegFoodScreen extends StatelessWidget {
                 ),
               ),
               TextFieldCustom('Nome', nameController),
-              TextFieldButton('Categoria'),
+              DropDownCustom(['Grão', 'Líquido', 'Carne'],'Categoria'),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: TextFieldCustom('Umidade', umidadeController),

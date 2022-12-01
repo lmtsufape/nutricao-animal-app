@@ -18,7 +18,6 @@ import 'package:thunderapp/shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
- 
   const AddAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
@@ -44,6 +43,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     AddAnimalController controller = AddAnimalController();
     TextEditingController nameController = TextEditingController();
     TextEditingController weightController = TextEditingController();
@@ -59,13 +60,13 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0, left: 15.0),
               child: Text(
                 'Adicionar Pet',
                 textDirection: TextDirection.ltr,
                 style: TextStyle(
-                  fontSize: kLargeSize,
+                  fontSize: heightScreen * 0.024,
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
                 ),
@@ -100,13 +101,14 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             SpecieWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldButton('Raça'),
+              child: DropDownCustom(['Labrador', 'Pitbull', 'Rotweiller', 'Pastor Alemão'],'Raça'),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Sexo',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
             AnimalSexWidget(),
@@ -126,13 +128,14 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Seu animal é castrado(a)?',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
             CastratedWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldButton('Nível de atividade'),
+              child: DropDownCustom(['SIM', 'NÃO'],'Nível de atividade'),
             ),
             Center(
               child: SizedBox(
@@ -145,11 +148,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     child: Text('Adicionar',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20)),
+                            fontWeight: FontWeight.w500,
+                            fontSize: heightScreen * 0.018)),
                     onPressed: () {
                       controller.adicionarAnimal(
-                      
                         context,
                         nameController.text,
                         weightController.text,
@@ -175,26 +177,27 @@ class TextFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+    final heightScreen = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            _fieldLabel,
-            style: TextStyle(color: kSecondaryColor),
-          ),
-          TextField(
-            controller: controller,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(14),
-              border: OutlineInputBorder(),
-            ),
-          ),
-        ],
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        _fieldLabel,
+        style: TextStyle(
+            color: kSecondaryColor, fontSize: heightScreen * 0.016),
       ),
-    ));
+      TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(14),
+          border: OutlineInputBorder(),
+        ),
+      ),
+    ],
+      ),
+    );
   }
 }
 
@@ -212,38 +215,100 @@ class TextFieldButton extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Ink(
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _buttonFieldLabel,
-                    style: TextStyle(color: kSecondaryColor),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Selecione',
-                      hintStyle: TextStyle(fontSize: 18),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_circle_down_sharp,
-                            size: 35,
-                            color: kDetailColor,
-                          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _buttonFieldLabel,
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Selecione',
+                    hintStyle: TextStyle(fontSize: 18),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_circle_down_sharp,
+                          size: 35,
+                          color: kDetailColor,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ));
+  }
+}
+
+class DropDownCustom extends StatelessWidget {
+  final String _labelDrop;
+  final dropValue = ValueNotifier('');
+  final List<String> dropChoices;
+
+  //construtor
+  DropDownCustom(this.dropChoices, this._labelDrop);
+
+
+  @override
+  Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    return SizedBox(
+      height: 98,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              _labelDrop,
+              style: TextStyle(
+                  color: kSecondaryColor, fontSize: heightScreen * 0.016),
+            ),
+            ValueListenableBuilder(
+                valueListenable: dropValue,
+                builder: (BuildContext context, String value, _) {
+                  return DropdownButtonFormField<String>(
+                    icon: Padding(
+                      padding: const EdgeInsets.only( right: 4),
+                      child: Icon(
+                        Icons.arrow_circle_down,
+                        color: kDetailColor,
+                        size: heightScreen * 0.040,
+                      ),
+                    ),
+                    hint: Text(
+                      'Selecione',
+                      style: TextStyle(fontSize: heightScreen * 0.020),
+                    ),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(6)
+                      )
+                    ),
+                    value: (value.isEmpty) ? null : value,
+                    onChanged: (choice) => dropValue.value = choice.toString(),
+                    items: dropChoices
+                        .map(
+                          (choice) => DropdownMenuItem(
+                            value: choice,
+                            child: Text(choice),
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -261,18 +326,19 @@ class _SpecieWidgetState extends State<SpecieWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
     AddAnimalRepository repository = AddAnimalRepository();
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Cachorro',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -291,12 +357,12 @@ class _SpecieWidgetState extends State<SpecieWidget> {
         ),
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Gato',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -332,17 +398,18 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Masculino',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -361,12 +428,12 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
         ),
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Feminino',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -402,17 +469,18 @@ class _CastratedWidgetState extends State<CastratedWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Sim',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -431,12 +499,12 @@ class _CastratedWidgetState extends State<CastratedWidget> {
         ),
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Não',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
