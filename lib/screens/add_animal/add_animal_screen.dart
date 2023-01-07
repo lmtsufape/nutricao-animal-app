@@ -5,6 +5,7 @@ import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
@@ -32,13 +33,19 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final SignInController signInController = SignInController();
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
-
+  late String UserName;
   @override
   void initState() {
     super.initState();
     signInController.getInstance(user);
     repository.getBreedCat();
     repository.getBreedDog();
+  }
+
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    UserName = prefs.getString('name')!;
+    return UserName;
   }
 
   @override
@@ -55,7 +62,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, user.name.toString()),
+      appBar: formCustom.appBarCustom(context, _getUserName()),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -101,7 +108,9 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             SpecieWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: DropDownCustom(['Labrador', 'Pitbull', 'Rotweiller', 'Pastor Alemão'],'Raça'),
+              child: DropDownCustom(
+                  ['Labrador', 'Pitbull', 'Rotweiller', 'Pastor Alemão'],
+                  'Raça'),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
@@ -135,7 +144,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             CastratedWidget(),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: DropDownCustom(['SIM', 'NÃO'],'Nível de atividade'),
+              child: DropDownCustom(['SIM', 'NÃO'], 'Nível de atividade'),
             ),
             Center(
               child: SizedBox(
@@ -181,21 +190,21 @@ class TextFieldCustom extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        _fieldLabel,
-        style: TextStyle(
-            color: kSecondaryColor, fontSize: heightScreen * 0.016),
-      ),
-      TextField(
-        controller: controller,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(14),
-          border: OutlineInputBorder(),
-        ),
-      ),
-    ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _fieldLabel,
+            style: TextStyle(
+                color: kSecondaryColor, fontSize: heightScreen * 0.016),
+          ),
+          TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.all(14),
+              border: OutlineInputBorder(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -256,7 +265,6 @@ class DropDownCustom extends StatelessWidget {
   //construtor
   DropDownCustom(this.dropChoices, this._labelDrop);
 
-
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
@@ -277,7 +285,7 @@ class DropDownCustom extends StatelessWidget {
                 builder: (BuildContext context, String value, _) {
                   return DropdownButtonFormField<String>(
                     icon: Padding(
-                      padding: const EdgeInsets.only( right: 4),
+                      padding: const EdgeInsets.only(right: 4),
                       child: Icon(
                         Icons.arrow_circle_down,
                         color: kDetailColor,
@@ -289,10 +297,8 @@ class DropDownCustom extends StatelessWidget {
                       style: TextStyle(fontSize: heightScreen * 0.020),
                     ),
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(6)
-                      )
-                    ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6))),
                     value: (value.isEmpty) ? null : value,
                     onChanged: (choice) => dropValue.value = choice.toString(),
                     items: dropChoices

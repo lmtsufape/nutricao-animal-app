@@ -14,24 +14,36 @@ import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-
-
-  const HomeScreen( {super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final HomeScreenController _controller = HomeScreenController();
   final SignInController newController = SignInController();
   final UserModel user = UserModel();
+  late String UserName;
 
   @override
   void initState() {
     super.initState();
-    newController.getInstance(user);
+    _getUserName();
     _controller.populateList();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _getUserName();
+  }
+
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    UserName = prefs.getString('name')!;
+    return UserName;
   }
 
   final AppTheme formCustom = AppTheme();
@@ -40,10 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(
-        context,
-        user.name.toString(),
-      ),
+      appBar: formCustom.appBarCustom(context, _getUserName()),
       body: Column(
         children: [
           const Padding(
@@ -82,10 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.add,
             size: 65,
           ),
-          onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddAnimalScreen())),
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddAnimalScreen())),
         ),
       ),
     );
