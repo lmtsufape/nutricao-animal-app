@@ -18,7 +18,7 @@ main() {
     print('${record.level.name}: ${record.time}: ${record.message}');
   });
   MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => HomeScreenController()),
+    //ChangeNotifierProvider(create: (_) => HomeScreenController()),
     ChangeNotifierProvider(create: (_) => SelectedItem()),
     ChangeNotifierProvider(create: (context) => UserModel()),
     ChangeNotifierProvider(create: (_) => SignInRepository()),

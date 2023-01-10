@@ -31,6 +31,7 @@ class SignInRepository with ChangeNotifier {
     if (response.statusCode == 200) {
       print(response.data);
       final prefs = await SharedPreferences.getInstance();
+      prefs.setInt('id', response.data['user']['id']);
       prefs.setString('email', email);
       prefs.setString('password', password);
       prefs.setString('token', response.data['user']['token'].toString());

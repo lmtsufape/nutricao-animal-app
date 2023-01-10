@@ -33,19 +33,20 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final SignInController signInController = SignInController();
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
-  late String UserName;
+  late String userName;
+
   @override
   void initState() {
     super.initState();
     signInController.getInstance(user);
-    repository.getBreedCat();
-    repository.getBreedDog();
+    //repository.getBreedCat();
+    //repository.getBreedDog();
   }
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
-    UserName = prefs.getString('name')!;
-    return UserName;
+    userName = prefs.getString('name')!;
+    return userName;
   }
 
   @override
