@@ -34,7 +34,8 @@ class AddAnimalRepository {
     return true;
   }
 
-  Future<bool> registerAnimal() async {
+  Future<bool> registerAnimal(name, specie, breed, sex, weight, height, age,
+      isCastrated, activityLevel) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -52,16 +53,16 @@ class AddAnimalRepository {
       ),
       data: {
         "animal": {
-          "name": 'Jullie',
-          "sex": 'female',
-          "is_castrated": 'true',
-          "activity_level": '1'
+          "name": name,
+          "sex": sex,
+          "is_castrated": isCastrated,
+          "activity_level": activityLevel
         },
         "biometry": {
-          "weight": '5',
-          "height": '9',
+          "weight": weight,
+          "height": height,
         },
-        "breed": 'pastor alemão'
+        "breed": breed
       },
     );
     print(response.statusCode);

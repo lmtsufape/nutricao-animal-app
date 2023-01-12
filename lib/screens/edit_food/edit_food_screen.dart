@@ -43,8 +43,11 @@ class EditFoodScreen extends StatelessWidget {
             ),
           ),
           TextFieldCustom('Apelido', nickController),
-          DropDownCustom( ['Carne', 'Peixe', 'Ração'] ,'Tipo'),
-          DropDownCustom(['Arroz e feijão', 'Carne com ração', 'Sachê de Salmão'],'Comida'),
+          DropDownCustom(['Carne', 'Peixe', 'Ração'], 'Tipo', 3),
+          DropDownCustom(
+              ['Arroz e feijão', 'Carne com ração', 'Sachê de Salmão'],
+              'Comida',
+              4),
           TextFieldCustom('Quantidade(em gramas)', quantController),
           Padding(
             padding: const EdgeInsets.only(top: 16),
