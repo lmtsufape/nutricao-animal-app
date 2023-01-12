@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:thunderapp/shared/core/models/animal_model.dart';
 
-class HomeScreenController with ChangeNotifier {
+/*class HomeScreenController with ChangeNotifier {
   List<AnimalModel> _animals = [];
   List<AnimalModel> get animals => _animals;
 
@@ -29,4 +29,4 @@ class HomeScreenController with ChangeNotifier {
           _fakeData[i]['name'], _fakeData[i]['weight'], _fakeData[i]['age']));
     }
   }
-}
+}*/

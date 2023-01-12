@@ -21,7 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
-  final HomeScreenController _controller = HomeScreenController();
+  // final HomeScreenController _controller = HomeScreenController();
   final SignInController newController = SignInController();
   final UserModel user = UserModel();
   late String UserName;
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     _getUserName();
-    _controller.populateList();
+    //_controller.populateList();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -53,21 +53,20 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: formCustom.appBarCustom(context, _getUserName()),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 15.0),
-            child: Text(
-              'Animais Cadastrados',
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                fontSize: 30.0,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.w900,
-              ),
+      body: Column(children: const [
+        Padding(
+          padding: EdgeInsets.only(top: 15.0),
+          child: Text(
+            'Animais Cadastrados',
+            textDirection: TextDirection.ltr,
+            style: TextStyle(
+              fontSize: 30.0,
+              color: kPrimaryColor,
+              fontWeight: FontWeight.w900,
             ),
           ),
-          Expanded(
+        ),
+        /*Expanded(
             child: ListView.separated(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -81,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 },
                 itemCount: _controller.animals.length),
           )
-        ],
-      ),
+        ],*/
+      ]),
       floatingActionButton: SizedBox(
         height: 100,
         width: 100,
