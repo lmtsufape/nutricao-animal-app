@@ -21,7 +21,6 @@ class EditFoodScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,8 +43,11 @@ class EditFoodScreen extends StatelessWidget {
             ),
           ),
           TextFieldCustom('Apelido', nickController),
-          TextFieldButton('Tipo'),
-          TextFieldButton('Comida'),
+          DropDownCustom(['Carne', 'Peixe', 'Ração'], 'Tipo', 3),
+          DropDownCustom(
+              ['Arroz e feijão', 'Carne com ração', 'Sachê de Salmão'],
+              'Comida',
+              4),
           TextFieldCustom('Quantidade(em gramas)', quantController),
           Padding(
             padding: const EdgeInsets.only(top: 16),

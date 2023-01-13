@@ -8,12 +8,19 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-class EditAnimalScreen extends StatelessWidget {
+class EditAnimalScreen extends StatefulWidget {
   const EditAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleSalvar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
   );
+
+  @override
+  State<EditAnimalScreen> createState() => _EditAnimalScreenState();
+}
+
+class _EditAnimalScreenState extends State<EditAnimalScreen> {
+  String? specie;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,6 @@ class EditAnimalScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      drawer: NavigationDrawerWidget(),
       appBar: AppBar(),
       body: ListView(
         children: [
@@ -77,8 +83,38 @@ class EditAnimalScreen extends StatelessWidget {
                   style: TextStyle(color: kSecondaryColor),
                 ),
               ),
-              const SpecieWidget(),
-              TextFieldButton('Raça'),
+              Column(
+                children: [
+                  RadioListTile(
+                    title: Text('Cachorro'),
+                    value: 'dog',
+                    groupValue: specie,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          specie = value.toString();
+                        },
+                      );
+                    },
+                  ),
+                  RadioListTile(
+                    title: Text('Gato'),
+                    value: 'cat',
+                    groupValue: specie,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          specie = value.toString();
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+              DropDownCustom(const [
+                'Border Collie',
+                'pastor alemão',
+              ], 'Raça', 1),
               const Padding(
                 padding: EdgeInsets.only(left: 16),
                 child: Text(
@@ -98,7 +134,7 @@ class EditAnimalScreen extends StatelessWidget {
                 ),
               ),
               const CastratedWidget(),
-              TextFieldButton('Nível de atividade'),
+              DropDownCustom(const ['1', '2', '3'], 'Nível de atividade', 2),
               Center(
                 child: SizedBox(
                   height: 50,
@@ -106,7 +142,7 @@ class EditAnimalScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8, bottom: 5),
                     child: ElevatedButton(
-                      style: styleSalvar,
+                      style: EditAnimalScreen.styleSalvar,
                       child: const Text('Salvar',
                           style: TextStyle(
                               color: kBackgroundColor,

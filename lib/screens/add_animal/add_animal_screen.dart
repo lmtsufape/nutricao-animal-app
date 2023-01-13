@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
@@ -14,11 +16,11 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/animal_model.dart';
+import 'package:thunderapp/shared/core/selected_item.dart';
 
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
- 
   const AddAnimalScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAdicionar = ElevatedButton.styleFrom(
@@ -33,39 +35,57 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final SignInController signInController = SignInController();
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
+  late String userName;
+  final AnimalModel _animal = AnimalModel();
+
+  String activityLevel = '1';
+  String specie = 'dog';
+  String breed = 'pastor alemão';
+  String sex = 'male';
+  bool isCastrated = true;
+  AddAnimalController controller = AddAnimalController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     signInController.getInstance(user);
-    repository.getBreedCat();
-    repository.getBreedDog();
+
+    //repository.getBreedCat();
+    //repository.getBreedDog();
+  }
+
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    userName = prefs.getString('name')!;
+    return userName;
   }
 
   @override
   Widget build(BuildContext context) {
-    AddAnimalController controller = AddAnimalController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController weightController = TextEditingController();
-    TextEditingController heightController = TextEditingController();
-    TextEditingController ageController = TextEditingController();
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
 
     final AppTheme formCustom = AppTheme();
 
+    print(isCastrated);
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, user.name.toString()),
+      appBar: formCustom.appBarCustom(context, _getUserName()),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 25.0, left: 15.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0, left: 15.0),
               child: Text(
                 'Adicionar Pet',
                 textDirection: TextDirection.ltr,
                 style: TextStyle(
-                  fontSize: kLargeSize,
+                  fontSize: heightScreen * 0.024,
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
                 ),
@@ -97,19 +117,81 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            SpecieWidget(),
+            Column(
+              children: [
+                RadioListTile(
+                  title: Text('Cachorro'),
+                  value: 'dog',
+                  groupValue: specie,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        specie = value.toString();
+                      },
+                    );
+                  },
+                ),
+                RadioListTile(
+                  title: Text('Gato'),
+                  value: 'cat',
+                  groupValue: specie,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        specie = value.toString();
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldButton('Raça'),
+              child: DropdownSearch(
+                items: const ['pastor alemão', 'Border Collie'],
+                onChanged: (data) {
+                  setState(() {
+                    breed = data.toString();
+                  });
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Sexo',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
-            AnimalSexWidget(),
+            Column(
+              children: [
+                RadioListTile(
+                  title: Text('Macho'),
+                  value: 'male',
+                  groupValue: sex,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        sex = value.toString();
+                      },
+                    );
+                  },
+                ),
+                RadioListTile(
+                  title: Text('Fêmea'),
+                  value: 'female',
+                  groupValue: sex,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        sex = value.toString();
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: TextFieldCustom('Peso', weightController),
@@ -126,13 +208,48 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Seu animal é castrado(a)?',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
-            CastratedWidget(),
+            Column(
+              children: [
+                RadioListTile(
+                  title: Text('Sim'),
+                  value: true,
+                  groupValue: isCastrated,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        isCastrated = true;
+                      },
+                    );
+                  },
+                ),
+                RadioListTile(
+                  title: Text('Não'),
+                  value: false,
+                  groupValue: isCastrated,
+                  onChanged: (value) {
+                    setState(
+                      () {
+                        isCastrated = false;
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldButton('Nível de atividade'),
+              child: DropdownSearch(
+                items: const ['1', '2', '3'],
+                onChanged: (data) {
+                  setState(() {
+                    activityLevel = data.toString();
+                  });
+                },
+              ),
             ),
             Center(
               child: SizedBox(
@@ -145,15 +262,20 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     child: Text('Adicionar',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20)),
+                            fontWeight: FontWeight.w500,
+                            fontSize: heightScreen * 0.018)),
                     onPressed: () {
                       controller.adicionarAnimal(
-                      
                         context,
                         nameController.text,
+                        specie,
+                        breed,
+                        sex,
                         weightController.text,
+                        heightController.text,
                         ageController.text,
+                        isCastrated,
+                        activityLevel,
                       );
                     },
                   ),
@@ -175,26 +297,27 @@ class TextFieldCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+    final heightScreen = MediaQuery.of(context).size.height;
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             _fieldLabel,
-            style: TextStyle(color: kSecondaryColor),
+            style: TextStyle(
+                color: kSecondaryColor, fontSize: heightScreen * 0.016),
           ),
           TextField(
             controller: controller,
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               contentPadding: EdgeInsets.all(14),
               border: OutlineInputBorder(),
             ),
           ),
         ],
       ),
-    ));
+    );
   }
 }
 
@@ -212,108 +335,114 @@ class TextFieldButton extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Ink(
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _buttonFieldLabel,
-                    style: TextStyle(color: kSecondaryColor),
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Selecione',
-                      hintStyle: TextStyle(fontSize: 18),
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_circle_down_sharp,
-                            size: 35,
-                            color: kDetailColor,
-                          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  _buttonFieldLabel,
+                  style: TextStyle(color: kSecondaryColor),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Selecione',
+                    hintStyle: TextStyle(fontSize: 18),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.arrow_circle_down_sharp,
+                          size: 35,
+                          color: kDetailColor,
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ));
   }
 }
 
-enum Specie { dog, cat }
+class DropDownCustom extends StatefulWidget {
+  final String _labelDrop;
+  final List<String> dropChoices;
+  final int index;
 
-class SpecieWidget extends StatefulWidget {
-  const SpecieWidget({super.key});
+  //construtor
+  const DropDownCustom(this.dropChoices, this._labelDrop, this.index,
+      {super.key});
 
   @override
-  State<SpecieWidget> createState() => _SpecieWidgetState();
+  State<DropDownCustom> createState() => _DropDownCustomState();
 }
 
-class _SpecieWidgetState extends State<SpecieWidget> {
-  Specie? _animalSpecie = Specie.dog;
+class _DropDownCustomState extends State<DropDownCustom> {
+  final AddAnimalController _controller = AddAnimalController();
+  String? _breed;
+  final dropValue = ValueNotifier('');
+
+  String? get breed => _breed;
 
   @override
   Widget build(BuildContext context) {
-    AddAnimalRepository repository = AddAnimalRepository();
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Flexible(
-          child: ListTile(
-            title: const Text(
-              'Cachorro',
+    print(dropValue.value.toString());
+    final heightScreen = MediaQuery.of(context).size.height;
+    return SizedBox(
+      height: 98,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget._labelDrop,
               style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  color: kSecondaryColor, fontSize: heightScreen * 0.016),
             ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<Specie>(
-                activeColor: kDetailColor,
-                value: Specie.dog,
-                groupValue: _animalSpecie,
-                onChanged: (Specie? value) {
-                  setState(() {
-                    _animalSpecie = value;
-                  });
-                },
-              ),
-            ),
-          ),
+            ValueListenableBuilder(
+                valueListenable: dropValue,
+                builder: (BuildContext context, String value, _) {
+                  return DropdownButtonFormField<String>(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(right: 4),
+                      child: Icon(
+                        Icons.arrow_circle_down,
+                        color: kDetailColor,
+                        size: heightScreen * 0.040,
+                      ),
+                    ),
+                    hint: Text(
+                      'Selecione',
+                      style: TextStyle(fontSize: heightScreen * 0.020),
+                    ),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(6))),
+                    value: (value.isEmpty) ? null : value,
+                    onChanged: (String? choice) {
+                      setState(() {
+                        dropValue.value = choice.toString();
+                        _breed = _controller.setBreed(widget.index, value);
+                      });
+                    },
+                    items: widget.dropChoices
+                        .map(
+                          (choice) => DropdownMenuItem(
+                            value: choice,
+                            child: Text(choice),
+                          ),
+                        )
+                        .toList(),
+                  );
+                }),
+          ],
         ),
-        Flexible(
-          child: ListTile(
-            title: const Text(
-              'Gato',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20),
-            ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<Specie>(
-                value: Specie.cat,
-                activeColor: kDetailColor,
-                groupValue: _animalSpecie,
-                onChanged: (Specie? value) {
-                  setState(() {
-                    _animalSpecie = value;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -332,17 +461,18 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Masculino',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -361,12 +491,12 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
         ),
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Feminino',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -402,17 +532,18 @@ class _CastratedWidgetState extends State<CastratedWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Sim',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -431,12 +562,12 @@ class _CastratedWidgetState extends State<CastratedWidget> {
         ),
         Flexible(
           child: ListTile(
-            title: const Text(
+            title: Text(
               'Não',
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: 20),
+                  fontSize: heightScreen * 0.020),
             ),
             leading: Transform.scale(
               scale: 2,

@@ -31,7 +31,7 @@ class SplashScreenController {
         signIn(context);
       } else {
         // ignore: use_build_context_synchronously
-        Navigator.popAndPushNamed(context, Screens.home);
+        Navigator.popAndPushNamed(context, Screens.signin);
       }
     });
   }

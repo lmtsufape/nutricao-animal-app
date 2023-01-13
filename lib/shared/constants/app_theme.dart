@@ -16,13 +16,25 @@ class AppTheme extends ChangeNotifier {
     );
   }
 
-  AppBar appBarCustom(BuildContext context, String userName) {
-    return AppBar(title: Text('Olá $userName'), actions: [
-      IconButton(
-        icon: const Icon(Icons.account_circle_rounded),
-        onPressed: () => Navigator.pushNamed(context, Screens.user),
-      ),
-    ]);
+  AppBar appBarCustom(BuildContext context, Future<String> userName) {
+    return AppBar(
+        title: FutureBuilder<String>(
+          future: userName,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text('Olá ${snapshot.data!}');
+            } else if (snapshot.hasError) {
+              return Text("Error: ${snapshot.error}");
+            }
+            return CircularProgressIndicator();
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.account_circle_rounded),
+            onPressed: () => Navigator.pushNamed(context, Screens.user),
+          ),
+        ]);
   }
 }
 

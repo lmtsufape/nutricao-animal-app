@@ -16,25 +16,26 @@ class AnimalDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       backgroundColor: kBackgroundColor,
       body: ListView(
         children: [
           Column(
             children: const [
               CardAnimal(),
-              //CaloricNeedCounter(),
+              CaloricNeedCounter(),
             ],
           ),
         ],
       ),
       floatingActionButton: SizedBox(
-        height: 80,
-        width: 80,
+        height: heightScreen * 0.18,
+        width: widthScreen * 0.18,
         child: FloatingActionButton(
-          child: const Icon(Icons.edit, size: 50),
+          child: Icon(Icons.edit, size: heightScreen * 0.060),
           onPressed: () => Navigator.pushNamed(context, Screens.editAnimal),
         ),
       ),
@@ -47,6 +48,8 @@ class CardAnimal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightCard = MediaQuery.of(context).size.height;
+    final widthCard = MediaQuery.of(context).size.width;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -59,21 +62,21 @@ class CardAnimal extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.add_a_photo,
-                  size: 80,
+                  size: heightCard * 0.15,
                   color: kBackgroundColor,
                 ),
                 title: Padding(
                   padding: const EdgeInsets.only(top: 20, left: 65),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         'Nome',
                         style: TextStyle(
                           color: kDetailColor,
-                          fontSize: 20,
+                          fontSize: heightCard * 0.020,
                         ),
                         textAlign: TextAlign.left,
                       ),
@@ -81,7 +84,7 @@ class CardAnimal extends StatelessWidget {
                         'Johnny Cash',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontSize: 22,
+                            fontSize: heightCard * 0.022,
                             fontWeight: FontWeight.w700),
                         textAlign: TextAlign.left,
                       ),
@@ -89,7 +92,9 @@ class CardAnimal extends StatelessWidget {
                         padding: EdgeInsets.only(top: 30),
                         child: Text(
                           'Raça',
-                          style: TextStyle(color: kDetailColor, fontSize: 20),
+                          style: TextStyle(
+                              color: kDetailColor,
+                              fontSize: heightCard * 0.020),
                           textAlign: TextAlign.left,
                         ),
                       ),
@@ -97,7 +102,7 @@ class CardAnimal extends StatelessWidget {
                         'Pastor Alemão',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontSize: 22,
+                            fontSize: heightCard * 0.022,
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -105,22 +110,22 @@ class CardAnimal extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 60),
+                padding: const EdgeInsets.only(top: 50),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: SizedBox(
-                        height: 70,
-                        width: 70,
+                        height: heightCard * 0.10,
+                        width: widthCard * 0.17,
                         child: FloatingActionButton(
                           backgroundColor: kDetailColor,
                           onPressed: () {},
-                          child: const Icon(
+                          child: Icon(
                             Icons.menu_book_outlined,
                             color: kBackgroundColor,
-                            size: 40,
+                            size: heightCard * 0.045,
                           ),
                         ),
                       ),
@@ -128,15 +133,15 @@ class CardAnimal extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 70),
                       child: SizedBox(
-                        height: 70,
-                        width: 70,
+                        height: heightCard * 0.10,
+                        width: widthCard * 0.17,
                         child: FloatingActionButton(
                           backgroundColor: kDetailColor,
                           onPressed: () {},
-                          child: const Icon(
+                          child: Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,
-                            size: 40,
+                            size: heightCard * 0.045,
                           ),
                         ),
                       ),
@@ -144,15 +149,15 @@ class CardAnimal extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 70, right: 20),
                       child: SizedBox(
-                        height: 70,
-                        width: 70,
+                        height: heightCard * 0.10,
+                        width: widthCard * 0.17,
                         child: FloatingActionButton(
                           backgroundColor: kDetailColor,
                           onPressed: () {},
-                          child: const Icon(
+                          child: Icon(
                             Icons.share,
                             color: kBackgroundColor,
-                            size: 40,
+                            size: heightCard * 0.045,
                           ),
                         ),
                       ),
@@ -161,7 +166,7 @@ class CardAnimal extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 4),
                 child: StaggeredGridAnimal(),
               ),
             ],
@@ -177,6 +182,8 @@ class StaggeredGridAnimal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightStaggered = MediaQuery.of(context).size.height;
+    final widthStaggered = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Card(
@@ -193,7 +200,7 @@ class StaggeredGridAnimal extends StatelessWidget {
           children: [
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -202,19 +209,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Espécie: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Gato',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -223,7 +230,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -232,19 +239,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Idade: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: '3 anos',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -253,7 +260,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -262,19 +269,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Sexo: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Masculino',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -283,7 +290,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide(
@@ -292,19 +299,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                         strokeAlign: StrokeAlign.outside),
                   ),
                   title: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: 'Peso: ',
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: kSecondaryColor,
-                          fontSize: 23),
+                          fontSize: heightStaggered * 0.023),
                       children: <TextSpan>[
                         TextSpan(
                           text: '4,6Kg',
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: kPrimaryColor,
-                              fontSize: 21),
+                              fontSize: heightStaggered * 0.020),
                         ),
                       ],
                     ),
@@ -312,16 +319,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                   trailing: Padding(
                     padding: const EdgeInsets.only(right: 0, top: 5, left: 2),
                     child: SizedBox(
-                      height: 50,
-                      width: 46,
-                      child: FloatingActionButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, Screens.weightHistory),
-                        backgroundColor: kDetailColor,
-                        child: const Icon(
-                          Icons.area_chart_outlined,
-                          color: kBackgroundColor,
-                          size: 35,
+                      height: heightStaggered * 0.045,
+                      width: widthStaggered * 0.1,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: FloatingActionButton(
+                          onPressed: () => Navigator.pushNamed(
+                              context, Screens.weightHistory),
+                          backgroundColor: kDetailColor,
+                          child: Icon(
+                            Icons.area_chart_outlined,
+                            color: kBackgroundColor,
+                            size: heightStaggered * 0.025,
+                          ),
                         ),
                       ),
                     ),
@@ -329,7 +339,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -338,19 +348,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Altura: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: '38cm',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -359,7 +369,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -368,19 +378,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Castrado: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Sim',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -389,7 +399,7 @@ class StaggeredGridAnimal extends StatelessWidget {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.6,
+              mainAxisCellCount: 0.5,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -398,19 +408,19 @@ class StaggeredGridAnimal extends StatelessWidget {
                       strokeAlign: StrokeAlign.outside),
                 ),
                 title: RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     text: 'Nível de atividade: ',
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: kSecondaryColor,
-                        fontSize: 23),
+                        fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Ativo',
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
-                            fontSize: 23),
+                            fontSize: heightStaggered * 0.023),
                       ),
                     ],
                   ),
@@ -424,4 +434,97 @@ class StaggeredGridAnimal extends StatelessWidget {
   }
 }
 
+class CaloricNeedCounter extends StatelessWidget {
+  const CaloricNeedCounter({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    final heightCaloric = MediaQuery.of(context).size.height;
+    return SizedBox(
+      height: heightCaloric * 0.25,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Card(
+          color: kPrimaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          child: Wrap(
+            alignment: WrapAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 12, left: 12),
+                child: Text(
+                  'Medidor de necessidade calórica:',
+                  style: TextStyle(
+                      color: kBackgroundColor,
+                      fontSize: heightCaloric * 0.022,
+                      fontWeight: FontWeight.bold),
+                  textDirection: TextDirection.ltr,
+                ),
+              ),
+              RadialGaugeAnimal(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class RadialGaugeAnimal extends StatelessWidget {
+  const RadialGaugeAnimal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final heightGauge = MediaQuery.of(context).size.height;
+    return SfRadialGauge(
+      enableLoadingAnimation: true,
+      animationDuration: 3000,
+      axes: <RadialAxis>[
+        RadialAxis(
+          minimum: 0,
+          maximum: 100,
+          radiusFactor: 0.65,
+          startAngle: 180,
+          endAngle: 0,
+          centerX: 0.5,
+          centerY: 0.4,
+          showLabels: false,
+          showTicks: false,
+          ranges: <GaugeRange>[
+            GaugeRange(startValue: 0, endValue: 25, color: Colors.red),
+            GaugeRange(startValue: 25, endValue: 45, color: Colors.yellow),
+            GaugeRange(startValue: 45, endValue: 55, color: Colors.green),
+            GaugeRange(startValue: 55, endValue: 75, color: Colors.yellow),
+            GaugeRange(startValue: 75, endValue: 100, color: Colors.red),
+          ],
+          pointers: <GaugePointer>[
+            NeedlePointer(
+              value: 50,
+              enableAnimation: true,
+              needleColor: kSecondaryColor,
+              knobStyle: KnobStyle(
+                color: kBackgroundColor,
+                borderColor: kSecondaryColor,
+                borderWidth: 0.05,
+              ),
+            ),
+          ],
+         /* annotations: <GaugeAnnotation>[
+            GaugeAnnotation(
+              angle: -10,
+              positionFactor: 3.5,
+              widget: Text(
+              'Necessidade calórica diária já atingida',
+              style: TextStyle(
+                  color: kBackgroundColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: heightGauge * 0.018),
+            ),)
+          ],*/
+        ),
+      ],
+    );
+  }
+}

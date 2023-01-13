@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -27,11 +29,14 @@ class SignInRepository with ChangeNotifier {
 
     print(response.statusCode);
     if (response.statusCode == 200) {
+      print(response.data);
       final prefs = await SharedPreferences.getInstance();
+      prefs.setInt('id', response.data['user']['id']);
       prefs.setString('email', email);
       prefs.setString('password', password);
-      prefs.setString('name', response.data['name']);
-      prefs.setString('token', response.data['token']);
+      prefs.setString('token', response.data['user']['token'].toString());
+      prefs.setString('name', response.data['user']['name'].toString());
+      print(response.data['name']);
 
       notifyListeners();
       return true;

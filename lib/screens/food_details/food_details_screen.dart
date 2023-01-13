@@ -31,7 +31,6 @@ class FoodDetailsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(),
-      drawer: NavigationDrawerWidget(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
