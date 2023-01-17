@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:thunderapp/shared/constants/app_enums.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:nutricaoanimal/shared/constants/app_enums.dart';
+import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
 
 class HorizontalSpacerBox extends StatelessWidget {
   const HorizontalSpacerBox({Key? key, required this.size}) : super(key: key);

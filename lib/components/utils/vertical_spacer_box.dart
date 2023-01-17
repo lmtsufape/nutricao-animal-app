@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:thunderapp/shared/constants/app_enums.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:nutricaoanimal/shared/constants/app_enums.dart';
+import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
 
 class VerticalSpacerBox extends StatelessWidget {
   const VerticalSpacerBox({Key? key, required this.size}) : super(key: key);
