@@ -1,15 +1,10 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/screens/home/home_screen_controller.dart';
-import 'package:thunderapp/screens/screens_index.dart';
-import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
-import '../../shared/core/models/animal_model.dart';
+import 'package:nutricaoanimal/screens/screens_index.dart';
+import 'package:nutricaoanimal/screens/sign_in/sign_in_controller.dart';
+import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
+import 'package:nutricaoanimal/shared/constants/app_theme.dart';
+import 'package:nutricaoanimal/shared/constants/style_constants.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 
@@ -55,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       appBar: formCustom.appBarCustom(context, _getUserName()),
       body: Column(children: const [
         Padding(
-          padding: EdgeInsets.only(top: 15.0),
+          padding: EdgeInsets.only(top: 16.0),
           child: Text(
             'Animais Cadastrados',
             textDirection: TextDirection.ltr,
