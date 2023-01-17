@@ -16,22 +16,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
-  // final HomeScreenController _controller = HomeScreenController();
   final SignInController newController = SignInController();
+  late HomeScreenController _controller;
   final UserModel user = UserModel();
   late String UserName;
+  bool _listPopulated = false;
 
   @override
   void initState() {
     super.initState();
     _getUserName();
-    //_controller.populateList();
+
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  void _isListed() {
+    setState(() {
+      _listPopulated = true;
+    });
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+
     _getUserName();
   }
 
@@ -45,60 +53,77 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, _getUserName()),
-      body: Column(children: const [
-        Padding(
-          padding: EdgeInsets.only(top: 16.0),
-          child: Text(
-            'Animais Cadastrados',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              fontSize: 30.0,
-              color: kPrimaryColor,
-              fontWeight: FontWeight.w900,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomeScreenController>(
+          create: (context) {
+            return HomeScreenController();
+          },
+        ),
+      ],
+      child: Builder(
+        builder: (BuildContext context) {
+          _controller = Provider.of<HomeScreenController>(context);
+          if (!_listPopulated) {
+            _controller.populateList();
+            _isListed();
+          }
+
+          return Scaffold(
+            backgroundColor: kBackgroundColor,
+            appBar: formCustom.appBarCustom(context, _getUserName()),
+            body: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    'Animais Cadastrados',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: kPrimaryColor,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return CardHomeScreen(_controller.animals[index].name,
+                            _controller.animals[index].sex);
+                      },
+                      separatorBuilder: (context, index) {
+                        return const Divider();
+                      },
+                      itemCount: _controller.animals.length),
+                )
+              ],
             ),
-          ),
-        ),
-        /*Expanded(
-            child: ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return CardHomeScreen(
-                      _controller.animals[index].age,
-                      _controller.animals[index].name,
-                      _controller.animals[index].weight);
-                },
-                separatorBuilder: (context, index) {
-                  return Divider();
-                },
-                itemCount: _controller.animals.length),
-          )
-        ],*/
-      ]),
-      floatingActionButton: SizedBox(
-        height: 100,
-        width: 100,
-        child: FloatingActionButton(
-          child: const Icon(
-            Icons.add,
-            size: 65,
-          ),
-          onPressed: () => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => AddAnimalScreen())),
-        ),
+            floatingActionButton: SizedBox(
+              height: 100,
+              width: 100,
+              child: FloatingActionButton(
+                child: const Icon(
+                  Icons.add,
+                  size: 65,
+                ),
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddAnimalScreen())),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 }
 
 class CardHomeScreen extends StatefulWidget {
-  String? age;
   String? name;
-  String? weight;
+  String? sex;
 
-  CardHomeScreen(this.age, this.name, this.weight, {super.key});
+  CardHomeScreen(this.name, this.sex, {super.key});
 
   @override
   State<CardHomeScreen> createState() => _CardHomeScreenState();
@@ -131,17 +156,17 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                   ),
                   title: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 24,
-                          right: 16,
-                        ),
-                        child: Text(
-                          widget.age.toString(),
-                          style:
-                              TextStyle(fontSize: 15, color: kBackgroundColor),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.only(
+                      //     top: 24,
+                      //     right: 16,
+                      //   ),
+                      //   child: Text(
+                      //     widget.age.toString(),
+                      //     style:
+                      //         TextStyle(fontSize: 15, color: kBackgroundColor),
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
@@ -167,7 +192,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                   trailing: Padding(
                     padding: EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
-                      widget.weight.toString(),
+                      widget.sex.toString(),
                       style: TextStyle(color: kBackgroundColor, fontSize: 15.0),
                     ),
                   ),

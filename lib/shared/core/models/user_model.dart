@@ -5,6 +5,8 @@ class UserModel with ChangeNotifier {
   String? token;
   String? email;
 
+  UserModel({this.name, this.token, this.email});
+
   setUser(name, token, email) {
     this.name = name;
     this.token = token;
@@ -13,14 +15,14 @@ class UserModel with ChangeNotifier {
   }
 
   getName() {
-    return this.name;
+    return name;
   }
 
   getToken() {
-    return this.token;
+    return token;
   }
 
   getEmail() {
-    return this.email;
+    return email;
   }
 }

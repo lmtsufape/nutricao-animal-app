@@ -8,7 +8,6 @@ import 'package:nutricaoanimal/shared/constants/app_theme.dart';
 import 'package:nutricaoanimal/shared/constants/style_constants.dart';
 import 'package:nutricaoanimal/shared/core/models/animal_model.dart';
 
-
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
