@@ -26,33 +26,54 @@ class AddAnimalController with ChangeNotifier {
   }
 
   /*List<String> showBreeds(String specie) {
-    var breeds = _repository.getBreed(specie);
-    
-    breeds.then(
-      (value) {
-        return value;
-      },
-    );
+    var breeds = _repository.getBreed(specie).then((value) => value);
 
     return ['Falha'];
   }*/
 
   List<String> showBreeds(specie) {
-    List<String> breedsDog = [
-      'pastor alemão',
-      'Border Collie',
-      'Myrtie Funk',
+    List<Map<String, dynamic>> dogMap = [
+      {
+        'breed': 'pastor alemão',
+        'enoughFood': 5,
+      },
+      {
+        'breed': 'Border Collie',
+        'enoughFood': 6,
+      },
+      {
+        'breed': 'Myrtie Funk',
+        'enoughFood': 4,
+      }
     ];
-    List<String> breedsCat = [
-      'Edythe Boyle',
-      'Gladyce Oberbrunner',
-      'Augustus Watsica'
+    List<Map<String, dynamic>> catMap = [
+      {
+        'breed': 'Edythe Boyle',
+        'enoughFood': 5,
+      },
+      {
+        'breed': 'Gladyce Oberbrunner',
+        'enoughFood': 6,
+      },
+      {
+        'breed': 'Augustus Watsica',
+        'enoughFood': 4,
+      }
     ];
+    List<String> dogBreeds = [];
+    List<String> catBreeds = [];
+    int i;
 
     if (specie == 'dog') {
-      return breedsDog;
+      for (i = 0; i < dogMap.length; i++) {
+        dogBreeds.add(dogMap[i]['breed']);
+      }
+      return dogBreeds;
     } else {
-      return breedsCat;
+      for (i = 0; i < catMap.length; i++) {
+        catBreeds.add(catMap[i]['breed']);
+      }
+      return catBreeds;
     }
   }
 }
