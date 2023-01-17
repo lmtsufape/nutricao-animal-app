@@ -54,7 +54,7 @@ class SplashScreenController {
     _api.login(context, email!, password!).then((value) {
       if (value == true) {
         log('Successfully auto signed in');
-        Navigator.pushNamed(context, Screens.home);
+        Navigator.popAndPushNamed(context, Screens.home);
       } else {
         log('failed to log with email: $email and password: $password now going to sign in screen');
         Navigator.popAndPushNamed(context, Screens.signin);

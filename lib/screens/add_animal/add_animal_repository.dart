@@ -12,26 +12,53 @@ class AddAnimalRepository {
   late int userId;
   late String userToken;
 
-  Future<bool> getBreedCat() async {
+  Future<List<String>> getBreed(specie) async {
     Dio dio = Dio();
+    int i;
+    List<dynamic> all;
+    List<String> breeds = [];
+    final prefs = await SharedPreferences.getInstance();
 
-    var response = await dio.get('$kBaseUrl/users/breed/species');
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
 
-    print(response.statusCode);
-    print(response.data);
+    if (specie == 'dog') {
+      var response = await dio.get('$kBaseUrl/users/breed/dog',
+          options: Options(
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer $userToken"
+            },
+          ));
+      all = response.data['breeds'];
 
-    return true;
-  }
+      if (all.isNotEmpty) {
+        for (i = 0; i < all.length; i++) {
+          breeds.add(all[i]['name']);
+        }
+        return breeds;
+      }
+    } else {
+      var response = await dio.get('$kBaseUrl/users/breed/cat',
+          options: Options(
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              "Authorization": "Bearer $userToken"
+            },
+          ));
+      all = response.data['breeds'];
 
-  Future<bool> getBreedDog() async {
-    Dio dio = Dio();
+      if (all.isNotEmpty) {
+        for (i = 0; i < all.length; i++) {
+          breeds.add(all[i]['name']);
+        }
+        return breeds;
+      }
+    }
 
-    var response = await dio.get('$kBaseUrl/user/breeds/dog');
-
-    print(response.statusCode);
-    print(response.data);
-
-    return true;
+    return [];
   }
 
   Future<bool> registerAnimal(name, specie, breed, sex, weight, height, age,

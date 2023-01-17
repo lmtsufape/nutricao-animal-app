@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -37,6 +35,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final AddAnimalRepository repository = AddAnimalRepository();
   late String userName;
   final AnimalModel _animal = AnimalModel();
+  late List<String> breeds = [];
 
   String activityLevel = '1';
   String specie = 'dog';
@@ -52,10 +51,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   @override
   void initState() {
     super.initState();
-    signInController.getInstance(user);
 
-    //repository.getBreedCat();
-    //repository.getBreedDog();
+    signInController.getInstance(user);
   }
 
   Future<String> _getUserName() async {
@@ -71,7 +68,6 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
 
     final AppTheme formCustom = AppTheme();
 
-    print(isCastrated);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: formCustom.appBarCustom(context, _getUserName()),
@@ -148,11 +144,13 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: DropdownSearch(
-                items: const ['pastor alemão', 'Border Collie'],
+                items: controller.showBreeds(specie),
                 onChanged: (data) {
-                  setState(() {
-                    breed = data.toString();
-                  });
+                  setState(
+                    () {
+                      breed = data.toString();
+                    },
+                  );
                 },
               ),
             ),

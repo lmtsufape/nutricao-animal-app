@@ -24,4 +24,35 @@ class AddAnimalController with ChangeNotifier {
     }
     return null;
   }
+
+  /*List<String> showBreeds(String specie) {
+    var breeds = _repository.getBreed(specie);
+    
+    breeds.then(
+      (value) {
+        return value;
+      },
+    );
+
+    return ['Falha'];
+  }*/
+
+  List<String> showBreeds(specie) {
+    List<String> breedsDog = [
+      'pastor alemão',
+      'Border Collie',
+      'Myrtie Funk',
+    ];
+    List<String> breedsCat = [
+      'Edythe Boyle',
+      'Gladyce Oberbrunner',
+      'Augustus Watsica'
+    ];
+
+    if (specie == 'dog') {
+      return breedsDog;
+    } else {
+      return breedsCat;
+    }
+  }
 }
