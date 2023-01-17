@@ -1,8 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-
-import 'package:dio/dio.dart' as dio;
-import 'package:thunderapp/shared/constants/app_text_constants.dart';
+import 'package:nutricaoanimal/shared/constants/app_text_constants.dart';
 
 class SignUpRepository {
   static void signUp(name, email, password) async {

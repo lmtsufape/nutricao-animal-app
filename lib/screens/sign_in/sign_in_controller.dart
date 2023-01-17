@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/screens/home/home_screen.dart';
-import 'package:thunderapp/screens/screens_index.dart';
-import 'package:thunderapp/shared/core/models/animal_model.dart';
+import 'package:nutricaoanimal/screens/screens_index.dart';
 import '../../shared/core/models/user_model.dart';
 import 'sign_in_repository.dart';
 

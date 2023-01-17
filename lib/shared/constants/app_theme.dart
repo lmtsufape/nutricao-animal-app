@@ -1,12 +1,8 @@
-import 'package:flutter/cupertino.dart';
-import 'package:thunderapp/app.dart';
 import 'package:flutter/material.dart';
-import 'package:thunderapp/screens/screens_index.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
-import 'package:provider/provider.dart';
+import 'package:nutricaoanimal/screens/screens_index.dart';
+import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
+import 'package:nutricaoanimal/shared/constants/style_constants.dart';
 
-import '../core/models/user_model.dart';
 
 class AppTheme extends ChangeNotifier {
   static ThemeData getLightTheme() {
