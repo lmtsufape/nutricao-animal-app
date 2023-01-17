@@ -18,11 +18,11 @@ main() {
     }
   });
   MultiProvider(providers: [
-    //ChangeNotifierProvider(create: (_) => HomeScreenController()),
+    ChangeNotifierProvider(create: (context) => HomeScreenController()),
     ChangeNotifierProvider(create: (_) => SelectedItem()),
     ChangeNotifierProvider(create: (context) => UserModel()),
     ChangeNotifierProvider(create: (_) => SignInRepository()),
-    ChangeNotifierProvider(create: (_) => SignInController())
+    ChangeNotifierProvider(create: (_) => SignInController()),
   ], child: const App());
 
   runApp(DevicePreview(enabled: true, builder: (context) => const App()));

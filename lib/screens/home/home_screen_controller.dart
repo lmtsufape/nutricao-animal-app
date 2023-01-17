@@ -1,32 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:thunderapp/screens/home/home_screen_repository.dart';
 import 'package:nutricaoanimal/shared/core/models/animal_model.dart';
 
-/*class HomeScreenController with ChangeNotifier {
-  List<AnimalModel> _animals = [];
+class HomeScreenController extends ChangeNotifier {
+  final List<AnimalModel> _animals = [];
+  late Future<List<dynamic>> animalData;
   List<AnimalModel> get animals => _animals;
+  final HomeScreenRepository _repository = HomeScreenRepository();
 
-  final List<Map<String, dynamic>> _fakeData = [
-    {
-      'name': 'Glow',
-      'age': '4',
-      'weight': '1',
-    },
-    {
-      'name': 'Caio',
-      'age': '6',
-      'weight': '1',
-    },
-    {
-      'name': 'Atalias',
-      'age': '5',
-      'weight': '1',
-    }
-  ];
-
-  void populateList() {
-    for (var i = 0; i < _fakeData.length; i++) {
-      _animals.add(AnimalModel(
-          _fakeData[i]['name'], _fakeData[i]['weight'], _fakeData[i]['age']));
-    }
+  void populateList() async {
+    animalData = _repository.getAnimalData();
+    animalData.then((value) {
+      if (value.isNotEmpty) {
+        for (var i = 0; i < value.length; i++) {
+          _animals.add(AnimalModel(value[i]['name'], value[i]['sex']));
+        }
+      }
+      notifyListeners();
+    });
   }
-}*/
+}
