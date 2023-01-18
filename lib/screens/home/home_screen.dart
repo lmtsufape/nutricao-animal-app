@@ -10,10 +10,8 @@ import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
-import '../../shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
-import 'home_screen_controller.dart';
 import 'home_screen_repository.dart';
 
 class HomeScreen extends StatefulWidget {
