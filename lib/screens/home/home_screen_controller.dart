@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:thunderapp/screens/home/home_screen_repository.dart';
-import 'package:nutricaoanimal/shared/core/models/animal_model.dart';
+
+import '../../shared/core/models/animal_model.dart';
 
 class HomeScreenController extends ChangeNotifier {
   final List<AnimalModel> _animals = [];
