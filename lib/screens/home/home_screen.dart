@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -12,6 +13,8 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
+import 'home_screen_controller.dart';
+import 'home_screen_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,10 +25,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final SignInController newController = SignInController();
-  late HomeScreenController _controller;
+  late Future getAnimals;
+  final repository = HomeScreenRepository();
   final UserModel user = UserModel();
-  late String UserName;
-  bool _listPopulated = false;
+  late String userName;
 
   @override
   void initState() {
@@ -35,14 +38,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  void _isListed() {
-    setState(() {
-      _listPopulated = true;
-    });
-  }
-
   @override
   void didChangeDependencies() {
+    getAnimals = repository.getAnimalData(context);
     super.didChangeDependencies();
 
     _getUserName();
@@ -50,92 +48,129 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
-    UserName = prefs.getString('name')!;
-    return UserName;
+    userName = prefs.getString('name')!;
+    return userName;
   }
 
   final AppTheme formCustom = AppTheme();
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<HomeScreenController>(
-          create: (context) {
-            return HomeScreenController();
-          },
-        ),
-      ],
-      child: Builder(
-        builder: (BuildContext context) {
-          _controller = Provider.of<HomeScreenController>(context);
-          if (!_listPopulated) {
-            _controller.populateList();
-            _isListed();
-          }
-
-          return Scaffold(
-            backgroundColor: kBackgroundColor,
-            appBar: formCustom.appBarCustom(context, _getUserName()),
-            body: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 15.0),
-                  child: Text(
-                    'Animais Cadastrados',
-                    textDirection: TextDirection.ltr,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.w900,
+    return Builder(
+      builder: (BuildContext context) {
+        return FutureBuilder(
+          future: getAnimals,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final dataAnimals = snapshot.data as List;
+              if (dataAnimals.isEmpty) {
+                return Scaffold(
+                  backgroundColor: kBackgroundColor,
+                  appBar: formCustom.appBarCustom(context, _getUserName()),
+                  body: Column(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          'Animais Cadastrados',
+                          textDirection: TextDirection.ltr,
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Text(
+                          'Nenhum animal cadastrado',
+                          textDirection: TextDirection.ltr,
+                          style: TextStyle(
+                            fontSize: 30.0,
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  floatingActionButton: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: FloatingActionButton(
+                      backgroundColor: kPrimaryColor,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AddAnimalScreen(),
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.add,
+                        color: kBackgroundColor,
+                        size: 50,
+                      ),
                     ),
                   ),
+                );
+              }
+              return Scaffold(
+                backgroundColor: kBackgroundColor,
+                appBar: formCustom.appBarCustom(context, _getUserName()),
+                body: Column(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 15.0),
+                      child: Text(
+                        'Animais Cadastrados',
+                        textDirection: TextDirection.ltr,
+                        style: TextStyle(
+                          fontSize: 30.0,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return CardHomeScreen(dataAnimals[index]['name'],
+                                dataAnimals[index]['sex']);
+                          },
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemCount: dataAnimals.length),
+                    )
+                  ],
                 ),
-                Expanded(
-                  child: ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return CardHomeScreen(_controller.animals[index].name,
-                            _controller.animals[index].sex);
-                      },
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
-                      itemCount: _controller.animals.length),
-                )
-              ],
-=======
-    return Scaffold(
-      backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, _getUserName()),
-      body: Column(children: const [
-        Padding(
-          padding: EdgeInsets.only(top: 15.0),
-          child: Text(
-            'Animais Cadastrados',
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              fontSize: 30.0,
-              color: kPrimaryColor,
-              fontWeight: FontWeight.w900,
->>>>>>> parent of 3e925e9 (Refatoração no nome do projeto de todas as dependencias)
-            ),
-            floatingActionButton: SizedBox(
-              height: 100,
-              width: 100,
-              child: FloatingActionButton(
-                child: const Icon(
-                  Icons.add,
-                  size: 65,
+                floatingActionButton: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: FloatingActionButton(
+                    child: const Icon(
+                      Icons.add,
+                      size: 65,
+                    ),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddAnimalScreen())),
+                  ),
                 ),
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddAnimalScreen())),
-              ),
-            ),
-          );
-        },
-      ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        );
+      },
     );
   }
 }

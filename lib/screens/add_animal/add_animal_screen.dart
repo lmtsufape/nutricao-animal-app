@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-<<<<<<< HEAD
-=======
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -18,7 +16,6 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/animal_model.dart';
 import 'package:thunderapp/shared/core/selected_item.dart';
 
->>>>>>> parent of 3e925e9 (Refatoração no nome do projeto de todas as dependencias)
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
@@ -37,7 +34,6 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
   late String userName;
-  final AnimalModel _animal = AnimalModel();
   late List<String> breeds = [];
 
   String activityLevel = '1';

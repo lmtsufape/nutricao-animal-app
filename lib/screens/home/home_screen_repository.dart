@@ -2,13 +2,14 @@ import 'dart:convert';
 import 'dart:core';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/shared/constants/app_text_constants.dart';
+import '../../shared/constants/app_text_constants.dart';
 
 class HomeScreenRepository {
   Dio dio = Dio();
 
-  Future<List<dynamic>> getAnimalData() async {
+  Future getAnimalData(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     var userId = prefs.getInt('id');
     var userToken = prefs.getString('token');
@@ -22,10 +23,11 @@ class HomeScreenRepository {
       }),
     );
     if (response.statusCode == 200) {
-      var animalData = response.data;
-      return animalData['animal'];
+      var dataList = response.data['animal'] as List<dynamic>;
+
+      return dataList;
     } else {
-      return [];
+      return null;
     }
   }
 }
