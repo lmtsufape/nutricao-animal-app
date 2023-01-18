@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:nutricaoanimal/screens/add_animal/add_animal_screen.dart';
-import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
-import 'package:nutricaoanimal/shared/constants/style_constants.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/app_theme.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class ShareTutoringScreen extends StatelessWidget {
   const ShareTutoringScreen({Key? key}) : super(key: key);
@@ -17,6 +22,7 @@ class ShareTutoringScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

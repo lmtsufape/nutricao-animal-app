@@ -1,14 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
-import 'package:nutricaoanimal/components/forms/custom_text_form_field.dart';
-import 'package:nutricaoanimal/screens/sign_up/sign_up_controller.dart';
-import 'package:nutricaoanimal/screens/sign_up/sign_up_repository.dart';
-import 'package:nutricaoanimal/shared/constants/app_number_constants.dart';
-import 'package:nutricaoanimal/shared/constants/style_constants.dart';
+import 'package:thunderapp/components/forms/custom_text_form_field.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_controller.dart';
+import 'package:thunderapp/screens/sign_up/sign_up_repository.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
+
 import '../../components/buttons/primary_button.dart';
 import '../../components/utils/vertical_spacer_box.dart';
 import '../../shared/constants/app_enums.dart';
-
+import '../screens_index.dart';
+import 'sign_up_repository.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);

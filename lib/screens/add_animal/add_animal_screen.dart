@@ -1,13 +1,24 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:nutricaoanimal/screens/add_animal/add_animal_controller.dart';
-import 'package:nutricaoanimal/screens/add_animal/add_animal_repository.dart';
-import 'package:nutricaoanimal/screens/sign_in/sign_in_controller.dart';
-import 'package:nutricaoanimal/shared/constants/app_theme.dart';
-import 'package:nutricaoanimal/shared/constants/style_constants.dart';
-import 'package:nutricaoanimal/shared/core/models/animal_model.dart';
 
+<<<<<<< HEAD
+=======
+import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
+import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/app_theme.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/animal_model.dart';
+import 'package:thunderapp/shared/core/selected_item.dart';
+
+>>>>>>> parent of 3e925e9 (Refatoração no nome do projeto de todas as dependencias)
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
