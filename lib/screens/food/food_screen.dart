@@ -2,20 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/user_model.dart';
 
 enum PrivateMenu { yes, no }
 
-class FoodScreen extends StatelessWidget {
+class FoodScreen extends StatefulWidget {
   const FoodScreen({Key? key}) : super(key: key);
 
   static ButtonStyle styleAlimentar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
   );
+
+  @override
+  State<FoodScreen> createState() => _FoodScreenState();
+}
+
+class _FoodScreenState extends State<FoodScreen> {
+  final UserModel user = UserModel();
+  late String userName;
+
+  Future<String> _getUserName() async {
+    final prefs = await SharedPreferences.getInstance();
+    userName = prefs.getString('name')!;
+    return userName;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +40,7 @@ class FoodScreen extends StatelessWidget {
 
     final AppTheme formCustom = AppTheme();
     return Scaffold(
-      //appBar: formCustom.appBarCustom(context, userName!),
-
+      appBar: formCustom.appBarCustom(context, _getUserName()),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -101,7 +116,7 @@ class FoodScreen extends StatelessWidget {
                 width: 120,
                 height: 40,
                 child: ElevatedButton(
-                  style: styleAlimentar,
+                  style: FoodScreen.styleAlimentar,
                   onPressed: () {},
                   child: const Text('Alimentar',
                       style: TextStyle(
