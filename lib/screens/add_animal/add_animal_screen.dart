@@ -1,20 +1,11 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
-import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
-import 'package:thunderapp/shared/core/models/animal_model.dart';
-import 'package:thunderapp/shared/core/selected_item.dart';
 
 import '../../shared/core/models/user_model.dart';
 
