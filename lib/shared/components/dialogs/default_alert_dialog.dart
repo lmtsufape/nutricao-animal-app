@@ -37,9 +37,9 @@ class DefaultAlertDialog extends StatelessWidget {
         SizedBox(
           width: size.width * 0.3,
           child: PrimaryButton(
-              text: Text(confirmText),
-              onPressed: onConfirm,
-              color: kDetailColor),
+            text: Text(confirmText),
+            onPressed: onConfirm,
+          ),
         )
       ],
     );

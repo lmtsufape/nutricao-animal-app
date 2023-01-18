@@ -15,8 +15,9 @@ class UserScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: PrimaryButton(
-            text: const Text("Log off"),
-            onPressed: () => controller.logoff(context)),
+          text: const Text("Log off"),
+          onPressed: () => controller.logoff(context),
+        ),
       ),
     );
   }
