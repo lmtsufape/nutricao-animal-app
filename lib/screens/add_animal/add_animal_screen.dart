@@ -1,4 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
@@ -337,17 +338,17 @@ class TextFieldButton extends StatelessWidget {
               children: [
                 Text(
                   _buttonFieldLabel,
-                  style: TextStyle(color: kSecondaryColor),
+                  style: const TextStyle(color: kSecondaryColor),
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Selecione',
-                    hintStyle: TextStyle(fontSize: 18),
+                    hintStyle: const TextStyle(fontSize: 18),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: 10.0),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_circle_down_sharp,
                           size: 35,
                           color: kDetailColor,
@@ -385,7 +386,9 @@ class _DropDownCustomState extends State<DropDownCustom> {
 
   @override
   Widget build(BuildContext context) {
-    print(dropValue.value.toString());
+    if (kDebugMode) {
+      print(dropValue.value.toString());
+    }
     final heightScreen = MediaQuery.of(context).size.height;
     return SizedBox(
       height: 98,
