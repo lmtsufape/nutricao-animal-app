@@ -1,10 +1,11 @@
 import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:nutricaoanimal/screens/screens_index.dart';
-import 'package:nutricaoanimal/screens/sign_in/sign_in_repository.dart';
+import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
 
 class SplashScreenController {
   final BuildContext context;

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:nutricaoanimal/screens/screens_index.dart';
-import 'package:nutricaoanimal/shared/constants/style_constants.dart';
+import 'package:thunderapp/main.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/app_theme.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class AnimalDetailsScreen extends StatelessWidget {
@@ -158,8 +165,8 @@ class CardAnimal extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 4),
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
                 child: StaggeredGridAnimal(),
               ),
             ],
@@ -456,7 +463,7 @@ class CaloricNeedCounter extends StatelessWidget {
                   textDirection: TextDirection.ltr,
                 ),
               ),
-              const RadialGaugeAnimal(),
+              RadialGaugeAnimal(),
             ],
           ),
         ),
@@ -492,7 +499,7 @@ class RadialGaugeAnimal extends StatelessWidget {
             GaugeRange(startValue: 55, endValue: 75, color: Colors.yellow),
             GaugeRange(startValue: 75, endValue: 100, color: Colors.red),
           ],
-          pointers: const <GaugePointer>[
+          pointers: <GaugePointer>[
             NeedlePointer(
               value: 50,
               enableAnimation: true,
@@ -504,7 +511,7 @@ class RadialGaugeAnimal extends StatelessWidget {
               ),
             ),
           ],
-          /* annotations: <GaugeAnnotation>[
+         /* annotations: <GaugeAnnotation>[
             GaugeAnnotation(
               angle: -10,
               positionFactor: 3.5,

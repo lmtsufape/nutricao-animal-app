@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nutricaoanimal/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({Key? key, required this.text, required this.onPressed})
