@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-import 'package:thunderapp/main.dart';
-import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
-import 'package:thunderapp/screens/screens_index.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:thunderapp/screens/animal_details/animal_details_controller.dart';
+import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class AnimalDetailsScreen extends StatelessWidget {
   const AnimalDetailsScreen({Key? key}) : super(key: key);
@@ -89,7 +83,7 @@ class CardAnimal extends StatelessWidget {
                         textAlign: TextAlign.left,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: const EdgeInsets.only(top: 30),
                         child: Text(
                           'Raça',
                           style: TextStyle(
@@ -165,8 +159,8 @@ class CardAnimal extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
+              const Padding(
+                padding: EdgeInsets.only(top: 4),
                 child: StaggeredGridAnimal(),
               ),
             ],
@@ -463,7 +457,7 @@ class CaloricNeedCounter extends StatelessWidget {
                   textDirection: TextDirection.ltr,
                 ),
               ),
-              RadialGaugeAnimal(),
+              const RadialGaugeAnimal(),
             ],
           ),
         ),
@@ -478,6 +472,10 @@ class RadialGaugeAnimal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final heightGauge = MediaQuery.of(context).size.height;
+    final AnimalDetailsController animalController = AnimalDetailsController();
+    int food = 6;
+    String specie = 'cat';
+    String breed = 'Gladyce Oberbrunner';
     return SfRadialGauge(
       enableLoadingAnimation: true,
       animationDuration: 3000,
@@ -501,28 +499,29 @@ class RadialGaugeAnimal extends StatelessWidget {
           ],
           pointers: <GaugePointer>[
             NeedlePointer(
-              value: 50,
+              value: animalController.caloric(food, specie, breed),
               enableAnimation: true,
               needleColor: kSecondaryColor,
-              knobStyle: KnobStyle(
+              knobStyle: const KnobStyle(
                 color: kBackgroundColor,
                 borderColor: kSecondaryColor,
                 borderWidth: 0.05,
               ),
-            ),
+            )
           ],
-         /* annotations: <GaugeAnnotation>[
+          annotations: <GaugeAnnotation>[
             GaugeAnnotation(
               angle: -10,
               positionFactor: 3.5,
               widget: Text(
-              'Necessidade calórica diária já atingida',
-              style: TextStyle(
-                  color: kBackgroundColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: heightGauge * 0.018),
-            ),)
-          ],*/
+                'Necessidade calórica diária já atingida',
+                style: TextStyle(
+                    color: kBackgroundColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: heightGauge * 0.018),
+              ),
+            )
+          ],
         ),
       ],
     );
