@@ -37,7 +37,6 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
   late String userName;
-  final AnimalModel _animal = AnimalModel();
   late List<String> breeds = [];
 
   String activityLevel = '1';

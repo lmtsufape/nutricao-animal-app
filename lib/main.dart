@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:logging/logging.dart';
+import 'package:nutricaoanimal/screens/home/home_screen_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/app.dart';
 import 'package:thunderapp/screens/home/home_screen.dart';
