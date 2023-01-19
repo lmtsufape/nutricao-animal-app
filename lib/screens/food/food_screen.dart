@@ -16,7 +16,8 @@ import 'package:thunderapp/shared/core/models/user_model.dart';
 enum PrivateMenu { yes, no }
 
 class FoodScreen extends StatefulWidget {
-  const FoodScreen({Key? key}) : super(key: key);
+  int? id;
+  FoodScreen(this.id, {Key? key}) : super(key: key);
 
   static ButtonStyle styleAlimentar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
@@ -45,7 +46,6 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     final AppTheme formCustom = AppTheme();
-
     return Scaffold(
       appBar: formCustom.appBarCustom(context, _getUserName()),
       body: SingleChildScrollView(
@@ -146,8 +146,8 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () =>
-                        _controller.feedAnimal(type, food, quantController),
+                    onPressed: () => _repository.feedAnimal(
+                        type, food, quantController, widget.id),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),

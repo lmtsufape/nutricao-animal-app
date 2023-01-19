@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
@@ -136,8 +137,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       child: ListView.separated(
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return CardHomeScreen(dataAnimals[index]['name'],
-                                dataAnimals[index]['sex']);
+                            return CardHomeScreen(
+                                dataAnimals[index]['name'],
+                                dataAnimals[index]['sex'],
+                                dataAnimals[index]['id'],
+                                dataAnimals[index]['activity_level']);
                           },
                           separatorBuilder: (context, index) {
                             return const Divider();
@@ -176,8 +180,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 class CardHomeScreen extends StatefulWidget {
   String? name;
   String? sex;
+  int? id;
+  int? activityLevel;
 
-  CardHomeScreen(this.name, this.sex, {super.key});
+  CardHomeScreen(this.name, this.sex, this.id, this.activityLevel, {super.key});
 
   @override
   State<CardHomeScreen> createState() => _CardHomeScreenState();
@@ -233,11 +239,11 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                       ),
                     ],
                   ),
-                  subtitle: const Padding(
-                    padding: EdgeInsets.only(left: 85.0, bottom: 25),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
-                      'BREED',
-                      style: TextStyle(
+                      widget.activityLevel.toString(),
+                      style: const TextStyle(
                         fontSize: 20.0,
                         color: kBackgroundColor,
                       ),
@@ -262,8 +268,10 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                         child: ElevatedButton.icon(
                           style: style,
                           //exemplo
-                          onPressed: () =>
-                              Navigator.pushNamed(context, Screens.food),
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FoodScreen(widget.id))),
                           icon: const Icon(
                             Icons.restaurant_menu,
                             color: kBackgroundColor,
