@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thunderapp/screens/animal_details/animal_details_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
@@ -178,10 +179,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 }
 
 class CardHomeScreen extends StatefulWidget {
-  String? name;
-  String? sex;
-  int? id;
-  int? activityLevel;
+  String name;
+  String sex;
+  int id;
+  int activityLevel;
 
   CardHomeScreen(this.name, this.sex, this.id, this.activityLevel, {super.key});
 
@@ -199,7 +200,11 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
     return InkWell(
       //exemplo
-      onTap: () => Navigator.pushNamed(context, Screens.animalDetails),
+      onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return AnimalDetailsScreen(
+            widget.name, widget.sex, widget.activityLevel);
+      })),
       child: Ink(
         child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -231,7 +236,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                         padding: EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
                           widget.name.toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 35.0,
                               color: kBackgroundColor,
                               fontWeight: FontWeight.w900),
