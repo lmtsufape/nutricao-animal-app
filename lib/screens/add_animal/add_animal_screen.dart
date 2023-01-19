@@ -1,12 +1,13 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/shared/components/dialogs/add_animal_dialog.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
-
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
@@ -106,7 +107,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Column(
               children: [
                 RadioListTile(
-                  title: Text('Cachorro'),
+                  title: const Text('Cachorro'),
                   value: 'dog',
                   groupValue: specie,
                   onChanged: (value) {
@@ -118,7 +119,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   },
                 ),
                 RadioListTile(
-                  title: Text('Gato'),
+                  title: const Text('Gato'),
                   value: 'cat',
                   groupValue: specie,
                   onChanged: (value) {
@@ -155,7 +156,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Column(
               children: [
                 RadioListTile(
-                  title: Text('Macho'),
+                  title: const Text('Macho'),
                   value: 'male',
                   groupValue: sex,
                   onChanged: (value) {
@@ -167,7 +168,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   },
                 ),
                 RadioListTile(
-                  title: Text('Fêmea'),
+                  title: const Text('Fêmea'),
                   value: 'female',
                   groupValue: sex,
                   onChanged: (value) {
@@ -203,7 +204,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Column(
               children: [
                 RadioListTile(
-                  title: Text('Sim'),
+                  title: const Text('Sim'),
                   value: true,
                   groupValue: isCastrated,
                   onChanged: (value) {
@@ -215,7 +216,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   },
                 ),
                 RadioListTile(
-                  title: Text('Não'),
+                  title: const Text('Não'),
                   value: false,
                   groupValue: isCastrated,
                   onChanged: (value) {
@@ -265,6 +266,13 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                         isCastrated,
                         activityLevel,
                       );
+                      showDialog(
+                          context: context,
+                          builder: (context) => const DialogAddAnimal());
+                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      //     backgroundColor: kDetailColor,
+                      //     content: Text('Animal cadastrado com sucesso!')));
+                      // Navigator.popAndPushNamed(context, Screens.home);
                     },
                   ),
                 ),
@@ -330,17 +338,17 @@ class TextFieldButton extends StatelessWidget {
               children: [
                 Text(
                   _buttonFieldLabel,
-                  style: TextStyle(color: kSecondaryColor),
+                  style: const TextStyle(color: kSecondaryColor),
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Selecione',
-                    hintStyle: TextStyle(fontSize: 18),
+                    hintStyle: const TextStyle(fontSize: 18),
                     suffixIcon: Padding(
                       padding: const EdgeInsets.only(right: 10.0),
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_circle_down_sharp,
                           size: 35,
                           color: kDetailColor,
@@ -378,7 +386,9 @@ class _DropDownCustomState extends State<DropDownCustom> {
 
   @override
   Widget build(BuildContext context) {
-    print(dropValue.value.toString());
+    if (kDebugMode) {
+      print(dropValue.value.toString());
+    }
     final heightScreen = MediaQuery.of(context).size.height;
     return SizedBox(
       height: 98,
