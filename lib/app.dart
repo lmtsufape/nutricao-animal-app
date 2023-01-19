@@ -56,7 +56,6 @@ class App extends StatelessWidget {
         Screens.signin: (BuildContext context) => SignInScreen(),
         Screens.signup: (BuildContext context) => const SignUpScreen(),
         Screens.user: (BuildContext context) => const UserScreen(),
-        Screens.food: (BuildContext context) => const FoodScreen(),
         Screens.editAnimal: (BuildContext context) => const EditAnimalScreen(),
         Screens.noRegFood: (BuildContext context) => const NoRegFoodScreen(),
         Screens.editProfile: (BuildContext context) =>
