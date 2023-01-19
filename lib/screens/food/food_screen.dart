@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/food/food_controller.dart';
 import 'package:thunderapp/screens/food/food_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
@@ -26,6 +27,7 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
+  FoodController _controller = FoodController();
   final UserModel user = UserModel();
   late String userName;
   FoodRepository _repository = FoodRepository();
@@ -119,7 +121,6 @@ class _FoodScreenState extends State<FoodScreen> {
                   setState(() {
                     type = data.toString();
                     foods = _repository.showFoods(type);
-                    print('salve $foods');
                   });
                 },
               ),
@@ -145,7 +146,8 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () {},
+                    onPressed: () =>
+                        _controller.feedAnimal(type, food, quantController),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),
