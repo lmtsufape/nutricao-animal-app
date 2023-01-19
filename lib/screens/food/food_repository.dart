@@ -1,8 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
+import 'package:thunderapp/screens/home/home_screen.dart';
 
 import '../../shared/constants/app_text_constants.dart';
+import '../screens_index.dart';
 
 class FoodRepository {
   late int userId;
@@ -33,7 +37,47 @@ class FoodRepository {
     return types;
   }
 
-  void feedAnimal(type, food, quant, animalId) async {
+  void feedAnimal(
+      type, food, TextEditingController quant, animalId, context) async {
+    Dio _dio = Dio();
+
+    if (quant.text.isEmpty) {
+      print(quant.text);
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Preencha todos os campos'),
+              content: MaterialButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('OK')),
+            );
+          });
+    } else {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Deseja Alimentar seu Animal?'),
+              content:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                MaterialButton(
+                  onPressed: () =>
+                      editActivity(type, food, quant, animalId, context),
+                  child: const Text('Sim'),
+                ),
+                MaterialButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: const Text('Não'),
+                )
+              ]),
+            );
+          });
+    }
+  }
+
+  editActivity(
+      type, food, TextEditingController quant, animalId, context) async {
     Dio _dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -51,7 +95,9 @@ class FoodRepository {
       ),
       data: {"activity_level": _controller.feedCalculate(type, food, quant)},
     );
-    print(response.statusCode);
+    if (response.statusCode == 200) {
+      Navigator.popAndPushNamed(context, Screens.home);
+    }
   }
 
   List<String> showFoods(type) {
