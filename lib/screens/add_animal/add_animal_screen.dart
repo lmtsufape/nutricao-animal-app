@@ -28,7 +28,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   late String userName;
   late List<String> breeds = [];
 
-  String activityLevel = '1';
+  int activityLevel = 1;
   String specie = 'dog';
   String breed = 'pastor alemão';
   String sex = 'male';
@@ -232,10 +232,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: DropdownSearch(
-                items: const ['1', '2', '3'],
+                items: const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 onChanged: (data) {
                   setState(() {
-                    activityLevel = data.toString();
+                    activityLevel = data as int;
                   });
                 },
               ),
