@@ -1,9 +1,11 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/food/food_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
@@ -26,6 +28,11 @@ class FoodScreen extends StatefulWidget {
 class _FoodScreenState extends State<FoodScreen> {
   final UserModel user = UserModel();
   late String userName;
+  FoodRepository _repository = FoodRepository();
+  String type = 'Ração';
+  String food = 'Golden';
+  TextEditingController quantController = TextEditingController();
+  List<String> foods = [];
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -35,97 +42,119 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController foodController = TextEditingController();
-    TextEditingController quantController = TextEditingController();
-
     final AppTheme formCustom = AppTheme();
+
     return Scaffold(
       appBar: formCustom.appBarCustom(context, _getUserName()),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16, top: 16),
-            child: Text(
-              'Alimentar',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: kHugeSize,
-                  fontWeight: FontWeight.w900),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(
-              left: 16,
-              bottom: 16,
-            ),
-            child: Text('Name',
-                style:
-                    TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
-          ),
-          TextFieldButtonPC('Escolher do cardápio'),
-          Padding(
-            padding: EdgeInsets.only(top: 16, bottom: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Container(
-                    height: 3,
-                    width: 190,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 16, top: 16),
+              child: Text(
+                'Alimentar',
+                style: TextStyle(
                     color: kPrimaryColor,
-                  ),
-                ),
-                const Text(
-                  'OU',
-                  style: TextStyle(
+                    fontSize: kHugeSize,
+                    fontWeight: FontWeight.w900),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                bottom: 16,
+              ),
+              child: Text('Name',
+                  style:
+                      TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
+            ),
+            TextFieldButtonPC('Escolher do cardápio'),
+            Padding(
+              padding: EdgeInsets.only(top: 16, bottom: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Container(
+                      height: 3,
+                      width: 190,
                       color: kPrimaryColor,
-                      fontWeight: FontWeight.w900,
-                      fontSize: kLargeSize),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Container(
-                    height: 3,
-                    width: 190,
-                    color: kPrimaryColor,
+                    ),
                   ),
-                ),
-              ],
+                  const Text(
+                    'OU',
+                    style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w900,
+                        fontSize: kLargeSize),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Container(
+                      height: 3,
+                      width: 190,
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16, bottom: 16),
-            child: Text(
-              'Comida fora do cardápio',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: kMediumLargeSize,
-                  fontWeight: FontWeight.w900),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, bottom: 16),
+              child: Text(
+                'Comida fora do cardápio',
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontSize: kMediumLargeSize,
+                    fontWeight: FontWeight.w900),
+              ),
             ),
-          ),
-          TextFieldButton('Tipo'),
-          TextFieldCustom('Comida', foodController),
-          TextFieldCustom('Quantidade(em gramas)', quantController),
-          const MenuWidget(),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: SizedBox(
-                width: 120,
-                height: 40,
-                child: ElevatedButton(
-                  style: FoodScreen.styleAlimentar,
-                  onPressed: () {},
-                  child: const Text('Alimentar',
-                      style: TextStyle(
-                          color: kBackgroundColor, fontSize: kMediumSize)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownSearch(
+                items: _repository.showTypes(),
+                onChanged: (data) {
+                  setState(() {
+                    type = data.toString();
+                    foods = _repository.showFoods(type);
+                    print('salve $foods');
+                  });
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownSearch(
+                items: foods,
+                onChanged: (data) {
+                  setState(() {
+                    food = data.toString();
+                  });
+                },
+              ),
+            ),
+            TextFieldCustom('Quantidade(em gramas)', quantController),
+            const MenuWidget(),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: SizedBox(
+                  width: 120,
+                  height: 40,
+                  child: ElevatedButton(
+                    style: FoodScreen.styleAlimentar,
+                    onPressed: () {},
+                    child: const Text('Alimentar',
+                        style: TextStyle(
+                            color: kBackgroundColor, fontSize: kMediumSize)),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
