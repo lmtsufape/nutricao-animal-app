@@ -147,7 +147,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
                     onPressed: () => _repository.feedAnimal(
-                        type, food, quantController, widget.id),
+                        type, food, quantController, widget.id, context),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),
