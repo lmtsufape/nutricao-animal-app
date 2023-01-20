@@ -203,7 +203,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) {
         return AnimalDetailsScreen(
-            widget.name, widget.sex, widget.activityLevel);
+            widget.id, widget.name, widget.sex, widget.activityLevel);
       })),
       child: Ink(
         child: Padding(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/style_constants.dart';
+import '../../food/food_screen.dart';
 import 'staggered_grid_animal.dart';
 
 class CardAnimal extends StatefulWidget {
+  int id;
   String name;
   String sex;
   int activityLevel;
-  CardAnimal(this.name, this.sex, this.activityLevel, {Key? key})
+  CardAnimal(this.id, this.name, this.sex, this.activityLevel, {Key? key})
       : super(key: key);
 
   @override
@@ -106,7 +108,10 @@ class stateCardAnimal extends State<CardAnimal> {
                         width: widthCard * 0.17,
                         child: FloatingActionButton(
                           backgroundColor: kDetailColor,
-                          onPressed: () {},
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FoodScreen(widget.id))),
                           child: Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,

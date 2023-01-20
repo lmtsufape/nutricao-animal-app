@@ -9,10 +9,12 @@ import 'componets/caloric_need_counter.dart';
 import 'componets/card_animal.dart';
 
 class AnimalDetailsScreen extends StatefulWidget {
+  int id;
   String name;
   String sex;
   int activityLevel;
   AnimalDetailsScreen(
+    this.id,
     this.name,
     this.sex,
     this.activityLevel, {
@@ -35,7 +37,8 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         children: [
           Column(
             children: [
-              CardAnimal(widget.name, widget.sex, widget.activityLevel),
+              CardAnimal(
+                  widget.id, widget.name, widget.sex, widget.activityLevel),
               CaloricNeedCounter(widget.activityLevel),
             ],
           ),
