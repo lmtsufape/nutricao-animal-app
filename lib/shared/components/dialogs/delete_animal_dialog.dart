@@ -1,14 +1,16 @@
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
 class DeleteAnimalDialog extends StatelessWidget {
-  const DeleteAnimalDialog({
-    Key? key,
-  }) : super(key: key);
+  int id;
+  DeleteAnimalDialog(this.id, {Key? key}) : super(key: key);
 
+  AddAnimalRepository controller = AddAnimalRepository();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -52,6 +54,7 @@ class DeleteAnimalDialog extends StatelessWidget {
               const HorizontalSpacerBox(size: SpacerSize.large),
               ElevatedButton(
                 onPressed: () {
+                  controller.deleteAnimal(id);
                   Navigator.popAndPushNamed(context, Screens.home);
                 },
                 // ignore: sort_child_properties_last
@@ -63,7 +66,7 @@ class DeleteAnimalDialog extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: kTextButtonColor,
+                  backgroundColor: kBackgroundColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
