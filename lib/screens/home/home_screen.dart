@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thunderapp/components/buttons/primary_button.dart';
+import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
+import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/animal_details/animal_details_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen_controller.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -29,12 +35,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final repository = HomeScreenRepository();
   final UserModel user = UserModel();
   late String userName;
+  late String email;
 
   @override
   void initState() {
     super.initState();
     _getUserName();
-
+    _getEmail();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -52,8 +59,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     return userName;
   }
 
-  final AppTheme formCustom = AppTheme();
+  Future<String> _getEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    email = prefs.getString('email')!;
+    return email;
+  }
 
+  final AppTheme formCustom = AppTheme();
+  final UserScreenController controller = UserScreenController();
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -67,6 +80,113 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 return Scaffold(
                   backgroundColor: kBackgroundColor,
                   appBar: formCustom.appBarCustom(context, _getUserName()),
+                  drawer: Drawer(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 0,
+                    backgroundColor: kSecondaryColor,
+                    width: 250,
+                    child: ListView(
+                      // Important: Remove any padding from the ListView.
+                      padding: EdgeInsets.zero,
+
+                      children: [
+                        DrawerHeader(
+                          decoration: const BoxDecoration(
+                            color: kSecondaryColor,
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.person,
+                                    color: kBackgroundColor,
+                                    size: 75,
+                                  ),
+                                  const HorizontalSpacerBox(
+                                      size: SpacerSize.huge),
+                                  Text(
+                                    'Olá, $userName',
+                                    style: kDrawerUser,
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                email,
+                                style: kDrawerUser,
+                              ),
+                              const VerticalSpacerBox(size: SpacerSize.medium),
+                              const Divider(
+                                  color: kBackgroundColor, thickness: 2),
+                            ],
+                          ),
+                        ),
+                        ListTile(
+                          title: const Text(
+                            'Sugerir nova comida',
+                            style: kDrawer,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: const Text(
+                            'Item 2',
+                            style: kDrawer,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: const Text(
+                            'Item 3',
+                            style: kDrawer,
+                          ),
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.huge),
+                        const VerticalSpacerBox(size: SpacerSize.medium),
+                        Row(
+                          children: [
+                            const HorizontalSpacerBox(size: SpacerSize.medium),
+                            const Text(
+                              'Sair',
+                              style: kDrawer,
+                            ),
+                            const Spacer(),
+                            IconButton(
+                                onPressed: () => controller.logoff(context),
+                                icon: const Icon(
+                                  Icons.logout,
+                                  color: kBackgroundColor,
+                                  size: 35,
+                                )),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
                   body: Column(
                     children: const [
                       Padding(
