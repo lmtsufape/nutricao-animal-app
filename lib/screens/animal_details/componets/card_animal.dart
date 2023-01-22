@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
+import 'package:thunderapp/shared/components/dialogs/add_user_dialog.dart';
+import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 
 import '../../../shared/constants/style_constants.dart';
 import '../../food/food_screen.dart';
@@ -23,7 +27,7 @@ class stateCardAnimal extends State<CardAnimal> {
     final widthCard = MediaQuery.of(context).size.width;
     return Center(
       child: Padding(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         child: Card(
           color: kPrimaryColor,
           shape: RoundedRectangleBorder(
@@ -43,13 +47,32 @@ class stateCardAnimal extends State<CardAnimal> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Nome',
-                        style: TextStyle(
-                          color: kDetailColor,
-                          fontSize: heightCard * 0.020,
-                        ),
-                        textAlign: TextAlign.left,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const HorizontalSpacerBox(size: SpacerSize.huge),
+                          Text(
+                            'Nome',
+                            style: TextStyle(
+                              color: kDetailColor,
+                              fontSize: heightCard * 0.020,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) =>
+                                      DeleteAnimalDialog(widget.id));
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: kBackgroundColor,
+                              size: 35,
+                            ),
+                          ),
+                        ],
                       ),
                       Text(
                         widget.name.toString(),
@@ -140,7 +163,7 @@ class stateCardAnimal extends State<CardAnimal> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 4),
                 child: StaggeredGridAnimal(widget.sex, widget.activityLevel),
               ),
             ],
