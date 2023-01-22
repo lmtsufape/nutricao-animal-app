@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
-import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class EditAnimalScreen extends StatefulWidget {
@@ -86,7 +81,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               Column(
                 children: [
                   RadioListTile(
-                    title: Text('Cachorro'),
+                    title: const Text('Cachorro'),
                     value: 'dog',
                     groupValue: specie,
                     onChanged: (value) {
@@ -98,7 +93,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                     },
                   ),
                   RadioListTile(
-                    title: Text('Gato'),
+                    title: const Text('Gato'),
                     value: 'cat',
                     groupValue: specie,
                     onChanged: (value) {
@@ -111,7 +106,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                   ),
                 ],
               ),
-              DropDownCustom(const [
+              const DropDownCustom([
                 'Border Collie',
                 'pastor alemão',
               ], 'Raça', 1),
@@ -134,7 +129,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                 ),
               ),
               const CastratedWidget(),
-              DropDownCustom(const ['1', '2', '3'], 'Nível de atividade', 2),
+              const DropDownCustom(['1', '2', '3'], 'Nível de atividade', 2),
               Center(
                 child: SizedBox(
                   height: 50,
