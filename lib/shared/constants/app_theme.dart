@@ -3,6 +3,7 @@ import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
+import '../../screens/user screen/user_screen_controller.dart';
 
 class AppTheme extends ChangeNotifier {
   static ThemeData getLightTheme() {
@@ -12,13 +13,19 @@ class AppTheme extends ChangeNotifier {
     );
   }
 
-  AppBar appBarCustom(BuildContext context, Future<String> userName) {
+  AppBar appBarCustom(
+    BuildContext context,
+    Future<String> userName,
+  ) {
     return AppBar(
+        centerTitle: true,
         title: FutureBuilder<String>(
           future: userName,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text('Olá ${snapshot.data!}');
+              return Text(
+                'Olá, ${snapshot.data}!',
+              );
             } else if (snapshot.hasError) {
               return Text("Error: ${snapshot.error}");
             }
@@ -34,11 +41,18 @@ class AppTheme extends ChangeNotifier {
   }
 }
 
+// ignore: must_be_immutable
 class NavigationDrawerWidget extends StatelessWidget {
   static ButtonStyle style = ElevatedButton.styleFrom(
     backgroundColor: kDetailColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
   );
+  String userName;
+  String email;
+
+  NavigationDrawerWidget(this.userName, this.email, {super.key});
+
+  final UserScreenController controller = UserScreenController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,27 +63,27 @@ class NavigationDrawerWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 12),
+            Padding(
+              padding: const EdgeInsets.only(top: 12),
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.portrait_rounded,
                   color: kBackgroundColor,
                   size: 125,
                 ),
                 title: Padding(
-                  padding: EdgeInsets.only(top: 37),
+                  padding: const EdgeInsets.only(top: 37),
                   child: Text(
-                    'Ana Vieira',
-                    style: TextStyle(
+                    userName,
+                    style: const TextStyle(
                         color: kBackgroundColor,
                         fontSize: 27,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
                 subtitle: Text(
-                  'example@email.com',
-                  style: TextStyle(
+                  email,
+                  style: const TextStyle(
                       color: kBackgroundColor,
                       fontSize: kMediumSize,
                       fontWeight: FontWeight.w500),
@@ -179,7 +193,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: TextButton(
-                            onPressed: () {},
+                            onPressed: () => controller.logoff(context),
                             child: const Text(
                               'Sair',
                               style: TextStyle(
@@ -191,7 +205,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                         child: IconButton(
                             onPressed: () {},
                             icon: const Icon(
-                              Icons.door_back_door_outlined,
+                              Icons.exit_to_app,
                               color: kBackgroundColor,
                               size: 40,
                             )),

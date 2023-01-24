@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
+import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class NoRegFoodScreen extends StatelessWidget {
@@ -44,7 +42,9 @@ class NoRegFoodScreen extends StatelessWidget {
                 ),
               ),
               TextFieldCustom('Nome', nameController),
-              DropDownCustom(['Grão', 'Líquido', 'Carne'], 'Categoria', 5),
+              // ignore: prefer_const_constructors
+              DropDownCustom(
+                  const ['Grão', 'Líquido', 'Carne'], 'Categoria', 5),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: TextFieldCustom('Umidade', umidadeController),
@@ -59,7 +59,7 @@ class NoRegFoodScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 6),
                 child: Center(
                   child: SizedBox(
-                    width: 140,
+                    width: 170,
                     height: 40,
                     child: ElevatedButton(
                       style: styleSa,
@@ -75,6 +75,7 @@ class NoRegFoodScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const VerticalSpacerBox(size: SpacerSize.large)
             ],
           ),
         ],

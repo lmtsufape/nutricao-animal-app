@@ -1,20 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/components/buttons/primary_button.dart';
-import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
-import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/animal_details/animal_details_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
-import 'package:thunderapp/screens/home/home_screen_controller.dart';
-import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/screens/user%20screen/user_screen.dart';
 import 'package:thunderapp/screens/user%20screen/user_screen_controller.dart';
-import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -80,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 return Scaffold(
                   backgroundColor: kBackgroundColor,
                   appBar: formCustom.appBarCustom(context, _getUserName()),
-                  drawer: NavigationDrawerWidget(),
+                  drawer: NavigationDrawerWidget(userName, email),
                   body: Center(
                     child: Column(
                       children: const [
@@ -194,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   }
 }
 
+// ignore: must_be_immutable
 class CardHomeScreen extends StatefulWidget {
   String name;
   String sex;
@@ -219,7 +209,11 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) {
         return AnimalDetailsScreen(
-            widget.id, widget.name, widget.sex, widget.activityLevel);
+          widget.id,
+          widget.name,
+          widget.sex,
+          widget.activityLevel,
+        );
       })),
       child: Ink(
         child: Padding(
@@ -249,7 +243,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                       //   ),
                       // ),
                       Padding(
-                        padding: EdgeInsets.only(top: 17.0, left: 47.0),
+                        padding: const EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
                           widget.name.toString(),
                           style: const TextStyle(
@@ -271,10 +265,11 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     ),
                   ),
                   trailing: Padding(
-                    padding: EdgeInsets.only(right: 10.0, top: 10.0),
+                    padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
                       widget.sex.toString(),
-                      style: TextStyle(color: kBackgroundColor, fontSize: 15.0),
+                      style: const TextStyle(
+                          color: kBackgroundColor, fontSize: 15.0),
                     ),
                   ),
                 ),

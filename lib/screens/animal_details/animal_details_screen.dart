@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
-
 import 'componets/caloric_need_counter.dart';
 import 'componets/card_animal.dart';
 
+// ignore: must_be_immutable
 class AnimalDetailsScreen extends StatefulWidget {
   int id;
   String name;
@@ -25,6 +27,7 @@ class AnimalDetailsScreen extends StatefulWidget {
 class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final AppTheme formCustom = AppTheme();
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(

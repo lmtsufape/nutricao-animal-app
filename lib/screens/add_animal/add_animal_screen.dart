@@ -5,10 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/shared/components/dialogs/add_animal_dialog.dart';
-import 'package:thunderapp/shared/constants/app_number_constants.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import '../../components/utils/vertical_spacer_box.dart';
+import '../../shared/constants/app_number_constants.dart';
 import '../../shared/core/models/user_model.dart';
 
 class AddAnimalScreen extends StatefulWidget {
@@ -146,6 +147,13 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   ),
                 ),
               ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 16, top: 4),
+              child: Text(
+                'Raça',
+                style: TextStyle(color: kSecondaryColor),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
@@ -311,6 +319,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 },
               ),
             ),
+            const VerticalSpacerBox(size: SpacerSize.medium),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 10),
@@ -338,6 +347,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 ),
               ),
             ),
+            const VerticalSpacerBox(size: SpacerSize.medium),
           ],
         ),
       ),
@@ -349,7 +359,7 @@ class TextFieldCustom extends StatelessWidget {
   final String _fieldLabel;
   final TextEditingController controller;
 
-  TextFieldCustom(this._fieldLabel, this.controller);
+  const TextFieldCustom(this._fieldLabel, this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -380,7 +390,7 @@ class TextFieldCustom extends StatelessWidget {
 class TextFieldButton extends StatelessWidget {
   final String _buttonFieldLabel;
 
-  TextFieldButton(this._buttonFieldLabel);
+  const TextFieldButton(this._buttonFieldLabel, {super.key});
 
   static ButtonStyle styleButton = ElevatedButton.styleFrom(
     backgroundColor: kDetailColor,
