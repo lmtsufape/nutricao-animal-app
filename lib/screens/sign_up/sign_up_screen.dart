@@ -33,71 +33,70 @@ class _SignUpScreenState extends State<SignUpScreen> {
             //Padding = espaçamento
             body: Padding(
                 padding: const EdgeInsets.all(kDefaultPadding),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Spacer(),
-                    const Text(
-                      'Cadastro de Usuário',
-                      style: TextStyle(
-                          color: kBackgroundColor, fontSize: kLargeSize),
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Cadastro de Usuário',
+                          style: TextStyle(
+                              color: kBackgroundColor, fontSize: kLargeSize),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        const Text(
+                          'Nome de exibição',
+                          style: TextStyle(color: kBackgroundColor),
+                        ),
+                        CustomTextFormField(
+                          hintText: 'Ana Vieira',
+                          controller: controller.nameController,
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        const Text(
+                          'E-mail',
+                          style: TextStyle(color: kBackgroundColor),
+                        ),
+                        CustomTextFormField(
+                          hintText: 'email@example.com',
+                          controller: controller.emailController,
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        const Text('Senha',
+                            style: TextStyle(color: kBackgroundColor)),
+                        CustomTextFormField(
+                          hintText: '********',
+                          isPassword: true,
+                          controller: controller.passwordController,
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        const Text('Confirmar senha',
+                            style: TextStyle(color: kBackgroundColor)),
+                        const CustomTextFormField(
+                          hintText: '********',
+                          isPassword: true,
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        const SizedBox(
+                          height: kMediumSize,
+                        ),
+                        Center(
+                          child: PrimaryButton(
+                              text: const Text('Finalizar'),
+                              onPressed: () {
+                                SignUpRepository.signUp(
+                                    controller.nameController.text,
+                                    controller.emailController.text,
+                                    controller.passwordController.text,
+                                    context);
+                              }),
+                        ),
+                      ],
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text(
-                      'Nome de exibição',
-                      style: TextStyle(color: kBackgroundColor),
-                    ),
-                    CustomTextFormField(
-                      hintText: 'Ana Vieira',
-                      controller: controller.nameController,
-                    ),
-                    const VerticalSpacerBox(size: SpacerSize.small),
-                    const Text(
-                      'E-mail',
-                      style: TextStyle(color: kBackgroundColor),
-                    ),
-                    CustomTextFormField(
-                      hintText: 'email@example.com',
-                      controller: controller.emailController,
-                    ),
-                    const VerticalSpacerBox(size: SpacerSize.small),
-                    const Text('Senha',
-                        style: TextStyle(color: kBackgroundColor)),
-                    CustomTextFormField(
-                      hintText: '********',
-                      isPassword: true,
-                      controller: controller.passwordController,
-                    ),
-                    const VerticalSpacerBox(size: SpacerSize.small),
-                    const Text('Confirmar senha',
-                        style: TextStyle(color: kBackgroundColor)),
-                    const CustomTextFormField(
-                      hintText: '********',
-                      isPassword: true,
-                    ),
-                    const VerticalSpacerBox(size: SpacerSize.small),
-                    const SizedBox(
-                      height: kMediumSize,
-                    ),
-                    Center(
-                      child: PrimaryButton(
-                          text: const Text('Finalizar'),
-                          onPressed: () {
-                            SignUpRepository.signUp(
-                              controller.nameController.text,
-                              controller.emailController.text,
-                              controller.passwordController.text,
-                            );
-                            showDialog(
-                                context: context,
-                                builder: (context) => const AddUserDialog());
-                          }),
-                    ),
-                    const Spacer(),
-                  ],
+                  ),
                 )),
           ),
         );
