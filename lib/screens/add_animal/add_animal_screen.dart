@@ -6,6 +6,7 @@ import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/components/dialogs/add_animal_dialog.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/core/models/user_model.dart';
@@ -26,11 +27,11 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
   late String userName;
-  late List<String> breeds = [];
+  late Future<List<String>> breeds;
 
   int activityLevel = 1;
   String specie = 'dog';
-  String breed = 'pastor alemão';
+  String breed = 'Sem Raça Definida';
   String sex = 'male';
   bool isCastrated = true;
   AddAnimalController controller = AddAnimalController();
@@ -104,38 +105,63 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 style: TextStyle(color: kSecondaryColor),
               ),
             ),
-            Column(
+            Row(
               children: [
-                RadioListTile(
-                  title: const Text('Cachorro'),
-                  value: 'dog',
-                  groupValue: specie,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        specie = value.toString();
-                      },
-                    );
-                  },
+                Expanded(
+                  child: RadioListTile(
+                    activeColor: kDetailColor,
+                    title: const Text('Cachorro',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize)),
+                    value: 'dog',
+                    groupValue: specie,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          specie = value.toString();
+                          breeds = repository.getBreed(specie);
+                        },
+                      );
+                    },
+                  ),
                 ),
-                RadioListTile(
-                  title: const Text('Gato'),
-                  value: 'cat',
-                  groupValue: specie,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        specie = value.toString();
-                      },
-                    );
-                  },
+                Expanded(
+                  child: RadioListTile(
+                    activeColor: kDetailColor,
+                    title: const Text('Gato',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize)),
+                    value: 'cat',
+                    groupValue: specie,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          specie = value.toString();
+                          breeds = repository.getBreed(specie);
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: DropdownSearch(
-                items: controller.showBreeds(specie),
+              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
+              child: DropdownSearch<String>(
+                selectedItem: breed,
+                popupProps: const PopupProps.bottomSheet(
+                  showSearchBox: true,
+                ),
+                dropdownButtonProps: const DropdownButtonProps(
+                  icon: Icon(
+                    Icons.arrow_circle_down_outlined,
+                    color: kDetailColor,
+                    size: 35,
+                  ),
+                ),
+                asyncItems: (String specie) => breeds,
                 onChanged: (data) {
                   setState(
                     () {
@@ -153,31 +179,48 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
-            Column(
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                RadioListTile(
-                  title: const Text('Macho'),
-                  value: 'male',
-                  groupValue: sex,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        sex = value.toString();
+                Expanded(
+                  child: SizedBox(
+                    child: RadioListTile(
+                      activeColor: kDetailColor,
+                      title: const Text(
+                        'Macho',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize),
+                      ),
+                      value: 'male',
+                      groupValue: sex,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            sex = value.toString();
+                          },
+                        );
                       },
-                    );
-                  },
+                    ),
+                  ),
                 ),
-                RadioListTile(
-                  title: const Text('Fêmea'),
-                  value: 'female',
-                  groupValue: sex,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        sex = value.toString();
-                      },
-                    );
-                  },
+                Expanded(
+                  child: RadioListTile(
+                    activeColor: kDetailColor,
+                    title: const Text('Fêmea',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize)),
+                    value: 'female',
+                    groupValue: sex,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          sex = value.toString();
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -201,37 +244,65 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     color: kSecondaryColor, fontSize: heightScreen * 0.016),
               ),
             ),
-            Column(
+            Row(
               children: [
-                RadioListTile(
-                  title: const Text('Sim'),
-                  value: true,
-                  groupValue: isCastrated,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        isCastrated = true;
-                      },
-                    );
-                  },
+                Expanded(
+                  child: RadioListTile(
+                    activeColor: kDetailColor,
+                    title: const Text('Sim',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize)),
+                    value: true,
+                    groupValue: isCastrated,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          isCastrated = true;
+                        },
+                      );
+                    },
+                  ),
                 ),
-                RadioListTile(
-                  title: const Text('Não'),
-                  value: false,
-                  groupValue: isCastrated,
-                  onChanged: (value) {
-                    setState(
-                      () {
-                        isCastrated = false;
-                      },
-                    );
-                  },
+                Expanded(
+                  child: RadioListTile(
+                    activeColor: kDetailColor,
+                    title: const Text('Não',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: kMediumLargeSize)),
+                    value: false,
+                    groupValue: isCastrated,
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          repository.getBreed(specie);
+                          isCastrated = false;
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 4),
+              child: Text(
+                'Nível de Atividade',
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
               child: DropdownSearch(
+                dropdownButtonProps: const DropdownButtonProps(
+                  icon: Icon(
+                    Icons.arrow_circle_down_outlined,
+                    color: kDetailColor,
+                    size: 35,
+                  ),
+                ),
                 items: const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                 onChanged: (data) {
                   setState(() {
@@ -241,40 +312,29 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               ),
             ),
             Center(
-              child: SizedBox(
-                height: 50,
-                width: 130,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 5),
-                  child: ElevatedButton(
-                    style: AddAnimalScreen.styleAdicionar,
-                    child: Text('Adicionar',
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: heightScreen * 0.018)),
-                    onPressed: () {
-                      controller.adicionarAnimal(
-                        context,
-                        nameController.text,
-                        specie,
-                        breed,
-                        sex,
-                        weightController.text,
-                        heightController.text,
-                        ageController.text,
-                        isCastrated,
-                        activityLevel,
-                      );
-                      showDialog(
-                          context: context,
-                          builder: (context) => const DialogAddAnimal());
-                      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      //     backgroundColor: kDetailColor,
-                      //     content: Text('Animal cadastrado com sucesso!')));
-                      // Navigator.popAndPushNamed(context, Screens.home);
-                    },
-                  ),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 10),
+                child: ElevatedButton(
+                  style: AddAnimalScreen.styleAdicionar,
+                  child: Text('Adicionar',
+                      style: TextStyle(
+                          color: kBackgroundColor,
+                          fontWeight: FontWeight.w500,
+                          fontSize: heightScreen * 0.018)),
+                  onPressed: () {
+                    controller.adicionarAnimal(
+                      context,
+                      nameController.text,
+                      specie,
+                      breed,
+                      sex,
+                      weightController.text,
+                      heightController.text,
+                      ageController.text,
+                      isCastrated,
+                      activityLevel,
+                    );
+                  },
                 ),
               ),
             ),
