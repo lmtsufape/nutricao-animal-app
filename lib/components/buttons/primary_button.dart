@@ -10,10 +10,10 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(primary: kDetailColor),
+        style: ElevatedButton.styleFrom(backgroundColor: kDetailColor),
         onPressed: () => onPressed(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 1),
           child: text,
         ),
       ),

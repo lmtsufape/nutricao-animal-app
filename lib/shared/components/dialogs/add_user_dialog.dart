@@ -34,7 +34,7 @@ class AddUserDialog extends StatelessWidget {
                 },
                 // ignore: sort_child_properties_last
                 child: const Text(
-                  'Ok!',
+                  'Vamos lá!',
                   style: TextStyle(
                     color: kBackgroundColor,
                     fontSize: 20,

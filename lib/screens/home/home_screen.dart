@@ -4,11 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thunderapp/components/buttons/primary_button.dart';
+import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
+import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/animal_details/animal_details_screen.dart';
 import 'package:thunderapp/screens/food/food_screen.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen.dart';
+import 'package:thunderapp/screens/user%20screen/user_screen_controller.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -29,12 +35,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final repository = HomeScreenRepository();
   final UserModel user = UserModel();
   late String userName;
+  late String email;
 
   @override
   void initState() {
     super.initState();
     _getUserName();
-
+    _getEmail();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -52,8 +59,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     return userName;
   }
 
-  final AppTheme formCustom = AppTheme();
+  Future<String> _getEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    email = prefs.getString('email')!;
+    return email;
+  }
 
+  final AppTheme formCustom = AppTheme();
+  final UserScreenController controller = UserScreenController();
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -67,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 return Scaffold(
                   backgroundColor: kBackgroundColor,
                   appBar: formCustom.appBarCustom(context, _getUserName()),
+                  drawer: NavigationDrawerWidget(),
                   body: Column(
                     children: const [
                       Padding(

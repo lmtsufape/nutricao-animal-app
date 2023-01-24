@@ -42,6 +42,17 @@ const TextStyle kTitle = TextStyle(
   color: kTextButtonColor,
 );
 
+const TextStyle kDrawer = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: kBackgroundColor,
+);
+const TextStyle kDrawerUser = TextStyle(
+  fontSize: 15,
+  fontWeight: FontWeight.w700,
+  color: kBackgroundColor,
+);
+
 const TextStyle kTitle1 = TextStyle(
   fontSize: 28,
   fontWeight: FontWeight.w900,

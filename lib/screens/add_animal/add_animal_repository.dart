@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:dio/dio.dart';
@@ -5,6 +6,8 @@ import 'package:dio/dio.dart';
 class AddAnimalRepository {
   late int userId;
   late String userToken;
+  late int biometryId;
+  late int animalId;
 
   Future<List<String>> getBreed(specie) async {
     Dio dio = Dio();
@@ -86,8 +89,34 @@ class AddAnimalRepository {
         "breed": breed
       },
     );
-    print(response.statusCode);
+    if (kDebugMode) {
+      print(response.statusCode);
+    }
 
+    return true;
+  }
+
+  Future<bool> deleteAnimal(idAnimal) async {
+    Dio dio = Dio();
+    final prefs = await SharedPreferences.getInstance();
+
+    
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await dio.delete(
+      '$kBaseUrl/users/$userId/animals/$idAnimal',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+    );
+    if (kDebugMode) {
+      print(response.statusCode);
+    }
     return true;
   }
 }
