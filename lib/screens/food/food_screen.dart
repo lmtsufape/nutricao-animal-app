@@ -1,13 +1,11 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
 import 'package:thunderapp/screens/food/food_repository.dart';
-import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -15,6 +13,7 @@ import 'package:thunderapp/shared/core/models/user_model.dart';
 
 enum PrivateMenu { yes, no }
 
+// ignore: must_be_immutable
 class FoodScreen extends StatefulWidget {
   int? id;
   FoodScreen(this.id, {Key? key}) : super(key: key);
@@ -28,10 +27,11 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
-  FoodController _controller = FoodController();
+  // ignore: unused_field
+  final FoodController _controller = FoodController();
   final UserModel user = UserModel();
   late String userName;
-  FoodRepository _repository = FoodRepository();
+  final FoodRepository _repository = FoodRepository();
   String type = 'Ração';
   String food = 'Golden';
   TextEditingController quantController = TextEditingController();
@@ -45,6 +45,8 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       appBar: formCustom.appBarCustom(context, _getUserName()),
@@ -71,9 +73,9 @@ class _FoodScreenState extends State<FoodScreen> {
                   style:
                       TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
             ),
-            TextFieldButtonPC('Escolher do cardápio'),
+            const TextFieldButtonPC('Escolher do cardápio'),
             Padding(
-              padding: EdgeInsets.only(top: 16, bottom: 16),
+              padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -114,7 +116,15 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 16, top: 4),
+              child: Text(
+                'Tipo',
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
               child: DropdownSearch(
                 items: _repository.showTypes(),
                 onChanged: (data) {
@@ -126,7 +136,15 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 16, top: 4),
+              child: Text(
+                'Comida',
+                style: TextStyle(
+                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
               child: DropdownSearch(
                 items: foods,
                 onChanged: (data) {
@@ -136,6 +154,7 @@ class _FoodScreenState extends State<FoodScreen> {
                 },
               ),
             ),
+            const VerticalSpacerBox(size: SpacerSize.small),
             TextFieldCustom('Quantidade(em gramas)', quantController),
             const MenuWidget(),
             Center(
@@ -204,7 +223,7 @@ class _MenuWidgetState extends State<MenuWidget> {
 class TextFieldButtonPC extends StatelessWidget {
   final String _buttonPCFieldLabel;
 
-  TextFieldButtonPC(this._buttonPCFieldLabel);
+  const TextFieldButtonPC(this._buttonPCFieldLabel, {super.key});
 
   static ButtonStyle styleButton = ElevatedButton.styleFrom(
     backgroundColor: kDetailColor,
@@ -216,7 +235,7 @@ class TextFieldButtonPC extends StatelessWidget {
       onTap: () {},
       child: Ink(
         child: Padding(
-          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -228,6 +247,7 @@ class TextFieldButtonPC extends StatelessWidget {
                   fontWeight: FontWeight.w900,
                 ),
               ),
+              const VerticalSpacerBox(size: SpacerSize.small),
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Selecione',
