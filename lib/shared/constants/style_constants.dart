@@ -35,6 +35,16 @@ const Color kAlertColor = Colors.orangeAccent;
 //*GENERAL COLORS*//
 
 //**TEXT STYLES */
+const TextStyle kUser = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: kSecondaryColor,
+);
+const TextStyle kUserText = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w700,
+  color: kDetailColor,
+);
 
 const TextStyle kTitle = TextStyle(
   fontSize: 28,
@@ -78,4 +88,9 @@ const TextStyle kCaption1 = TextStyle(
 );
 const TextStyle kCaption2 = TextStyle(
   fontSize: 14,
+);
+
+//Button Style
+ButtonStyle styleSal = ElevatedButton.styleFrom(
+  backgroundColor: kSecondaryColor,
 );
