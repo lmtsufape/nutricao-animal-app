@@ -8,9 +8,11 @@ import '../../../shared/constants/style_constants.dart';
 import '../../food/food_screen.dart';
 import 'staggered_grid_animal.dart';
 
+// ignore: must_be_immutable
 class CardAnimal extends StatefulWidget {
   int id;
   String name;
+
   String sex;
   int activityLevel;
   CardAnimal(this.id, this.name, this.sex, this.activityLevel, {Key? key})
@@ -20,6 +22,7 @@ class CardAnimal extends StatefulWidget {
   stateCardAnimal createState() => stateCardAnimal();
 }
 
+// ignore: camel_case_types
 class stateCardAnimal extends State<CardAnimal> {
   @override
   Widget build(BuildContext context) {
@@ -93,7 +96,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         ),
                       ),
                       Text(
-                        'Pastor Alemão',
+                        widget.name.toString(),
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontSize: heightCard * 0.022,

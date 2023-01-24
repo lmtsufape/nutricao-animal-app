@@ -38,7 +38,9 @@ class AddAnimalRepository {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
-        print(breeds);
+        if (kDebugMode) {
+          print(breeds);
+        }
         return breeds;
       }
     } else {
@@ -56,7 +58,9 @@ class AddAnimalRepository {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
-        print(breeds);
+        if (kDebugMode) {
+          print(breeds);
+        }
         return breeds;
       }
     }

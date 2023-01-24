@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
-import 'package:thunderapp/screens/home/home_screen.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class AddAnimalController with ChangeNotifier {
   final AddAnimalRepository _repository = AddAnimalRepository();
@@ -10,7 +8,6 @@ class AddAnimalController with ChangeNotifier {
       isCastrated, activityLevel) {
     _repository.registerAnimal(name, specie, breed, sex, weight, height, age,
         isCastrated, activityLevel, context);
-
     notifyListeners();
   }
 
