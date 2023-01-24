@@ -81,33 +81,35 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   backgroundColor: kBackgroundColor,
                   appBar: formCustom.appBarCustom(context, _getUserName()),
                   drawer: NavigationDrawerWidget(),
-                  body: Column(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Text(
-                          'Animais Cadastrados',
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.w900,
+                  body: Center(
+                    child: Column(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Text(
+                            'Animais Cadastrados',
+                            textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Text(
-                          'Nenhum animal cadastrado',
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(
-                            fontSize: 30.0,
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.w900,
+                        Padding(
+                          padding: EdgeInsets.only(top: 15.0),
+                          child: Text(
+                            'Nenhum animal cadastrado',
+                            textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              color: kPrimaryColor,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   floatingActionButton: SizedBox(
                     height: 100,

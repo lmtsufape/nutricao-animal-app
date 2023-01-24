@@ -1,7 +1,11 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:dio/dio.dart';
+
+import '../../shared/components/dialogs/add_animal_dialog.dart';
+import '../../shared/constants/style_constants.dart';
 
 class AddAnimalRepository {
   late int userId;
@@ -34,6 +38,7 @@ class AddAnimalRepository {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
+        print(breeds);
         return breeds;
       }
     } else {
@@ -51,56 +56,77 @@ class AddAnimalRepository {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
+        print(breeds);
         return breeds;
       }
     }
 
-    return [];
+    return ['Falha'];
   }
 
-  Future<bool> registerAnimal(name, specie, breed, sex, weight, height, age,
-      isCastrated, activityLevel) async {
+  void registerAnimal(name, specie, breed, sex, weight, height, age,
+      isCastrated, activityLevel, context) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    var response = await dio.post(
-      '$kBaseUrl/users/$userId/animals/complete',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
+    if (name.toString().isEmpty ||
+        breed.toString().isEmpty ||
+        weight.toString().isEmpty ||
+        height.toString().isEmpty ||
+        age.toString().isEmpty ||
+        activityLevel.toString().isEmpty) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text('Impossível cadastrar animal'),
+                content: MaterialButton(
+                  onPressed: () => Navigator.pop(context),
+                  color: kDetailColor,
+                  child: const Text(
+                    'Ok!',
+                    style: TextStyle(color: kBackgroundColor),
+                  ),
+                ),
+              ));
+    } else {
+      var response = await dio.post(
+        '$kBaseUrl/users/$userId/animals/complete',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "animal": {
+            "name": name,
+            "sex": sex,
+            "is_castrated": isCastrated,
+            "activity_level": activityLevel
+          },
+          "biometry": {
+            "weight": weight,
+            "height": height,
+          },
+          "breed": breed
         },
-      ),
-      data: {
-        "animal": {
-          "name": name,
-          "sex": sex,
-          "is_castrated": isCastrated,
-          "activity_level": activityLevel
-        },
-        "biometry": {
-          "weight": weight,
-          "height": height,
-        },
-        "breed": breed
-      },
-    );
-    if (kDebugMode) {
-      print(response.statusCode);
+      );
+      showDialog(
+          context: context, builder: (context) => const DialogAddAnimal());
+      if (kDebugMode) {
+        print(response.statusCode);
+      }
     }
-
-    return true;
   }
 
   Future<bool> deleteAnimal(idAnimal) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
-    
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
