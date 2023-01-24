@@ -15,17 +15,19 @@ class SignInRepository with ChangeNotifier {
 
   Future<bool> login(
       BuildContext context, String email, String password) async {
-    var response = await _dio.post('$kBaseUrl/login',
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Accepted": "application/json"
-          },
-        ),
-        data: {
-          "email": email,
-          "password": password,
-        });
+    var response = await _dio.post(
+      '$kBaseUrl/login',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accepted": "application/json"
+        },
+      ),
+      data: {
+        "email": email,
+        "password": password,
+      },
+    );
 
     print(response.statusCode);
     if (response.statusCode == 200) {
