@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
@@ -60,7 +62,7 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
   Widget build(BuildContext context) {
     final heightGauge = MediaQuery.of(context).size.height;
     final AnimalDetailsController animalController = AnimalDetailsController();
-    int food = 6;
+    //int food = 6;
     String specie = 'cat';
     String breed = 'Gladyce Oberbrunner';
     return SfRadialGauge(

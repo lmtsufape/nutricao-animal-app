@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:dropdown_search/dropdown_search.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
+
 import 'package:thunderapp/screens/home/home_screen.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+
 
 import '../../shared/constants/app_text_constants.dart';
 import '../screens_index.dart';
@@ -12,7 +14,7 @@ import '../screens_index.dart';
 class FoodRepository {
   late int userId;
   late String userToken;
-  FoodController _controller = FoodController();
+  final FoodController _controller = FoodController();
   Map<String, List<String>> all = {
     'Ração': [
       'Golden',
@@ -42,10 +44,7 @@ class FoodRepository {
 
   void feedAnimal(
       type, food, TextEditingController quant, animalId, context) async {
-    Dio _dio = Dio();
-
     if (quant.text.isEmpty) {
-      print(quant.text);
       return showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -96,13 +95,13 @@ class FoodRepository {
 
   editActivity(
       type, food, TextEditingController quant, animalId, context) async {
-    Dio _dio = Dio();
+    Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    var response = await _dio.patch(
+    var response = await dio.patch(
       '$kBaseUrl/users/$userId/animals/$animalId',
       options: Options(
         headers: {

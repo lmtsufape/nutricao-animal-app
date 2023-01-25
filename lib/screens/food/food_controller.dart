@@ -1,7 +1,4 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/shared/constants/app_text_constants.dart';
 
 class FoodController {
   int feed = 0;
@@ -46,6 +43,5 @@ class FoodController {
         return feed;
       }
     }
-    print(feed);
   }
 }

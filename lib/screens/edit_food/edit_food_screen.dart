@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
+
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
-import 'package:thunderapp/screens/screens_index.dart';
+
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
+
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class EditFoodScreen extends StatelessWidget {
@@ -43,8 +41,8 @@ class EditFoodScreen extends StatelessWidget {
             ),
           ),
           TextFieldCustom('Apelido', nickController),
-          DropDownCustom(['Carne', 'Peixe', 'Ração'], 'Tipo', 3),
-          DropDownCustom(
+          const DropDownCustom(['Carne', 'Peixe', 'Ração'], 'Tipo', 3),
+          const DropDownCustom(
               ['Arroz e feijão', 'Carne com ração', 'Sachê de Salmão'],
               'Comida',
               4),

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
-import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
+
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class FoodDetailsScreen extends StatelessWidget {
@@ -34,11 +31,11 @@ class FoodDetailsScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(top: 16),
             child: CardDetails(),
           ),
-          Center(
+          const Center(
             child: FoodTable(),
           ),
           Padding(
@@ -55,11 +52,12 @@ class FoodDetailsScreen extends StatelessWidget {
                       builder: (context) => Padding(
                         padding: const EdgeInsets.only(bottom: 435),
                         child: AlertDialog(
-                          insetPadding: EdgeInsets.symmetric(horizontal: 15),
+                          insetPadding:
+                              const EdgeInsets.symmetric(horizontal: 15),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
                           backgroundColor: kBackgroundColor,
-                          content: Text(
+                          content: const Text(
                             'Tem certeza que deseja remover Food do cardápio de Name?',
                             style: TextStyle(
                                 color: kPrimaryColor,
@@ -168,10 +166,10 @@ class CardDetails extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               ListTile(
                 title: Padding(
-                  padding: const EdgeInsets.only(left: 4),
+                  padding: EdgeInsets.only(left: 4),
                   child: Text(
                     'Food',
                     style: TextStyle(
@@ -181,7 +179,7 @@ class CardDetails extends StatelessWidget {
                   ),
                 ),
                 subtitle: Padding(
-                  padding: const EdgeInsets.only(left: 4),
+                  padding: EdgeInsets.only(left: 4),
                   child: Text(
                     'Name > Cardápio Particular > Food',
                     style: TextStyle(color: kSecondaryColor),
@@ -221,18 +219,18 @@ class FoodTable extends StatelessWidget {
   }
 }
 
-_createLineTable(String food_label, String food_value) {
+_createLineTable(String foodLabel, String foodValue) {
   return TableRow(
-    children: food_label.split(',').map((label) {
+    children: foodLabel.split(',').map((label) {
       return Container(
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 8, top: 6, bottom: 6),
               child: Text(
-                label + ': ',
+                '$label: ',
                 style: const TextStyle(
                     fontSize: kMediumLargeSize,
                     color: kSecondaryColor,
@@ -242,7 +240,7 @@ _createLineTable(String food_label, String food_value) {
             Padding(
               padding: const EdgeInsets.only(top: 6, bottom: 6),
               child: Text(
-                food_value,
+                foodValue,
                 style: const TextStyle(
                     fontSize: kMediumLargeSize,
                     color: kPrimaryColor,

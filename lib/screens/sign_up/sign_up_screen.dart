@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/screens/sign_up/sign_up_controller.dart';
 import 'package:thunderapp/screens/sign_up/sign_up_repository.dart';
-import 'package:thunderapp/shared/components/dialogs/add_user_dialog.dart';
+
+import 'package:thunderapp/shared/components/dialogs/error_dialog.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
@@ -75,9 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const VerticalSpacerBox(size: SpacerSize.small),
                         const Text('Confirmar senha',
                             style: TextStyle(color: kBackgroundColor)),
-                        const CustomTextFormField(
+                        CustomTextFormField(
                           hintText: '********',
                           isPassword: true,
+                          controller: controller.confirmPasswordController,
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         const SizedBox(
@@ -87,11 +89,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: PrimaryButton(
                               text: const Text('Finalizar'),
                               onPressed: () {
-                                SignUpRepository.signUp(
+                                if (validateFields(
                                     controller.nameController.text,
                                     controller.emailController.text,
                                     controller.passwordController.text,
-                                    context);
+                                    controller
+                                        .confirmPasswordController.text)) {
+                                  SignUpRepository.signUp(
+                                      controller.nameController.text,
+                                      controller.emailController.text,
+                                      controller.passwordController.text,
+                                      context);
+                                } else {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const ErrorDialog(
+                                            mensage:
+                                                'Ocorreu um erro, verifique todos os campos e tente novamente');
+                                      });
+                                }
                               }),
                         ),
                       ],

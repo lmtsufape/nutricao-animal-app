@@ -57,7 +57,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
-    final widthScreen = MediaQuery.of(context).size.width;
+    //final widthScreen = MediaQuery.of(context).size.width;
 
     final AppTheme formCustom = AppTheme();
 
