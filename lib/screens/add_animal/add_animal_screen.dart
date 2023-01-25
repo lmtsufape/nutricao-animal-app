@@ -44,7 +44,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   @override
   void initState() {
     super.initState();
-
+    breeds = repository.getBreed(specie);
     signInController.getInstance(user);
   }
 
@@ -159,7 +159,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
               child: DropdownSearch<String>(
                 selectedItem: breed,
-                popupProps: const PopupProps.bottomSheet(
+                popupProps: const PopupProps.dialog(
                   showSearchBox: true,
                 ),
                 dropdownButtonProps: const DropdownButtonProps(
