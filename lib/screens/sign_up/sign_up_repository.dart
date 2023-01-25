@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dio/dio.dart' as dio;
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
@@ -52,7 +51,6 @@ class SignUpRepository {
                   title: Text('Impossível adicionar usuário'),
                   content: Text('Ok!'),
                 ));
-        print(response.statusCode);
       }
     }
   }

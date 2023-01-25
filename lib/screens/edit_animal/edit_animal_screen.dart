@@ -153,6 +153,5 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
         ],
       ),
     );
-    ;
   }
 }

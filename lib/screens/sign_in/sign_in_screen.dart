@@ -5,7 +5,7 @@ import 'package:thunderapp/components/forms/custom_text_form_field.dart';
 import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
+
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/user_model.dart';
@@ -18,7 +18,7 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SignInRepository repository = SignInRepository();
+    //SignInRepository repository = SignInRepository();
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<SignInController>(
@@ -76,7 +76,8 @@ class SignInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         TextButton(
-                          style: TextButton.styleFrom(primary: kDetailColor),
+                          style: TextButton.styleFrom(
+                              foregroundColor: kDetailColor),
                           onPressed: () {
                             Navigator.pushNamed(context, Screens.signup);
                           },

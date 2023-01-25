@@ -46,7 +46,7 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
-    final widthScreen = MediaQuery.of(context).size.width;
+    //final widthScreen = MediaQuery.of(context).size.width;
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       appBar: formCustom.appBarCustom(context, _getUserName()),

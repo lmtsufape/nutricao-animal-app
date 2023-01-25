@@ -1,14 +1,9 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
-import 'package:thunderapp/shared/core/models/user_model.dart';
-import 'package:dio/dio.dart' as dio;
 
 class SignInRepository with ChangeNotifier {
   final _dio = Dio();
@@ -29,7 +24,6 @@ class SignInRepository with ChangeNotifier {
       },
     );
 
-    print(response.statusCode);
     if (response.statusCode == 200) {
       final prefs = await SharedPreferences.getInstance();
       prefs.setInt('id', response.data['user']['id']);

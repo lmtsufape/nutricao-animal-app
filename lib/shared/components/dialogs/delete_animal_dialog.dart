@@ -1,5 +1,5 @@
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
-import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
