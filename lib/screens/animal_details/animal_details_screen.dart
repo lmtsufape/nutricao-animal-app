@@ -30,7 +30,13 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]),
       backgroundColor: kBackgroundColor,
       body: ListView(
         children: [

@@ -27,7 +27,12 @@ class FoodDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

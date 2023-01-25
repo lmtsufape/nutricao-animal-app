@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
@@ -19,7 +20,12 @@ class ShareTutoringScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
