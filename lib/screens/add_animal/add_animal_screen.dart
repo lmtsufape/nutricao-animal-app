@@ -240,11 +240,11 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Peso', weightController),
+              child: TextFieldCustom('Peso (Quilograma)', weightController),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Altura', heightController),
+              child: TextFieldCustom('Altura (Metros)', heightController),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),

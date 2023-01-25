@@ -26,5 +26,5 @@ main() {
     ChangeNotifierProvider(create: (_) => SignInController()),
   ], child: const App());
 
-  runApp(DevicePreview(enabled: false, builder: (context) => const App()));
+  runApp(DevicePreview(enabled: true, builder: (context) => const App()));
 }
