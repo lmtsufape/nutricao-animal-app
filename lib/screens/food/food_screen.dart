@@ -44,6 +44,12 @@ class _FoodScreenState extends State<FoodScreen> {
   }
 
   @override
+  void initState() {
+    foods = _repository.showFoods(type);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
@@ -73,7 +79,32 @@ class _FoodScreenState extends State<FoodScreen> {
                   style:
                       TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
             ),
-            const TextFieldButtonPC('Escolher do cardápio'),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
+              child: DropdownSearch<String>(
+                selectedItem: 'Selecione',
+                popupProps: const PopupProps.dialog(
+                  showSearchBox: true,
+                ),
+                dropdownButtonProps: const DropdownButtonProps(
+                  icon: Icon(
+                    Icons.arrow_circle_down_outlined,
+                    color: kDetailColor,
+                    size: 35,
+                  ),
+                ),
+                items: const [],
+                onChanged: (data) {
+                  setState(
+                    () {
+                      /* Aqui vai atualizar a variável do cardápio escolhido, pode ser
+                      um booleano para fazer o preenchemento automático dos campos da tela
+                      "Assunto a ser conversado" */
+                    },
+                  );
+                },
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: Row(
@@ -125,13 +156,26 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
-              child: DropdownSearch(
+              child: DropdownSearch<String>(
+                selectedItem: type,
+                popupProps: const PopupProps.dialog(
+                  showSearchBox: true,
+                ),
+                dropdownButtonProps: const DropdownButtonProps(
+                  icon: Icon(
+                    Icons.arrow_circle_down_outlined,
+                    color: kDetailColor,
+                    size: 35,
+                  ),
+                ),
                 items: _repository.showTypes(),
                 onChanged: (data) {
-                  setState(() {
-                    type = data.toString();
-                    foods = _repository.showFoods(type);
-                  });
+                  setState(
+                    () {
+                      type = data.toString();
+                      foods = _repository.showFoods(type);
+                    },
+                  );
                 },
               ),
             ),
@@ -145,12 +189,25 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
-              child: DropdownSearch(
+              child: DropdownSearch<String>(
+                selectedItem: food,
+                popupProps: const PopupProps.dialog(
+                  showSearchBox: true,
+                ),
+                dropdownButtonProps: const DropdownButtonProps(
+                  icon: Icon(
+                    Icons.arrow_circle_down_outlined,
+                    color: kDetailColor,
+                    size: 35,
+                  ),
+                ),
                 items: foods,
                 onChanged: (data) {
-                  setState(() {
-                    food = data.toString();
-                  });
+                  setState(
+                    () {
+                      food = data.toString();
+                    },
+                  );
                 },
               ),
             ),
