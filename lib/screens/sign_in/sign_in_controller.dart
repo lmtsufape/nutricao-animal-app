@@ -42,9 +42,8 @@ class SignInController with ChangeNotifier {
       }
       status = SignInStatus.done;
     } catch (e) {
-      print('Erro');
       status = SignInStatus.error;
-      setupErrorMessage(e.toString());
+      setupErrorMessage("Erro ao fazer login, verifique seus dados");
       notifyListeners();
     }
   }
@@ -55,8 +54,6 @@ class SignInController with ChangeNotifier {
     final name = prefs.getString('name');
     final email = prefs.getString('email');
     final token = prefs.getString('token');
-
-    print(name);
 
     userModel.setUser(name, token, email);
 
