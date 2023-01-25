@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
+import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
@@ -63,7 +64,12 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: formCustom.appBarCustom(context, _getUserName()),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
