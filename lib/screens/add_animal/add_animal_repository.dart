@@ -87,7 +87,7 @@ class AddAnimalRepository {
           builder: (context) => AlertDialog(
                 title: const Text('Impossível cadastrar animal'),
                 content: MaterialButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.of(context).pop(),
                   color: kDetailColor,
                   child: const Text(
                     'Ok!',

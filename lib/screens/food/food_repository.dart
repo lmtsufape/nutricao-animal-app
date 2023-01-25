@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
 import 'package:thunderapp/screens/home/home_screen.dart';
+import 'package:thunderapp/shared/constants/style_constants.dart';
 
 import '../../shared/constants/app_text_constants.dart';
 import '../screens_index.dart';
@@ -32,8 +33,10 @@ class FoodRepository {
 
   List<String> types = ['Ração', 'Frutas', 'Carnes'];
   List<String> foods = [];
+
   List<String> showTypes() {
-    /*Função de get para retornar os tipos de comidas cadastradas*/
+    Dio _dio = Dio();
+
     return types;
   }
 
@@ -50,7 +53,11 @@ class FoodRepository {
               title: const Text('Preencha todos os campos'),
               content: MaterialButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('OK')),
+                  color: kDetailColor,
+                  child: const Text(
+                    'OK',
+                    style: TextStyle(color: kBackgroundColor),
+                  )),
             );
           });
     } else {
@@ -64,11 +71,22 @@ class FoodRepository {
                 MaterialButton(
                   onPressed: () =>
                       editActivity(type, food, quant, animalId, context),
-                  child: const Text('Sim'),
+                  color: kDetailColor,
+                  child: const Text(
+                    'Sim',
+                    style: TextStyle(color: kBackgroundColor),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
                 ),
                 MaterialButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text('Não'),
+                  color: kDetailColor,
+                  child: const Text(
+                    'Não',
+                    style: TextStyle(color: kBackgroundColor),
+                  ),
                 )
               ]),
             );
