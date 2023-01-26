@@ -168,7 +168,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: _repository.showTypes(),
+                items: [],
                 onChanged: (data) {
                   setState(
                     () {
@@ -222,8 +222,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () => _repository.feedAnimal(
-                        type, food, quantController, widget.id, context),
+                    onPressed: () => _repository.showTypes(),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),
