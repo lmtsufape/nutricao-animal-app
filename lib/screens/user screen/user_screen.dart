@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:thunderapp/components/utils/vertical_spacer_box.dart';
 import 'package:thunderapp/screens/user%20screen/user_screen_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import '../../shared/constants/app_number_constants.dart';
-import '../../shared/constants/app_theme.dart';
+
 import '../../shared/constants/style_constants.dart';
 
 class UserScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
-    final AppTheme formCustom = AppTheme();
+    // final AppTheme formCustom = AppTheme();
     final UserScreenController controller = UserScreenController();
 
     return Scaffold(

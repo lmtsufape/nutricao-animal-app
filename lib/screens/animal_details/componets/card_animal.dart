@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
-import 'package:thunderapp/shared/components/dialogs/add_user_dialog.dart';
 import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:provider/provider.dart';
-import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
+
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
+
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
 class PrivateMenuScreen extends StatefulWidget {
@@ -20,9 +17,14 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.user),
+        ),
+      ]),
       body: ListView(
-        children: [
+        children: const [
           Padding(
             padding: EdgeInsets.only(top: 16, left: 16),
             child: Text(
@@ -89,10 +91,10 @@ class CardMenu extends StatelessWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                children: const [
                   ListTile(
                     title: Padding(
-                      padding: const EdgeInsets.only(top: 12),
+                      padding: EdgeInsets.only(top: 12),
                       child: Text(
                         'Food - Amount',
                         style: TextStyle(
@@ -107,7 +109,7 @@ class CardMenu extends StatelessWidget {
                           color: kSecondaryColor, fontSize: kMediumSize),
                     ),
                     trailing: Padding(
-                      padding: const EdgeInsets.only(top: 12),
+                      padding: EdgeInsets.only(top: 12),
                       child: Icon(
                         Icons.arrow_forward_ios_rounded,
                         color: kDetailColor,
