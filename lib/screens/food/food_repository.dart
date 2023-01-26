@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
 import 'package:thunderapp/screens/home/home_screen.dart';
@@ -34,9 +37,48 @@ class FoodRepository {
   List<String> types = ['Ração', 'Frutas', 'Carnes'];
   List<String> foods = [];
 
-  List<String> showTypes() {
-    Dio _dio = Dio();
+// ############################################################################
+  /*Função abaixo usada para pegar as categorias de comidas direto da api e transformar em Lista, 
+  para usar retire o comentário e renomeie as variáveis, após isso coloque nos respectivos lugares na
+  food_screen */
 
+  /*Future<bool> showTypes() async {
+    Dio _dio = Dio();
+    List<String> tipos = [];
+
+    int i;
+    final prefs = await SharedPreferences.getInstance();
+
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await _dio.get(
+      '$kBaseUrl/users/$userId/foods',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+    );
+    var teste = response.data as List<dynamic>;
+    String compare;
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      for (i = 0; i < teste.length; i++) {
+        compare = (response.data[i]["category"]);
+        if (tipos.any((element) => element == compare) == false) {
+          tipos.add(compare);
+        }
+      }
+      print(tipos);
+    }
+
+    return true;
+  }*/
+  // ############################################################################
+
+  List<String> showTypes() {
     return types;
   }
 
