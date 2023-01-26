@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 import '../../shared/components/dialogs/add_animal_dialog.dart';
 import '../../shared/constants/style_constants.dart';
 
-class AddAnimalRepository {
+class AddAnimalRepository with ChangeNotifier {
   late int userId;
   late String userToken;
   late int biometryId;
@@ -34,13 +34,13 @@ class AddAnimalRepository {
           ));
       all = response.data['breeds'];
 
+      notifyListeners();
+
       if (all.isNotEmpty) {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
-        if (kDebugMode) {
-          print(breeds);
-        }
+        notifyListeners();
         return breeds;
       }
     } else {
@@ -53,18 +53,17 @@ class AddAnimalRepository {
             },
           ));
       all = response.data['breeds'];
+      notifyListeners();
 
       if (all.isNotEmpty) {
         for (i = 0; i < all.length; i++) {
           breeds.add(all[i]['name']);
         }
-        if (kDebugMode) {
-          print(breeds);
-        }
+        notifyListeners();
         return breeds;
       }
     }
-
+    notifyListeners();
     return ['Falha'];
   }
 
