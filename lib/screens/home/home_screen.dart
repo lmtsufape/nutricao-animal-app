@@ -125,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               return Scaffold(
                 backgroundColor: kBackgroundColor,
                 appBar: formCustom.appBarCustom(context, _getUserName()),
+                drawer: NavigationDrawerWidget(userName, email),
                 body: Column(
                   children: [
                     const Padding(

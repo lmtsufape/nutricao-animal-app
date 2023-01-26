@@ -8,6 +8,7 @@ class AddAnimalController with ChangeNotifier {
       isCastrated, activityLevel) {
     _repository.registerAnimal(name, specie, breed, sex, weight, height, age,
         isCastrated, activityLevel, context);
+
     notifyListeners();
   }
 
@@ -16,8 +17,10 @@ class AddAnimalController with ChangeNotifier {
 
     if (index == 1) {
       breed == value;
+      notifyListeners();
       return breed;
     }
+    notifyListeners();
     return null;
   }
 }

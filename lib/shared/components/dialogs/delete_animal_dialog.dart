@@ -1,11 +1,11 @@
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
-
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DeleteAnimalDialog extends StatelessWidget {
   int id;
   DeleteAnimalDialog(this.id, {Key? key}) : super(key: key);

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:dio/dio.dart';
-
 import '../../shared/components/dialogs/add_animal_dialog.dart';
 import '../../shared/constants/style_constants.dart';
 
@@ -120,10 +119,12 @@ class AddAnimalRepository with ChangeNotifier {
       );
       showDialog(
           context: context, builder: (context) => const DialogAddAnimal());
+      notifyListeners();
       if (kDebugMode) {
         print(response.statusCode);
       }
     }
+    notifyListeners();
   }
 
   Future<bool> deleteAnimal(idAnimal) async {
@@ -146,6 +147,7 @@ class AddAnimalRepository with ChangeNotifier {
     if (kDebugMode) {
       print(response.statusCode);
     }
+    notifyListeners();
     return true;
   }
 }
