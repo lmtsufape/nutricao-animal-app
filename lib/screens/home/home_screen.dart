@@ -104,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     height: 100,
                     width: 100,
                     child: FloatingActionButton(
+                      heroTag: 'Add1',
                       backgroundColor: kPrimaryColor,
                       onPressed: () {
                         Navigator.push(
@@ -161,6 +162,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   height: 100,
                   width: 100,
                   child: FloatingActionButton(
+                    heroTag: 'Add2',
                     child: const Icon(
                       Icons.add,
                       size: 65,

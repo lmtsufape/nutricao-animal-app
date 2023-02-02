@@ -36,6 +36,7 @@ class EditProfileScreen extends StatelessWidget {
                 width: 130,
                 height: 130,
                 child: FloatingActionButton(
+                  heroTag: 'Photo',
                   backgroundColor: kBackgroundColor,
                   onPressed: () {},
                   child: const Icon(

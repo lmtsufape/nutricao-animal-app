@@ -53,6 +53,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         height: heightScreen * 0.18,
         width: widthScreen * 0.18,
         child: FloatingActionButton(
+          heroTag: 'Edit1',
           child: Icon(Icons.edit, size: heightScreen * 0.060),
           onPressed: () => Navigator.pushNamed(context, Screens.editAnimal),
         ),

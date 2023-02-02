@@ -65,6 +65,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                     width: 110,
                     height: 110,
                     child: FloatingActionButton(
+                      heroTag: 'Photo',
                       backgroundColor: kBackgroundColor,
                       onPressed: () {},
                       child: const Icon(

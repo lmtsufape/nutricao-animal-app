@@ -93,6 +93,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   width: 110,
                   height: 110,
                   child: FloatingActionButton(
+                    heroTag: 'Photo',
                     backgroundColor: kBackgroundColor,
                     onPressed: () {},
                     child: const Icon(
