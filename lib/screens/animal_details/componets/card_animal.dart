@@ -116,6 +116,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         height: heightCard * 0.10,
                         width: widthCard * 0.17,
                         child: FloatingActionButton(
+                          heroTag: 'Menu',
                           backgroundColor: kDetailColor,
                           onPressed: () {},
                           child: Icon(
@@ -132,6 +133,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         height: heightCard * 0.10,
                         width: widthCard * 0.17,
                         child: FloatingActionButton(
+                          heroTag: 'Eat',
                           backgroundColor: kDetailColor,
                           onPressed: () => Navigator.push(
                               context,
@@ -151,6 +153,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         height: heightCard * 0.10,
                         width: widthCard * 0.17,
                         child: FloatingActionButton(
+                          heroTag: 'Share',
                           backgroundColor: kDetailColor,
                           onPressed: () {},
                           child: Icon(
