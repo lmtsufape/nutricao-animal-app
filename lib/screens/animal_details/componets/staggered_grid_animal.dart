@@ -43,7 +43,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
@@ -73,7 +73,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
@@ -103,7 +103,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
@@ -133,7 +133,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                     side: BorderSide(
                         color: kPrimaryColor,
                         width: 3.5,
-                        strokeAlign: StrokeAlign.outside),
+                        strokeAlign: BorderSide.strokeAlignOutside),
                   ),
                   title: RichText(
                     text: TextSpan(
@@ -182,7 +182,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
@@ -212,7 +212,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
@@ -242,7 +242,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   side: BorderSide(
                       color: kPrimaryColor,
                       width: 3.5,
-                      strokeAlign: StrokeAlign.outside),
+                      strokeAlign: BorderSide.strokeAlignOutside),
                 ),
                 title: RichText(
                   text: TextSpan(
