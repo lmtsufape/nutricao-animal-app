@@ -6,7 +6,7 @@ class FoodController {
   feedCalculate(type, food, TextEditingController quant) {
     /* A função é dada a cada 100 gramas, no caso
     se a pessoa alimentar com 100 gramas de algum certo alimento
-    vai ser adicionado no animal um inteiro de 1 a 10 */
+    vai ser alterado o nível de atividade no animal por um inteiro de 1 a 10 */
 
     double quantDouble = double.parse(quant.text);
     if (type == 'Ração') {
