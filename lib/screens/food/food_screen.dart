@@ -33,9 +33,10 @@ class _FoodScreenState extends State<FoodScreen> {
   late String userName;
   final FoodRepository _repository = FoodRepository();
   String type = 'Ração';
-  String food = 'Golden';
+  String food = 'Selecione';
   TextEditingController quantController = TextEditingController();
-  List<String> foods = [];
+  List<String> listFoods = [];
+  List<String> listTypes = [];
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -45,7 +46,8 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   void initState() {
-    foods = _repository.showFoods(type);
+    listTypes = _repository.showTypes();
+    listFoods = _repository.showFoods(type);
     super.initState();
   }
 
@@ -168,12 +170,13 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: [],
+                items: listTypes,
                 onChanged: (data) {
                   setState(
                     () {
                       type = data.toString();
-                      foods = _repository.showFoods(type);
+                      food = 'Selecione';
+                      listFoods = _repository.showFoods(type);
                     },
                   );
                 },
@@ -201,7 +204,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: foods,
+                items: listFoods,
                 onChanged: (data) {
                   setState(
                     () {
@@ -222,7 +225,8 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () => _repository.showTypes(),
+                    onPressed: () => _repository.feedAnimal(
+                        type, food, quantController, widget.id, context),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),

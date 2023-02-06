@@ -10,7 +10,6 @@ import 'package:thunderapp/screens/food/food_controller.dart';
 import 'package:thunderapp/screens/home/home_screen.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-
 import '../../shared/constants/app_text_constants.dart';
 import '../screens_index.dart';
 
@@ -86,7 +85,7 @@ class FoodRepository {
 
   void feedAnimal(
       type, food, TextEditingController quant, animalId, context) async {
-    if (quant.text.isEmpty) {
+    if (quant.text.isEmpty || type == 'Selecione' || food == 'Selecione') {
       return showDialog(
           context: context,
           builder: (BuildContext context) {
