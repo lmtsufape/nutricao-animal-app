@@ -11,7 +11,6 @@ class HomeScreenRepository {
     final prefs = await SharedPreferences.getInstance();
     var userId = prefs.getInt('id');
     var userToken = prefs.getString('token');
-    
 
     var response = await dio.get(
       '$kBaseUrl/users/$userId/animals',
@@ -22,7 +21,7 @@ class HomeScreenRepository {
       }),
     );
     if (response.statusCode == 200) {
-      var dataList = response.data['animal'] as List<dynamic>;
+      var dataList = response.data['animals'] as List<dynamic>;
 
       return dataList;
     } else {

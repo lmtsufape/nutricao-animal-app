@@ -83,8 +83,8 @@ class FoodRepository {
     return types;
   }
 
-  void feedAnimal(
-      type, food, TextEditingController quant, animalId, context) async {
+  void feedAnimal(type, food, TextEditingController quant, animalId, context,
+      addMenu) async {
     if (quant.text.isEmpty || type == 'Selecione' || food == 'Selecione') {
       return showDialog(
           context: context,
@@ -109,8 +109,8 @@ class FoodRepository {
               content:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
-                  onPressed: () =>
-                      editActivity(type, food, quant, animalId, context),
+                  onPressed: () => editActivity(
+                      type, food, quant, animalId, context, addMenu),
                   color: kDetailColor,
                   child: const Text(
                     'Sim',
@@ -134,8 +134,8 @@ class FoodRepository {
     }
   }
 
-  editActivity(
-      type, food, TextEditingController quant, animalId, context) async {
+  editActivity(type, food, TextEditingController quant, animalId, context,
+      addMenu) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -166,4 +166,6 @@ class FoodRepository {
     }
     return foods;
   }
+
+  void postMenu() {}
 }

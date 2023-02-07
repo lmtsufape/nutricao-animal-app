@@ -207,7 +207,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: kMediumLargeSize),
                       ),
-                      value: 'male',
+                      value: 'macho',
                       groupValue: sex,
                       onChanged: (value) {
                         setState(
@@ -226,7 +226,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: kMediumLargeSize)),
-                    value: 'female',
+                    value: 'fêmea',
                     groupValue: sex,
                     onChanged: (value) {
                       setState(

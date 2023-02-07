@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                             return CardHomeScreen(
                                 dataAnimals[index]['name'],
                                 dataAnimals[index]['sex'],
-                                dataAnimals[index]['id'],
+                                dataAnimals[index]['animal_id'],
                                 dataAnimals[index]['activity_level']);
                           },
                           separatorBuilder: (context, index) {
