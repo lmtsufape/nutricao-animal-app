@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
+import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 
@@ -118,7 +119,8 @@ class stateCardAnimal extends State<CardAnimal> {
                         child: FloatingActionButton(
                           heroTag: 'Menu',
                           backgroundColor: kDetailColor,
-                          onPressed: () {},
+                          onPressed: () =>
+                              Navigator.pushNamed(context, Screens.privateMenu),
                           child: Icon(
                             Icons.menu_book_outlined,
                             color: kBackgroundColor,
