@@ -7,8 +7,8 @@ import '../../../shared/constants/style_constants.dart';
 import '../animal_details_controller.dart';
 
 class CaloricNeedCounter extends StatefulWidget {
-  int activityLevel;
-  CaloricNeedCounter(this.activityLevel, {Key? key}) : super(key: key);
+
+  CaloricNeedCounter( {Key? key}) : super(key: key);
 
   @override
   stateCaloricNeedCounter createState() => stateCaloricNeedCounter();
@@ -41,7 +41,7 @@ class stateCaloricNeedCounter extends State<CaloricNeedCounter> {
                   textDirection: TextDirection.ltr,
                 ),
               ),
-              RadialGaugeAnimal(widget.activityLevel),
+              RadialGaugeAnimal(5),
             ],
           ),
         ),

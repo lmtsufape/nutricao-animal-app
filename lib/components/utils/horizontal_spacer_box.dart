@@ -7,29 +7,30 @@ class HorizontalSpacerBox extends StatelessWidget {
   final SpacerSize size;
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.of(context).size.width;
     switch (size) {
       case SpacerSize.tiny:
-        return const SizedBox(
-          width: kTinySize,
+        return SizedBox(
+          width: widthScreen * 0.08, //kTinySize,
         );
       case SpacerSize.small:
-        return const SizedBox(
-          width: kSmallSize,
+        return SizedBox(
+          width: widthScreen * 0.12, //kSmallSize,
         );
       case SpacerSize.medium: 
-        return const SizedBox(
-          width: kMediumSize,
+        return SizedBox(
+          width: widthScreen * 0.16, //kMediumSize,
         );
       case SpacerSize.large:
-        return const SizedBox(
-          width: kLargeSize,
+        return SizedBox(
+          width: widthScreen * 0.24, //kLargeSize,
         );
       case SpacerSize.huge:
-        return const SizedBox(
-          width: kHugeSize,
+        return SizedBox(
+          width: widthScreen * 0.36, //kHugeSize,
         );
-      default: return const SizedBox(
-        width: kSmallSize,
+      default: return SizedBox(
+        width: widthScreen * 0.12, //Default
       );
     }
   }
