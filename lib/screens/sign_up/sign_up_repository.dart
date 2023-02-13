@@ -32,7 +32,7 @@ class SignUpRepository {
         options: Options(
           headers: {
             "Content-Type": "application/json",
-            "Accept": "apllication/json"
+            "Accept": "application/json"
           },
         ),
         data: {
