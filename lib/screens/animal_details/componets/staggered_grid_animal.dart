@@ -8,8 +8,8 @@ import '../../screens_index.dart';
 
 class StaggeredGridAnimal extends StatefulWidget {
   String sex;
-  int activityLevel;
-  StaggeredGridAnimal(this.sex, this.activityLevel, {Key? key})
+  String breed;
+  StaggeredGridAnimal(this.sex, this.breed, {Key? key})
       : super(key: key);
 
   @override
@@ -157,7 +157,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                     padding: const EdgeInsets.only(right: 0, top: 5, left: 2),
                     child: SizedBox(
                       height: heightStaggered * 0.045,
-                      width: widthStaggered * 0.1,
+                      width: widthStaggered * 0.08,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: FloatingActionButton(

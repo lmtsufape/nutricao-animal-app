@@ -10,12 +10,12 @@ class AnimalDetailsScreen extends StatefulWidget {
   int id;
   String name;
   String sex;
-  int activityLevel;
+  String breed;
   AnimalDetailsScreen(
     this.id,
     this.name,
     this.sex,
-    this.activityLevel, {
+    this.breed, {
     Key? key,
   }) : super(key: key);
 
@@ -43,8 +43,8 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
           Column(
             children: [
               CardAnimal(
-                  widget.id, widget.name, widget.sex, widget.activityLevel),
-              CaloricNeedCounter(widget.activityLevel),
+                  widget.id, widget.name, widget.sex, widget.breed),
+              CaloricNeedCounter(),
             ],
           ),
         ],

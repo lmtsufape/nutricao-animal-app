@@ -22,7 +22,7 @@ class HomeScreenRepository {
       }),
     );
     if (response.statusCode == 200) {
-      var dataList = response.data['animal'] as List<dynamic>;
+      var dataList = response.data['animals'] as List<dynamic>;
 
       return dataList;
     } else {

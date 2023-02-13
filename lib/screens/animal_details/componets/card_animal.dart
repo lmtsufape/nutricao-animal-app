@@ -13,8 +13,8 @@ class CardAnimal extends StatefulWidget {
   String name;
 
   String sex;
-  int activityLevel;
-  CardAnimal(this.id, this.name, this.sex, this.activityLevel, {Key? key})
+  String breed;
+  CardAnimal(this.id, this.name, this.sex, this.breed, {Key? key})
       : super(key: key);
 
   @override
@@ -52,7 +52,7 @@ class stateCardAnimal extends State<CardAnimal> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const HorizontalSpacerBox(size: SpacerSize.huge),
+                          const HorizontalSpacerBox(size: SpacerSize.tiny),
                           Text(
                             'Nome',
                             style: TextStyle(
@@ -169,7 +169,7 @@ class stateCardAnimal extends State<CardAnimal> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: StaggeredGridAnimal(widget.sex, widget.activityLevel),
+                child: StaggeredGridAnimal(widget.sex, widget.breed),
               ),
             ],
           ),

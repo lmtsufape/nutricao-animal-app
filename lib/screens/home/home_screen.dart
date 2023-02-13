@@ -149,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                 dataAnimals[index]['name'],
                                 dataAnimals[index]['sex'],
                                 dataAnimals[index]['id'],
-                                dataAnimals[index]['activity_level']);
+                                dataAnimals[index]['name']);
                           },
                           separatorBuilder: (context, index) {
                             return const Divider();
@@ -191,9 +191,9 @@ class CardHomeScreen extends StatefulWidget {
   String name;
   String sex;
   int id;
-  int activityLevel;
+  String breed;
 
-  CardHomeScreen(this.name, this.sex, this.id, this.activityLevel, {super.key});
+  CardHomeScreen(this.name, this.sex, this.id, this.breed, {super.key});
 
   @override
   State<CardHomeScreen> createState() => _CardHomeScreenState();
@@ -215,7 +215,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
           widget.id,
           widget.name,
           widget.sex,
-          widget.activityLevel,
+          widget.breed,
         );
       })),
       child: Ink(
@@ -260,7 +260,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                   subtitle: Padding(
                     padding: const EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
-                      widget.activityLevel.toString(),
+                      widget.breed.toString(),
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: kBackgroundColor,
