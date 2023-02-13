@@ -105,7 +105,7 @@ class AddAnimalRepository with ChangeNotifier {
         ),
         data: {
           "animal": {
-            "name": name,
+            "name": name.toString(),
             "sex": sex,
             "is_castrated": isCastrated,
             "activity_level": activityLevel

@@ -60,7 +60,7 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         height: 100,
         child: FloatingActionButton(
           heroTag: 'Add1',
-          onPressed: () => Navigator.pushNamed(context, Screens.food),
+          onPressed: () {},
           backgroundColor: kSecondaryColor,
           child: const Icon(
             Icons.add,
