@@ -150,6 +150,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                 dataAnimals[index]['sex'],
                                 dataAnimals[index]['id'],
                                 dataAnimals[index]['name']);
+
                           },
                           separatorBuilder: (context, index) {
                             return const Divider();

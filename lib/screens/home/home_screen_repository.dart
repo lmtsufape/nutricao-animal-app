@@ -11,7 +11,6 @@ class HomeScreenRepository {
     final prefs = await SharedPreferences.getInstance();
     var userId = prefs.getInt('id');
     var userToken = prefs.getString('token');
-    
 
     var response = await dio.get(
       '$kBaseUrl/users/$userId/animals',

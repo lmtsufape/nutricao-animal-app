@@ -33,9 +33,11 @@ class _FoodScreenState extends State<FoodScreen> {
   late String userName;
   final FoodRepository _repository = FoodRepository();
   String type = 'Ração';
-  String food = 'Golden';
+  String food = 'Selecione';
   TextEditingController quantController = TextEditingController();
-  List<String> foods = [];
+  List<String> listFoods = [];
+  List<String> listTypes = [];
+  bool? addMenu;
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -45,7 +47,8 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   void initState() {
-    foods = _repository.showFoods(type);
+    listTypes = _repository.showTypes();
+    listFoods = _repository.showFoods(type);
     super.initState();
   }
 
@@ -168,12 +171,13 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: [],
+                items: listTypes,
                 onChanged: (data) {
                   setState(
                     () {
                       type = data.toString();
-                      foods = _repository.showFoods(type);
+                      food = 'Selecione';
+                      listFoods = _repository.showFoods(type);
                     },
                   );
                 },
@@ -201,7 +205,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: foods,
+                items: listFoods,
                 onChanged: (data) {
                   setState(
                     () {
@@ -213,7 +217,31 @@ class _FoodScreenState extends State<FoodScreen> {
             ),
             const VerticalSpacerBox(size: SpacerSize.small),
             TextFieldCustom('Quantidade(em gramas)', quantController),
-            const MenuWidget(),
+            ListTile(
+              title: const Text(
+                'Adicionar no cárdapio particular?',
+                style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 20),
+              ),
+              leading: Transform.scale(
+                scale: 2,
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 2),
+                    child: Radio<bool>(
+                      toggleable: true,
+                      activeColor: kDetailColor,
+                      value: true,
+                      groupValue: addMenu,
+                      onChanged: (value) => setState(
+                        () {
+                          addMenu = value;
+                        },
+                      ),
+                    )),
+              ),
+            ),
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 16),
@@ -222,7 +250,8 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () => _repository.showTypes(),
+                    onPressed: () => _repository.feedAnimal(type, food,
+                        quantController, widget.id, context, addMenu),
                     child: const Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor, fontSize: kMediumSize)),
@@ -238,7 +267,8 @@ class _FoodScreenState extends State<FoodScreen> {
 }
 
 class MenuWidget extends StatefulWidget {
-  const MenuWidget({super.key});
+  bool addMenu;
+  MenuWidget(this.addMenu, {super.key});
 
   @override
   State<MenuWidget> createState() => _MenuWidgetState();
@@ -258,19 +288,19 @@ class _MenuWidgetState extends State<MenuWidget> {
       leading: Transform.scale(
         scale: 2,
         child: Padding(
-          padding: const EdgeInsets.only(left: 2),
-          child: Radio<PrivateMenu>(
-            toggleable: true,
-            activeColor: kDetailColor,
-            value: PrivateMenu.yes,
-            groupValue: _privateMenu,
-            onChanged: (PrivateMenu? value) {
-              setState(() {
-                _privateMenu = value;
-              });
-            },
-          ),
-        ),
+            padding: const EdgeInsets.only(left: 2),
+            child: Radio<PrivateMenu>(
+              toggleable: true,
+              activeColor: kDetailColor,
+              value: PrivateMenu.yes,
+              groupValue: _privateMenu,
+              onChanged: (PrivateMenu? selecionado) => setState(
+                () {
+                  widget.addMenu = true;
+                  _privateMenu = selecionado;
+                },
+              ),
+            )),
       ),
     );
   }
