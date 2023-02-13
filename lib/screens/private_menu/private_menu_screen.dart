@@ -38,7 +38,7 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
           Padding(
             padding: EdgeInsets.only(left: 16, bottom: 16),
             child: Text(
-              'Name',
+              'Nome',
               style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
             ),
           ),
