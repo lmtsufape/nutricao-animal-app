@@ -43,88 +43,81 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(actions: [
-        IconButton(
-          icon: const Icon(Icons.account_circle_rounded),
-          onPressed: () => Navigator.pushNamed(context, Screens.user),
-        ),
-      ]),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50, bottom: 25),
-              child: Center(
-                child: SizedBox(
-                  width: 130,
-                  height: 130,
-                  child: FloatingActionButton(
-                    backgroundColor: kBackgroundColor,
-                    onPressed: () {},
-                    child: const Icon(
-                      Icons.photo,
-                      color: kSecondaryColor,
-                      size: 50,
-                    ),
+      appBar: AppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50, bottom: 25),
+            child: Center(
+              child: SizedBox(
+                width: 130,
+                height: 130,
+                child: FloatingActionButton(
+                  backgroundColor: kBackgroundColor,
+                  onPressed: () {},
+                  child: const Icon(
+                    Icons.photo,
+                    color: kSecondaryColor,
+                    size: 50,
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Nome de Exibição',
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Nome de Exibição',
+                  style: TextStyle(
+                      color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                ),
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'asda',
+                    contentPadding: EdgeInsets.all(14),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          TextFieldCustom('E-mail', emailController),
+          TextFieldCustom('Senha', passwordController),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Center(
+              child: SizedBox(
+                width: 110,
+                height: 40,
+                child: ElevatedButton(
+                  style: EditProfileScreen.styleSal,
+                  onPressed: () {},
+                  child: const Text(
+                    'Salvar',
                     style: TextStyle(
-                        color: kSecondaryColor, fontSize: heightScreen * 0.016),
-                  ),
-                  TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'asda',
-                      contentPadding: EdgeInsets.all(14),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            TextFieldCustom('E-mail', emailController),
-            TextFieldCustom('Senha', passwordController),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Center(
-                child: SizedBox(
-                  width: 110,
-                  height: 40,
-                  child: ElevatedButton(
-                    style: EditProfileScreen.styleSal,
-                    onPressed: () {},
-                    child: const Text(
-                      'Salvar',
-                      style: TextStyle(
-                          color: kBackgroundColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: kMediumLargeSize),
-                    ),
+                        color: kBackgroundColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: kMediumLargeSize),
                   ),
                 ),
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: () => editController.logoff(context),
-                color: kDetailColor,
-                child: const Text('Log Off'),
-              ),
-            )
-          ],
-        ),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+              onPressed: () => editController.logoff(context),
+              color: kDetailColor,
+              child: const Text('Log Off'),
+            ),
+          )
+        ],
       ),
     );
   }
