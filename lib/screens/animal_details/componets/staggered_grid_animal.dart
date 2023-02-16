@@ -4,19 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../shared/constants/style_constants.dart';
+import '../../../shared/core/models/animal_model.dart';
 import '../../screens_index.dart';
 
 class StaggeredGridAnimal extends StatefulWidget {
-  String sex;
-  String breed;
-  StaggeredGridAnimal(this.sex, this.breed, {Key? key})
-      : super(key: key);
+  AnimalModel animal;
+  StaggeredGridAnimal(this.animal, {Key? key}) : super(key: key);
 
   @override
   stateStaggeredGridAnimal createState() => stateStaggeredGridAnimal();
 }
 
 class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
+  String getCastrado() {
+    if (widget.animal.isCastrated == true) {
+      return 'Sim';
+    } else {
+      return 'Não';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final heightStaggered = MediaQuery.of(context).size.height;
@@ -37,7 +44,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
           children: [
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.65,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -54,7 +61,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Gato',
+                        text: widget.animal.species,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
@@ -67,7 +74,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.65,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -114,7 +121,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
-                        text: widget.sex,
+                        text: widget.animal.sex,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
@@ -127,7 +134,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.65,
               child: ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide(
@@ -144,7 +151,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                           fontSize: heightStaggered * 0.023),
                       children: <TextSpan>[
                         TextSpan(
-                          text: '4,6Kg',
+                          text: "${widget.animal.weight} Kg",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: kPrimaryColor,
@@ -176,7 +183,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.65,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -193,7 +200,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
-                        text: '38cm',
+                        text: "${widget.animal.height} cm",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,
@@ -223,7 +230,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
-                        text: 'Sim',
+                        text: getCastrado(),
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,

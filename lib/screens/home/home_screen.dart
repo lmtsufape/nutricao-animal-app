@@ -7,6 +7,7 @@ import 'package:thunderapp/screens/user%20screen/user_screen_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/animal_model.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 import 'home_screen_repository.dart';
@@ -21,6 +22,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final SignInController newController = SignInController();
   late Future getAnimals;
+  late AnimalModel animal;
   final repository = HomeScreenRepository();
   final UserModel user = UserModel();
   late String userName;
@@ -145,12 +147,18 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       child: ListView.separated(
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return CardHomeScreen(
-                                dataAnimals[index]['name'],
-                                dataAnimals[index]['sex'],
+                            animal = AnimalModel(
                                 dataAnimals[index]['id'],
-                                dataAnimals[index]['name']);
+                                dataAnimals[index]['activity_level'],
+                                dataAnimals[index]['is_castrated'],
+                                dataAnimals[index]['weight'],
+                                dataAnimals[index]['weight'],
+                                dataAnimals[index]['type'],
+                                dataAnimals[index]['species'],
+                                dataAnimals[index]['name'],
+                                dataAnimals[index]['sex']);
 
+                            return CardHomeScreen(animal);
                           },
                           separatorBuilder: (context, index) {
                             return const Divider();
@@ -189,12 +197,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
 // ignore: must_be_immutable
 class CardHomeScreen extends StatefulWidget {
-  String name;
-  String sex;
-  int id;
-  String breed;
+  AnimalModel animal;
 
-  CardHomeScreen(this.name, this.sex, this.id, this.breed, {super.key});
+  CardHomeScreen(this.animal, {super.key});
 
   @override
   State<CardHomeScreen> createState() => _CardHomeScreenState();
@@ -212,12 +217,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
       //exemplo
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return AnimalDetailsScreen(
-          widget.id,
-          widget.name,
-          widget.sex,
-          widget.breed,
-        );
+        return AnimalDetailsScreen(widget.animal);
       })),
       child: Ink(
         child: Padding(
@@ -249,7 +249,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
-                          widget.name.toString(),
+                          widget.animal.name.toString(),
                           style: const TextStyle(
                               fontSize: 35.0,
                               color: kBackgroundColor,
@@ -261,7 +261,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                   subtitle: Padding(
                     padding: const EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
-                      widget.breed.toString(),
+                      //Trocar para widget.animal.breed quando arrumar API
+                      widget.animal.name.toString(),
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: kBackgroundColor,
@@ -271,7 +272,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                   trailing: Padding(
                     padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
-                      widget.sex.toString(),
+                      widget.animal.sex.toString(),
                       style: const TextStyle(
                           color: kBackgroundColor, fontSize: 15.0),
                     ),
@@ -291,7 +292,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FoodScreen(widget.id))),
+                                  builder: (context) =>
+                                      FoodScreen(widget.animal.id))),
                           icon: const Icon(
                             Icons.restaurant_menu,
                             color: kBackgroundColor,
