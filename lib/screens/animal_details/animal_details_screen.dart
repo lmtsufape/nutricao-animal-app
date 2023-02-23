@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import '../../shared/core/models/animal_model.dart';
 import 'componets/caloric_need_counter.dart';
 import 'componets/card_animal.dart';
 
 // ignore: must_be_immutable
 class AnimalDetailsScreen extends StatefulWidget {
-  int id;
-  String name;
-  String sex;
-  String breed;
+  AnimalModel animal;
   AnimalDetailsScreen(
-    this.id,
-    this.name,
-    this.sex,
-    this.breed, {
+    this.animal, {
     Key? key,
   }) : super(key: key);
 
@@ -30,8 +25,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        actions: [
+      appBar: AppBar(actions: [
         IconButton(
           icon: const Icon(Icons.account_circle_rounded),
           onPressed: () => Navigator.pushNamed(context, Screens.user),
@@ -42,8 +36,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         children: [
           Column(
             children: [
-              CardAnimal(
-                  widget.id, widget.name, widget.sex, widget.breed),
+              CardAnimal(widget.animal),
               CaloricNeedCounter(),
             ],
           ),

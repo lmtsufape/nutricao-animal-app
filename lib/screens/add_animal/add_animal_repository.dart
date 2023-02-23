@@ -23,7 +23,7 @@ class AddAnimalRepository with ChangeNotifier {
     userToken = prefs.getString('token')!;
 
     if (specie == 'dog') {
-      var response = await dio.get('$kBaseUrl/users/breed/dog',
+      var response = await dio.get('$kBaseUrl/users/breed/Cachorro',
           options: Options(
             headers: {
               "Content-Type": "application/json",
@@ -43,7 +43,7 @@ class AddAnimalRepository with ChangeNotifier {
         return breeds;
       }
     } else {
-      var response = await dio.get('$kBaseUrl/users/breed/cat',
+      var response = await dio.get('$kBaseUrl/users/breed/Gato',
           options: Options(
             headers: {
               "Content-Type": "application/json",
