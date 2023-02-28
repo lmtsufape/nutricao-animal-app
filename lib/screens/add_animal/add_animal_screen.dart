@@ -128,6 +128,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                       setState(
                         () {
                           specie = value.toString();
+                          breed = 'Sem raça definida';
                           breeds = repository.getBreed(specie);
                         },
                       );
@@ -147,6 +148,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                       setState(
                         () {
                           specie = value.toString();
+                          breed = 'Sem raça definida';
                           breeds = repository.getBreed(specie);
                         },
                       );
