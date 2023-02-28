@@ -7,6 +7,8 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
+import '../../components/forms/text_field_custom.dart';
+
 class ShareTutoringScreen extends StatelessWidget {
   const ShareTutoringScreen({Key? key}) : super(key: key);
 

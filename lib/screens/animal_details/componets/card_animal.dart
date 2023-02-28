@@ -5,18 +5,14 @@ import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 
 import '../../../shared/constants/style_constants.dart';
+import '../../../shared/core/models/animal_model.dart';
 import '../../food/food_screen.dart';
 import 'staggered_grid_animal.dart';
 
 // ignore: must_be_immutable
 class CardAnimal extends StatefulWidget {
-  int id;
-  String name;
-
-  String sex;
-  String breed;
-  CardAnimal(this.id, this.name, this.sex, this.breed, {Key? key})
-      : super(key: key);
+  AnimalModel animal;
+  CardAnimal(this.animal, {Key? key}) : super(key: key);
 
   @override
   stateCardAnimal createState() => stateCardAnimal();
@@ -67,7 +63,7 @@ class stateCardAnimal extends State<CardAnimal> {
                               showDialog(
                                   context: context,
                                   builder: (context) =>
-                                      DeleteAnimalDialog(widget.id));
+                                      DeleteAnimalDialog(widget.animal.id));
                             },
                             icon: const Icon(
                               Icons.delete,
@@ -78,7 +74,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         ],
                       ),
                       Text(
-                        widget.name.toString(),
+                        widget.animal.name.toString(),
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontSize: heightCard * 0.022,
@@ -96,7 +92,8 @@ class stateCardAnimal extends State<CardAnimal> {
                         ),
                       ),
                       Text(
-                        widget.name.toString(),
+                        //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
+                        widget.animal.name.toString(),
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontSize: heightCard * 0.022,
@@ -140,7 +137,8 @@ class stateCardAnimal extends State<CardAnimal> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => FoodScreen(widget.id))),
+                                  builder: (context) =>
+                                      FoodScreen(widget.animal.id))),
                           child: Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,
@@ -171,7 +169,7 @@ class stateCardAnimal extends State<CardAnimal> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: StaggeredGridAnimal(widget.sex, widget.breed),
+                child: StaggeredGridAnimal(widget.animal),
               ),
             ],
           ),

@@ -7,6 +7,9 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
+import '../../components/forms/dropdown_custom.dart';
+import '../../components/forms/text_field_custom.dart';
+
 class EditFoodScreen extends StatelessWidget {
   const EditFoodScreen({Key? key}) : super(key: key);
 

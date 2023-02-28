@@ -11,6 +11,8 @@ import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/user_model.dart';
 
+import '../../components/forms/text_field_custom.dart';
+
 enum PrivateMenu { yes, no }
 
 // ignore: must_be_immutable
