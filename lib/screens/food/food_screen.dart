@@ -36,7 +36,7 @@ class _FoodScreenState extends State<FoodScreen> {
   String food = 'Selecione';
   TextEditingController quantController = TextEditingController();
   List<String> listFoods = [];
-  List<String> listTypes = [];
+  late Future<List<String>> listTypes;
   bool? addMenu;
 
   Future<String> _getUserName() async {
@@ -47,7 +47,6 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   void initState() {
-    listTypes = _repository.showTypes();
     listFoods = _repository.showFoods(type);
     super.initState();
   }
@@ -171,7 +170,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: listTypes,
+                asyncItems: (String categories) => _repository.showTypes(),
                 onChanged: (data) {
                   setState(
                     () {
@@ -250,7 +249,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   height: 40,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
-                    onPressed: () => _repository.feedAnimal(type, food,
+                    onPressed: () => _controller.feedAnimal(type, food,
                         quantController, widget.id, context, addMenu),
                     child: const Text('Alimentar',
                         style: TextStyle(

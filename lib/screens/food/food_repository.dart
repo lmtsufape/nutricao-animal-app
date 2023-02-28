@@ -35,7 +35,7 @@ class FoodRepository {
     ]
   };
 
-  List<String> types = ['Ração', 'Frutas', 'Carnes'];
+  // List<String> types = ['Ração', 'Frutas', 'Carnes'];
   List<String> foods = [];
 
 // ############################################################################
@@ -43,9 +43,9 @@ class FoodRepository {
   para usar retire o comentário e renomeie as variáveis, após isso coloque nos respectivos lugares na
   food_screen */
 
-  /*Future<bool> showTypes() async {
+  Future<List<String>> showTypes() async {
     Dio _dio = Dio();
-    List<String> tipos = [];
+    List<String> categories = [];
 
     int i;
     final prefs = await SharedPreferences.getInstance();
@@ -54,7 +54,7 @@ class FoodRepository {
     userToken = prefs.getString('token')!;
 
     var response = await _dio.get(
-      '$kBaseUrl/users/$userId/foods',
+      '$kBaseUrl/foods',
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -63,76 +63,21 @@ class FoodRepository {
         },
       ),
     );
-    var teste = response.data as List<dynamic>;
+    var all = response.data as List<dynamic>;
     String compare;
     if (response.statusCode == 200 || response.statusCode == 201) {
-      for (i = 0; i < teste.length; i++) {
+      for (i = 0; i < all.length; i++) {
         compare = (response.data[i]["category"]);
-        if (tipos.any((element) => element == compare) == false) {
-          tipos.add(compare);
+        if (categories.any((element) => element == compare) == false) {
+          categories.add(compare);
         }
       }
-      print(tipos);
     }
 
-    return true;
-  }*/
-  // ############################################################################
-
-  List<String> showTypes() {
-    return types;
+    return categories;
   }
 
-  void feedAnimal(type, food, TextEditingController quant, animalId, context,
-      addMenu) async {
-    if (quant.text.isEmpty || type == 'Selecione' || food == 'Selecione') {
-      return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Preencha todos os campos'),
-              content: MaterialButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  color: kDetailColor,
-                  child: const Text(
-                    'OK',
-                    style: TextStyle(color: kBackgroundColor),
-                  )),
-            );
-          });
-    } else {
-      return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Deseja Alimentar seu Animal?'),
-              content:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                MaterialButton(
-                  onPressed: () => editActivity(
-                      type, food, quant, animalId, context, addMenu),
-                  color: kDetailColor,
-                  child: const Text(
-                    'Sim',
-                    style: TextStyle(color: kBackgroundColor),
-                  ),
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                MaterialButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  color: kDetailColor,
-                  child: const Text(
-                    'Não',
-                    style: TextStyle(color: kBackgroundColor),
-                  ),
-                )
-              ]),
-            );
-          });
-    }
-  }
+  
 
   editActivity(type, food, TextEditingController quant, animalId, context,
       addMenu) async {
