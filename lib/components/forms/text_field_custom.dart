@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import '../../shared/constants/style_constants.dart';
 
@@ -19,7 +20,7 @@ class TextFieldCustom extends StatelessWidget {
           Text(
             _fieldLabel,
             style: TextStyle(
-                color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
           ),
           TextField(
             controller: controller,
