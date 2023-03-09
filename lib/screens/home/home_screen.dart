@@ -60,6 +60,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final UserScreenController controller = UserScreenController();
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Builder(
       builder: (BuildContext context) {
         return FutureBuilder(
@@ -103,11 +105,11 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     ),
                   ),
                   floatingActionButton: SizedBox(
-                    height: 100,
-                    width: 100,
+                    height: heightScreen * 0.1,
+                    width: widthScreen * 0.25,
                     child: FloatingActionButton(
                       heroTag: 'Add1',
-                      backgroundColor: kPrimaryColor,
+                      backgroundColor: kSecondaryColor,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -116,10 +118,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                           ),
                         );
                       },
-                      child: const Icon(
+                      child: Icon(
                         Icons.add,
                         color: kBackgroundColor,
-                        size: 50,
+                        size: widthScreen * 0.14,
                       ),
                     ),
                   ),
@@ -131,13 +133,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 drawer: NavigationDrawerWidget(userName, email),
                 body: Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 15.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
                       child: Text(
                         'Animais Cadastrados',
                         textDirection: TextDirection.ltr,
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: heightScreen * 0.030,
                           color: kPrimaryColor,
                           fontWeight: FontWeight.w900,
                         ),
@@ -169,13 +171,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   ],
                 ),
                 floatingActionButton: SizedBox(
-                  height: 100,
-                  width: 100,
+                  height: heightScreen * 0.1,
+                  width: widthScreen * 0.25,
                   child: FloatingActionButton(
                     heroTag: 'Add2',
-                    child: const Icon(
+                    child: Icon(
                       Icons.add,
-                      size: 65,
+                      size: widthScreen * 0.14,
                     ),
                     onPressed: () => Navigator.push(
                         context,
@@ -209,6 +211,8 @@ class CardHomeScreen extends StatefulWidget {
 class _CardHomeScreenState extends State<CardHomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     ButtonStyle style = ElevatedButton.styleFrom(
         backgroundColor: kDetailColor,
         textStyle: const TextStyle(fontSize: kMediumSize),
@@ -251,8 +255,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                         padding: const EdgeInsets.only(top: 17.0, left: 47.0),
                         child: Text(
                           widget.animal.name.toString(),
-                          style: const TextStyle(
-                              fontSize: 35.0,
+                          style: TextStyle(
+                              fontSize: heightScreen * 0.035,
                               color: kBackgroundColor,
                               fontWeight: FontWeight.w900),
                         ),
@@ -263,9 +267,11 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     padding: const EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
                       //Trocar para widget.animal.breed quando arrumar API
+
                       widget.animal.breed.toString(),
                       style: const TextStyle(
                         fontSize: 20.0,
+
                         color: kBackgroundColor,
                       ),
                     ),
@@ -274,8 +280,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     padding: const EdgeInsets.only(right: 10.0, top: 10.0),
                     child: Text(
                       widget.animal.sex.toString(),
-                      style: const TextStyle(
-                          color: kBackgroundColor, fontSize: 15.0),
+                      style: TextStyle(
+                          color: kBackgroundColor, fontSize: heightScreen * 0.015),
                     ),
                   ),
                 ),
@@ -285,8 +291,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(8.0, 8.0, 20.0, 22.0),
                       child: SizedBox(
-                        width: 215,
-                        height: 50,
+                        width: widthScreen * 0.4,
+                        height: heightScreen * 0.04,
                         child: ElevatedButton.icon(
                           style: style,
                           //exemplo
@@ -295,17 +301,17 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                               MaterialPageRoute(
                                   builder: (context) =>
                                       FoodScreen(widget.animal.id))),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.restaurant_menu,
                             color: kBackgroundColor,
-                            size: 28.0,
+                            size: widthScreen * 0.1,
                             textDirection: TextDirection.ltr,
                           ),
-                          label: const Text(
+                          label: Text(
                             'Alimentar',
                             style: TextStyle(
                                 color: kBackgroundColor,
-                                fontSize: 25,
+                                fontSize: heightScreen * kLargeSize,
                                 fontWeight: FontWeight.w800),
                           ),
                         ),

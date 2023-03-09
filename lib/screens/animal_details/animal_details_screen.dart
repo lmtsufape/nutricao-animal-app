@@ -9,6 +9,7 @@ import 'componets/card_animal.dart';
 // ignore: must_be_immutable
 class AnimalDetailsScreen extends StatefulWidget {
   AnimalModel animal;
+
   AnimalDetailsScreen(
     this.animal, {
     Key? key,
@@ -43,11 +44,11 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         ],
       ),
       floatingActionButton: SizedBox(
-        height: heightScreen * 0.18,
-        width: widthScreen * 0.18,
+        height: heightScreen * 0.1,
+        width: widthScreen * 0.25,
         child: FloatingActionButton(
           heroTag: 'Edit1',
-          child: Icon(Icons.edit, size: heightScreen * 0.060),
+          child: Icon(Icons.edit, size: widthScreen * 0.1),
           onPressed: () => Navigator.pushNamed(context, Screens.editAnimal),
         ),
       ),

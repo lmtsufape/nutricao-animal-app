@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import '../../../shared/constants/style_constants.dart';
 import '../animal_details_controller.dart';
 
 class CaloricNeedCounter extends StatefulWidget {
-
-  CaloricNeedCounter( {Key? key}) : super(key: key);
+  CaloricNeedCounter({Key? key}) : super(key: key);
 
   @override
   stateCaloricNeedCounter createState() => stateCaloricNeedCounter();
@@ -52,7 +52,9 @@ class stateCaloricNeedCounter extends State<CaloricNeedCounter> {
 
 class RadialGaugeAnimal extends StatefulWidget {
   int activityLevel;
+
   RadialGaugeAnimal(this.activityLevel, {Key? key}) : super(key: key);
+
   @override
   stateRadialGaugeAnimal createState() => stateRadialGaugeAnimal();
 }
@@ -108,7 +110,7 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
                 style: TextStyle(
                     color: kBackgroundColor,
                     fontWeight: FontWeight.w500,
-                    fontSize: heightGauge * 0.018),
+                    fontSize: heightGauge * kMediumLargeSize),
               ),
             )
           ],

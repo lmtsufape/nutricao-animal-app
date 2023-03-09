@@ -27,6 +27,9 @@ class NoRegFoodScreen extends StatelessWidget {
     TextEditingController calcioController = TextEditingController();
     TextEditingController fibraController = TextEditingController();
 
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(actions: [
@@ -40,13 +43,13 @@ class NoRegFoodScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 25, left: 16, bottom: 16),
+              Padding(
+                padding: const EdgeInsets.only(top: 25, left: 16, bottom: 16),
                 child: Text(
                   'Sugestão de comida não cadastrada',
                   style: TextStyle(
                       color: kPrimaryColor,
-                      fontSize: 20,
+                      fontSize: heightScreen * 0.022,
                       fontWeight: FontWeight.w900),
                 ),
               ),
@@ -65,20 +68,20 @@ class NoRegFoodScreen extends StatelessWidget {
               TextFieldCustom('Cálcio', calcioController),
               TextFieldCustom('Fibra', fibraController),
               Padding(
-                padding: const EdgeInsets.only(top: 6),
+                padding: const EdgeInsets.only(top: 10),
                 child: Center(
                   child: SizedBox(
-                    width: 170,
-                    height: 40,
+                    width: widthScreen * 0.3,
+                    height: heightScreen * 0.040,
                     child: ElevatedButton(
                       style: styleSa,
                       onPressed: () {},
-                      child: const Text(
+                      child: Text(
                         'Adicionar',
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontWeight: FontWeight.w900,
-                            fontSize: kMediumLargeSize),
+                            fontSize: heightScreen * kMediumLargeSize),
                       ),
                     ),
                   ),

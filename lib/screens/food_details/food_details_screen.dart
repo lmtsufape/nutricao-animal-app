@@ -25,6 +25,8 @@ class FoodDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.of(context).size.width;
+    final heightScreen = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(actions: [
@@ -47,8 +49,8 @@ class FoodDetailsScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 20),
             child: Center(
               child: SizedBox(
-                height: 50,
-                width: 270,
+                width: widthScreen * 0.6,
+                height: heightScreen * 0.040,
                 child: ElevatedButton.icon(
                   style: styleDelete,
                   onPressed: () {
@@ -62,11 +64,11 @@ class FoodDetailsScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)),
                           backgroundColor: kBackgroundColor,
-                          content: const Text(
+                          content: Text(
                             'Tem certeza que deseja remover Food do cardápio de Name?',
                             style: TextStyle(
                                 color: kPrimaryColor,
-                                fontSize: kLargeSize,
+                                fontSize: heightScreen * kLargeSize,
                                 fontWeight: FontWeight.bold),
                           ),
                           actions: [
@@ -77,17 +79,17 @@ class FoodDetailsScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(
                                       right: 28, bottom: 12),
                                   child: SizedBox(
-                                    width: 100,
-                                    height: 40,
+                                    width: widthScreen * 0.3,
+                                    height: heightScreen * 0.040,
                                     child: ElevatedButton(
                                       style: styleNao,
                                       onPressed: () => Navigator.pushNamed(
                                           context, Screens.foodDetails),
-                                      child: const Text(
+                                      child: Text(
                                         'Não',
                                         style: TextStyle(
                                             color: kBackgroundColor,
-                                            fontSize: kMediumLargeSize,
+                                            fontSize: heightScreen * kMediumLargeSize,
                                             fontWeight: FontWeight.w700),
                                       ),
                                     ),
@@ -96,17 +98,17 @@ class FoodDetailsScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 12),
                                   child: SizedBox(
-                                    width: 100,
-                                    height: 40,
+                                    width: widthScreen * 0.3,
+                                    height: heightScreen * 0.040,
                                     child: ElevatedButton(
                                       style: styleSim,
                                       onPressed: () => Navigator.pushNamed(
                                           context, Screens.privateMenu),
-                                      child: const Text(
+                                      child: Text(
                                         'Sim',
                                         style: TextStyle(
                                             color: kBackgroundColor,
-                                            fontSize: kMediumLargeSize,
+                                            fontSize: heightScreen * kMediumLargeSize,
                                             fontWeight: FontWeight.w800),
                                       ),
                                     ),
@@ -119,16 +121,16 @@ class FoodDetailsScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.delete,
                     color: kBackgroundColor,
-                    size: 35,
+                    size: widthScreen * 0.06,
                   ),
-                  label: const Text(
+                  label: Text(
                     'Remover do cardápio',
                     style: TextStyle(
                         color: kBackgroundColor,
-                        fontSize: kMediumLargeSize,
+                        fontSize: heightScreen * kMediumLargeSize,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -138,14 +140,14 @@ class FoodDetailsScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: SizedBox(
-        width: 80,
-        height: 80,
+        width: widthScreen * 0.25,
+        height: heightScreen * 0.1,
         child: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, Screens.editFood),
           backgroundColor: kSecondaryColor,
-          child: const Icon(
+          child: Icon(
             Icons.edit,
-            size: 55,
+            size: widthScreen * 0.1,
             color: kBackgroundColor,
           ),
         ),
@@ -159,39 +161,44 @@ class CardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 14, bottom: 14),
-      child: SizedBox(
-        height: 90,
-        child: Card(
-          shadowColor: kPrimaryColor,
-          color: kBackgroundColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              ListTile(
-                title: Padding(
-                  padding: EdgeInsets.only(left: 4),
-                  child: Text(
-                    'Food',
-                    style: TextStyle(
-                        color: kPrimaryColor,
-                        fontSize: kHugeSize,
-                        fontWeight: FontWeight.w900),
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Center(
+        child: SizedBox(
+          height: heightScreen * 0.11,
+          width: widthScreen * 0.94,
+          child: Card(
+            shadowColor: kPrimaryColor,
+            color: kBackgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.only(left: 4, top: 10),
+                    child: Text(
+                      'Food',
+                      style: TextStyle(
+                          color: kPrimaryColor,
+                          fontSize: heightScreen * kHugeSize,
+                          fontWeight: FontWeight.w900),
+                    ),
                   ),
-                ),
-                subtitle: Padding(
-                  padding: EdgeInsets.only(left: 4),
-                  child: Text(
-                    'Name > Cardápio Particular > Food',
-                    style: TextStyle(color: kSecondaryColor),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(left: 4),
+                    child: Text(
+                      'Name > Cardápio Particular > Food',
+                      style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    ),
                   ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -237,7 +244,7 @@ _createLineTable(String foodLabel, String foodValue) {
               child: Text(
                 '$label: ',
                 style: const TextStyle(
-                    fontSize: kMediumLargeSize,
+                    fontSize: 18,
                     color: kSecondaryColor,
                     fontWeight: FontWeight.w700),
               ),
@@ -247,7 +254,7 @@ _createLineTable(String foodLabel, String foodValue) {
               child: Text(
                 foodValue,
                 style: const TextStyle(
-                    fontSize: kMediumLargeSize,
+                    fontSize: 18,
                     color: kPrimaryColor,
                     fontWeight: FontWeight.w700),
               ),
