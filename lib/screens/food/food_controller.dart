@@ -6,7 +6,7 @@ import '../../shared/constants/style_constants.dart';
 
 class FoodController {
   int feed = 0;
-  final FoodRepository _repository = FoodRepository();
+  //final FoodRepository _repository = FoodRepository();
 
   feedCalculate(type, food, TextEditingController quant) {
     /* A função é dada a cada 100 gramas, no caso
@@ -76,8 +76,7 @@ class FoodController {
               content:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
-                  onPressed: () => _repository.editActivity(
-                      type, food, quant, animalId, context, addMenu),
+                  onPressed: () => {},
                   color: kDetailColor,
                   child: const Text(
                     'Sim',
