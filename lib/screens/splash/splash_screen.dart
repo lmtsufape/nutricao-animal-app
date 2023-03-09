@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/splash/splash_screen_controller.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/assets/index.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,31 +24,34 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            // Image.asset(Assets.logo),//* if you want to use some logo, uncomment this line and pass the path
-            Text(
-              'LOGO',
-              style: TextStyle(fontSize: 78),
+          children: [
+
+            Image.asset(Assets.logo, width: widthScreen * 1.2,),
+
+            SizedBox(
+              height: heightScreen * kLargeSize,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 16),
+              child: CircularProgressIndicator(
+                color: kDetailColor,
+                strokeWidth: 8,
+              ),
             ),
             SizedBox(
-              height: kLargeSize,
-            ),
-            CircularProgressIndicator(
-              color: kDetailColor,
-              strokeWidth: kTinySize,
-            ),
-            SizedBox(
-              height: kSmallSize,
+              height: heightScreen * kMediumSize,
             ),
             Text(
               'Carregando...',
-              style: TextStyle(color: kBackgroundColor, fontSize: kLargeSize),
+              style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kLargeSize),
             )
           ],
         ),
