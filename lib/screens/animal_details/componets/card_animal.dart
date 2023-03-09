@@ -111,8 +111,8 @@ class stateCardAnimal extends State<CardAnimal> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: SizedBox(
-                        height: heightCard * 0.10,
-                        width: widthCard * 0.17,
+                        height: heightCard * 0.04,
+                        width: widthCard * 0.25,
                         child: FloatingActionButton(
                           heroTag: 'Menu',
                           backgroundColor: kDetailColor,
@@ -121,7 +121,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.menu_book_outlined,
                             color: kBackgroundColor,
-                            size: heightCard * 0.045,
+                            size: widthCard * 0.1,
                           ),
                         ),
                       ),
@@ -129,8 +129,8 @@ class stateCardAnimal extends State<CardAnimal> {
                     Padding(
                       padding: const EdgeInsets.only(left: 70),
                       child: SizedBox(
-                        height: heightCard * 0.10,
-                        width: widthCard * 0.17,
+                        height: heightCard * 0.04,
+                        width: widthCard * 0.25,
                         child: FloatingActionButton(
                           heroTag: 'Eat',
                           backgroundColor: kDetailColor,
@@ -142,7 +142,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,
-                            size: heightCard * 0.045,
+                            size: widthCard * 0.1,
                           ),
                         ),
                       ),
@@ -150,8 +150,8 @@ class stateCardAnimal extends State<CardAnimal> {
                     Padding(
                       padding: const EdgeInsets.only(left: 70, right: 20),
                       child: SizedBox(
-                        height: heightCard * 0.10,
-                        width: widthCard * 0.17,
+                        height: heightCard * 0.04,
+                        width: widthCard * 0.25,
                         child: FloatingActionButton(
                           heroTag: 'Share',
                           backgroundColor: kDetailColor,
@@ -159,7 +159,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.share,
                             color: kBackgroundColor,
-                            size: heightCard * 0.045,
+                            size: widthCard * 0.1,
                           ),
                         ),
                       ),
