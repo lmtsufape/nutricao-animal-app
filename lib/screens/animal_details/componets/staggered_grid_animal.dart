@@ -61,7 +61,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         fontSize: heightStaggered * 0.023),
                     children: <TextSpan>[
                       TextSpan(
-                        text: widget.animal.species,
+                        text: widget.animal.specie,
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: kPrimaryColor,

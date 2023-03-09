@@ -2,35 +2,38 @@ import 'package:flutter/material.dart';
 
 class AnimalModel extends ChangeNotifier {
   int id;
+  String name;
+  String sex;
   int activityLevel;
   bool isCastrated;
-  String name;
-  String type;
-  String species;
+  DateTime? birth;
+  String breed;
+  String specie;
   String weight;
   String height;
-  //DateTime? birth;
-  String sex;
+
+  //String type;
 
   AnimalModel(
     this.id,
-    this.activityLevel,
-    this.isCastrated,
-    this.weight,
-    this.height,
-    //this.birth,
-    this.type,
-    this.species,
     this.name,
     this.sex,
+    this.activityLevel,
+    this.isCastrated,
+    this.birth,
+    this.breed,
+    this.specie,
+    this.weight,
+    this.height,
+    //this.type,
   );
   get getId => id;
   get getName => name;
-  get getType => type;
-  get getSpecies => species;
+  // get getType => type;
+  get getSpecie => specie;
   get getWeight => weight;
   get getHeight => height;
-  //get getBirth => birth;
+  get getBirth => birth;
   get getSex => sex;
 
   void setId(int newId) {
@@ -43,13 +46,13 @@ class AnimalModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setType(String newType) {
-    type = newType;
-    notifyListeners();
-  }
+  // void setType(String newType) {
+  //   type = newType;
+  //   notifyListeners();
+  // }
 
-  void setSpecies(String newSpecies) {
-    species = newSpecies;
+  void setSpecie(String newSpecie) {
+    specie = newSpecie;
     notifyListeners();
   }
 

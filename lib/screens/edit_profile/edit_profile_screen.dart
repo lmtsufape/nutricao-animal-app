@@ -46,35 +46,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      appBar: AppBar(actions: [
-        IconButton(
-          icon: const Icon(Icons.account_circle_rounded),
-          onPressed: () => Navigator.pushNamed(context, Screens.user),
-        ),
-      ]),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50, bottom: 25),
-              child: Center(
-                child: SizedBox(
-                  width: widthScreen * 0.4,
-                  height: heightScreen * 0.12,
-                  child: FloatingActionButton(
-                    heroTag: 'Photo',
-                    backgroundColor: kBackgroundColor,
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.photo,
-                      color: kSecondaryColor,
-                      size: widthScreen * 0.10,
-                    ),
+
+      appBar: AppBar(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 50, bottom: 25),
+            child: Center(
+              child: SizedBox(
+                width: 130,
+                height: 130,
+                child: FloatingActionButton(
+                  backgroundColor: kBackgroundColor,
+                  onPressed: () {},
+                  child: const Icon(
+                    Icons.photo,
+                    color: kSecondaryColor,
+                    size: 50,
+
                   ),
                 ),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
               child: Column(
@@ -92,10 +87,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       contentPadding: EdgeInsets.all(14),
                       border: OutlineInputBorder(),
                     ),
+
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+
             TextFieldCustom('E-mail', emailController),
             TextFieldCustom('Senha', passwordController),
             Padding(
@@ -114,21 +111,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           fontWeight: FontWeight.w700,
                           fontSize: heightScreen * kMediumLargeSize),
                     ),
+
                   ),
                 ),
               ),
             ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: () => editController.logoff(context),
-                color: kDetailColor,
-                child: const Text('Log Off'),
-              ),
-            )
-          ],
-        ),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MaterialButton(
+              onPressed: () => editController.logoff(context),
+              color: kDetailColor,
+              child: const Text('Log Off'),
+            ),
+          )
+        ],
       ),
     );
   }
