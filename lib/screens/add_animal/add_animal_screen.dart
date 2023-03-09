@@ -59,7 +59,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
-    //final widthScreen = MediaQuery.of(context).size.width;
+    final widthScreen = MediaQuery.of(context).size.width;
 
     final AppTheme formCustom = AppTheme();
 
@@ -81,7 +81,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 'Adicionar Pet',
                 textDirection: TextDirection.ltr,
                 style: TextStyle(
-                  fontSize: heightScreen * 0.024,
+                  fontSize: heightScreen * kLargeSize,
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
                 ),
@@ -91,27 +91,27 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 15),
                 child: SizedBox(
-                  width: 110,
-                  height: 110,
+                  width: widthScreen * 0.4,
+                  height: heightScreen * 0.12,
                   child: FloatingActionButton(
                     heroTag: 'Photo',
                     backgroundColor: kBackgroundColor,
                     onPressed: () {},
-                    child: const Icon(
+                    child: Icon(
                       Icons.photo,
                       color: kSecondaryColor,
-                      size: 50,
+                      size: widthScreen * 0.10,
                     ),
                   ),
                 ),
               ),
             ),
             TextFieldCustom('Nome', nameController),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 4),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Espécie',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -119,10 +119,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 Expanded(
                   child: RadioListTile(
                     activeColor: kDetailColor,
-                    title: const Text('Cachorro',
+                    title: Text('Cachorro',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize)),
+                            fontSize: heightScreen * kMediumLargeSize)),
                     value: 'dog',
                     groupValue: specie,
                     onChanged: (value) {
@@ -139,10 +139,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 Expanded(
                   child: RadioListTile(
                     activeColor: kDetailColor,
-                    title: const Text('Gato',
+                    title: Text('Gato',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize)),
+                            fontSize: heightScreen * kMediumLargeSize)),
                     value: 'cat',
                     groupValue: specie,
                     onChanged: (value) {
@@ -158,11 +158,11 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 4),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Raça',
-                style: TextStyle(color: kSecondaryColor),
+                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -194,7 +194,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Sexo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -204,11 +204,11 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                   child: SizedBox(
                     child: RadioListTile(
                       activeColor: kDetailColor,
-                      title: const Text(
+                      title: Text(
                         'Macho',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize),
+                            fontSize: heightScreen * kMediumLargeSize),
                       ),
                       value: 'macho',
                       groupValue: sex,
@@ -225,10 +225,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 Expanded(
                   child: RadioListTile(
                     activeColor: kDetailColor,
-                    title: const Text('Fêmea',
+                    title: Text('Fêmea',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize)),
+                            fontSize: heightScreen * kMediumLargeSize)),
                     value: 'fêmea',
                     groupValue: sex,
                     onChanged: (value) {
@@ -259,7 +259,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -267,10 +267,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 Expanded(
                   child: RadioListTile(
                     activeColor: kDetailColor,
-                    title: const Text('Sim',
+                    title: Text('Sim',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize)),
+                            fontSize: heightScreen * kMediumLargeSize)),
                     value: true,
                     groupValue: isCastrated,
                     onChanged: (value) {
@@ -285,10 +285,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                 Expanded(
                   child: RadioListTile(
                     activeColor: kDetailColor,
-                    title: const Text('Não',
+                    title: Text('Não',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: kMediumLargeSize)),
+                            fontSize: heightScreen * kMediumLargeSize)),
                     value: false,
                     groupValue: isCastrated,
                     onChanged: (value) {
@@ -308,7 +308,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Nível de Atividade',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -332,28 +332,32 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             const VerticalSpacerBox(size: SpacerSize.medium),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 10),
-                child: ElevatedButton(
-                  style: AddAnimalScreen.styleAdicionar,
-                  child: Text('Adicionar',
-                      style: TextStyle(
-                          color: kBackgroundColor,
-                          fontWeight: FontWeight.w500,
-                          fontSize: heightScreen * 0.018)),
-                  onPressed: () {
-                    controller.adicionarAnimal(
-                      context,
-                      nameController.text,
-                      specie,
-                      breed,
-                      sex,
-                      weightController.text,
-                      heightController.text,
-                      ageController.text,
-                      isCastrated,
-                      activityLevel,
-                    );
-                  },
+                padding: const EdgeInsets.only(top: 12, bottom: 10),
+                child: SizedBox(
+                  width: widthScreen * 0.3,
+                  height: heightScreen * 0.040,
+                  child: ElevatedButton(
+                    style: AddAnimalScreen.styleAdicionar,
+                    child: Text('Adicionar',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: heightScreen * kMediumLargeSize)),
+                    onPressed: () {
+                      controller.adicionarAnimal(
+                        context,
+                        nameController.text,
+                        specie,
+                        breed,
+                        sex,
+                        weightController.text,
+                        heightController.text,
+                        ageController.text,
+                        isCastrated,
+                        activityLevel,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -390,7 +394,7 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * 0.020),
+                  fontSize: heightScreen * kMediumLargeSize),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -414,7 +418,7 @@ class _AnimalSexWidgetState extends State<AnimalSexWidget> {
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * 0.020),
+                  fontSize: heightScreen * kMediumLargeSize),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -461,7 +465,7 @@ class _CastratedWidgetState extends State<CastratedWidget> {
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * 0.020),
+                  fontSize: heightScreen * kMediumLargeSize),
             ),
             leading: Transform.scale(
               scale: 2,
@@ -485,7 +489,7 @@ class _CastratedWidgetState extends State<CastratedWidget> {
               style: TextStyle(
                   color: kPrimaryColor,
                   fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * 0.020),
+                  fontSize: heightScreen * kMediumLargeSize),
             ),
             leading: Transform.scale(
               scale: 2,

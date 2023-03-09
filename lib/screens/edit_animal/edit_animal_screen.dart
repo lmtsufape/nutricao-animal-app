@@ -23,6 +23,9 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+
     TextEditingController nameController = TextEditingController();
     TextEditingController pesoController = TextEditingController();
     TextEditingController alturaController = TextEditingController();
@@ -41,78 +44,84 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 25.0, left: 16.0),
+              Padding(
+                padding: const EdgeInsets.only(top: 25.0, left: 16.0),
                 child: Text(
                   'Editar informações',
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
-                    fontSize: kLargeSize,
+                    fontSize: heightScreen * kLargeSize,
                     color: kPrimaryColor,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
                 child: Text(
                   'Name',
                   style:
-                      TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
+                      TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                 ),
               ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 16),
                   child: SizedBox(
-                    width: 110,
-                    height: 110,
+                    width: widthScreen * 0.4,
+                    height: heightScreen * 0.12,
                     child: FloatingActionButton(
                       heroTag: 'Photo',
                       backgroundColor: kBackgroundColor,
                       onPressed: () {},
-                      child: const Icon(
+                      child: Icon(
                         Icons.photo,
                         color: kSecondaryColor,
-                        size: 50,
+                        size: widthScreen * 0.10,
                       ),
                     ),
                   ),
                 ),
               ),
               TextFieldCustom('Nome', nameController),
-              const Padding(
-                padding: EdgeInsets.only(left: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
                 child: Text(
                   'Espécie',
-                  style: TextStyle(color: kSecondaryColor),
+                  style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                 ),
               ),
-              Column(
+              Row(
                 children: [
-                  RadioListTile(
-                    title: const Text('Cachorro'),
-                    value: 'dog',
-                    groupValue: specie,
-                    onChanged: (value) {
-                      setState(
-                        () {
-                          specie = value.toString();
-                        },
-                      );
-                    },
+                  Expanded(
+                    child: RadioListTile(
+                      title: Text('Cachorro', style: TextStyle(fontSize: heightScreen * kMediumLargeSize)),
+                      value: 'dog',
+                      groupValue: specie,
+                      activeColor: kDetailColor,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            specie = value.toString();
+                          },
+                        );
+                      },
+                    ),
                   ),
-                  RadioListTile(
-                    title: const Text('Gato'),
-                    value: 'cat',
-                    groupValue: specie,
-                    onChanged: (value) {
-                      setState(
-                        () {
-                          specie = value.toString();
-                        },
-                      );
-                    },
+                  Expanded(
+                    child: RadioListTile(
+                      title: Text('Gato', style: TextStyle(fontSize: heightScreen * kMediumLargeSize),),
+                      value: 'cat',
+                      groupValue: specie,
+                      activeColor: kDetailColor,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            specie = value.toString();
+                          },
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -120,39 +129,39 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                 'Border Collie',
                 'pastor alemão',
               ], 'Raça', 1),
-              const Padding(
-                padding: EdgeInsets.only(left: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
                 child: Text(
                   'Sexo',
-                  style: TextStyle(color: kSecondaryColor),
+                  style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                 ),
               ),
               const AnimalSexWidget(),
               TextFieldCustom('Peso', pesoController),
               TextFieldCustom('Altura', alturaController),
               TextFieldCustom('Idade', idadeController),
-              const Padding(
-                padding: EdgeInsets.only(left: 16),
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
                 child: Text(
                   'Seu animal é castrado(a)?',
-                  style: TextStyle(color: kSecondaryColor),
+                  style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                 ),
               ),
               const CastratedWidget(),
               const DropDownCustom(['1', '2', '3'], 'Nível de atividade', 2),
               Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 130,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 5),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 10),
+                  child: SizedBox(
+                    width: widthScreen * 0.3,
+                    height: heightScreen * 0.040,
                     child: ElevatedButton(
                       style: EditAnimalScreen.styleSalvar,
-                      child: const Text('Salvar',
+                      child: Text('Salvar',
                           style: TextStyle(
                               color: kBackgroundColor,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20)),
+                              fontWeight: FontWeight.w500,
+                              fontSize: heightScreen * kMediumLargeSize)),
                       onPressed: () {},
                     ),
                   ),

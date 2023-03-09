@@ -56,7 +56,7 @@ class _FoodScreenState extends State<FoodScreen> {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
-    //final widthScreen = MediaQuery.of(context).size.width;
+    final widthScreen = MediaQuery.of(context).size.width;
     final AppTheme formCustom = AppTheme();
     return Scaffold(
       appBar: formCustom.appBarCustom(context, _getUserName()),
@@ -64,24 +64,24 @@ class _FoodScreenState extends State<FoodScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 16),
               child: Text(
                 'Alimentar',
                 style: TextStyle(
                     color: kPrimaryColor,
-                    fontSize: kHugeSize,
+                    fontSize: heightScreen * kHugeSize,
                     fontWeight: FontWeight.w900),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 left: 16,
                 bottom: 16,
               ),
               child: Text('Name',
                   style:
-                      TextStyle(color: kSecondaryColor, fontSize: kMediumSize)),
+                      TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
@@ -122,12 +122,12 @@ class _FoodScreenState extends State<FoodScreen> {
                       color: kPrimaryColor,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'OU',
                     style: TextStyle(
                         color: kPrimaryColor,
                         fontWeight: FontWeight.w900,
-                        fontSize: kLargeSize),
+                        fontSize: heightScreen * kLargeSize),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -140,13 +140,13 @@ class _FoodScreenState extends State<FoodScreen> {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, bottom: 16),
               child: Text(
                 'Comida fora do cardápio',
                 style: TextStyle(
                     color: kPrimaryColor,
-                    fontSize: kMediumLargeSize,
+                    fontSize: heightScreen * kMediumLargeSize,
                     fontWeight: FontWeight.w900),
               ),
             ),
@@ -155,7 +155,7 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Tipo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -189,7 +189,7 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Comida',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -219,12 +219,12 @@ class _FoodScreenState extends State<FoodScreen> {
             const VerticalSpacerBox(size: SpacerSize.small),
             TextFieldCustom('Quantidade(em gramas)', quantController),
             ListTile(
-              title: const Text(
+              title: Text(
                 'Adicionar no cárdapio particular?',
                 style: TextStyle(
                     color: kPrimaryColor,
                     fontWeight: FontWeight.w900,
-                    fontSize: 20),
+                    fontSize: heightScreen * 0.020),
               ),
               leading: Transform.scale(
                 scale: 2,
@@ -247,15 +247,15 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 16),
                 child: SizedBox(
-                  width: 120,
-                  height: 40,
+                  width: widthScreen * 0.4,
+                  height: heightScreen * 0.040,
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
                     onPressed: () => _controller.feedAnimal(type, food,
                         quantController, widget.id, context, addMenu),
-                    child: const Text('Alimentar',
+                    child: Text('Alimentar',
                         style: TextStyle(
-                            color: kBackgroundColor, fontSize: kMediumSize)),
+                            color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
                   ),
                 ),
               ),
@@ -280,11 +280,13 @@ class _MenuWidgetState extends State<MenuWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.of(context).size.width;
+    final heightScreen = MediaQuery.of(context).size.height;
     return ListTile(
-      title: const Text(
+      title: Text(
         'Adicionar no cárdapio particular?',
         style: TextStyle(
-            color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: 20),
+            color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: heightScreen * 0.020),
       ),
       leading: Transform.scale(
         scale: 2,
@@ -318,6 +320,8 @@ class TextFieldButtonPC extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widthScreen = MediaQuery.of(context).size.width;
+    final heightScreen = MediaQuery.of(context).size.height;
     return InkWell(
       onTap: () {},
       child: Ink(
@@ -328,9 +332,9 @@ class TextFieldButtonPC extends StatelessWidget {
             children: [
               Text(
                 _buttonPCFieldLabel,
-                style: const TextStyle(
+                style: TextStyle(
                   color: kPrimaryColor,
-                  fontSize: kMediumLargeSize,
+                  fontSize: heightScreen * kMediumLargeSize,
                   fontWeight: FontWeight.w900,
                 ),
               ),

@@ -17,6 +17,8 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     // final AppTheme formCustom = AppTheme();
     final UserScreenController controller = UserScreenController();
 
@@ -32,15 +34,16 @@ class _UserScreenState extends State<UserScreen> {
             padding: const EdgeInsets.only(top: 50, bottom: 25),
             child: Center(
               child: SizedBox(
-                width: 130,
-                height: 130,
+                width: widthScreen * 0.4,
+                height: heightScreen * 0.12,
                 child: FloatingActionButton(
+                  heroTag: 'Photo',
                   backgroundColor: kBackgroundColor,
                   onPressed: () {},
-                  child: const Icon(
+                  child: Icon(
                     Icons.photo,
                     color: kSecondaryColor,
-                    size: 50,
+                    size: widthScreen * 0.10,
                   ),
                 ),
               ),
@@ -79,17 +82,17 @@ class _UserScreenState extends State<UserScreen> {
             padding: const EdgeInsets.only(top: 10),
             child: Center(
               child: SizedBox(
-                width: 110,
-                height: 40,
+                width: widthScreen * 0.4,
+                height: heightScreen * 0.04,
                 child: ElevatedButton(
                   style: styleSal,
                   onPressed: () => controller.logoff(context),
-                  child: const Text(
+                  child: Text(
                     'Log Off',
                     style: TextStyle(
                         color: kBackgroundColor,
                         fontWeight: FontWeight.w700,
-                        fontSize: kMediumLargeSize),
+                        fontSize: heightScreen * kMediumLargeSize),
                   ),
                 ),
               ),

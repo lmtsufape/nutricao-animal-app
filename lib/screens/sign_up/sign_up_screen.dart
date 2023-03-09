@@ -22,6 +22,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SignUpController()),
@@ -40,42 +42,51 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           'Cadastro de Usuário',
                           style: TextStyle(
-                              color: kBackgroundColor, fontSize: kLargeSize),
+                              color: kBackgroundColor, fontSize: heightScreen * kLargeSize),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
-                        const Text(
+                        Text(
                           'Nome de exibição',
-                          style: TextStyle(color: kBackgroundColor),
+                          style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize),
                         ),
                         CustomTextFormField(
                           hintText: 'Ana Vieira',
                           controller: controller.nameController,
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
-                        const Text(
-                          'E-mail',
-                          style: TextStyle(color: kBackgroundColor),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(
+                            'E-mail',
+                            style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize),
+                          ),
                         ),
                         CustomTextFormField(
                           hintText: 'email@example.com',
                           controller: controller.emailController,
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
-                        const Text('Senha',
-                            style: TextStyle(color: kBackgroundColor)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text('Senha',
+                              style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                        ),
                         CustomTextFormField(
                           hintText: '********',
                           isPassword: true,
                           controller: controller.passwordController,
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
-                        const Text('Confirmar senha',
-                            style: TextStyle(color: kBackgroundColor)),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text('Confirmar senha',
+                              style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                        ),
                         CustomTextFormField(
                           hintText: '********',
                           isPassword: true,
@@ -83,33 +94,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                         const VerticalSpacerBox(size: SpacerSize.small),
                         const SizedBox(
-                          height: kMediumSize,
+                          height: 16,
                         ),
-                        Center(
-                          child: PrimaryButton(
-                              text: const Text('Finalizar'),
-                              onPressed: () {
-                                if (validateFields(
-                                    controller.nameController.text,
-                                    controller.emailController.text,
-                                    controller.passwordController.text,
-                                    controller
-                                        .confirmPasswordController.text)) {
-                                  SignUpRepository.signUp(
+                        Padding(
+                          padding: const EdgeInsets.only(top: 14),
+                          child: Center(
+                            child: PrimaryButton(
+                                text: Text('Finalizar', style: TextStyle(fontSize: heightScreen * kMediumSize),),
+                                onPressed: () {
+                                  if (validateFields(
                                       controller.nameController.text,
                                       controller.emailController.text,
                                       controller.passwordController.text,
-                                      context);
-                                } else {
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return const ErrorDialog(
-                                            mensage:
-                                                'Ocorreu um erro, verifique todos os campos e tente novamente');
-                                      });
-                                }
-                              }),
+                                      controller
+                                          .confirmPasswordController.text)) {
+                                    SignUpRepository.signUp(
+                                        controller.nameController.text,
+                                        controller.emailController.text,
+                                        controller.passwordController.text,
+                                        context);
+                                  } else {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ErrorDialog(
+                                              mensage:
+                                                  'Ocorreu um erro, verifique todos os campos e tente novamente');
+                                        });
+                                  }
+                                }),
+                          ),
                         ),
                       ],
                     ),

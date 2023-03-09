@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import '../../screens/add_animal/add_animal_controller.dart';
 import '../../shared/constants/style_constants.dart';
@@ -30,6 +31,7 @@ class _DropDownCustomState extends State<DropDownCustom> {
       print(dropValue.value.toString());
     }
     final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return SizedBox(
       height: 98,
       child: Padding(
@@ -40,7 +42,7 @@ class _DropDownCustomState extends State<DropDownCustom> {
             Text(
               widget._labelDrop,
               style: TextStyle(
-                  color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                  color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
             ),
             ValueListenableBuilder(
                 valueListenable: dropValue,
@@ -51,12 +53,12 @@ class _DropDownCustomState extends State<DropDownCustom> {
                       child: Icon(
                         Icons.arrow_circle_down,
                         color: kDetailColor,
-                        size: heightScreen * 0.040,
+                        size: widthScreen * 0.08,
                       ),
                     ),
                     hint: Text(
                       'Selecione',
-                      style: TextStyle(fontSize: heightScreen * 0.020),
+                      style: TextStyle(fontSize: heightScreen * kMediumLargeSize),
                     ),
                     decoration: InputDecoration(
                         border: OutlineInputBorder(

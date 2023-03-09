@@ -56,8 +56,10 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return SizedBox(
-      width: 380,
+      width: widthScreen * 0.8,
       child: Drawer(
         backgroundColor: kSecondaryColor,
         child: Column(
@@ -66,35 +68,35 @@ class NavigationDrawerWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.portrait_rounded,
                   color: kBackgroundColor,
-                  size: 125,
+                  size: widthScreen * 0.3,
                 ),
                 title: Padding(
                   padding: const EdgeInsets.only(top: 37),
                   child: Text(
                     userName,
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: kBackgroundColor,
-                        fontSize: 27,
+                        fontSize: heightScreen * 0.027,
                         fontWeight: FontWeight.w900),
                   ),
                 ),
                 subtitle: Text(
                   email,
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: kBackgroundColor,
-                      fontSize: kMediumSize,
+                      fontSize: heightScreen * kMediumSize,
                       fontWeight: FontWeight.w500),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 20),
+              padding: const EdgeInsets.only(top: 60, bottom: 20),
               child: Center(
                 child: SizedBox(
-                  width: 215,
+                  width: widthScreen * 0.5,
                   child: ElevatedButton.icon(
                     style: style,
                     onPressed: () =>
@@ -103,11 +105,11 @@ class NavigationDrawerWidget extends StatelessWidget {
                       Icons.edit_rounded,
                       color: kBackgroundColor,
                     ),
-                    label: const Text(
+                    label: Text(
                       'Editar informações',
                       style: TextStyle(
                           color: kBackgroundColor,
-                          fontSize: kMediumSize,
+                          fontSize: heightScreen * kMediumSize,
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -119,7 +121,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: Container(
                   height: 3,
-                  width: 335,
+                  width: widthScreen * 0.7,
                   color: kBackgroundColor,
                 ),
               ),
@@ -134,11 +136,11 @@ class NavigationDrawerWidget extends StatelessWidget {
                     child: ListTile(
                       onTap: () =>
                           Navigator.pushNamed(context, Screens.noRegFood),
-                      title: const Text(
+                      title: Text(
                         'Sugerir nova comida',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontSize: kHugeSize,
+                            fontSize: heightScreen * kLargeSize,
                             fontWeight: FontWeight.w900),
                       ),
                     ),
@@ -147,11 +149,11 @@ class NavigationDrawerWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
                       onTap: () {},
-                      title: const Text(
+                      title: Text(
                         'Lorem ipsum',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontSize: kHugeSize,
+                            fontSize: heightScreen * kLargeSize,
                             fontWeight: FontWeight.w900),
                       ),
                     ),
@@ -160,22 +162,22 @@ class NavigationDrawerWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
                       onTap: () {},
-                      title: const Text(
+                      title: Text(
                         'Lorem ipsum',
                         style: TextStyle(
                             color: kBackgroundColor,
-                            fontSize: kHugeSize,
+                            fontSize: heightScreen * kLargeSize,
                             fontWeight: FontWeight.w900),
                       ),
                     ),
                   ),
                   ListTile(
                     onTap: () {},
-                    title: const Text(
+                    title: Text(
                       'Lorem ipsum',
                       style: TextStyle(
                           color: kBackgroundColor,
-                          fontSize: kHugeSize,
+                          fontSize: heightScreen * kLargeSize,
                           fontWeight: FontWeight.w900),
                     ),
                   ),
@@ -194,20 +196,20 @@ class NavigationDrawerWidget extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 20),
                         child: TextButton(
                             onPressed: () => controller.logoff(context),
-                            child: const Text(
+                            child: Text(
                               'Sair',
                               style: TextStyle(
-                                  color: kBackgroundColor, fontSize: 28),
+                                  color: kBackgroundColor, fontSize: heightScreen * 0.028),
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 220),
+                        padding: const EdgeInsets.only(left: 205, bottom: 16),
                         child: IconButton(
                             onPressed: () {},
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.exit_to_app,
                               color: kBackgroundColor,
-                              size: 40,
+                              size: widthScreen * 0.1,
                             )),
                       ),
                     ],
