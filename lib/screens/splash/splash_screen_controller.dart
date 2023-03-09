@@ -27,12 +27,12 @@ class SplashScreenController {
     /// so we can await the setup while the app don't freeze
 
     Future.delayed(const Duration(seconds: 3), () async {
-      if (await userHasToken()) {
+      /*if (await userHasToken()) {
         signIn(context);
-      } else {
-        // ignore: use_build_context_synchronously
-        Navigator.popAndPushNamed(context, Screens.signin);
-      }
+      } else {*/
+      // ignore: use_build_context_synchronously
+      Navigator.popAndPushNamed(context, Screens.signin);
+      //}
     });
   }
 

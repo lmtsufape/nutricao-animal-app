@@ -93,7 +93,7 @@ class stateCardAnimal extends State<CardAnimal> {
                       ),
                       Text(
                         //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
-                        widget.animal.name.toString(),
+                        widget.animal.breed.toString(),
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontSize: heightCard * 0.022,

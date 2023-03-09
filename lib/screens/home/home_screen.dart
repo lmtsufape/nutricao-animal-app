@@ -149,14 +149,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                           itemBuilder: (context, index) {
                             animal = AnimalModel(
                                 dataAnimals[index]['id'],
+                                dataAnimals[index]['name'],
+                                dataAnimals[index]['sex'],
                                 dataAnimals[index]['activity_level'],
                                 dataAnimals[index]['is_castrated'],
+                                dataAnimals[index]['birthDate'],
+                                dataAnimals[index]['breed'],
+                                dataAnimals[index]['specie'],
                                 dataAnimals[index]['weight'],
-                                dataAnimals[index]['weight'],
-                                dataAnimals[index]['type'],
-                                dataAnimals[index]['species'],
-                                dataAnimals[index]['name'],
-                                dataAnimals[index]['sex']);
+                                dataAnimals[index]['height']);
 
                             return CardHomeScreen(animal);
                           },
@@ -262,7 +263,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     padding: const EdgeInsets.only(left: 85.0, bottom: 25),
                     child: Text(
                       //Trocar para widget.animal.breed quando arrumar API
-                      widget.animal.name.toString(),
+                      widget.animal.breed.toString(),
                       style: const TextStyle(
                         fontSize: 20.0,
                         color: kBackgroundColor,
