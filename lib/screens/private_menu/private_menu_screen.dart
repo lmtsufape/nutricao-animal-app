@@ -15,6 +15,8 @@ class PrivateMenuScreen extends StatefulWidget {
 class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(actions: [
@@ -24,22 +26,22 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         ),
       ]),
       body: ListView(
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.only(top: 16, left: 16),
+            padding: const EdgeInsets.only(top: 16, left: 16),
             child: Text(
               'Cardápio particular',
               style: TextStyle(
                   color: kPrimaryColor,
-                  fontSize: kHugeSize,
+                  fontSize: heightScreen * kHugeSize,
                   fontWeight: FontWeight.w900),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 16, bottom: 16),
+            padding: const EdgeInsets.only(left: 18, bottom: 16),
             child: Text(
               'Nome',
-              style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
+              style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
             ),
           ),
           CardMenu(),
@@ -56,15 +58,15 @@ class _PrivateMenuScreenState extends State<PrivateMenuScreen> {
         ],
       ),
       floatingActionButton: SizedBox(
-        width: 100,
-        height: 100,
+        width: widthScreen * 0.25,
+        height: heightScreen * 0.1,
         child: FloatingActionButton(
           heroTag: 'Add1',
           onPressed: () {},
           backgroundColor: kSecondaryColor,
-          child: const Icon(
+          child: Icon(
             Icons.add,
-            size: 65,
+            size: widthScreen * 0.14,
             color: kBackgroundColor,
           ),
         ),
@@ -78,47 +80,52 @@ class CardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () => Navigator.pushNamed(context, Screens.foodDetails),
       child: Ink(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
-          child: SizedBox(
-            height: 90,
-            child: Card(
-              color: kBackgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  ListTile(
-                    title: Padding(
-                      padding: EdgeInsets.only(top: 12),
-                      child: Text(
-                        'Food - Amount',
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: SizedBox(
+              height: heightScreen * 0.09,
+              width: widthScreen * 0.94,
+              child: Card(
+                color: kBackgroundColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Text(
+                          'Food - Amount',
+                          style: TextStyle(
+                              color: kPrimaryColor,
+                              fontSize: heightScreen * kMediumLargeSize,
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                      subtitle: Text(
+                        'Type',
                         style: TextStyle(
-                            color: kPrimaryColor,
-                            fontSize: kMediumLargeSize,
-                            fontWeight: FontWeight.w900),
+                            color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                       ),
-                    ),
-                    subtitle: Text(
-                      'Type',
-                      style: TextStyle(
-                          color: kSecondaryColor, fontSize: kMediumSize),
-                    ),
-                    trailing: Padding(
-                      padding: EdgeInsets.only(top: 12),
-                      child: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: kDetailColor,
-                        size: 30,
+                      trailing: Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: kDetailColor,
+                          size: widthScreen * 0.06,
+                        ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

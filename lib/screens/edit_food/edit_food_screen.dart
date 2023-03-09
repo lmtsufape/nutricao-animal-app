@@ -21,6 +21,9 @@ class EditFoodScreen extends StatelessWidget {
     TextEditingController nickController = TextEditingController();
     TextEditingController quantController = TextEditingController();
 
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(actions: [
         IconButton(
@@ -32,21 +35,21 @@ class EditFoodScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 16, left: 16),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, left: 16),
             child: Text(
               'Editar Comida',
               style: TextStyle(
                   color: kPrimaryColor,
-                  fontSize: kHugeSize,
+                  fontSize: heightScreen * kHugeSize,
                   fontWeight: FontWeight.w900),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16, bottom: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, bottom: 16),
             child: Text(
               'Name > Cardápio Particular > Food',
-              style: TextStyle(color: kSecondaryColor, fontSize: kMediumSize),
+              style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
             ),
           ),
           TextFieldCustom('Apelido', nickController),
@@ -60,16 +63,16 @@ class EditFoodScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16),
             child: Center(
               child: SizedBox(
-                height: 40,
-                width: 110,
+                width: widthScreen * 0.3,
+                height: heightScreen * 0.040,
                 child: ElevatedButton(
                   style: styleSave,
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     'Salvar',
                     style: TextStyle(
                         color: kBackgroundColor,
-                        fontSize: kMediumLargeSize,
+                        fontSize: heightScreen * kMediumLargeSize,
                         fontWeight: FontWeight.w700),
                   ),
                 ),

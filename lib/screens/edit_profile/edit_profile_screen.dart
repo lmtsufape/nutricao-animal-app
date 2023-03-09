@@ -38,6 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     EditProfileController editController = EditProfileController();
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
@@ -59,15 +60,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               padding: const EdgeInsets.only(top: 50, bottom: 25),
               child: Center(
                 child: SizedBox(
-                  width: 130,
-                  height: 130,
+                  width: widthScreen * 0.4,
+                  height: heightScreen * 0.12,
                   child: FloatingActionButton(
+                    heroTag: 'Photo',
                     backgroundColor: kBackgroundColor,
                     onPressed: () {},
-                    child: const Icon(
+                    child: Icon(
                       Icons.photo,
                       color: kSecondaryColor,
-                      size: 50,
+                      size: widthScreen * 0.10,
                     ),
                   ),
                 ),
@@ -81,7 +83,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Text(
                     'Nome de Exibição',
                     style: TextStyle(
-                        color: kSecondaryColor, fontSize: heightScreen * 0.016),
+                        color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
                   ),
                   TextField(
                     controller: nameController,
@@ -100,17 +102,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               padding: const EdgeInsets.only(top: 10),
               child: Center(
                 child: SizedBox(
-                  width: 110,
-                  height: 40,
+                  width: widthScreen * 0.3,
+                  height: heightScreen * 0.040,
                   child: ElevatedButton(
                     style: EditProfileScreen.styleSal,
                     onPressed: () {},
-                    child: const Text(
+                    child: Text(
                       'Salvar',
                       style: TextStyle(
                           color: kBackgroundColor,
                           fontWeight: FontWeight.w700,
-                          fontSize: kMediumLargeSize),
+                          fontSize: heightScreen * kMediumLargeSize),
                     ),
                   ),
                 ),

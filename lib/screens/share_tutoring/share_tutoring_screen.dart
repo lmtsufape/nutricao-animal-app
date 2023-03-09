@@ -18,6 +18,8 @@ class ShareTutoringScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     TextEditingController emailController = TextEditingController();
 
     return Scaffold(
@@ -31,34 +33,34 @@ class ShareTutoringScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(top: 25, left: 16),
+          Padding(
+            padding: const EdgeInsets.only(top: 25, left: 16),
             child: Text(
               'Compartilhar tutoria',
               style: TextStyle(
                 color: kPrimaryColor,
-                fontSize: kHugeSize,
+                fontSize: heightScreen * kHugeSize,
                 fontWeight: FontWeight.w900,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 16),
             child: Text(
               'Name',
               style: TextStyle(
                 color: kSecondaryColor,
-                fontSize: kMediumSize,
+                fontSize: heightScreen * kMediumSize,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 16, left: 16, right: 10),
+          Padding(
+            padding: const EdgeInsets.only(top: 16, left: 16, right: 10),
             child: Text(
               'Informe o e-mail ou usuário da pessoa com quem gostaria de compartilhar a tutoria do seu pet.',
               style: TextStyle(
                   color: kPrimaryColor,
-                  fontSize: kMediumLargeSize,
+                  fontSize: heightScreen * kMediumLargeSize,
                   fontWeight: FontWeight.w900),
             ),
           ),
@@ -67,16 +69,16 @@ class ShareTutoringScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 16),
               child: SizedBox(
-                width: 110,
-                height: 40,
+                width: widthScreen * 0.3,
+                height: heightScreen * 0.040,
                 child: ElevatedButton(
                   style: styleEnviar,
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     'Enviar',
                     style: TextStyle(
                         color: kBackgroundColor,
-                        fontSize: kMediumLargeSize,
+                        fontSize: heightScreen * kMediumLargeSize,
                         fontWeight: FontWeight.w700),
                   ),
                 ),
