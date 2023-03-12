@@ -6,6 +6,8 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 
 import '../../components/forms/dropdown_custom.dart';
 import '../../components/forms/text_field_custom.dart';
+import '../add_animal/animal_sex.dart';
+import '../add_animal/castrated_widget.dart';
 
 class EditAnimalScreen extends StatefulWidget {
   const EditAnimalScreen({Key? key}) : super(key: key);

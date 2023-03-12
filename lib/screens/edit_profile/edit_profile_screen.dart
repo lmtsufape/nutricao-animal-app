@@ -46,7 +46,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
-
       appBar: AppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,54 +63,50 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Icons.photo,
                     color: kSecondaryColor,
                     size: 50,
-
                   ),
                 ),
               ),
             ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Nome de Exibição',
-                    style: TextStyle(
-                        color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
-                  ),
-                  TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'asda',
-                      contentPadding: EdgeInsets.all(14),
-                      border: OutlineInputBorder(),
-                    ),
-
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Nome de Exibição',
+                  style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: heightScreen * kMediumSize),
+                ),
+                TextField(
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    labelText: 'asda',
+                    contentPadding: EdgeInsets.all(14),
+                    border: OutlineInputBorder(),
                   ),
                 ),
               ],
             ),
-
-            TextFieldCustom('E-mail', emailController),
-            TextFieldCustom('Senha', passwordController),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Center(
-                child: SizedBox(
-                  width: widthScreen * 0.3,
-                  height: heightScreen * 0.040,
-                  child: ElevatedButton(
-                    style: EditProfileScreen.styleSal,
-                    onPressed: () {},
-                    child: Text(
-                      'Salvar',
-                      style: TextStyle(
-                          color: kBackgroundColor,
-                          fontWeight: FontWeight.w700,
-                          fontSize: heightScreen * kMediumLargeSize),
-                    ),
-
+          ),
+          TextFieldCustom('E-mail', emailController),
+          TextFieldCustom('Senha', passwordController),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Center(
+              child: SizedBox(
+                width: widthScreen * 0.3,
+                height: heightScreen * 0.040,
+                child: ElevatedButton(
+                  style: EditProfileScreen.styleSal,
+                  onPressed: () {},
+                  child: Text(
+                    'Salvar',
+                    style: TextStyle(
+                        color: kBackgroundColor,
+                        fontWeight: FontWeight.w700,
+                        fontSize: heightScreen * kMediumLargeSize),
                   ),
                 ),
               ),

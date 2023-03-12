@@ -111,7 +111,9 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Espécie',
-                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                style: TextStyle(
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -162,7 +164,9 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Raça',
-                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                style: TextStyle(
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -194,7 +198,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Sexo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -259,7 +264,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -308,7 +314,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Nível de Atividade',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -365,148 +372,6 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-enum AnimalSex { male, female }
-
-class AnimalSexWidget extends StatefulWidget {
-  const AnimalSexWidget({super.key});
-
-  @override
-  State<AnimalSexWidget> createState() => _AnimalSexWidgetState();
-}
-
-class _AnimalSexWidgetState extends State<AnimalSexWidget> {
-  AnimalSex? _animalSex = AnimalSex.male;
-
-  @override
-  Widget build(BuildContext context) {
-    final heightScreen = MediaQuery.of(context).size.height;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Flexible(
-          child: ListTile(
-            title: Text(
-              'Masculino',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * kMediumLargeSize),
-            ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<AnimalSex>(
-                activeColor: kDetailColor,
-                value: AnimalSex.male,
-                groupValue: _animalSex,
-                onChanged: (AnimalSex? value) {
-                  setState(() {
-                    _animalSex = value;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-        Flexible(
-          child: ListTile(
-            title: Text(
-              'Feminino',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * kMediumLargeSize),
-            ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<AnimalSex>(
-                value: AnimalSex.female,
-                activeColor: kDetailColor,
-                groupValue: _animalSex,
-                onChanged: (AnimalSex? value) {
-                  setState(() {
-                    _animalSex = value;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-enum Castrated { yes, no }
-
-class CastratedWidget extends StatefulWidget {
-  const CastratedWidget({super.key});
-
-  @override
-  State<CastratedWidget> createState() => _CastratedWidgetState();
-}
-
-class _CastratedWidgetState extends State<CastratedWidget> {
-  Castrated? _castratedAnimal = Castrated.yes;
-
-  @override
-  Widget build(BuildContext context) {
-    final heightScreen = MediaQuery.of(context).size.height;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Flexible(
-          child: ListTile(
-            title: Text(
-              'Sim',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * kMediumLargeSize),
-            ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<Castrated>(
-                activeColor: kDetailColor,
-                value: Castrated.yes,
-                groupValue: _castratedAnimal,
-                onChanged: (Castrated? value) {
-                  setState(() {
-                    _castratedAnimal = value;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-        Flexible(
-          child: ListTile(
-            title: Text(
-              'Não',
-              style: TextStyle(
-                  color: kPrimaryColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: heightScreen * kMediumLargeSize),
-            ),
-            leading: Transform.scale(
-              scale: 2,
-              child: Radio<Castrated>(
-                value: Castrated.no,
-                activeColor: kDetailColor,
-                groupValue: _castratedAnimal,
-                onChanged: (Castrated? value) {
-                  setState(() {
-                    _castratedAnimal = value;
-                  });
-                },
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
