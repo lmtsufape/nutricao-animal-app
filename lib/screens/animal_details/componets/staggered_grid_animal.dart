@@ -56,16 +56,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Espécie: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: widget.animal.specie,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
@@ -86,16 +86,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Idade: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: '3 anos',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
@@ -116,16 +116,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Sexo: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: widget.animal.sex,
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
@@ -146,16 +146,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                     text: TextSpan(
                       text: 'Peso: ',
                       style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w700,
                           color: kSecondaryColor,
-                          fontSize: heightStaggered * 0.023),
+                          fontSize: heightStaggered * 0.021),
                       children: <TextSpan>[
                         TextSpan(
                           text: "${widget.animal.weight} Kg",
                           style: TextStyle(
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w700,
                               color: kPrimaryColor,
-                              fontSize: heightStaggered * 0.020),
+                              fontSize: heightStaggered * 0.021),
                         ),
                       ],
                     ),
@@ -164,7 +164,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                     padding: const EdgeInsets.only(right: 0, top: 5, left: 2),
                     child: SizedBox(
                       height: heightStaggered * 0.045,
-                      width: widthStaggered * 0.08,
+                      width: widthStaggered * 0.09,
                       child: Padding(
                         padding: const EdgeInsets.only(bottom: 8),
                         child: FloatingActionButton(
@@ -174,7 +174,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                           child: Icon(
                             Icons.area_chart_outlined,
                             color: kBackgroundColor,
-                            size: heightStaggered * 0.025,
+                            size: heightStaggered * 0.02,
                           ),
                         ),
                       ),
@@ -195,16 +195,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Altura: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: "${widget.animal.height} cm",
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
@@ -225,16 +225,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Castrado: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: getCastrado(),
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
@@ -255,16 +255,16 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   text: TextSpan(
                     text: 'Nível de atividade: ',
                     style: TextStyle(
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.023),
+                        fontSize: heightStaggered * 0.021),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Ativo',
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.023),
+                            fontSize: heightStaggered * 0.021),
                       ),
                     ],
                   ),
