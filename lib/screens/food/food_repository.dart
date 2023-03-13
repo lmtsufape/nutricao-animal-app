@@ -123,6 +123,8 @@ class FoodRepository {
       userId = prefs.getInt('id')!;
       userToken = prefs.getString('token')!;
 
+      int aux = int.parse(quant.text);
+
       var response = await _dio.post(
         '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
         options: Options(
@@ -135,7 +137,7 @@ class FoodRepository {
         data: {
           "category": type,
           "name": food,
-          "amount": 100,
+          "amount": aux,
         },
       );
       print(response.statusCode);
