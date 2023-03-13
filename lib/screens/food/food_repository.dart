@@ -17,26 +17,8 @@ class FoodRepository {
   late int userId;
   late String userToken;
   final FoodController _controller = FoodController();
-  Map<String, List<String>> all = {
-    'Ração': [
-      'Golden',
-      'Pedigree',
-      'Royal Canin',
-    ],
-    'Frutas': [
-      'Banana',
-      'Maçã',
-      'Melancia',
-    ],
-    'Carnes': [
-      'Alcatra',
-      'Frango',
-      'Porco',
-    ]
-  };
 
   // List<String> types = ['Ração', 'Frutas', 'Carnes'];
-  List<String> foods = [];
 
 // ############################################################################
   /*Função abaixo usada para pegar as categorias de comidas direto da api e transformar em Lista, 
@@ -63,6 +45,7 @@ class FoodRepository {
         },
       ),
     );
+    print(response.data);
     var all = response.data as List<dynamic>;
     String compare;
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -76,8 +59,6 @@ class FoodRepository {
 
     return categories;
   }
-
-  
 
   editActivity(type, food, TextEditingController quant, animalId, context,
       addMenu) async {
@@ -98,15 +79,38 @@ class FoodRepository {
       ),
       data: {"activity_level": _controller.feedCalculate(type, food, quant)},
     );
+
     if (response.statusCode == 200) {
       Navigator.popAndPushNamed(context, Screens.home);
     }
   }
 
-  List<String> showFoods(type) {
-    for (int i = 0; i < all.length; i++) {
-      if (type == all.keys.toList()[i]) {
-        foods = all[type]!;
+  Future<List<String>> showFoods(type) async {
+    Dio _dio = Dio();
+    List<String> foods = [];
+
+    int i;
+    final prefs = await SharedPreferences.getInstance();
+
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await _dio.get(
+      '$kBaseUrl/foods',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+    );
+
+    var data = response.data as List<dynamic>;
+
+    for (i = 0; i < data.length; i++) {
+      if (response.data[i]['category'] == type) {
+        foods.add(response.data[i]['name']);
       }
     }
     return foods;

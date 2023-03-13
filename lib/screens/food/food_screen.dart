@@ -37,7 +37,7 @@ class _FoodScreenState extends State<FoodScreen> {
   String type = 'Ração';
   String food = 'Selecione';
   TextEditingController quantController = TextEditingController();
-  List<String> listFoods = [];
+  late Future<List<String>> listFoods;
   late Future<List<String>> listTypes;
   bool? addMenu;
 
@@ -80,8 +80,9 @@ class _FoodScreenState extends State<FoodScreen> {
                 bottom: 16,
               ),
               child: Text('Name',
-                  style:
-                      TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize)),
+                  style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: heightScreen * kMediumSize)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
@@ -155,7 +156,8 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Tipo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -189,7 +191,8 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Comida',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -206,7 +209,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: listFoods,
+                asyncItems: (String foods) => _repository.showFoods(type),
                 onChanged: (data) {
                   setState(
                     () {
@@ -255,7 +258,8 @@ class _FoodScreenState extends State<FoodScreen> {
                         quantController, widget.id, context, addMenu),
                     child: Text('Alimentar',
                         style: TextStyle(
-                            color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                            color: kBackgroundColor,
+                            fontSize: heightScreen * kMediumSize)),
                   ),
                 ),
               ),
@@ -286,7 +290,9 @@ class _MenuWidgetState extends State<MenuWidget> {
       title: Text(
         'Adicionar no cárdapio particular?',
         style: TextStyle(
-            color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: heightScreen * 0.020),
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w900,
+            fontSize: heightScreen * 0.020),
       ),
       leading: Transform.scale(
         scale: 2,
