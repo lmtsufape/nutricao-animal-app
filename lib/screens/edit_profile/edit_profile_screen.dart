@@ -45,6 +45,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
+
         backgroundColor: kBackgroundColor,
         appBar: AppBar(),
         body: Column(
@@ -68,6 +69,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
               child: Column(
