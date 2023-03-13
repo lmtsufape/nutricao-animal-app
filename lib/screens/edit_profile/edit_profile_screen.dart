@@ -68,7 +68,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
               ),
-            ),
+            ),),
 
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
@@ -89,8 +89,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
 
                   ),
+                    ],
                 ),
-              ],
+
             ),
 
             TextFieldCustom('E-mail', emailController),
@@ -116,7 +117,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
             ),
-          ),
+
           const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -125,9 +126,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               color: kDetailColor,
               child: const Text('Log Off'),
             ),
-          )
-        ],
-      ),
-    );
-  }
+          ),],));
+
+      }
 }
+

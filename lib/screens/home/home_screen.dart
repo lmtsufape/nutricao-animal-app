@@ -304,15 +304,15 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                           icon: Icon(
                             Icons.restaurant_menu,
                             color: kBackgroundColor,
-                            size: widthScreen * 0.1,
+                            size: widthScreen * 0.06,
                             textDirection: TextDirection.ltr,
                           ),
                           label: Text(
                             'Alimentar',
                             style: TextStyle(
                                 color: kBackgroundColor,
-                                fontSize: heightScreen * kLargeSize,
-                                fontWeight: FontWeight.w800),
+                                fontSize: heightScreen * 0.022,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
