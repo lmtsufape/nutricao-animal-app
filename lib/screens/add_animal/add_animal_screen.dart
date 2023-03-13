@@ -68,7 +68,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
       appBar: AppBar(actions: [
         IconButton(
           icon: const Icon(Icons.account_circle_rounded),
-          onPressed: () => Navigator.pushNamed(context, Screens.user),
+          onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
         ),
       ]),
       body: SingleChildScrollView(
@@ -111,7 +111,9 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Espécie',
-                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                style: TextStyle(
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -162,7 +164,9 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
                 'Raça',
-                style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                style: TextStyle(
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -194,7 +198,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Sexo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -259,7 +264,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Row(
@@ -308,7 +314,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               child: Text(
                 'Nível de Atividade',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(

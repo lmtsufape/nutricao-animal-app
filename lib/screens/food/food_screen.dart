@@ -12,6 +12,7 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/user_model.dart';
 
 import '../../components/forms/text_field_custom.dart';
+import '../screens_index.dart';
 
 enum PrivateMenu { yes, no }
 
@@ -41,12 +42,6 @@ class _FoodScreenState extends State<FoodScreen> {
   late Future<List<String>> listTypes;
   bool? addMenu;
 
-  Future<String> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('name')!;
-    return userName;
-  }
-
   @override
   void initState() {
     listFoods = _repository.showFoods(type);
@@ -57,9 +52,13 @@ class _FoodScreenState extends State<FoodScreen> {
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
-    final AppTheme formCustom = AppTheme();
     return Scaffold(
-      appBar: formCustom.appBarCustom(context, _getUserName()),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
+        ),
+      ]),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
