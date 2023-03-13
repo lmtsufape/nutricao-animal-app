@@ -241,6 +241,7 @@ class _FoodScreenState extends State<FoodScreen> {
                       onChanged: (value) => setState(
                         () {
                           addMenu = value;
+                          print(addMenu);
                         },
                       ),
                     )),
