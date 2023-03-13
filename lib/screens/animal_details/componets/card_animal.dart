@@ -109,9 +109,9 @@ class stateCardAnimal extends State<CardAnimal> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: const EdgeInsets.only(left: 6),
                       child: SizedBox(
-                        height: heightCard * 0.04,
+                        height: heightCard * 0.07,
                         width: widthCard * 0.25,
                         child: FloatingActionButton(
                           heroTag: 'Menu',
@@ -127,9 +127,9 @@ class stateCardAnimal extends State<CardAnimal> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 70),
+                      padding: const EdgeInsets.only(left: 37),
                       child: SizedBox(
-                        height: heightCard * 0.04,
+                        height: heightCard * 0.07,
                         width: widthCard * 0.25,
                         child: FloatingActionButton(
                           heroTag: 'Eat',
@@ -148,10 +148,10 @@ class stateCardAnimal extends State<CardAnimal> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 70, right: 20),
+                      padding: const EdgeInsets.only(left: 50, right: 20),
                       child: SizedBox(
-                        height: heightCard * 0.04,
-                        width: widthCard * 0.25,
+                        height: heightCard * 0.1,
+                        width: widthCard * 0.16,
                         child: FloatingActionButton(
                           heroTag: 'Share',
                           backgroundColor: kDetailColor,
