@@ -6,10 +6,11 @@ import '../../shared/constants/style_constants.dart';
 
 class FoodController {
   int feed = 0;
-  //final FoodRepository _repository = FoodRepository();
+  
 
-  void feedAnimal(type, food, TextEditingController quant, animalId, context,
+  void feedAnimal(type, food, quant, animalId, context,
       addMenu) async {
+        FoodRepository _repository = FoodRepository();
     if (quant.text.isEmpty || type == 'Selecione' || food == 'Selecione') {
       return showDialog(
           context: context,
@@ -34,7 +35,8 @@ class FoodController {
               content:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
-                  onPressed: () => {},
+                  onPressed: () => _repository.postMenu(
+                      addMenu, type, food, quant, animalId),
                   color: kDetailColor,
                   child: const Text(
                     'Sim',
