@@ -84,5 +84,68 @@ class FoodRepository {
     return foods;
   }
 
-  void postMenu() {}
+  Future<List<String>> showMenu(animalId) async {
+    Dio _dio = Dio();
+    List<String> menu = [];
+
+    int i;
+    final prefs = await SharedPreferences.getInstance();
+
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await _dio.get(
+      '$kBaseUrl/users/$userId/animals/$animalId/menu',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+    );
+    print(response.statusCode);
+    var data = response.data['menu'] as List<dynamic>;
+
+    for (i = 0; i < data.length; i++) {
+      menu.add(response.data[i]['name']);
+    }
+    return menu;
+  }
+
+  Future<bool> postMenu(
+      bool addMenu, type, food, TextEditingController quant, animalId) async {
+    if (addMenu) {
+      Dio _dio = Dio();
+
+      final prefs = await SharedPreferences.getInstance();
+
+      userId = prefs.getInt('id')!;
+      userToken = prefs.getString('token')!;
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "category": type,
+          "name": food,
+          "amount": 100,
+        },
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }

@@ -98,7 +98,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: const [],
+                asyncItems: (String menu) => _repository.showMenu(widget.id),
                 onChanged: (data) {
                   setState(
                     () {
@@ -241,7 +241,6 @@ class _FoodScreenState extends State<FoodScreen> {
                       onChanged: (value) => setState(
                         () {
                           addMenu = value;
-                          print(addMenu);
                         },
                       ),
                     )),
