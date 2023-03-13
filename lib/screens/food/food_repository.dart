@@ -17,31 +17,6 @@ class FoodRepository {
   late int userId;
   late String userToken;
   final FoodController _controller = FoodController();
-  Map<String, List<String>> all = {
-    'Ração': [
-      'Golden',
-      'Pedigree',
-      'Royal Canin',
-    ],
-    'Frutas': [
-      'Banana',
-      'Maçã',
-      'Melancia',
-    ],
-    'Carnes': [
-      'Alcatra',
-      'Frango',
-      'Porco',
-    ]
-  };
-
-  // List<String> types = ['Ração', 'Frutas', 'Carnes'];
-  List<String> foods = [];
-
-// ############################################################################
-  /*Função abaixo usada para pegar as categorias de comidas direto da api e transformar em Lista, 
-  para usar retire o comentário e renomeie as variáveis, após isso coloque nos respectivos lugares na
-  food_screen */
 
   Future<List<String>> showTypes() async {
     Dio _dio = Dio();
@@ -63,6 +38,7 @@ class FoodRepository {
         },
       ),
     );
+    print(response.data);
     var all = response.data as List<dynamic>;
     String compare;
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -77,18 +53,18 @@ class FoodRepository {
     return categories;
   }
 
-  
+  Future<List<String>> showFoods(type) async {
+    Dio _dio = Dio();
+    List<String> foods = [];
 
-  editActivity(type, food, TextEditingController quant, animalId, context,
-      addMenu) async {
-    Dio dio = Dio();
+    int i;
     final prefs = await SharedPreferences.getInstance();
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    var response = await dio.patch(
-      '$kBaseUrl/users/$userId/animals/$animalId',
+    var response = await _dio.get(
+      '$kBaseUrl/foods',
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -96,21 +72,82 @@ class FoodRepository {
           "Authorization": "Bearer $userToken"
         },
       ),
-      data: {"activity_level": _controller.feedCalculate(type, food, quant)},
     );
-    if (response.statusCode == 200) {
-      Navigator.popAndPushNamed(context, Screens.home);
-    }
-  }
 
-  List<String> showFoods(type) {
-    for (int i = 0; i < all.length; i++) {
-      if (type == all.keys.toList()[i]) {
-        foods = all[type]!;
+    var data = response.data as List<dynamic>;
+
+    for (i = 0; i < data.length; i++) {
+      if (response.data[i]['category'] == type) {
+        foods.add(response.data[i]['name']);
       }
     }
     return foods;
   }
 
-  void postMenu() {}
+  Future<List<String>> showMenu(animalId) async {
+    Dio _dio = Dio();
+    List<String> menu = [];
+
+    int i;
+    final prefs = await SharedPreferences.getInstance();
+
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await _dio.get(
+      '$kBaseUrl/users/$userId/animals/$animalId/menu',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+    );
+    print(response.statusCode);
+    var data = response.data['menu'] as List<dynamic>;
+
+    for (i = 0; i < data.length; i++) {
+      menu.add(response.data[i]['name']);
+    }
+    return menu;
+  }
+
+  Future<bool> postMenu(
+      bool addMenu, type, food, TextEditingController quant, animalId) async {
+    if (addMenu) {
+      Dio _dio = Dio();
+
+      final prefs = await SharedPreferences.getInstance();
+
+      userId = prefs.getInt('id')!;
+      userToken = prefs.getString('token')!;
+
+      int aux = int.parse(quant.text);
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "category": type,
+          "name": food,
+          "amount": aux,
+        },
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
 }
