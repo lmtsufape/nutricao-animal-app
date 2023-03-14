@@ -218,7 +218,9 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
         backgroundColor: kDetailColor,
         textStyle: const TextStyle(fontSize: kMediumSize),
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)));
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        alignment: Alignment.centerLeft
+    );
     return InkWell(
       //exemplo
       onTap: () =>
@@ -272,11 +274,10 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     ),
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                      Center(
                         child: SizedBox(
-                          width: widthScreen * 0.4,
-                          child: const Icon(Icons.add_a_photo, size: 70, color: kDetailColor,),
+                          width: widthScreen * 0.46,
+                          child: const Icon(Icons.add_a_photo, size: 70, color: kBackgroundColor,),
                         ),
                       ),
                       Column(
@@ -322,9 +323,9 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 14, 14),
+                        padding: const EdgeInsets.fromLTRB(8, 0, 14, 20),
                         child: SizedBox(
-                          width: widthScreen * 0.45,
+                          width: widthScreen * 0.455,
                           height: heightScreen * 0.042,
                           child: ElevatedButton.icon(
                             style: style,
@@ -337,7 +338,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                             icon: Padding(
                               padding: const EdgeInsets.only(right: 6, left: 0),
                               child: Icon(
-                                Icons.room_service_outlined,
+                                Icons.restaurant_menu,
                                 color: kBackgroundColor,
                                 size: widthScreen * 0.08,
                                 textDirection: TextDirection.ltr,
