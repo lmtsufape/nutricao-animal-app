@@ -34,7 +34,7 @@ class NoRegFoodScreen extends StatelessWidget {
       appBar: AppBar(actions: [
         IconButton(
           icon: const Icon(Icons.account_circle_rounded),
-          onPressed: () => Navigator.pushNamed(context, Screens.user),
+          onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
         ),
       ]),
       body: ListView(

@@ -45,30 +45,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
 
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 50, bottom: 25),
-            child: Center(
-              child: SizedBox(
-                width: 130,
-                height: 130,
-                child: FloatingActionButton(
-                  backgroundColor: kBackgroundColor,
-                  onPressed: () {},
-                  child: const Icon(
-                    Icons.photo,
-                    color: kSecondaryColor,
-                    size: 50,
-
+        backgroundColor: kBackgroundColor,
+        appBar: AppBar(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 50, bottom: 25),
+              child: Center(
+                child: SizedBox(
+                  width: 130,
+                  height: 130,
+                  child: FloatingActionButton(
+                    backgroundColor: kBackgroundColor,
+                    onPressed: () {},
+                    child: const Icon(
+                      Icons.photo,
+                      color: kSecondaryColor,
+                      size: 50,
+                    ),
                   ),
                 ),
               ),
-            ),),
+            ),
 
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
@@ -78,7 +78,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Text(
                     'Nome de Exibição',
                     style: TextStyle(
-                        color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                        color: kSecondaryColor,
+                        fontSize: heightScreen * kMediumSize),
                   ),
                   TextField(
                     controller: nameController,
@@ -87,13 +88,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       contentPadding: EdgeInsets.all(14),
                       border: OutlineInputBorder(),
                     ),
-
                   ),
-                    ],
-                ),
-
+                ],
+              ),
             ),
-
             TextFieldCustom('E-mail', emailController),
             TextFieldCustom('Senha', passwordController),
             Padding(
@@ -112,22 +110,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           fontWeight: FontWeight.w700,
                           fontSize: heightScreen * kMediumLargeSize),
                     ),
-
                   ),
                 ),
               ),
             ),
-
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MaterialButton(
-              onPressed: () => editController.logoff(context),
-              color: kDetailColor,
-              child: const Text('Log Off'),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () => editController.logoff(context),
+                color: kDetailColor,
+                child: const Text('Log Off'),
+              ),
             ),
-          ),],));
-
-      }
+          ],
+        ));
+  }
 }
-
