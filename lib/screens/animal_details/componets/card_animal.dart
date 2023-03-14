@@ -38,11 +38,11 @@ class stateCardAnimal extends State<CardAnimal> {
               ListTile(
                 leading: Icon(
                   Icons.add_a_photo,
-                  size: heightCard * 0.15,
+                  size: heightCard * 0.18,
                   color: kBackgroundColor,
                 ),
                 title: Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 65),
+                  padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -50,13 +50,15 @@ class stateCardAnimal extends State<CardAnimal> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const HorizontalSpacerBox(size: SpacerSize.tiny),
-                          Text(
-                            'Nome',
-                            style: TextStyle(
-                              color: kDetailColor,
-                              fontSize: heightCard * 0.020,
+                          Center(
+                            child: Text(
+                              'Nome',
+                              style: TextStyle(
+                                color: kDetailColor,
+                                fontSize: heightCard * 0.020,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                            textAlign: TextAlign.left,
                           ),
                           IconButton(
                             onPressed: () {
@@ -79,7 +81,7 @@ class stateCardAnimal extends State<CardAnimal> {
                             color: kBackgroundColor,
                             fontSize: heightCard * 0.022,
                             fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.left,
+                        textAlign: TextAlign.center,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
@@ -88,23 +90,28 @@ class stateCardAnimal extends State<CardAnimal> {
                           style: TextStyle(
                               color: kDetailColor,
                               fontSize: heightCard * 0.020),
-                          textAlign: TextAlign.left,
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                      Text(
-                        //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
-                        widget.animal.breed.toString(),
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontSize: heightCard * 0.022,
-                            fontWeight: FontWeight.w700),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Text(
+                          //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
+                          widget.animal.breed.toString(),
+                          style: TextStyle(
+                              color: kBackgroundColor,
+                              fontSize: heightCard * 0.022,
+                              fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -121,7 +128,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.menu_book_outlined,
                             color: kBackgroundColor,
-                            size: widthCard * 0.1,
+                            size: widthCard * 0.08,
                           ),
                         ),
                       ),
@@ -142,7 +149,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.restaurant_outlined,
                             color: kBackgroundColor,
-                            size: widthCard * 0.1,
+                            size: widthCard * 0.08,
                           ),
                         ),
                       ),
@@ -150,7 +157,7 @@ class stateCardAnimal extends State<CardAnimal> {
                     Padding(
                       padding: const EdgeInsets.only(left: 50, right: 20),
                       child: SizedBox(
-                        height: heightCard * 0.1,
+                        height: heightCard * 0.07,
                         width: widthCard * 0.16,
                         child: FloatingActionButton(
                           heroTag: 'Share',
@@ -159,7 +166,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: Icon(
                             Icons.share,
                             color: kBackgroundColor,
-                            size: widthCard * 0.1,
+                            size: widthCard * 0.08,
                           ),
                         ),
                       ),
@@ -168,7 +175,7 @@ class stateCardAnimal extends State<CardAnimal> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 4),
+                padding: const EdgeInsets.only(top: 2),
                 child: StaggeredGridAnimal(widget.animal),
               ),
             ],
