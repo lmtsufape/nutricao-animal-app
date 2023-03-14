@@ -76,26 +76,26 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   drawer: NavigationDrawerWidget(userName, email),
                   body: Center(
                     child: Column(
-                      children: const [
+                      children: [
                         Padding(
-                          padding: EdgeInsets.only(top: 15.0),
+                          padding: const EdgeInsets.only(top: 15.0),
                           child: Text(
                             'Animais Cadastrados',
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
-                              fontSize: 30.0,
+                              fontSize: heightScreen * 0.030,
                               color: kPrimaryColor,
                               fontWeight: FontWeight.w900,
                             ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 15.0),
+                          padding: const EdgeInsets.only(top: 15.0),
                           child: Text(
                             'Nenhum animal cadastrado',
                             textDirection: TextDirection.ltr,
                             style: TextStyle(
-                              fontSize: 30.0,
+                              fontSize: heightScreen * 0.030,
                               color: kPrimaryColor,
                               fontWeight: FontWeight.w900,
                             ),
@@ -132,9 +132,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 appBar: formCustom.appBarCustom(context, _getUserName()),
                 drawer: NavigationDrawerWidget(userName, email),
                 body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
+                      padding: const EdgeInsets.only(top: 15.0, left: 16),
                       child: Text(
                         'Animais Cadastrados',
                         textDirection: TextDirection.ltr,
@@ -228,37 +229,36 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
         child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              height: heightScreen * 0.25,
+              height: heightScreen * 0.22,
               child: Card(
                 color: kPrimaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Container(
-                  color: Colors.greenAccent,
-                  child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Container(
-                          color: Colors.pinkAccent,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: widthScreen * 0.46,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
                                    top: 5,
-                                   right: 16,
                                  ),
                                  child: Text(
                                    //widget.age.toString(),
-                                   "5",
+                                   "5 anos",
                                    style:
                                        TextStyle(fontSize: heightScreen * kMediumSize, color: kBackgroundColor),
                                  ),
                                ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 10.0, top: 5.0),
+                                padding: const EdgeInsets.only(top: 5.0, left: 100),
                                 child: Text(
                                   widget.animal.sex.toString(),
                                   style: TextStyle(
@@ -267,102 +267,97 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                               ),
                             ],
                           ),
+                        ],
+                      ),
+                    ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                        child: SizedBox(
+                          width: widthScreen * 0.4,
+                          child: const Icon(Icons.add_a_photo, size: 70, color: kDetailColor,),
                         ),
                       ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, right: 16),
-                          child: SizedBox(
-                            width: widthScreen * 0.4,
-                            child: Icon(Icons.add_a_photo, size: 80, color: kDetailColor,),
-                          ),
-                        ),
-                        Container(
-                          constraints: const BoxConstraints.tightForFinite(width: double.infinity, height: double.infinity),
-                          alignment: Alignment.topRight,
-                          color: Colors.deepPurpleAccent,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 18.0),
-                                child: FittedBox(
-                                  fit: BoxFit.scaleDown,
-                                  child: Container(
-                                    color: kDetailColor,
-                                    child: Text(
-                                      widget.animal.name.toString(),
-                                      textDirection: TextDirection.ltr,
-                                      style: TextStyle(
-                                        fontSize: heightScreen * kLargeSize,
-                                        color: kBackgroundColor,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 25),
-                                child: Container(
-                                  color: Colors.red,
-                                  child: Text(
-                                    //Trocar para widget.animal.breed quando arrumar API
-                                    widget.animal.breed.toString(),
-                                    style: TextStyle(
-                                      fontSize: heightScreen * 0.017,
-                                      color: kBackgroundColor,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8.0, 10, 14.0, 8.0),
-                          child: SizedBox(
-                            width: widthScreen * 0.45,
-                            height: heightScreen * 0.042,
-                            child: ElevatedButton.icon(
-                              style: style,
-                              //exemplo
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          FoodScreen(widget.animal.id))),
-                              icon: Padding(
-                                padding: const EdgeInsets.only(right: 6, left: 0),
-                                child: Icon(
-                                  Icons.add_circle_outline_rounded,
-                                  color: kBackgroundColor,
-                                  size: widthScreen * 0.08,
-                                  textDirection: TextDirection.ltr,
-                                ),
-                              ),
-                              label: Center(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        textDirection: TextDirection.ltr,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: SizedBox(
+                              width: widthScreen * 0.40,
+                              //constraints: BoxConstraints.tightForFinite(width: double.maxFinite, height: double.maxFinite),
+                              child: FittedBox(
+                                alignment: Alignment.centerLeft,
+                                fit: BoxFit.scaleDown,
                                 child: Text(
-                                  'Alimentar',
+                                  widget.animal.name.toString(),
+                                  textDirection: TextDirection.ltr,
                                   style: TextStyle(
-                                      color: kBackgroundColor,
-                                      fontSize: heightScreen * kMediumLargeSize,
-                                      fontWeight: FontWeight.w500),
+                                    fontSize: heightScreen * 0.028,
+                                    color: kBackgroundColor,
+                                    fontWeight: FontWeight.w900,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              //Trocar para widget.animal.breed quando arrumar API
+                              widget.animal.breed.toString(),
+                              style: TextStyle(
+                                fontSize: heightScreen * 0.017,
+                                color: kBackgroundColor,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 14, 14),
+                        child: SizedBox(
+                          width: widthScreen * 0.45,
+                          height: heightScreen * 0.042,
+                          child: ElevatedButton.icon(
+                            style: style,
+                            //exemplo
+                            onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        FoodScreen(widget.animal.id))),
+                            icon: Padding(
+                              padding: const EdgeInsets.only(right: 6, left: 0),
+                              child: Icon(
+                                Icons.room_service_outlined,
+                                color: kBackgroundColor,
+                                size: widthScreen * 0.08,
+                                textDirection: TextDirection.ltr,
+                              ),
+                            ),
+                            label: Center(
+                              child: Text(
+                                'Alimentar',
+                                style: TextStyle(
+                                    color: kBackgroundColor,
+                                    fontSize: heightScreen * 0.022,
+                                    fontWeight: FontWeight.w700),
+                              ),
+                            ),
+                          ),
                         ),
-                      ],
-                    ),
-                  ]),
-                ),
+                      ),
+                    ],
+                  ),
+                ]),
               ),
             )),
       ),
