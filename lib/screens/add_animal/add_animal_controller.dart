@@ -8,6 +8,7 @@ class AddAnimalController with ChangeNotifier {
   final AddAnimalRepository _repository = AddAnimalRepository();
   final _imagePickerController = ImagePickerController();
   File? _selectedImage;
+
   String? _imagePath;
   bool hasImg = false;
   void adicionarAnimal(context, name, specie, breed, sex, weight, height, age,
@@ -43,6 +44,7 @@ class AddAnimalController with ChangeNotifier {
     }
 
     _selectedImage = file;
+
     notifyListeners();
   }
 

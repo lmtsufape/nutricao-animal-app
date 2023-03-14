@@ -1,10 +1,5 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
@@ -15,15 +10,13 @@ import '../../assets/index.dart';
 class ImageProfile extends StatefulWidget {
   late AddAnimalController controller;
 
-  ImageProfile({super.key});
+  ImageProfile(this.controller, {super.key});
 
   @override
   State<ImageProfile> createState() => _ImageProfileState();
 }
 
 class _ImageProfileState extends State<ImageProfile> {
-  File? _imageFile;
-
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
@@ -38,14 +31,16 @@ class _ImageProfileState extends State<ImageProfile> {
             backgroundColor: kBackgroundColor,
             onPressed: () {
               showModalBottomSheet(
-                  context: context, builder: ((builder) => bottomSheet()));
+                  context: context,
+                  builder: ((builder) => bottomSheet(widget.controller)));
             },
             child: CircleAvatar(
                 radius: 62,
                 backgroundColor: kBackgroundColor,
-                backgroundImage:
-                    _imageFile != null ? FileImage(_imageFile!) : null,
-                child: _imageFile == null
+                backgroundImage: widget.controller.selectedImage != null
+                    ? FileImage(widget.controller.selectedImage!)
+                    : null,
+                child: widget.controller.selectedImage == null
                     ? const Icon(
                         Icons.photo,
                         color: kSecondaryColor,
@@ -57,7 +52,8 @@ class _ImageProfileState extends State<ImageProfile> {
   }
 }
 
-Widget bottomSheet() {
+Widget bottomSheet(AddAnimalController controller) {
+  AddAnimalController _controller = controller;
   return Container(
     height: 100.0,
     width: 100,
@@ -80,7 +76,7 @@ Widget bottomSheet() {
           ElevatedButton.icon(
             icon: const Icon(Icons.camera),
             onPressed: () {
-              // takePhoto(ImageSource.camera);
+              _controller.selectImageCam();
             },
             label: const Text("Camera"),
           ),
@@ -88,7 +84,7 @@ Widget bottomSheet() {
           ElevatedButton.icon(
             icon: const Icon(Icons.image),
             onPressed: () {
-              // takePhoto(ImageSource.gallery);
+              _controller.selectImage();
             },
             label: const Text("Gallery"),
           ),
