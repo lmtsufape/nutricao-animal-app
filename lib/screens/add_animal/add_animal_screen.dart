@@ -1,9 +1,11 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
+import 'package:thunderapp/screens/add_animal/image_profile.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
@@ -29,6 +31,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   final SignInController signInController = SignInController();
   final UserModel user = UserModel();
   final AddAnimalRepository repository = AddAnimalRepository();
+
   late String userName;
   late Future<List<String>> breeds;
 
@@ -49,6 +52,12 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
     breeds = repository.getBreed(specie);
     signInController.getInstance(user);
   }
+
+  //@override
+  // void didchangeDependencies() {
+  //   //controller = context.watch<AddAnimalController>();
+  //   super.didChangeDependencies();
+  // }
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
@@ -88,23 +97,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
               ),
             ),
             Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
-                child: SizedBox(
-                  width: widthScreen * 0.4,
-                  height: heightScreen * 0.12,
-                  child: FloatingActionButton(
-                    heroTag: 'Photo',
-                    backgroundColor: kBackgroundColor,
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.photo,
-                      color: kSecondaryColor,
-                      size: widthScreen * 0.10,
-                    ),
-                  ),
-                ),
-              ),
+              child: ImageProfile(controller),
             ),
             TextFieldCustom('Nome', nameController),
             Padding(
@@ -328,7 +321,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     size: 35,
                   ),
                 ),
-                items: const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                items: const [1, 2, 3],
                 onChanged: (data) {
                   setState(() {
                     activityLevel = data as int;
