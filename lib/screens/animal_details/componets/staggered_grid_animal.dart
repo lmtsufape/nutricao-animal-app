@@ -29,7 +29,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
     final heightStaggered = MediaQuery.of(context).size.height;
     final widthStaggered = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.only(top: 12),
       child: Card(
         color: kBackgroundColor,
         shape: const RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
           children: [
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.65,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -74,7 +74,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.65,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -104,7 +104,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -134,7 +134,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.65,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide(
@@ -142,22 +142,25 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         width: 3.5,
                         strokeAlign: BorderSide.strokeAlignOutside),
                   ),
-                  title: RichText(
-                    text: TextSpan(
-                      text: 'Peso: ',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          color: kSecondaryColor,
-                          fontSize: heightStaggered * 0.021),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "${widget.animal.weight} Kg",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: kPrimaryColor,
-                              fontSize: heightStaggered * 0.021),
-                        ),
-                      ],
+                  title: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Peso: ',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: kSecondaryColor,
+                            fontSize: heightStaggered * 0.021),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "${widget.animal.weight} Kg",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                color: kPrimaryColor,
+                                fontSize: heightStaggered * 0.021),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   trailing: Padding(
@@ -183,7 +186,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
-              mainAxisCellCount: 0.65,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -213,7 +216,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -243,7 +246,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
-              mainAxisCellCount: 0.5,
+              mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide(
@@ -257,14 +260,14 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                     style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.021),
+                        fontSize: heightStaggered * 0.020),
                     children: <TextSpan>[
                       TextSpan(
                         text: 'Ativo',
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.021),
+                            fontSize: heightStaggered * 0.020),
                       ),
                     ],
                   ),

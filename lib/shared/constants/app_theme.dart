@@ -46,6 +46,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   static ButtonStyle style = ElevatedButton.styleFrom(
     backgroundColor: kDetailColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
+    alignment: Alignment.centerLeft
   );
   String userName;
   String email;
@@ -74,26 +75,40 @@ class NavigationDrawerWidget extends StatelessWidget {
                   size: widthScreen * 0.3,
                 ),
                 title: Padding(
-                  padding: const EdgeInsets.only(top: 37),
-                  child: Text(
-                    userName,
-                    style: TextStyle(
-                        color: kBackgroundColor,
-                        fontSize: heightScreen * 0.027,
-                        fontWeight: FontWeight.w900),
+                  padding: const EdgeInsets.only(top: 45),
+                  child: Container(
+                    width: widthScreen * 0.3,
+                    alignment: Alignment.centerLeft,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        userName,
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: heightScreen * 0.027,
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ),
                   ),
                 ),
-                subtitle: Text(
-                  email,
-                  style: TextStyle(
-                      color: kBackgroundColor,
-                      fontSize: heightScreen * kMediumSize,
-                      fontWeight: FontWeight.w500),
+                subtitle: Container(
+                  width: widthScreen * 0.3,
+                  alignment: Alignment.centerLeft,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      email,
+                      style: TextStyle(
+                          color: kBackgroundColor,
+                          fontSize: heightScreen * kMediumSize,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 60, bottom: 20),
+              padding: const EdgeInsets.only(top: 45, bottom: 20),
               child: Center(
                 child: SizedBox(
                   width: widthScreen * 0.5,
@@ -105,12 +120,14 @@ class NavigationDrawerWidget extends StatelessWidget {
                       Icons.edit_rounded,
                       color: kBackgroundColor,
                     ),
-                    label: Text(
-                      'Editar informações',
-                      style: TextStyle(
-                          color: kBackgroundColor,
-                          fontSize: heightScreen * kMediumSize,
-                          fontWeight: FontWeight.w600),
+                    label: Center(
+                      child: Text(
+                        'Editar informações',
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: heightScreen * kMediumSize,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                 ),

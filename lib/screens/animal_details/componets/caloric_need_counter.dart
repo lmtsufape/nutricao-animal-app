@@ -106,7 +106,7 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
               angle: -10,
               positionFactor: 3.5,
               widget: Text(
-                'Necessidade calórica diária já atingida',
+                '',
                 style: TextStyle(
                     color: kBackgroundColor,
                     fontWeight: FontWeight.w500,
