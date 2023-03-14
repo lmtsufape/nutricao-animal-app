@@ -12,6 +12,7 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/user_model.dart';
 
 import '../../components/forms/text_field_custom.dart';
+import '../screens_index.dart';
 
 enum PrivateMenu { yes, no }
 
@@ -37,15 +38,9 @@ class _FoodScreenState extends State<FoodScreen> {
   String type = 'Ração';
   String food = 'Selecione';
   TextEditingController quantController = TextEditingController();
-  List<String> listFoods = [];
+  late Future<List<String>> listFoods;
   late Future<List<String>> listTypes;
   bool? addMenu;
-
-  Future<String> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('name')!;
-    return userName;
-  }
 
   @override
   void initState() {
@@ -57,9 +52,13 @@ class _FoodScreenState extends State<FoodScreen> {
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
-    final AppTheme formCustom = AppTheme();
     return Scaffold(
-      appBar: formCustom.appBarCustom(context, _getUserName()),
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: const Icon(Icons.account_circle_rounded),
+          onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
+        ),
+      ]),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,8 +79,9 @@ class _FoodScreenState extends State<FoodScreen> {
                 bottom: 16,
               ),
               child: Text('Name',
-                  style:
-                      TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize)),
+                  style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: heightScreen * kMediumSize)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
@@ -97,7 +97,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: const [],
+                asyncItems: (String menu) => _repository.showMenu(widget.id),
                 onChanged: (data) {
                   setState(
                     () {
@@ -155,7 +155,8 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Tipo',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -189,7 +190,8 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Text(
                 'Comida',
                 style: TextStyle(
-                    color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+                    color: kSecondaryColor,
+                    fontSize: heightScreen * kMediumSize),
               ),
             ),
             Padding(
@@ -206,7 +208,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                items: listFoods,
+                asyncItems: (String foods) => _repository.showFoods(type),
                 onChanged: (data) {
                   setState(
                     () {
@@ -255,7 +257,8 @@ class _FoodScreenState extends State<FoodScreen> {
                         quantController, widget.id, context, addMenu),
                     child: Text('Alimentar',
                         style: TextStyle(
-                            color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                            color: kBackgroundColor,
+                            fontSize: heightScreen * kMediumSize)),
                   ),
                 ),
               ),
@@ -286,7 +289,9 @@ class _MenuWidgetState extends State<MenuWidget> {
       title: Text(
         'Adicionar no cárdapio particular?',
         style: TextStyle(
-            color: kPrimaryColor, fontWeight: FontWeight.w900, fontSize: heightScreen * 0.020),
+            color: kPrimaryColor,
+            fontWeight: FontWeight.w900,
+            fontSize: heightScreen * 0.020),
       ),
       leading: Transform.scale(
         scale: 2,

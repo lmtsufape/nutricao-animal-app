@@ -30,8 +30,9 @@ class SplashScreenController {
       if (await userHasToken()) {
         signIn(context);
       } else {
-      // ignore: use_build_context_synchronously
-      Navigator.popAndPushNamed(context, Screens.signin);
+          // ignore: use_build_context_synchronously
+          Navigator.popAndPushNamed(context, Screens.signin);
+
       }
     });
   }
