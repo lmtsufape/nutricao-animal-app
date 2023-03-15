@@ -64,7 +64,7 @@ class ShareTutoringScreen extends StatelessWidget {
                   fontWeight: FontWeight.w900),
             ),
           ),
-          TextFieldCustom('', emailController),
+          TextFieldCustom('', emailController, ''),
           Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 16),

@@ -52,20 +52,20 @@ class NoRegFoodScreen extends StatelessWidget {
                       fontWeight: FontWeight.w900),
                 ),
               ),
-              TextFieldCustom('Nome', nameController),
+              TextFieldCustom('Nome', nameController, ''),
               // ignore: prefer_const_constructors
               DropDownCustom(
                   const ['Grão', 'Líquido', 'Carne'], 'Categoria', 5),
               Padding(
                 padding: const EdgeInsets.only(top: 12),
-                child: TextFieldCustom('Umidade', umidadeController),
+                child: TextFieldCustom('Umidade', umidadeController, ''),
               ),
-              TextFieldCustom("Valor energético", energyController),
-              TextFieldCustom('Valor proteico', proteinaController),
-              TextFieldCustom('Lipídios', lipidioController),
-              TextFieldCustom('Carboidratos', carboidratosController),
-              TextFieldCustom('Cálcio', calcioController),
-              TextFieldCustom('Fibra', fibraController),
+              TextFieldCustom("Valor energético", energyController, ''),
+              TextFieldCustom('Valor proteico', proteinaController, ''),
+              TextFieldCustom('Lipídios', lipidioController, ''),
+              TextFieldCustom('Carboidratos', carboidratosController, ''),
+              TextFieldCustom('Cálcio', calcioController, ''),
+              TextFieldCustom('Fibra', fibraController, ''),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Center(

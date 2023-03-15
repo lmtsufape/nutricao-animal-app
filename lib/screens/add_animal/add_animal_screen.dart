@@ -99,7 +99,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Center(
               child: ImageProfile(controller),
             ),
-            TextFieldCustom('Nome', nameController),
+            TextFieldCustom('Nome', nameController, ''),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
               child: Text(
@@ -242,15 +242,16 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Peso (Quilograma)', weightController),
+              child: TextFieldCustom('Peso (Quilograma)', weightController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Medida (Centímetros)', heightController),
+              child:
+                  TextFieldCustom('Medida (Centímetros)', heightController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Idade', ageController),
+              child: TextFieldCustom('Idade', ageController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
