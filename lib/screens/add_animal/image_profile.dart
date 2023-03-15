@@ -5,7 +5,6 @@ import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-import '../../assets/index.dart';
 
 class ImageProfile extends StatefulWidget {
   late AddAnimalController controller;
@@ -38,7 +37,7 @@ class _ImageProfileState extends State<ImageProfile> {
                 radius: 62,
                 backgroundColor: kBackgroundColor,
                 backgroundImage: widget.controller.selectedImage != null
-                    ? FileImage(widget.controller.selectedImage!)
+                    ? FileImage(widget.controller.selectedImage!) 
                     : null,
                 child: widget.controller.selectedImage == null
                     ? const Icon(

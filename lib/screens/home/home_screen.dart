@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AddAnimalScreen(),
+                            builder: (context) => AddAnimalScreen(),
                           ),
                         );
                       },
@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AddAnimalScreen())),
+                            builder: (context) => AddAnimalScreen())),
                   ),
                 ),
               );
@@ -219,8 +219,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
         textStyle: const TextStyle(fontSize: kMediumSize),
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-        alignment: Alignment.centerLeft
-    );
+        alignment: Alignment.centerLeft);
     return InkWell(
       //exemplo
       onTap: () =>
@@ -237,128 +236,138 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: widthScreen * 0.46,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 5,
+                                  ),
+                                  child: Text(
+                                    //widget.age.toString(),
+                                    "5 anos",
+                                    style: TextStyle(
+                                        fontSize: heightScreen * kMediumSize,
+                                        color: kBackgroundColor),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 5.0, left: 100),
+                                  child: Text(
+                                    widget.animal.sex.toString(),
+                                    style: TextStyle(
+                                        color: kBackgroundColor,
+                                        fontSize: heightScreen * kMediumSize),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
                         children: [
-                          SizedBox(
-                            width: widthScreen * 0.46,
+                          Center(
+                            child: SizedBox(
+                              width: widthScreen * 0.46,
+                              child: const Icon(
+                                Icons.add_a_photo,
+                                size: 70,
+                                color: kBackgroundColor,
+                              ),
+                            ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            textDirection: TextDirection.ltr,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                   top: 5,
-                                 ),
-                                 child: Text(
-                                   //widget.age.toString(),
-                                   "5 anos",
-                                   style:
-                                       TextStyle(fontSize: heightScreen * kMediumSize, color: kBackgroundColor),
-                                 ),
-                               ),
+                                padding: const EdgeInsets.only(top: 4),
+                                child: SizedBox(
+                                  width: widthScreen * 0.40,
+                                  //constraints: BoxConstraints.tightForFinite(width: double.maxFinite, height: double.maxFinite),
+                                  child: FittedBox(
+                                    alignment: Alignment.centerLeft,
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      widget.animal.name.toString(),
+                                      textDirection: TextDirection.ltr,
+                                      style: TextStyle(
+                                        fontSize: heightScreen * 0.028,
+                                        color: kBackgroundColor,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 5.0, left: 100),
+                                padding: const EdgeInsets.only(bottom: 8),
                                 child: Text(
-                                  widget.animal.sex.toString(),
+                                  //Trocar para widget.animal.breed quando arrumar API
+                                  widget.animal.breed.toString(),
                                   style: TextStyle(
-                                      color: kBackgroundColor, fontSize: heightScreen * kMediumSize),
+                                    fontSize: heightScreen * 0.017,
+                                    color: kBackgroundColor,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ),
-                  Row(
-                    children: [
-                      Center(
-                        child: SizedBox(
-                          width: widthScreen * 0.46,
-                          child: const Icon(Icons.add_a_photo, size: 70, color: kBackgroundColor,),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        textDirection: TextDirection.ltr,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 4),
+                            padding: const EdgeInsets.fromLTRB(8, 0, 14, 20),
                             child: SizedBox(
-                              width: widthScreen * 0.40,
-                              //constraints: BoxConstraints.tightForFinite(width: double.maxFinite, height: double.maxFinite),
-                              child: FittedBox(
-                                alignment: Alignment.centerLeft,
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  widget.animal.name.toString(),
-                                  textDirection: TextDirection.ltr,
-                                  style: TextStyle(
-                                    fontSize: heightScreen * 0.028,
+                              width: widthScreen * 0.455,
+                              height: heightScreen * 0.042,
+                              child: ElevatedButton.icon(
+                                style: style,
+                                //exemplo
+                                onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            FoodScreen(widget.animal.id))),
+                                icon: Padding(
+                                  padding:
+                                      const EdgeInsets.only(right: 6, left: 0),
+                                  child: Icon(
+                                    Icons.restaurant_menu,
                                     color: kBackgroundColor,
-                                    fontWeight: FontWeight.w900,
+                                    size: widthScreen * 0.08,
+                                    textDirection: TextDirection.ltr,
+                                  ),
+                                ),
+                                label: Center(
+                                  child: Text(
+                                    'Alimentar',
+                                    style: TextStyle(
+                                        color: kBackgroundColor,
+                                        fontSize: heightScreen * 0.022,
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              //Trocar para widget.animal.breed quando arrumar API
-                              widget.animal.breed.toString(),
-                              style: TextStyle(
-                                fontSize: heightScreen * 0.017,
-                                color: kBackgroundColor,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 14, 20),
-                        child: SizedBox(
-                          width: widthScreen * 0.455,
-                          height: heightScreen * 0.042,
-                          child: ElevatedButton.icon(
-                            style: style,
-                            //exemplo
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        FoodScreen(widget.animal.id))),
-                            icon: Padding(
-                              padding: const EdgeInsets.only(right: 6, left: 0),
-                              child: Icon(
-                                Icons.restaurant_menu,
-                                color: kBackgroundColor,
-                                size: widthScreen * 0.08,
-                                textDirection: TextDirection.ltr,
-                              ),
-                            ),
-                            label: Center(
-                              child: Text(
-                                'Alimentar',
-                                style: TextStyle(
-                                    color: kBackgroundColor,
-                                    fontSize: heightScreen * 0.022,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ]),
+                    ]),
               ),
             )),
       ),

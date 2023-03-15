@@ -56,7 +56,7 @@ class App extends StatelessWidget {
         Screens.foodDetails: (BuildContext context) =>
             const FoodDetailsScreen(),
         //Screens.animalDetails: (BuildContext context) => AnimalDetailsScreen(),
-        Screens.addAnimal: (BuildContext context) => const AddAnimalScreen(),
+        Screens.addAnimal: (BuildContext context) => AddAnimalScreen(),
         Screens.home: (BuildContext context) => const HomeScreen(),
       },
     );
