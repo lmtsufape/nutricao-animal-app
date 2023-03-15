@@ -53,11 +53,11 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
     signInController.getInstance(user);
   }
 
-  //@override
-  // void didchangeDependencies() {
-  //   //controller = context.watch<AddAnimalController>();
-  //   super.didChangeDependencies();
-  // }
+  @override
+  void didChangeDependencies() {
+    controller = context.watch<AddAnimalController>();
+    super.didChangeDependencies();
+  }
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();

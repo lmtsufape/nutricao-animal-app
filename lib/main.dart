@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/app.dart';
+import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
@@ -18,13 +19,15 @@ main() {
       print('${record.level.name}: ${record.time}: ${record.message}');
     }
   });
-  MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context) => HomeScreenController()),
-    ChangeNotifierProvider(create: (_) => SelectedItem()),
-    ChangeNotifierProvider(create: (context) => UserModel()),
-    ChangeNotifierProvider(create: (_) => SignInRepository()),
-    ChangeNotifierProvider(create: (_) => SignInController()),
-  ], child: const App());
 
-  runApp(DevicePreview(enabled: true, builder: (context) => const App()));
+  runApp(DevicePreview(
+      enabled: false,
+      builder: (context) => MultiProvider(providers: [
+            ChangeNotifierProvider(create: (_) => HomeScreenController()),
+            ChangeNotifierProvider(create: (_) => SelectedItem()),
+            ChangeNotifierProvider(create: (_) => UserModel()),
+            ChangeNotifierProvider(create: (_) => SignInRepository()),
+            ChangeNotifierProvider(create: (_) => SignInController()),
+            ChangeNotifierProvider(create: (_) => AddAnimalController())
+          ], child: const App())));
 }
