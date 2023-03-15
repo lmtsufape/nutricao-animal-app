@@ -6,8 +6,10 @@ import '../../shared/constants/style_constants.dart';
 class TextFieldCustom extends StatelessWidget {
   final String _fieldLabel;
   final TextEditingController controller;
+  final String label;
 
-  const TextFieldCustom(this._fieldLabel, this.controller, {super.key});
+  const TextFieldCustom(this._fieldLabel, this.controller, this.label,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,9 @@ class TextFieldCustom extends StatelessWidget {
           ),
           TextField(
             controller: controller,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              label: Text(label),
               contentPadding: EdgeInsets.all(14),
               border: OutlineInputBorder(),
             ),

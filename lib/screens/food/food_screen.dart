@@ -219,7 +219,7 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
             ),
             const VerticalSpacerBox(size: SpacerSize.small),
-            TextFieldCustom('Quantidade(em gramas)', quantController),
+            TextFieldCustom('Quantidade(em gramas)', quantController, ''),
             ListTile(
               title: Text(
                 'Adicionar no cárdapio particular?',

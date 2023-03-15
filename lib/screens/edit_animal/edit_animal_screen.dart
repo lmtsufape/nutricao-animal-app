@@ -85,7 +85,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                   ),
                 ),
               ),
-              TextFieldCustom('Nome', nameController),
+              TextFieldCustom('Nome', nameController, ''),
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(
@@ -139,9 +139,9 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                 ),
               ),
               const AnimalSexWidget(),
-              TextFieldCustom('Peso', pesoController),
-              TextFieldCustom('Altura', alturaController),
-              TextFieldCustom('Idade', idadeController),
+              TextFieldCustom('Peso', pesoController, ''),
+              TextFieldCustom('Altura', alturaController, ''),
+              TextFieldCustom('Idade', idadeController, ''),
               Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: Text(

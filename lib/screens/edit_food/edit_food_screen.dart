@@ -52,13 +52,13 @@ class EditFoodScreen extends StatelessWidget {
               style: TextStyle(color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
             ),
           ),
-          TextFieldCustom('Apelido', nickController),
+          TextFieldCustom('Apelido', nickController, ''),
           const DropDownCustom(['Carne', 'Peixe', 'Ração'], 'Tipo', 3),
           const DropDownCustom(
               ['Arroz e feijão', 'Carne com ração', 'Sachê de Salmão'],
               'Comida',
               4),
-          TextFieldCustom('Quantidade(em gramas)', quantController),
+          TextFieldCustom('Quantidade(em gramas)', quantController, ''),
           Padding(
             padding: const EdgeInsets.only(top: 16),
             child: Center(

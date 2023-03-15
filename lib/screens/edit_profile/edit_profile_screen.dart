@@ -23,7 +23,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late String userName;
   late String email;
 
-  Future<String> _getUserName() async {
+  Future<String>? _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
     userName = prefs.getString('name')!;
     return userName;
@@ -36,6 +36,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   }
 
   @override
+  void initState() {
+    _getUserName();
+    _getEmail();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
@@ -45,7 +52,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-
         backgroundColor: kBackgroundColor,
         appBar: AppBar(),
         body: Column(
@@ -69,7 +75,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
               child: Column(
@@ -83,17 +88,56 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   TextField(
                     controller: nameController,
-                    decoration: const InputDecoration(
-                      labelText: 'asda',
-                      contentPadding: EdgeInsets.all(14),
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      label: FutureBuilder<String>(
+                        future: _getUserName(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              '${snapshot.data}',
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text("Error: ${snapshot.error}");
+                          }
+                          return const CircularProgressIndicator();
+                        },
+                      ),
+                      contentPadding: const EdgeInsets.all(14),
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                  Text(
+                    'Nome de Exibição',
+                    style: TextStyle(
+                        color: kSecondaryColor,
+                        fontSize: heightScreen * kMediumSize),
+                  ),
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      label: FutureBuilder<String>(
+                        future: _getEmail(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              '${snapshot.data}',
+                            );
+                          } else if (snapshot.hasError) {
+                            return Text("Error: ${snapshot.error}");
+                          }
+                          return const CircularProgressIndicator();
+                        },
+                      ),
+                      contentPadding: const EdgeInsets.all(14),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ],
               ),
             ),
-            TextFieldCustom('E-mail', emailController),
-            TextFieldCustom('Senha', passwordController),
+            TextFieldCustom('Senha', passwordController, '***********'),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Center(
