@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/edit_profile/edit_profile_controller.dart';
+import 'package:thunderapp/screens/edit_profile/edit_profile_repository.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
@@ -20,6 +21,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
+  EditProfileRepository _repository = EditProfileRepository();
   late String userName;
   late String email;
 
@@ -108,13 +110,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ),
                   Text(
-                    'Nome de Exibição',
+                    'Email',
                     style: TextStyle(
                         color: kSecondaryColor,
                         fontSize: heightScreen * kMediumSize),
                   ),
                   TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       label: FutureBuilder<String>(
@@ -146,7 +148,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   height: heightScreen * 0.040,
                   child: ElevatedButton(
                     style: EditProfileScreen.styleSal,
-                    onPressed: () {},
+                    onPressed: () =>
+                        _repository.editUser(nameController, emailController),
                     child: Text(
                       'Salvar',
                       style: TextStyle(
