@@ -208,7 +208,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize),
                       ),
-                      value: 'macho',
+                      value: 'Macho',
                       groupValue: sex,
                       onChanged: (value) {
                         setState(
@@ -227,7 +227,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'fêmea',
+                    value: 'Fêmea',
                     groupValue: sex,
                     onChanged: (value) {
                       setState(
@@ -345,17 +345,17 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontSize: heightScreen * kMediumLargeSize)),
                     onPressed: () {
                       controller.adicionarAnimal(
-                        context,
-                        nameController.text,
-                        specie,
-                        breed,
-                        sex,
-                        weightController.text,
-                        heightController.text,
-                        ageController.text,
-                        isCastrated,
-                        activityLevel,
-                      );
+                          context,
+                          nameController.text,
+                          specie,
+                          breed,
+                          sex,
+                          weightController.text,
+                          heightController.text,
+                          ageController.text,
+                          isCastrated,
+                          activityLevel,
+                          controller.imagePath);
                     },
                   ),
                 ),

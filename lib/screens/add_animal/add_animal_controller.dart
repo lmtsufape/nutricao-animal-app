@@ -12,9 +12,14 @@ class AddAnimalController with ChangeNotifier {
   String? _imagePath;
   bool hasImg = false;
   void adicionarAnimal(context, name, specie, breed, sex, weight, height, age,
-      isCastrated, activityLevel) {
+      isCastrated, activityLevel, imagepath) {
+    if (isCastrated == true) {
+      isCastrated = 1;
+    } else {
+      isCastrated = 0;
+    }
     _repository.registerAnimal(name, specie, breed, sex, weight, height, age,
-        isCastrated, activityLevel, context);
+        isCastrated, activityLevel, imagepath, context);
 
     notifyListeners();
   }
@@ -26,7 +31,7 @@ class AddAnimalController with ChangeNotifier {
     return true;
   }
 
-  String? get imagePaths => _imagePath;
+  String? get imagePath => _imagePath;
 
   File? get selectedImage => _selectedImage;
 
