@@ -23,7 +23,7 @@ class SignInRepository with ChangeNotifier {
         "password": password,
       },
     );
-    print(response.statusCode);
+
     if (response.statusCode == 200) {
       final prefs = await SharedPreferences.getInstance();
       prefs.setInt('id', response.data['user']['id']);

@@ -94,14 +94,6 @@ class AddAnimalRepository with ChangeNotifier {
                 ),
               ));
     } else {
-      print(name.toString());
-      print(sex.toString());
-      print(isCastrated);
-      print(activityLevel);
-      print(weight.toString());
-      print(height.toString());
-      print(breed.toString());
-      print(imgPath.toString());
       final body = FormData.fromMap({
         "name": name.toString(),
         "sex": sex.toString(),
@@ -131,7 +123,6 @@ class AddAnimalRepository with ChangeNotifier {
           print(response.statusCode);
         }
       } catch (e) {
-        print(e);
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
