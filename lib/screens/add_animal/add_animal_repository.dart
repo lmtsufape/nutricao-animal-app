@@ -32,8 +32,6 @@ class AddAnimalRepository with ChangeNotifier {
             },
           ));
       all = response.data['breeds'];
-      print(response.data);
-
       notifyListeners();
 
       if (all.isNotEmpty) {
