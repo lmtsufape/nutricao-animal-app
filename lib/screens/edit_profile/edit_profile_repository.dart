@@ -6,7 +6,7 @@ class EditProfileRepository {
   late int userId;
   late String userToken;
 
-  Future<bool> editUser(name, email) async {
+  Future<bool> patchUser(name, email) async {
     Dio dio = Dio();
 
     final prefs = await SharedPreferences.getInstance();

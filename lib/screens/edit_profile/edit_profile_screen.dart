@@ -21,7 +21,7 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  EditProfileRepository _repository = EditProfileRepository();
+  EditProfileController controller = EditProfileController();
   late String userName;
   late String email;
 
@@ -148,8 +148,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   height: heightScreen * 0.040,
                   child: ElevatedButton(
                     style: EditProfileScreen.styleSal,
-                    onPressed: () =>
-                        _repository.editUser(nameController, emailController),
+                    onPressed: () => controller.editUser(
+                        nameController, emailController, context),
                     child: Text(
                       'Salvar',
                       style: TextStyle(
