@@ -66,7 +66,7 @@ class AddAnimalRepository with ChangeNotifier {
   }
 
   void registerAnimal(name, specie, breed, sex, weight, height, age,
-      isCastrated, activityLevel, context) async {
+      isCastrated, activityLevel, imgPath, context) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -78,7 +78,8 @@ class AddAnimalRepository with ChangeNotifier {
         weight.toString().isEmpty ||
         height.toString().isEmpty ||
         age.toString().isEmpty ||
-        activityLevel.toString().isEmpty) {
+        activityLevel.toString().isEmpty ||
+        imgPath == null) {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -93,34 +94,48 @@ class AddAnimalRepository with ChangeNotifier {
                 ),
               ));
     } else {
-      var response = await dio.post(
-        '$kBaseUrl/users/$userId/animals/complete',
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer $userToken"
-          },
-        ),
-        data: {
-          "animal": {
-            "name": name.toString(),
-            "sex": sex,
-            "is_castrated": isCastrated,
-            "activity_level": activityLevel
-          },
-          "biometry": {
-            "weight": weight,
-            "height": height,
-          },
-          "breed": breed
-        },
-      );
-      showDialog(
-          context: context, builder: (context) => const DialogAddAnimal());
-      notifyListeners();
-      if (kDebugMode) {
-        print(response.statusCode);
+      final body = FormData.fromMap({
+        "name": name.toString(),
+        "sex": sex.toString(),
+        "is_castrated": isCastrated,
+        "activity_level": activityLevel,
+        "weight": weight.toString(),
+        "height": height.toString(),
+        "breed": breed.toString(),
+        "image": await MultipartFile.fromFile(imgPath.toString(),
+            filename: "image.jpg"),
+      });
+      try {
+        var response = await dio.post(
+          '$kBaseUrl/users/$userId/animals/complete',
+          options: Options(
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Authorization": "Bearer $userToken"
+            },
+          ),
+          data: body,
+        );
+        showDialog(
+            context: context, builder: (context) => const DialogAddAnimal());
+        notifyListeners();
+        if (kDebugMode) {
+          print(response.statusCode);
+        }
+      } catch (e) {
+        showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                  title: const Text('Impossível cadastrar animal'),
+                  content: MaterialButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    color: kDetailColor,
+                    child: const Text(
+                      'Ok!',
+                      style: TextStyle(color: kBackgroundColor),
+                    ),
+                  ),
+                ));
       }
     }
     notifyListeners();
