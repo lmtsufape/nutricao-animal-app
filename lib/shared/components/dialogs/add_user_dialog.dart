@@ -1,14 +1,26 @@
 import 'package:thunderapp/screens/screens_index.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
+import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 
-class AddUserDialog extends StatelessWidget {
-  const AddUserDialog({
+class AddUserDialog extends StatefulWidget {
+  String email;
+  String password;
+  AddUserDialog(
+    this.email,
+    this.password, {
     Key? key,
   }) : super(key: key);
 
   @override
+  State<AddUserDialog> createState() => _AddUserDialogState();
+}
+
+class _AddUserDialogState extends State<AddUserDialog> {
+  @override
   Widget build(BuildContext context) {
+    SignInController controller = SignInController();
     return AlertDialog(
       title: const Text(
         'Adicionar conta',
@@ -30,7 +42,7 @@ class AddUserDialog extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, Screens.home);
+                  Navigator.popAndPushNamed(context, Screens.signin);
                 },
                 // ignore: sort_child_properties_last
                 child: const Text(
