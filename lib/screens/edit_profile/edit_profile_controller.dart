@@ -13,13 +13,17 @@ class EditProfileController {
     Navigator.popAndPushNamed(context, Screens.signin);
   }
 
-  void editUser(name, email, context) async {
-    var succ = await _repository.patchUser(name, email);
-
-    if (succ) {
-      logoff(context);
+  void editUser(
+      TextEditingController name, TextEditingController email, context) async {
+    if (name.text.isEmpty && email.text.isEmpty) {
+      print('Preencha os campos para editar');
     } else {
-      print('Erro');
+      var succ = await _repository.patchUser(name.text, email.text);
+      if (succ) {
+        logoff(context);
+      } else {
+        print('Erro');
+      }
     }
   }
 }
