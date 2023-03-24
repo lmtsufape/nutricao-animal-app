@@ -43,7 +43,9 @@ class SignUpRepository {
       );
       if (response.statusCode == 201 || response.statusCode == 200) {
         showDialog(
-            context: context, builder: (context) => const AddUserDialog());
+            context: context,
+            builder: (context) =>
+                AddUserDialog(email.toString(), password.toString()));
       } else {
         showDialog(
             context: context,
