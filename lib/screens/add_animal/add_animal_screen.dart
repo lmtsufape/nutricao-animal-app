@@ -36,6 +36,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   late Future<List<String>> breeds;
 
   int activityLevel = 1;
+  int? age;
   String specie = 'dog';
   String breed = 'Sem Raça Definida';
   String sex = 'male';
@@ -252,7 +253,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child:
-                  TextFieldCustomDate('Data de Nascimento', ageController, ''),
+                  TextFieldCustomDate('Data de Nascimento', ageController, age),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
@@ -346,18 +347,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontWeight: FontWeight.w500,
                             fontSize: heightScreen * kMediumLargeSize)),
                     onPressed: () {
-                      controller.adicionarAnimal(
-                          context,
-                          nameController.text,
-                          specie,
-                          breed,
-                          sex,
-                          weightController.text,
-                          heightController.text,
-                          ageController.text,
-                          isCastrated,
-                          activityLevel,
-                          controller.imagePath);
+                      print(ageController.text);
                     },
                   ),
                 ),

@@ -42,11 +42,10 @@ class TextFieldCustom extends StatelessWidget {
 
 class TextFieldCustomDate extends StatefulWidget {
   final String _fieldLabel;
-  final TextEditingController controller;
-  final String label;
+  TextEditingController controller;
+  int? age;
 
-  const TextFieldCustomDate(this._fieldLabel, this.controller, this.label,
-      {super.key});
+  TextFieldCustomDate(this._fieldLabel, this.controller, this.age, {super.key});
 
   @override
   State<TextFieldCustomDate> createState() => _TextFieldCustomDateState();
@@ -55,6 +54,8 @@ class TextFieldCustomDate extends StatefulWidget {
 class _TextFieldCustomDateState extends State<TextFieldCustomDate> {
   DateTime _datept = DateTime.now();
   String date = 'dd/mm/aaaa';
+  DateTime today = DateTime.now();
+  int age = 0;
 
   getDate() {
     showDatePicker(
@@ -64,14 +65,18 @@ class _TextFieldCustomDateState extends State<TextFieldCustomDate> {
             lastDate: DateTime(2025))
         .then((value) {
       setState(() {
-        _datept = value!;
-        date = DateFormat(DateFormat.YEAR_MONTH_DAY, "pt_Br").format(_datept);
+        if (value != null) {
+          _datept = value;
+          age = today.year - _datept.year;
+          date = DateFormat(DateFormat.YEAR_MONTH_DAY, "pt_Br").format(_datept);
+        }
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    widget.controller.text = date;
     final heightScreen = MediaQuery.of(context).size.height;
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
