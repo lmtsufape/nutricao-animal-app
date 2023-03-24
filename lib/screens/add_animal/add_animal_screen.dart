@@ -251,7 +251,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Idade', ageController, ''),
+              child:
+                  TextFieldCustomDate('Data de Nascimento', ageController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
