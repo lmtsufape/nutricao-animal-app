@@ -8,6 +8,7 @@ import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/animal_model.dart';
+import '../../shared/constants/app_text_constants.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 import 'home_screen_repository.dart';
@@ -281,10 +282,12 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                           Center(
                             child: SizedBox(
                               width: widthScreen * 0.46,
-                              child: const Icon(
-                                Icons.add_a_photo,
-                                size: 70,
-                                color: kBackgroundColor,
+                              child: Image(
+                                image: NetworkImage(
+                                    '$kBaseUrl/image/${widget.animal.id}'),
+                                fit: widthScreen * 0.80 > heightScreen * 0.80
+                                    ? BoxFit.fitWidth
+                                    : BoxFit.fitHeight,
                               ),
                             ),
                           ),
