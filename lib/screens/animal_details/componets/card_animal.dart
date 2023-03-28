@@ -4,6 +4,7 @@ import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
 
+import '../../../shared/constants/app_text_constants.dart';
 import '../../../shared/constants/style_constants.dart';
 import '../../../shared/core/models/animal_model.dart';
 import '../../food/food_screen.dart';
@@ -36,11 +37,10 @@ class stateCardAnimal extends State<CardAnimal> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ListTile(
-                leading: Icon(
-                  Icons.add_a_photo,
-                  size: heightCard * 0.18,
-                  color: kBackgroundColor,
-                ),
+                leading: Image(
+                    image: NetworkImage(
+                  '$kBaseUrl/image/${widget.animal.id}',
+                )),
                 title: Padding(
                   padding: const EdgeInsets.only(top: 20, left: 10),
                   child: Column(
@@ -99,9 +99,9 @@ class stateCardAnimal extends State<CardAnimal> {
                           //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
                           widget.animal.breed.toString(),
                           style: TextStyle(
-                              color: kBackgroundColor,
-                              fontSize: heightCard * 0.022,
-                              fontWeight: FontWeight.w700,
+                            color: kBackgroundColor,
+                            fontSize: heightCard * 0.022,
+                            fontWeight: FontWeight.w700,
                           ),
                           textAlign: TextAlign.center,
                         ),
