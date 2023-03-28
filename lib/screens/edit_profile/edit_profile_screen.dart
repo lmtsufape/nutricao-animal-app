@@ -25,15 +25,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late String userName;
   late String email;
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   Future<String>? _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
     userName = prefs.getString('name')!;
+    nameController.text = userName;
     return userName;
   }
 
   Future<String> _getEmail() async {
     final prefs = await SharedPreferences.getInstance();
     email = prefs.getString('email')!;
+    emailController.text = email;
     return email;
   }
 
@@ -48,10 +54,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
-    EditProfileController editController = EditProfileController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
         backgroundColor: kBackgroundColor,
@@ -90,23 +92,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   TextField(
                     controller: nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
-                      label: FutureBuilder<String>(
-                        future: _getUserName(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Text(
-                              '${snapshot.data}',
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text("Error: ${snapshot.error}");
-                          }
-                          return const CircularProgressIndicator();
-                        },
-                      ),
-                      contentPadding: const EdgeInsets.all(14),
-                      border: const OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(14),
+                      border: OutlineInputBorder(),
                     ),
                   ),
                   Text(
@@ -117,23 +106,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   TextField(
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
-                      label: FutureBuilder<String>(
-                        future: _getEmail(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Text(
-                              '${snapshot.data}',
-                            );
-                          } else if (snapshot.hasError) {
-                            return Text("Error: ${snapshot.error}");
-                          }
-                          return const CircularProgressIndicator();
-                        },
-                      ),
-                      contentPadding: const EdgeInsets.all(14),
-                      border: const OutlineInputBorder(),
+                      contentPadding: EdgeInsets.all(14),
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ],
@@ -165,7 +141,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
-                onPressed: () => editController.logoff(context),
+                onPressed: () => controller.logoff(context),
                 color: kDetailColor,
                 child: const Text('Log Off'),
               ),
