@@ -9,6 +9,7 @@ import 'package:thunderapp/screens/food/food_controller.dart';
 
 import 'package:thunderapp/screens/home/home_screen.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:thunderapp/shared/core/models/food_model.dart';
 
 import '../../shared/constants/app_text_constants.dart';
 import '../screens_index.dart';
@@ -21,6 +22,7 @@ class FoodRepository {
   Future<List<String>> showTypes() async {
     Dio _dio = Dio();
     List<String> categories = [];
+    List<FoodModel> foodListComplete = [];
 
     int i;
     final prefs = await SharedPreferences.getInstance();
@@ -38,18 +40,30 @@ class FoodRepository {
         },
       ),
     );
-    print(response.data);
+    //print(response.data);
     var all = response.data as List<dynamic>;
     String compare;
     if (response.statusCode == 200 || response.statusCode == 201) {
       for (i = 0; i < all.length; i++) {
+        foodListComplete.add(
+          FoodModel(
+            response.data[i]["id"],
+            response.data[i]["name"],
+            response.data[i]["category"],
+            response.data[i]["carbohydrates"],
+            response.data[i]["lipids"],
+            response.data[i]["calcium"],
+            response.data[i]["protein_value"],
+            response.data[i]["fiber"],
+          ),
+        );
+
         compare = (response.data[i]["category"]);
         if (categories.any((element) => element == compare) == false) {
           categories.add(compare);
         }
       }
     }
-
     return categories;
   }
 
