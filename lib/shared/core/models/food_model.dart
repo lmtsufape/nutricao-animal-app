@@ -1,15 +1,17 @@
 import 'package:flutter/foundation.dart';
 
 class FoodModel extends ChangeNotifier {
+  int id;
   String name;
   String category;
-  double carbohydrates;
-  double lipids;
-  double calcium;
-  double proteins;
-  double fibers;
+  String carbohydrates;
+  String lipids;
+  String calcium;
+  String proteins;
+  String fibers;
 
   FoodModel(
+    this.id,
     this.name,
     this.category,
     this.carbohydrates,
@@ -19,6 +21,7 @@ class FoodModel extends ChangeNotifier {
     this.fibers,
   );
 
+  get getId => id;
   get getName => name;
   get getCategory => category;
   get getCarbohydrates => carbohydrates;
