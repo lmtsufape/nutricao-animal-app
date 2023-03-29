@@ -65,8 +65,8 @@ class AddAnimalRepository with ChangeNotifier {
     return ['Falha'];
   }
 
-  void registerAnimal(name, specie, breed, sex, weight, height, age,
-      isCastrated, activityLevel, imgPath, context) async {
+  void registerAnimal(name, specie, breed, sex, weight, height, isCastrated,
+      activityLevel, imgPath, context) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -77,7 +77,6 @@ class AddAnimalRepository with ChangeNotifier {
         breed.toString().isEmpty ||
         weight.toString().isEmpty ||
         height.toString().isEmpty ||
-        age.toString().isEmpty ||
         activityLevel.toString().isEmpty ||
         imgPath == null) {
       showDialog(
