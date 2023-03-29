@@ -3,6 +3,7 @@ import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/core/models/animal_model.dart';
+import '../edit_animal/edit_animal_screen.dart';
 import 'componets/caloric_need_counter.dart';
 import 'componets/card_animal.dart';
 
@@ -49,7 +50,10 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
         child: FloatingActionButton(
           heroTag: 'Edit1',
           child: Icon(Icons.edit, size: widthScreen * 0.1),
-          onPressed: () => Navigator.pushNamed(context, Screens.editAnimal),
+          onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => EditAnimalScreen(widget.animal))),
         ),
       ),
     );

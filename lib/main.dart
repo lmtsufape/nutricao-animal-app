@@ -5,6 +5,7 @@ import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/app.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
+import 'package:thunderapp/screens/edit_animal/edit_animal_controller.dart';
 import 'package:thunderapp/screens/home/home_screen_controller.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
@@ -28,6 +29,7 @@ main() {
             ChangeNotifierProvider(create: (_) => UserModel()),
             ChangeNotifierProvider(create: (_) => SignInRepository()),
             ChangeNotifierProvider(create: (_) => SignInController()),
-            ChangeNotifierProvider(create: (_) => AddAnimalController())
+            ChangeNotifierProvider(create: (_) => AddAnimalController()),
+            ChangeNotifierProvider(create: (_) => EditAnimalController())
           ], child: const App())));
 }
