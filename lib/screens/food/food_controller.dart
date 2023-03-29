@@ -6,11 +6,14 @@ import '../../shared/constants/style_constants.dart';
 
 class FoodController {
   int feed = 0;
-  
 
-  void feedAnimal(type, food, quant, animalId, context,
-      addMenu) async {
-        FoodRepository _repository = FoodRepository();
+  void feedAnimal(type, food, quant, animalId, context, addMenu) async {
+    FoodRepository _repository = FoodRepository();
+    if (addMenu != null) {
+      addMenu = true;
+    } else {
+      addMenu = false;
+    }
     if (quant.text.isEmpty || type == 'Selecione' || food == 'Selecione') {
       return showDialog(
           context: context,
