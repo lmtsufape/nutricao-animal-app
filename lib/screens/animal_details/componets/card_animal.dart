@@ -51,7 +51,7 @@ class stateCardAnimal extends State<CardAnimal> {
                           child: ClipRect(
                             child: Align(
                               alignment: Alignment.center,
-                              heightFactor: 0.7,
+                              heightFactor: 0.00070 * heightCard,
                               child: Image(
                                 image: NetworkImage(
                                     '$kBaseUrl/image/${widget.animal.id}'),
