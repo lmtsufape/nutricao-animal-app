@@ -5,6 +5,7 @@ import 'package:thunderapp/shared/constants/app_text_constants.dart';
 import 'package:dio/dio.dart';
 import '../../shared/components/dialogs/add_animal_dialog.dart';
 import '../../shared/constants/style_constants.dart';
+import '../screens_index.dart';
 
 class AddAnimalRepository with ChangeNotifier {
   late int userId;
@@ -140,7 +141,7 @@ class AddAnimalRepository with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> deleteAnimal(idAnimal) async {
+  Future<bool> deleteAnimal(context, idAnimal) async {
     Dio dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -161,6 +162,9 @@ class AddAnimalRepository with ChangeNotifier {
       print(response.statusCode);
     }
     notifyListeners();
+    Navigator.popAndPushNamed(context, Screens.home);
+
+    print(response.statusCode);
     return true;
   }
 }

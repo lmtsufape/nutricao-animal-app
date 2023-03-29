@@ -54,8 +54,7 @@ class DeleteAnimalDialog extends StatelessWidget {
               const HorizontalSpacerBox(size: SpacerSize.large),
               ElevatedButton(
                 onPressed: () {
-                  controller.deleteAnimal(id);
-                  Navigator.popAndPushNamed(context, Screens.home);
+                  controller.deleteAnimal(context, id);
                 },
                 // ignore: sort_child_properties_last
                 child: const Text(
