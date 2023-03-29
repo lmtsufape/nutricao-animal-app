@@ -258,6 +258,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     width: widthScreen * 0.4,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
+
                                       child: ClipRect(
                                         child: Align(
                                           alignment: Alignment.topCenter,
