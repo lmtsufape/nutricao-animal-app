@@ -18,11 +18,12 @@ class FoodRepository {
   late int userId;
   late String userToken;
   final FoodController _controller = FoodController();
+  FoodModel? usedFood;
+  List<FoodModel> foodListComplete = [];
 
   Future<List<String>> showTypes() async {
     Dio _dio = Dio();
     List<String> categories = [];
-    List<FoodModel> foodListComplete = [];
 
     int i;
     final prefs = await SharedPreferences.getInstance();
@@ -87,7 +88,6 @@ class FoodRepository {
         },
       ),
     );
-
     var data = response.data as List<dynamic>;
 
     for (i = 0; i < data.length; i++) {
@@ -96,6 +96,18 @@ class FoodRepository {
       }
     }
     return foods;
+  }
+
+  void getFood(int id) {
+    late FoodModel aux;
+    int i;
+    for (i = 0; i < foodListComplete.length; i++) {
+      if (id == foodListComplete[i].id) {
+        aux = foodListComplete[i];
+      }
+    }
+    print(aux.carbohydrates);
+    //return ;
   }
 
   Future<List<String>> showMenu(animalId) async {
@@ -129,37 +141,33 @@ class FoodRepository {
 
   Future<bool> postMenu(
       bool addMenu, type, food, TextEditingController quant, animalId) async {
-    if (addMenu) {
-      Dio _dio = Dio();
+    Dio _dio = Dio();
 
-      final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
 
-      userId = prefs.getInt('id')!;
-      userToken = prefs.getString('token')!;
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
 
-      int aux = int.parse(quant.text);
+    int aux = int.parse(quant.text);
 
-      var response = await _dio.post(
-        '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "Authorization": "Bearer $userToken"
-          },
-        ),
-        data: {
-          "category": type,
-          "name": food,
-          "amount": aux,
+    var response = await _dio.post(
+      '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
         },
-      );
-      print(response.statusCode);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return true;
-      } else {
-        return false;
-      }
+      ),
+      data: {
+        "category": type.toString(),
+        "name": food.toString(),
+        "amount": aux,
+      },
+    );
+    print(response.statusCode);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
     } else {
       return false;
     }

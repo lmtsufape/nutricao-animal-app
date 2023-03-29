@@ -177,6 +177,7 @@ class _FoodScreenState extends State<FoodScreen> {
                 onChanged: (data) {
                   setState(
                     () {
+                      
                       type = data.toString();
                       food = 'Selecione';
                       listFoods = _repository.showFoods(type);
