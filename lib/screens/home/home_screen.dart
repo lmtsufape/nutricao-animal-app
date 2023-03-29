@@ -261,7 +261,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                       child: ClipRect(
                                         child: Align(
                                           alignment: Alignment.topCenter,
-                                          heightFactor: 0.77,
+                                          heightFactor: 0.00075 * heightScreen,
                                           child: Image(
                                             image: NetworkImage(
                                                 '$kBaseUrl/image/${widget.animal.id}'),
