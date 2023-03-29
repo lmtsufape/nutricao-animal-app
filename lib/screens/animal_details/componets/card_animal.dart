@@ -13,6 +13,7 @@ import 'staggered_grid_animal.dart';
 // ignore: must_be_immutable
 class CardAnimal extends StatefulWidget {
   AnimalModel animal;
+
   CardAnimal(this.animal, {Key? key}) : super(key: key);
 
   @override
@@ -39,7 +40,8 @@ class stateCardAnimal extends State<CardAnimal> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 20, right: 15),
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 15),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Container(
@@ -62,37 +64,36 @@ class stateCardAnimal extends State<CardAnimal> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 10),
+                    padding: const EdgeInsets.only(top: 10, left: 10),
                     child: Align(
-                      alignment: Alignment.topRight,
+                      alignment: Alignment.centerRight,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             width: widthCard * 0.42,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
-                              textDirection: TextDirection.ltr,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                const HorizontalSpacerBox(size: SpacerSize.tiny),
-                                Center(
-                                  child: Text(
-                                    'Nome',
-                                    style: TextStyle(
-                                      color: kDetailColor,
-                                      fontSize: heightCard * 0.020,
-                                    ),
-                                    textAlign: TextAlign.left,
+                                Text(
+                                  'Nome',
+                                  style: TextStyle(
+                                    color: kDetailColor,
+                                    fontSize: heightCard * 0.020,
                                   ),
+                                  textAlign: TextAlign.left,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 22),
+                                  padding: const EdgeInsets.only(left: 88),
                                   child: IconButton(
                                     onPressed: () {
                                       showDialog(
                                           context: context,
                                           builder: (context) =>
-                                              DeleteAnimalDialog(widget.animal.id));
+                                              DeleteAnimalDialog(
+                                                  widget.animal.id));
                                     },
                                     icon: const Icon(
                                       Icons.delete,
@@ -112,28 +113,25 @@ class stateCardAnimal extends State<CardAnimal> {
                                 fontWeight: FontWeight.w700),
                             textAlign: TextAlign.center,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: Text(
-                              'Raça',
-                              style: TextStyle(
-                                  color: kDetailColor,
-                                  fontSize: heightCard * 0.020),
-                              textAlign: TextAlign.center,
-                            ),
+                          Divider(
+                            height: heightCard * 0.03,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text(
-                              //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
-                              widget.animal.breed.toString(),
-                              style: TextStyle(
-                                color: kBackgroundColor,
-                                fontSize: heightCard * 0.022,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              textAlign: TextAlign.center,
+                          Text(
+                            'Raça',
+                            style: TextStyle(
+                                color: kDetailColor,
+                                fontSize: heightCard * 0.020),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
+                            widget.animal.breed.toString(),
+                            style: TextStyle(
+                              color: kBackgroundColor,
+                              fontSize: heightCard * 0.022,
+                              fontWeight: FontWeight.w700,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
