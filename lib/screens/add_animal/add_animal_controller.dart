@@ -18,7 +18,7 @@ class AddAnimalController with ChangeNotifier {
     } else {
       isCastrated = 0;
     }
-    _repository.registerAnimal(name, specie, breed, sex, weight, height, age,
+    _repository.registerAnimal(name, specie, breed, sex, weight, height,
         isCastrated, activityLevel, imagepath, context);
 
     notifyListeners();

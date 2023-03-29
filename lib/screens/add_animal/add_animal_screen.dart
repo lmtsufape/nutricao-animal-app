@@ -347,7 +347,18 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                             fontWeight: FontWeight.w500,
                             fontSize: heightScreen * kMediumLargeSize)),
                     onPressed: () {
-                      print(ageController.text);
+                      controller.adicionarAnimal(
+                          context,
+                          nameController.text,
+                          specie,
+                          breed,
+                          sex,
+                          weightController.text,
+                          heightController.text,
+                          age,
+                          isCastrated,
+                          activityLevel,
+                          controller.imagePath);
                     },
                   ),
                 ),
