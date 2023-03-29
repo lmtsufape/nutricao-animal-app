@@ -13,6 +13,7 @@ import 'staggered_grid_animal.dart';
 // ignore: must_be_immutable
 class CardAnimal extends StatefulWidget {
   AnimalModel animal;
+
   CardAnimal(this.animal, {Key? key}) : super(key: key);
 
   @override
@@ -34,145 +35,174 @@ class stateCardAnimal extends State<CardAnimal> {
             borderRadius: BorderRadius.circular(15.0),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              ListTile(
-                leading: Image(
-                    image: NetworkImage(
-                  '$kBaseUrl/image/${widget.animal.id}',
-                )),
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const HorizontalSpacerBox(size: SpacerSize.tiny),
-                          Center(
-                            child: Text(
-                              'Nome',
-                              style: TextStyle(
-                                color: kDetailColor,
-                                fontSize: heightCard * 0.020,
+              Row(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 20, left: 20, right: 15),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        width: widthCard * 0.40,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: ClipRect(
+                            child: Align(
+                              alignment: Alignment.center,
+                              heightFactor: 0.7,
+                              child: Image(
+                                image: NetworkImage(
+                                    '$kBaseUrl/image/${widget.animal.id}'),
+                                fit: BoxFit.cover,
                               ),
-                              textAlign: TextAlign.left,
                             ),
                           ),
-                          IconButton(
-                            onPressed: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) =>
-                                      DeleteAnimalDialog(widget.animal.id));
-                            },
-                            icon: const Icon(
-                              Icons.delete,
-                              color: kBackgroundColor,
-                              size: 35,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10, left: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: widthCard * 0.42,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Text(
+                                  'Nome',
+                                  style: TextStyle(
+                                    color: kDetailColor,
+                                    fontSize: heightCard * 0.020,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 88),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              DeleteAnimalDialog(
+                                                  widget.animal.id));
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      color: kBackgroundColor,
+                                      size: 35,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ),
+                          Text(
+                            widget.animal.name.toString(),
+                            style: TextStyle(
+                                color: kBackgroundColor,
+                                fontSize: heightCard * 0.022,
+                                fontWeight: FontWeight.w700),
+                            textAlign: TextAlign.center,
+                          ),
+                          Divider(
+                            height: heightCard * 0.03,
+                          ),
+                          Text(
+                            'Raça',
+                            style: TextStyle(
+                                color: kDetailColor,
+                                fontSize: heightCard * 0.020),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
+                            widget.animal.breed.toString(),
+                            style: TextStyle(
+                              color: kBackgroundColor,
+                              fontSize: heightCard * 0.022,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
-                      Text(
-                        widget.animal.name.toString(),
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontSize: heightCard * 0.022,
-                            fontWeight: FontWeight.w700),
-                        textAlign: TextAlign.center,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 30),
-                        child: Text(
-                          'Raça',
-                          style: TextStyle(
-                              color: kDetailColor,
-                              fontSize: heightCard * 0.020),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Text(
-                          //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
-                          widget.animal.breed.toString(),
-                          style: TextStyle(
-                            color: kBackgroundColor,
-                            fontSize: heightCard * 0.022,
-                            fontWeight: FontWeight.w700,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6),
-                      child: SizedBox(
-                        height: heightCard * 0.07,
-                        width: widthCard * 0.25,
-                        child: FloatingActionButton(
-                          heroTag: 'Menu',
-                          backgroundColor: kDetailColor,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, Screens.privateMenu),
-                          child: Icon(
-                            Icons.menu_book_outlined,
-                            color: kBackgroundColor,
-                            size: widthCard * 0.08,
-                          ),
+              Divider(
+                height: heightCard * 0.045,
+                color: Colors.transparent,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: SizedBox(
+                      height: heightCard * 0.07,
+                      width: widthCard * 0.25,
+                      child: FloatingActionButton(
+                        heroTag: 'Menu',
+                        backgroundColor: kDetailColor,
+                        onPressed: () =>
+                            Navigator.pushNamed(context, Screens.privateMenu),
+                        child: Icon(
+                          Icons.menu_book_outlined,
+                          color: kBackgroundColor,
+                          size: widthCard * 0.08,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 37),
-                      child: SizedBox(
-                        height: heightCard * 0.07,
-                        width: widthCard * 0.25,
-                        child: FloatingActionButton(
-                          heroTag: 'Eat',
-                          backgroundColor: kDetailColor,
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      FoodScreen(widget.animal.id))),
-                          child: Icon(
-                            Icons.restaurant_outlined,
-                            color: kBackgroundColor,
-                            size: widthCard * 0.08,
-                          ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 37),
+                    child: SizedBox(
+                      height: heightCard * 0.07,
+                      width: widthCard * 0.25,
+                      child: FloatingActionButton(
+                        heroTag: 'Eat',
+                        backgroundColor: kDetailColor,
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    FoodScreen(widget.animal.id))),
+                        child: Icon(
+                          Icons.restaurant_outlined,
+                          color: kBackgroundColor,
+                          size: widthCard * 0.08,
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50, right: 20),
-                      child: SizedBox(
-                        height: heightCard * 0.07,
-                        width: widthCard * 0.16,
-                        child: FloatingActionButton(
-                          heroTag: 'Share',
-                          backgroundColor: kDetailColor,
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.share,
-                            color: kBackgroundColor,
-                            size: widthCard * 0.08,
-                          ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50, right: 20),
+                    child: SizedBox(
+                      height: heightCard * 0.07,
+                      width: widthCard * 0.16,
+                      child: FloatingActionButton(
+                        heroTag: 'Share',
+                        backgroundColor: kDetailColor,
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.share,
+                          color: kBackgroundColor,
+                          size: widthCard * 0.08,
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2),
