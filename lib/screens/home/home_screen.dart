@@ -245,7 +245,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(top: 12),
                             child: Container(
                               width: widthScreen * 0.46,
                               height: heightScreen * 0.21,
@@ -261,7 +261,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                       child: ClipRect(
                                         child: Align(
                                           alignment: Alignment.topCenter,
-                                          heightFactor: 0.78,
+                                          heightFactor: 0.77,
                                           child: Image(
                                             image: NetworkImage(
                                                 '$kBaseUrl/image/${widget.animal.id}'),
@@ -348,7 +348,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     ),
                                   ),
                                   Divider(
-                                    height: heightScreen * 0.035,
+                                    height: heightScreen * 0.030,
                                     color: Colors.transparent,
                                   ),
                                   Container(
