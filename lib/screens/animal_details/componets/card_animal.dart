@@ -44,20 +44,19 @@ class stateCardAnimal extends State<CardAnimal> {
                         const EdgeInsets.only(top: 20, left: 20, right: 15),
                     child: Align(
                       alignment: Alignment.topLeft,
-                      child: Container(
-                        width: widthCard * 0.40,
+                      child: SizedBox(
+                        width: widthCard * 0.4,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          child: ClipRect(
-                            child: Align(
-                              alignment: Alignment.center,
-                              heightFactor: 0.00070 * heightCard,
+                          child: AspectRatio(
+                              aspectRatio: 1,
                               child: Image(
                                 image: NetworkImage(
                                     '$kBaseUrl/image/${widget.animal.id}'),
                                 fit: BoxFit.cover,
-                              ),
-                            ),
+                                height: heightCard * 0.02,
+                                width: widthCard * 0.02,
+                              )
                           ),
                         ),
                       ),
