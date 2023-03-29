@@ -232,7 +232,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
         child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
-              height: heightScreen * 0.24,
+              height: heightScreen * 0.23,
               child: Card(
                 color: kPrimaryColor,
                 shape: RoundedRectangleBorder(
@@ -245,7 +245,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 12),
+                            padding: const EdgeInsets.only(top: 8),
                             child: Container(
                               width: widthScreen * 0.46,
                               height: heightScreen * 0.21,
@@ -258,19 +258,17 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     width: widthScreen * 0.4,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
-
-                                      child: ClipRect(
-                                        child: Align(
-                                          alignment: Alignment.topCenter,
-                                          heightFactor: 0.00075 * heightScreen,
+                                      child: AspectRatio(
+                                        aspectRatio: 1,
                                           child: Image(
-                                            image: NetworkImage(
-                                                '$kBaseUrl/image/${widget.animal.id}'),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
+                                              image: NetworkImage(
+                                                  '$kBaseUrl/image/${widget.animal.id}'),
+                                              fit: BoxFit.cover,
+                                              height: heightScreen * 0.02,
+                                              width: widthScreen * 0.02,
+                                          )
                                     ),
+                                  ),
                                   ),
                                 ],
                               ),
@@ -280,7 +278,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                             width: widthScreen * 0.48,
                             alignment: Alignment.centerLeft,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 15),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 textDirection: TextDirection.ltr,
@@ -301,7 +299,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 100, right: 12),
+                                              left: 90, right: 12),
                                           child: Text(
                                             widget.animal.sex.toString(),
                                             style: TextStyle(
@@ -314,25 +312,22 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     ),
                                   ),
                                   Divider(
-                                    height: heightScreen * 0.025,
+                                    height: heightScreen * 0.018,
                                     color: Colors.transparent,
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 4),
-                                    child: SizedBox(
-                                      width: widthScreen * 0.40,
-                                      //constraints: BoxConstraints.tightForFinite(width: double.maxFinite, height: double.maxFinite),
-                                      child: FittedBox(
-                                        alignment: Alignment.centerLeft,
-                                        fit: BoxFit.scaleDown,
-                                        child: Text(
-                                          widget.animal.name.toString(),
-                                          textDirection: TextDirection.ltr,
-                                          style: TextStyle(
-                                            fontSize: heightScreen * 0.028,
-                                            color: kBackgroundColor,
-                                            fontWeight: FontWeight.w900,
-                                          ),
+                                  SizedBox(
+                                    width: widthScreen * 0.40,
+                                    //constraints: BoxConstraints.tightForFinite(width: double.maxFinite, height: double.maxFinite),
+                                    child: FittedBox(
+                                      alignment: Alignment.centerLeft,
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        widget.animal.name.toString(),
+                                        textDirection: TextDirection.ltr,
+                                        style: TextStyle(
+                                          fontSize: heightScreen * 0.028,
+                                          color: kBackgroundColor,
+                                          fontWeight: FontWeight.w900,
                                         ),
                                       ),
                                     ),
@@ -349,7 +344,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     ),
                                   ),
                                   Divider(
-                                    height: heightScreen * 0.030,
+                                    height: heightScreen * 0.025,
                                     color: Colors.transparent,
                                   ),
                                   Container(
