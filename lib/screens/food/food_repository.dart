@@ -131,16 +131,17 @@ class FoodRepository {
       ),
     );
     print(response.statusCode);
+
     var data = response.data['menu'] as List<dynamic>;
 
     for (i = 0; i < data.length; i++) {
-      menu.add(response.data[i]['name']);
+      menu.add(data[i]['name']);
     }
     return menu;
   }
 
-  Future<bool> postMenu(
-      bool addMenu, type, food, TextEditingController quant, animalId) async {
+  Future<bool> postMenu(bool addMenu, type, food, TextEditingController quant,
+      animalId, context) async {
     Dio _dio = Dio();
 
     final prefs = await SharedPreferences.getInstance();
@@ -167,6 +168,7 @@ class FoodRepository {
     );
     print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
+      Navigator.pushNamed(context, Screens.home);
       return true;
     } else {
       return false;

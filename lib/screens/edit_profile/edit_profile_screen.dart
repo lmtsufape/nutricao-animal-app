@@ -71,7 +71,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     backgroundColor: kBackgroundColor,
                     onPressed: () {},
                     child: const Icon(
-                      Icons.photo,
+                      Icons.person,
                       color: kSecondaryColor,
                       size: 50,
                     ),

@@ -39,7 +39,7 @@ class FoodController {
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
                   onPressed: () => _repository.postMenu(
-                      addMenu, type, food, quant, animalId),
+                      addMenu, type, food, quant, animalId, context),
                   color: kDetailColor,
                   child: const Text(
                     'Sim',
