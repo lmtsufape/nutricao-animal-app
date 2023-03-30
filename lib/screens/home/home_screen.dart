@@ -259,16 +259,15 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(12),
                                       child: AspectRatio(
-                                        aspectRatio: 1,
+                                          aspectRatio: 1,
                                           child: Image(
-                                              image: NetworkImage(
-                                                  '$kBaseUrl/image/${widget.animal.id}'),
-                                              fit: BoxFit.cover,
-                                              height: heightScreen * 0.02,
-                                              width: widthScreen * 0.02,
-                                          )
+                                            image: NetworkImage(
+                                                '$kBaseUrl/image/${widget.animal.id}'),
+                                            fit: BoxFit.cover,
+                                            height: heightScreen * 0.02,
+                                            width: widthScreen * 0.02,
+                                          )),
                                     ),
-                                  ),
                                   ),
                                 ],
                               ),
@@ -291,7 +290,7 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                       children: [
                                         Text(
                                           //widget.age.toString(),
-                                          "5 anos",
+                                          "${widget.animal.weight} kg",
                                           style: TextStyle(
                                               fontSize:
                                                   heightScreen * kMediumSize,
