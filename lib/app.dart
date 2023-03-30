@@ -44,7 +44,6 @@ class App extends StatelessWidget {
         Screens.splash: (BuildContext context) => const SplashScreen(),
         Screens.signin: (BuildContext context) => SignInScreen(),
         Screens.signup: (BuildContext context) => const SignUpScreen(),
-        Screens.editAnimal: (BuildContext context) => const EditAnimalScreen(),
         Screens.noRegFood: (BuildContext context) => const NoRegFoodScreen(),
         Screens.editProfile: (BuildContext context) =>
             const EditProfileScreen(),
