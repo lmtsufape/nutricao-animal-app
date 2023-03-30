@@ -168,10 +168,32 @@ class FoodRepository {
     );
     print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
+      feedAnimal(type, food, quant, animalId);
       Navigator.pushNamed(context, Screens.home);
       return true;
     } else {
       return false;
     }
+  }
+
+  void feedAnimal(type, food, quant, animalId) async {
+    Dio _dio = Dio();
+    final prefs = await SharedPreferences.getInstance();
+    int aux = _controller.foodCalculate(type.toString(), food.toString(), quant);
+    userId = prefs.getInt('id')!;
+    userToken = prefs.getString('token')!;
+
+    var response = await _dio.patch(
+      '$kBaseUrl/users/$userId/animals/$animalId',
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        },
+      ),
+      data: {"activity_level": aux},
+    );
+    print(response.statusCode);
   }
 }
