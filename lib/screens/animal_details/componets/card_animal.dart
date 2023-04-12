@@ -70,39 +70,13 @@ class stateCardAnimal extends State<CardAnimal> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
-                            width: widthCard * 0.42,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Nome',
-                                  style: TextStyle(
-                                    color: kDetailColor,
-                                    fontSize: heightCard * 0.020,
-                                  ),
-                                  textAlign: TextAlign.left,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 88),
-                                  child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              DeleteAnimalDialog(
-                                                  widget.animal.id));
-                                    },
-                                    icon: const Icon(
-                                      Icons.delete,
-                                      color: kBackgroundColor,
-                                      size: 35,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            'Nome',
+                            style: TextStyle(
+                              color: kDetailColor,
+                              fontSize: heightCard * 0.020,
                             ),
+                            textAlign: TextAlign.left,
                           ),
                           Text(
                             widget.animal.name.toString(),
