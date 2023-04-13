@@ -56,8 +56,7 @@ class stateCardAnimal extends State<CardAnimal> {
                                 fit: BoxFit.cover,
                                 height: heightCard * 0.02,
                                 width: widthCard * 0.02,
-                              )
-                          ),
+                              )),
                         ),
                       ),
                     ),
@@ -178,23 +177,6 @@ class stateCardAnimal extends State<CardAnimal> {
                                     FoodScreen(widget.animal.id))),
                         child: Icon(
                           Icons.restaurant_outlined,
-                          color: kBackgroundColor,
-                          size: widthCard * 0.08,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 20),
-                    child: SizedBox(
-                      height: heightCard * 0.07,
-                      width: widthCard * 0.16,
-                      child: FloatingActionButton(
-                        heroTag: 'Share',
-                        backgroundColor: kDetailColor,
-                        onPressed: () {},
-                        child: Icon(
-                          Icons.share,
                           color: kBackgroundColor,
                           size: widthCard * 0.08,
                         ),
