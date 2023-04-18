@@ -11,6 +11,7 @@ import 'package:thunderapp/shared/core/models/animal_model.dart';
 import '../../components/forms/dropdown_custom.dart';
 import '../../components/forms/text_field_custom.dart';
 import '../../components/utils/vertical_spacer_box.dart';
+import '../../shared/components/dialogs/delete_animal_dialog.dart';
 import '../../shared/constants/app_enums.dart';
 import '../../shared/constants/app_theme.dart';
 import '../../shared/core/models/user_model.dart';
@@ -26,6 +27,9 @@ class EditAnimalScreen extends StatefulWidget {
 
   static ButtonStyle styleSalvar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
+  );
+  static ButtonStyle styleRemover = ElevatedButton.styleFrom(
+    backgroundColor: Colors.redAccent,
   );
 
   @override
@@ -107,7 +111,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
             ),
             TextFieldCustom('Nome', nameController, ''),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Espécie',
                 style: TextStyle(
@@ -124,7 +128,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'Cachorro',
+                    value: 'dog',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -144,7 +148,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'Gato',
+                    value: 'cat',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -160,7 +164,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Raça',
                 style: TextStyle(
@@ -169,7 +173,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
+              padding: const EdgeInsets.only(top: 8, left: 16, right: 16),
               child: DropdownSearch<String>(
                 selectedItem: breed,
                 popupProps: const PopupProps.dialog(
@@ -193,7 +197,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Sexo',
                 style: TextStyle(
@@ -247,21 +251,21 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: 8),
               child: TextFieldCustom('Peso (Quilograma)', weightController, ''),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: 8),
               child:
                   TextFieldCustom('Medida (Centímetros)', heightController, ''),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 4),
+              padding: const EdgeInsets.only(top: 8),
               child:
                   TextFieldCustomDate('Data de Nascimento', ageController, age),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(
@@ -301,6 +305,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                     onChanged: (value) {
                       setState(
                         () {
+                          repository.getBreed(specie);
                           isCastrated = false;
                         },
                       );
@@ -310,31 +315,53 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ],
             ),
             const VerticalSpacerBox(size: SpacerSize.medium),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 12, bottom: 10),
-                child: SizedBox(
-                  width: widthScreen * 0.3,
-                  height: heightScreen * 0.040,
-                  child: ElevatedButton(
-                    style: EditAnimalScreen.styleSalvar,
-                    child: Text('Adicionar',
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: heightScreen * kMediumLargeSize)),
-                    onPressed: () {
-                      EditAnimalController().editAnimal(
-                        widget.animal.id,
-                        nameController.text,
-                        sex,
-                        isCastrated,
-                        weightController.text,
-                        heightController.text,
-                        specie,
-                        context,
-                      );
-                    },
+            Padding(
+              padding: const EdgeInsets.only(top: 26, bottom: 10),
+              child: Center(
+                child: Container(
+                  width: widthScreen * 0.55,
+                  child: Row(
+                    children: [
+                      Center(
+                        child: ElevatedButton(
+                          style: EditAnimalScreen.styleSalvar,
+                          child: Text('Atualizar',
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: heightScreen * kMediumLargeSize)),
+                          onPressed: () {
+                            EditAnimalController().editAnimal(
+                              widget.animal.id,
+                              nameController.text,
+                              sex,
+                              isCastrated,
+                              weightController.text,
+                              heightController.text,
+                              specie,
+                              context,
+                            );
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20),
+                        child: ElevatedButton(
+                          style: EditAnimalScreen.styleRemover,
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    DeleteAnimalDialog(widget.animal.id));
+                          },
+                          child: Text("Remover",
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: heightScreen * kMediumLargeSize)),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
