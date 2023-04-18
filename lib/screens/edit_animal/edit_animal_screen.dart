@@ -42,10 +42,10 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
 
   int activityLevel = 1;
   int? age;
-  String specie = 'dog';
+  String specie = 'Cachorro';
   String breed = 'Sem Raça Definida';
   String sex = 'male';
-  bool isCastrated = true;
+  bool? isCastrated;
   EditAnimalController controller = EditAnimalController();
   TextEditingController nameController = TextEditingController();
   TextEditingController weightController = TextEditingController();
@@ -55,6 +55,9 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
   @override
   void initState() {
     super.initState();
+    specie = widget.animal.specie;
+    print(specie);
+    sex = widget.animal.sex;
     breeds = repository.getBreed(specie);
     signInController.getInstance(user);
   }
@@ -65,14 +68,14 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
     super.didChangeDependencies();
   }
 
-  Future<String> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('name')!;
-    return userName;
-  }
-
   @override
   Widget build(BuildContext context) {
+    nameController.text = widget.animal.name;
+    breed = widget.animal.breed;
+    isCastrated = widget.animal.isCastrated;
+    weightController.text = widget.animal.weight;
+    heightController.text = widget.animal.height;
+
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
 
@@ -121,7 +124,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'dog',
+                    value: 'Cachorro',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -141,7 +144,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'cat',
+                    value: 'Gato',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -298,7 +301,6 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                     onChanged: (value) {
                       setState(
                         () {
-                          repository.getBreed(specie);
                           isCastrated = false;
                         },
                       );
@@ -306,33 +308,6 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                   ),
                 ),
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
-              child: Text(
-                'Nível de Atividade',
-                style: TextStyle(
-                    color: kSecondaryColor,
-                    fontSize: heightScreen * kMediumSize),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
-              child: DropdownSearch(
-                dropdownButtonProps: const DropdownButtonProps(
-                  icon: Icon(
-                    Icons.arrow_circle_down_outlined,
-                    color: kDetailColor,
-                    size: 35,
-                  ),
-                ),
-                items: const [1, 2, 3],
-                onChanged: (data) {
-                  setState(() {
-                    activityLevel = data as int;
-                  });
-                },
-              ),
             ),
             const VerticalSpacerBox(size: SpacerSize.medium),
             Center(
@@ -353,7 +328,6 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         widget.animal.id,
                         nameController.text,
                         sex,
-                        activityLevel,
                         isCastrated,
                         weightController.text,
                         heightController.text,
