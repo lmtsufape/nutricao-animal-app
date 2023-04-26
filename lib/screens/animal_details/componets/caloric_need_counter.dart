@@ -1,5 +1,7 @@
 // ignore_for_file: camel_case_types, must_be_immutable
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
@@ -45,7 +47,7 @@ class stateCaloricNeedCounter extends State<CaloricNeedCounter> {
                   textDirection: TextDirection.ltr,
                 ),
               ),
-              RadialGaugeAnimal(widget.activityLevel),
+              RadialGaugeAnimal(widget.animal),
             ],
           ),
         ),
@@ -55,9 +57,9 @@ class stateCaloricNeedCounter extends State<CaloricNeedCounter> {
 }
 
 class RadialGaugeAnimal extends StatefulWidget {
-  int activityLevel;
+  AnimalModel animal;
 
-  RadialGaugeAnimal(this.activityLevel, {Key? key}) : super(key: key);
+  RadialGaugeAnimal(this.animal, {Key? key}) : super(key: key);
 
   @override
   stateRadialGaugeAnimal createState() => stateRadialGaugeAnimal();
@@ -68,7 +70,9 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
   Widget build(BuildContext context) {
     final heightGauge = MediaQuery.of(context).size.height;
     final AnimalDetailsController animalController = AnimalDetailsController();
-    //int food = 6;
+    double weight = double.parse(widget.animal.weight);
+    double amountFed = 1.6 * 138 * pow(weight, 0.75);
+
     String specie = 'cat';
     String breed = 'Gladyce Oberbrunner';
     return SfRadialGauge(
@@ -77,7 +81,7 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
       axes: <RadialAxis>[
         RadialAxis(
           minimum: 0,
-          maximum: 100,
+          maximum: 2 * amountFed,
           radiusFactor: 0.65,
           startAngle: 180,
           endAngle: 0,
@@ -86,16 +90,31 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
           showLabels: false,
           showTicks: false,
           ranges: <GaugeRange>[
-            GaugeRange(startValue: 0, endValue: 25, color: Colors.red),
-            GaugeRange(startValue: 25, endValue: 45, color: Colors.yellow),
-            GaugeRange(startValue: 45, endValue: 55, color: Colors.green),
-            GaugeRange(startValue: 55, endValue: 75, color: Colors.yellow),
-            GaugeRange(startValue: 75, endValue: 100, color: Colors.red),
+            GaugeRange(
+                startValue: 0,
+                endValue: 1 / 6 * (2 * amountFed),
+                color: Colors.red),
+            GaugeRange(
+                startValue: 1 / 6 * (2 * amountFed),
+                endValue: 2 / 6 * (2 * amountFed),
+                color: Colors.yellow),
+            GaugeRange(
+                startValue: 2 / 6 * (2 * amountFed),
+                endValue: 4 / 6 * (2 * amountFed),
+                color: Colors.green),
+            GaugeRange(
+                startValue: 4 / 6 * (2 * amountFed),
+                endValue: 5 / 6 * (2 * amountFed),
+                color: Colors.yellow),
+            GaugeRange(
+                startValue: 5 / 6 * (2 * amountFed),
+                endValue: 2 * amountFed,
+                color: Colors.red),
           ],
           pointers: <GaugePointer>[
             NeedlePointer(
-              value:
-                  animalController.caloric(widget.activityLevel, specie, breed),
+              value: animalController.caloric(
+                  widget.animal.activityLevel, specie, breed),
               enableAnimation: true,
               needleColor: kSecondaryColor,
               knobStyle: const KnobStyle(

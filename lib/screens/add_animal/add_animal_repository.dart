@@ -23,7 +23,7 @@ class AddAnimalRepository with ChangeNotifier {
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    if (specie == 'dog') {
+    if (specie == 'Cachorro') {
       var response = await dio.get('$kBaseUrl/users/breed/Cachorro',
           options: Options(
             headers: {
