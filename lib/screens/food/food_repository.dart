@@ -20,12 +20,11 @@ class FoodRepository {
   late String userToken;
   final FoodController _controller = FoodController();
   FoodModel? usedFood;
-  List<FoodModel> foodListComplete = [];
 
-  Future<List<String>> showTypes() async {
+  Future<List<FoodModel>> populateListFoods() async {
     Dio _dio = Dio();
-    List<String> categories = [];
 
+    List<FoodModel> foodListComplete = [];
     int i;
     final prefs = await SharedPreferences.getInstance();
 
@@ -60,40 +59,42 @@ class FoodRepository {
           ),
         );
 
-        compare = (response.data[i]["category"]);
+        /*compare = (response.data[i]["category"]);
+        if (categories.any((element) => element == compare) == false) {
+          categories.add(compare);
+        }*/
+      }
+    }
+    return foodListComplete;
+  }
+
+  Future<List<String>> showCategories() async {
+    List<String> categories = [];
+    List<FoodModel> list = await populateListFoods();
+    String compare;
+    if (list != null) {
+      for (int i = 0; i < list.length; i++) {
+        compare = (list[i].category);
         if (categories.any((element) => element == compare) == false) {
           categories.add(compare);
         }
       }
+
+      return categories;
     }
-    return categories;
+
+    return [];
   }
 
   Future<List<String>> showFoods(type) async {
-    Dio _dio = Dio();
     List<String> foods = [];
+    List<FoodModel> list = await populateListFoods();
 
     int i;
-    final prefs = await SharedPreferences.getInstance();
 
-    userId = prefs.getInt('id')!;
-    userToken = prefs.getString('token')!;
-
-    var response = await _dio.get(
-      '$kBaseUrl/foods',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
-        },
-      ),
-    );
-    var data = response.data as List<dynamic>;
-
-    for (i = 0; i < data.length; i++) {
-      if (response.data[i]['category'] == type) {
-        foods.add(response.data[i]['name']);
+    for (i = 0; i < list.length; i++) {
+      if (list[i].category == type) {
+        foods.add(list[i].name);
       }
     }
     return foods;
@@ -102,12 +103,12 @@ class FoodRepository {
   void getFood(int id) {
     late FoodModel aux;
     int i;
-    for (i = 0; i < foodListComplete.length; i++) {
+    /*for (i = 0; i < foodListComplete.length; i++) {
       if (id == foodListComplete[i].id) {
         aux = foodListComplete[i];
       }
-    }
-    print(aux.carbohydrates);
+    }*/
+    // print(aux.carbohydrates);
     //return ;
   }
 
@@ -144,20 +145,18 @@ class FoodRepository {
   Future<bool> postMenu(bool addMenu, type, food, TextEditingController quant,
       AnimalModel animal, context) async {
     Dio _dio = Dio();
-    
-
+    List<FoodModel> list = await populateListFoods();
     final prefs = await SharedPreferences.getInstance();
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
     FoodModel? foodModel;
-    print(foodListComplete);
+    print(list);
 
-    for (int i = 0; i < foodListComplete.length; i++) {
-      if (food == foodListComplete[i].name &&
-          type == foodListComplete[i].category) {
-        foodModel = foodListComplete[i];
+    for (int i = 0; i < list.length; i++) {
+      if (food == list[i].name && type == list[i].category) {
+        foodModel = list[i];
       }
     }
 
@@ -203,12 +202,12 @@ class FoodRepository {
 
     FoodModel? foodModel;
 
-    for (int i = 0; i < foodListComplete.length; i++) {
+    /*for (int i = 0; i < foodListComplete.length; i++) {
       if (food == foodListComplete[i].name &&
           type == foodListComplete[i].category) {
         foodModel = foodListComplete[i];
       }
-    }
+    }*/
 
     if (foodModel != null) {
       double carbohydrates = double.parse(foodModel.carbohydrates);
