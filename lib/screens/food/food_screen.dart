@@ -12,14 +12,15 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/user_model.dart';
 
 import '../../components/forms/text_field_custom.dart';
+import '../../shared/core/models/animal_model.dart';
 import '../screens_index.dart';
 
 enum PrivateMenu { yes, no }
 
 // ignore: must_be_immutable
 class FoodScreen extends StatefulWidget {
-  int? id;
-  FoodScreen(this.id, {Key? key}) : super(key: key);
+  AnimalModel animal;
+  FoodScreen(this.animal, {Key? key}) : super(key: key);
 
   static ButtonStyle styleAlimentar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
@@ -97,7 +98,8 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                asyncItems: (String menu) => _repository.showMenu(widget.id),
+                asyncItems: (String menu) =>
+                    _repository.showMenu(widget.animal),
                 onChanged: (data) {
                   setState(
                     () {
@@ -177,7 +179,6 @@ class _FoodScreenState extends State<FoodScreen> {
                 onChanged: (data) {
                   setState(
                     () {
-                      
                       type = data.toString();
                       food = 'Selecione';
                       listFoods = _repository.showFoods(type);
@@ -255,7 +256,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   child: ElevatedButton(
                     style: FoodScreen.styleAlimentar,
                     onPressed: () => _controller.feedAnimal(type, food,
-                        quantController, widget.id, context, addMenu),
+                        quantController, widget.animal, context, addMenu),
                     child: Text('Alimentar',
                         style: TextStyle(
                             color: kBackgroundColor,

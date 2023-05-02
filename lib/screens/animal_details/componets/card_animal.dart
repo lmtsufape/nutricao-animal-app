@@ -56,8 +56,7 @@ class stateCardAnimal extends State<CardAnimal> {
                                 fit: BoxFit.cover,
                                 height: heightCard * 0.02,
                                 width: widthCard * 0.02,
-                              )
-                          ),
+                              )),
                         ),
                       ),
                     ),
@@ -149,7 +148,7 @@ class stateCardAnimal extends State<CardAnimal> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    FoodScreen(widget.animal.id))),
+                                    FoodScreen(widget.animal))),
                         child: Icon(
                           Icons.restaurant_outlined,
                           color: kBackgroundColor,

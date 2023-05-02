@@ -12,6 +12,7 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/food_model.dart';
 
 import '../../shared/constants/app_text_constants.dart';
+import '../../shared/core/models/animal_model.dart';
 import '../screens_index.dart';
 
 class FoodRepository {
@@ -141,59 +142,98 @@ class FoodRepository {
   }
 
   Future<bool> postMenu(bool addMenu, type, food, TextEditingController quant,
-      animalId, context) async {
+      AnimalModel animal, context) async {
     Dio _dio = Dio();
+    
 
     final prefs = await SharedPreferences.getInstance();
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    int aux = int.parse(quant.text);
+    FoodModel? foodModel;
+    print(foodListComplete);
 
-    var response = await _dio.post(
-      '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
-        },
-      ),
-      data: {
-        "category": type.toString(),
-        "name": food.toString(),
-        "amount": aux,
-      },
-    );
-    print(response.statusCode);
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      feedAnimal(type, food, quant, animalId);
-      Navigator.pushNamed(context, Screens.home);
-      return true;
-    } else {
-      return false;
+    for (int i = 0; i < foodListComplete.length; i++) {
+      if (food == foodListComplete[i].name &&
+          type == foodListComplete[i].category) {
+        foodModel = foodListComplete[i];
+      }
     }
+
+    if (foodModel != null) {
+      double carbohydrates = double.parse(foodModel.carbohydrates);
+      double proteins = double.parse(foodModel.proteins);
+      double lipids = double.parse(foodModel.lipids);
+
+      double amount = carbohydrates * 4 + proteins * 4 + lipids * 9;
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/${animal.id}/menu/snack',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "category": type.toString(),
+          "name": food.toString(),
+          "animal_id": animal.id,
+          "amount": amount,
+        },
+      );
+
+      print(response.statusCode);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Navigator.pushNamed(context, Screens.home);
+        return true;
+      } else {
+        return false;
+      }
+    }
+    print("nao entrou");
+    return false;
   }
 
-  void feedAnimal(type, food, quant, animalId) async {
+  void feedAnimal(type, food, quant, AnimalModel animal) async {
     Dio _dio = Dio();
     final prefs = await SharedPreferences.getInstance();
-    int aux = _controller.foodCalculate(type.toString(), food.toString(), quant);
-    userId = prefs.getInt('id')!;
-    userToken = prefs.getString('token')!;
 
-    var response = await _dio.patch(
-      '$kBaseUrl/users/$userId/animals/$animalId',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
+    FoodModel? foodModel;
+
+    for (int i = 0; i < foodListComplete.length; i++) {
+      if (food == foodListComplete[i].name &&
+          type == foodListComplete[i].category) {
+        foodModel = foodListComplete[i];
+      }
+    }
+
+    if (foodModel != null) {
+      double carbohydrates = double.parse(foodModel.carbohydrates);
+      double proteins = double.parse(foodModel.proteins);
+      double lipids = double.parse(foodModel.lipids);
+
+      double amount = carbohydrates * 4 + proteins * 4 + lipids * 9;
+      userToken = prefs.getString('token')!;
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/${animal.id}/record',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "amount": amount.toString(),
+          "animal_id": animal.id.toString(),
+          "food_id": foodModel.id.toString()
         },
-      ),
-      data: {"activity_level": aux},
-    );
-    print(response.statusCode);
+      );
+      print(response.statusCode);
+    }
   }
 }
