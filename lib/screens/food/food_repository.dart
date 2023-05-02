@@ -152,7 +152,6 @@ class FoodRepository {
     userToken = prefs.getString('token')!;
 
     FoodModel? foodModel;
-    print(list);
 
     for (int i = 0; i < list.length; i++) {
       if (food == list[i].name && type == list[i].category) {
@@ -161,6 +160,7 @@ class FoodRepository {
     }
 
     if (foodModel != null) {
+      DateTime date = DateTime.now();
       double carbohydrates = double.parse(foodModel.carbohydrates);
       double proteins = double.parse(foodModel.proteins);
       double lipids = double.parse(foodModel.lipids);
@@ -168,7 +168,7 @@ class FoodRepository {
       double amount = carbohydrates * 4 + proteins * 4 + lipids * 9;
 
       var response = await _dio.post(
-        '$kBaseUrl/users/$userId/animals/${animal.id}/menu/snack',
+        '$kBaseUrl/users/$userId/animals/${animal.id}/record',
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -177,14 +177,14 @@ class FoodRepository {
           },
         ),
         data: {
-          "category": type.toString(),
-          "name": food.toString(),
+          "food_id": foodModel.id.toString(),
+          "date": "${date.day}/${date.month}/${date.year}",
+          "hour": "${date.hour}:${date.minute}:${date.second}",
           "animal_id": animal.id,
           "amount": amount,
         },
       );
 
-      print(response.statusCode);
       if (response.statusCode == 200 || response.statusCode == 201) {
         Navigator.pushNamed(context, Screens.home);
         return true;
@@ -192,7 +192,6 @@ class FoodRepository {
         return false;
       }
     }
-    print("nao entrou");
     return false;
   }
 
