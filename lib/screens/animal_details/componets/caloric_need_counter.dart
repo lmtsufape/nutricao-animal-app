@@ -66,10 +66,31 @@ class RadialGaugeAnimal extends StatefulWidget {
 }
 
 class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
+  final AnimalDetailsController animalController = AnimalDetailsController();
+  late double caloric = 0;
+
+  @override
+  void initState() {
+    updateCaloric();
+    super.initState();
+  }
+
+  Future<double> getCaloric() async {
+    final value = await animalController.caloric(widget.animal);
+    return value;
+  }
+
+  updateCaloric() {
+    getCaloric().then((value) {
+      setState(() {
+        caloric = value;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final heightGauge = MediaQuery.of(context).size.height;
-    final AnimalDetailsController animalController = AnimalDetailsController();
     double weight = double.parse(widget.animal.weight);
     double amountFed = 1.6 * 138 * pow(weight, 0.75);
 
@@ -113,8 +134,7 @@ class stateRadialGaugeAnimal extends State<RadialGaugeAnimal> {
           ],
           pointers: <GaugePointer>[
             NeedlePointer(
-              value: animalController.caloric(
-                  widget.animal.activityLevel, specie, breed),
+              value: caloric,
               enableAnimation: true,
               needleColor: kSecondaryColor,
               knobStyle: const KnobStyle(
