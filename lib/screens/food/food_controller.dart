@@ -7,7 +7,7 @@ import '../../shared/constants/style_constants.dart';
 class FoodController {
   int feed = 0;
 
-  void feedAnimal(type, food, quant, animalId, context, addMenu) async {
+  void feedAnimal(type, food, quant, animal, context, addMenu) async {
     FoodRepository _repository = FoodRepository();
     if (addMenu != null) {
       addMenu = true;
@@ -39,7 +39,7 @@ class FoodController {
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
                   onPressed: () => _repository.postMenu(
-                      addMenu, type, food, quant, animalId, context),
+                      addMenu, type, food, quant, animal, context),
                   color: kDetailColor,
                   child: const Text(
                     'Sim',

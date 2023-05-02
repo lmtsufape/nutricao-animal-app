@@ -368,8 +368,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                       onPressed: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => FoodScreen(
-                                                  widget.animal.id))),
+                                              builder: (context) =>
+                                                  FoodScreen(widget.animal))),
                                       icon: Padding(
                                         padding: const EdgeInsets.only(
                                             right: 6, left: 0),
