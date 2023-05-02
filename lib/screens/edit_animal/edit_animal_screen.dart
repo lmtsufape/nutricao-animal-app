@@ -60,7 +60,6 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
   void initState() {
     super.initState();
     specie = widget.animal.specie;
-    print(specie);
     sex = widget.animal.sex;
     breeds = repository.getBreed(specie);
     signInController.getInstance(user);
@@ -128,7 +127,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'dog',
+                    value: 'Cachorro',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -148,7 +147,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'cat',
+                    value: 'Gato',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
