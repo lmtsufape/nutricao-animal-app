@@ -13,6 +13,7 @@ import 'package:thunderapp/shared/core/models/user_model.dart';
 
 import '../../components/forms/text_field_custom.dart';
 import '../../shared/core/models/animal_model.dart';
+import '../../shared/core/models/food_model.dart';
 import '../screens_index.dart';
 
 enum PrivateMenu { yes, no }
@@ -31,7 +32,7 @@ class FoodScreen extends StatefulWidget {
 }
 
 class _FoodScreenState extends State<FoodScreen> {
-  // ignore: unused_field
+  late Future<List<FoodModel>> listFoodModel;
   final FoodController _controller = FoodController();
   final UserModel user = UserModel();
   late String userName;
@@ -45,6 +46,7 @@ class _FoodScreenState extends State<FoodScreen> {
 
   @override
   void initState() {
+    listFoodModel = _repository.populateListFoods();
     listFoods = _repository.showFoods(type);
     super.initState();
   }
@@ -175,7 +177,8 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                asyncItems: (String categories) => _repository.showTypes(),
+                asyncItems: (String categories) =>
+                    _repository.showCategories(),
                 onChanged: (data) {
                   setState(
                     () {
@@ -210,7 +213,8 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                asyncItems: (String foods) => _repository.showFoods(type),
+                asyncItems: (String foods) =>
+                    _repository.showFoods(type),
                 onChanged: (data) {
                   setState(
                     () {
