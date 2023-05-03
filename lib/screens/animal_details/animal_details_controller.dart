@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,12 +29,13 @@ class AnimalDetailsController with ChangeNotifier {
     );
 
     List<dynamic> list = response.data as List<dynamic>;
-    print("${date.year}-0${date.day}-0${date.month}");
+
     for (int i = 0; i < list.length; i++) {
-      if ("${date.year}-${date.month}-${date.day}" ==
-          response.data[i]['date'].toString()) {
-        caloric += response.data['amount'];
-        print(caloric);
+      if ("${date.year}-${formatDate(date, [dd])}-${formatDate(date, [mm])}" ==
+              response.data[i]['date'].toString() &&
+          response.data[i]['animal_id'] == animal.id) {
+        caloric += double.parse(response.data[i]['amount']);
+        print("Caloric : $caloric");
       }
     }
 
