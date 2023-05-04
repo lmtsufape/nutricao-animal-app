@@ -9,6 +9,7 @@ class FoodModel extends ChangeNotifier {
   String calcium;
   String proteins;
   String fibers;
+  String energeticValue;
 
   FoodModel(
     this.id,
@@ -19,6 +20,7 @@ class FoodModel extends ChangeNotifier {
     this.calcium,
     this.proteins,
     this.fibers,
+    this.energeticValue,
   );
 
   get getId => id;
@@ -29,4 +31,5 @@ class FoodModel extends ChangeNotifier {
   get getCalcium => calcium;
   get getProteins => proteins;
   get getFibers => fibers;
+  get getEnergeticValue => energeticValue;
 }

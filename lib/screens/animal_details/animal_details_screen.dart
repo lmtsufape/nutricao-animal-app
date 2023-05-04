@@ -39,7 +39,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
           Column(
             children: [
               CardAnimal(widget.animal),
-              CaloricNeedCounter(),
+              CaloricNeedCounter(widget.animal.activityLevel, widget.animal),
             ],
           ),
         ],

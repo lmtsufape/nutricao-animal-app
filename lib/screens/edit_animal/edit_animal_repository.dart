@@ -10,8 +10,8 @@ class EditAnimalRepository {
   late int userId;
   late String userToken;
 
-  Future<bool> patchAnimal(animalID, nome, sex, activityLevel, castrated,
-      weight, height, specie, context) async {
+  Future<bool> patchAnimal(
+      animalID, nome, sex, castrated, weight, height, specie, context) async {
     Dio dio = Dio();
 
     final prefs = await SharedPreferences.getInstance();
@@ -34,7 +34,6 @@ class EditAnimalRepository {
         "name": nome,
         "sex": sex,
         "is_castrated": castrated,
-        "activity_level": activityLevel,
       },
     );
     if (kDebugMode) {

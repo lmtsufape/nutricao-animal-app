@@ -80,7 +80,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, bottom: 8, top: 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -115,7 +116,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ],
               ),
             ),
-            TextFieldCustom('Senha', passwordController, '***********'),
+            //TextFieldCustom('Senha', passwordController, '***********'),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Center(
@@ -140,10 +141,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: MaterialButton(
-                onPressed: () => controller.logoff(context),
-                color: kDetailColor,
-                child: const Text('Log Off'),
+              child: Center(
+                child: MaterialButton(
+                  onPressed: () => controller.logoff(context),
+                  color: kDetailColor,
+                  child: const Text(
+                    'Log Off',
+                    style: TextStyle(color: kBackgroundColor),
+                  ),
+                ),
               ),
             ),
           ],
