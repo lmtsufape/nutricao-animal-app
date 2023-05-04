@@ -44,7 +44,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
           ),
         ],
       ),
-      floatingActionButton: SizedBox(
+      /*floatingActionButton: SizedBox(
         height: heightScreen * 0.1,
         width: widthScreen * 0.25,
         child: FloatingActionButton(
@@ -55,7 +55,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
               MaterialPageRoute(
                   builder: (context) => EditAnimalScreen(widget.animal))),
         ),
-      ),
+      ),*/
     );
   }
 }

@@ -55,7 +55,10 @@ dependencies:
   material_design_icons_flutter: ^5.0.6996
   get_it: ^7.2.0
   dropdown_search: ^5.0.5
-  file_picker: ^5.2.6
+
+  file_picker: ^5.2.11
+  date_format: ^2.0.7
+
 
 dev_dependencies:
   flutter_test:

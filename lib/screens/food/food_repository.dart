@@ -56,6 +56,7 @@ class FoodRepository {
             response.data[i]["calcium"],
             response.data[i]["protein_value"],
             response.data[i]["fiber"],
+            response.data[i]["energetic_value"],
           ),
         );
 
@@ -147,6 +148,7 @@ class FoodRepository {
     Dio _dio = Dio();
     List<FoodModel> list = await populateListFoods();
     final prefs = await SharedPreferences.getInstance();
+    double quantity = double.parse(quant.text);
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
@@ -161,11 +163,9 @@ class FoodRepository {
 
     if (foodModel != null) {
       DateTime date = DateTime.now();
-      double carbohydrates = double.parse(foodModel.carbohydrates);
-      double proteins = double.parse(foodModel.proteins);
-      double lipids = double.parse(foodModel.lipids);
+      double energeticValue = double.parse(foodModel.energeticValue);
 
-      double amount = carbohydrates * 4 + proteins * 4 + lipids * 9;
+      double amount = (quantity / 100) * energeticValue;
 
       var response = await _dio.post(
         '$kBaseUrl/users/$userId/animals/${animal.id}/record',
