@@ -165,37 +165,14 @@ class NavigationDrawerWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () => Navigator.pushNamed(context, Screens.addAnimal),
                       title: Text(
-                        'Lorem ipsum',
+                        'Adicionar animal',
                         style: TextStyle(
                             color: kBackgroundColor,
                             fontSize: heightScreen * kLargeSize,
                             fontWeight: FontWeight.w900),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text(
-                        'Lorem ipsum',
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontSize: heightScreen * kLargeSize,
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () {},
-                    title: Text(
-                      'Lorem ipsum',
-                      style: TextStyle(
-                          color: kBackgroundColor,
-                          fontSize: heightScreen * kLargeSize,
-                          fontWeight: FontWeight.w900),
                     ),
                   ),
                 ],
@@ -205,31 +182,31 @@ class NavigationDrawerWidget extends StatelessWidget {
               child: Align(
                 alignment: FractionalOffset.bottomLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: TextButton(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: SizedBox(
+                    width: widthScreen * 0.73,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(start: 25),
+                          child: TextButton(
+                              onPressed: () => controller.logoff(context),
+                              child: Text(
+                                'Sair',
+                                style: TextStyle(
+                                    color: kBackgroundColor, fontSize: heightScreen * 0.028),
+                              )),
+                        ),
+                        IconButton(
                             onPressed: () => controller.logoff(context),
-                            child: Text(
-                              'Sair',
-                              style: TextStyle(
-                                  color: kBackgroundColor, fontSize: heightScreen * 0.028),
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 205, bottom: 16),
-                        child: IconButton(
-                            onPressed: () {},
                             icon: Icon(
                               Icons.exit_to_app,
                               color: kBackgroundColor,
-                              size: widthScreen * 0.1,
+                              size: widthScreen * 0.082,
                             )),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
