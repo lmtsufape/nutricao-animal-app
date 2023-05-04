@@ -15,6 +15,7 @@ class TextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: Column(
@@ -107,6 +108,60 @@ class _TextFieldCustomDateState extends State<TextFieldCustomDate> {
                     onPressed: () => getDate()),
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class textFieldCustomTutorial extends StatefulWidget {
+  final String _fieldLabel;
+  final TextEditingController controller;
+  final String label;
+
+  const textFieldCustomTutorial(this._fieldLabel, this.controller, this.label,
+      {super.key});
+
+  @override
+  State<textFieldCustomTutorial> createState() => _textFieldCustomTutorialState();
+}
+
+class _textFieldCustomTutorialState extends State<textFieldCustomTutorial> {
+  @override
+  Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+    final widthScreen = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget._fieldLabel,
+            style: TextStyle(
+                color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: widthScreen * 0.8,
+                child: TextField(
+                  controller: widget.controller,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    label: Text(widget.label),
+                    contentPadding: EdgeInsets.all(14),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 25),
+                child: IconButton(onPressed: () {},
+                  icon: Icon(Icons.question_mark, color: Colors.red, size: heightScreen * 0.05,),),
+              ),
+            ],
           ),
         ],
       ),
