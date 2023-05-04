@@ -99,7 +99,6 @@ class stateCardAnimal extends State<CardAnimal> {
                                 ),
                               ],
                             ),
-                            textAlign: TextAlign.left,
                           ),
                           Text(
                             widget.animal.name.toString(),
