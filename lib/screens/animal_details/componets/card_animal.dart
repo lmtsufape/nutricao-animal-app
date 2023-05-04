@@ -7,6 +7,7 @@ import 'package:thunderapp/shared/constants/app_enums.dart';
 import '../../../shared/constants/app_text_constants.dart';
 import '../../../shared/constants/style_constants.dart';
 import '../../../shared/core/models/animal_model.dart';
+import '../../edit_animal/edit_animal_screen.dart';
 import '../../food/food_screen.dart';
 import 'staggered_grid_animal.dart';
 
@@ -56,8 +57,7 @@ class stateCardAnimal extends State<CardAnimal> {
                                 fit: BoxFit.cover,
                                 height: heightCard * 0.02,
                                 width: widthCard * 0.02,
-                              )
-                          ),
+                              )),
                         ),
                       ),
                     ),
@@ -70,13 +70,35 @@ class stateCardAnimal extends State<CardAnimal> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Nome',
-                            style: TextStyle(
-                              color: kDetailColor,
-                              fontSize: heightCard * 0.020,
+                          Container(
+                            width: widthCard * 0.42,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Nome',
+                                  style: TextStyle(
+                                    color: kDetailColor,
+                                    fontSize: heightCard * 0.020,
+                                  ),
+                                  textAlign: TextAlign.left,
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) =>
+                                            DeleteAnimalDialog(
+                                                widget.animal.id));
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: kBackgroundColor,
+                                    size: 35,
+                                  ),
+                                ),
+                              ],
                             ),
-                            textAlign: TextAlign.left,
                           ),
                           Text(
                             widget.animal.name.toString(),
@@ -116,12 +138,12 @@ class stateCardAnimal extends State<CardAnimal> {
                 height: heightCard * 0.045,
                 color: Colors.transparent,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 6),
-                    child: SizedBox(
+              Container(
+                width: widthCard * 0.95,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
                       height: heightCard * 0.07,
                       width: widthCard * 0.25,
                       child: FloatingActionButton(
@@ -136,10 +158,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 37),
-                    child: SizedBox(
+                    SizedBox(
                       height: heightCard * 0.07,
                       width: widthCard * 0.25,
                       child: FloatingActionButton(
@@ -157,25 +176,26 @@ class stateCardAnimal extends State<CardAnimal> {
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 20),
-                    child: SizedBox(
+                    SizedBox(
                       height: heightCard * 0.07,
-                      width: widthCard * 0.16,
+                      width: widthCard * 0.25,
                       child: FloatingActionButton(
-                        heroTag: 'Share',
+                        heroTag: 'Edit',
                         backgroundColor: kDetailColor,
-                        onPressed: () {},
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    EditAnimalScreen(widget.animal))),
                         child: Icon(
-                          Icons.share,
+                          Icons.edit,
                           color: kBackgroundColor,
                           size: widthCard * 0.08,
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 2),

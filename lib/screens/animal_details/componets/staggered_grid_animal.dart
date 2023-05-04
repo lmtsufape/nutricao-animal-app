@@ -43,7 +43,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
           crossAxisSpacing: 4,
           children: [
             StaggeredGridTile.count(
-              crossAxisCellCount: 2,
+              crossAxisCellCount: 4,
               mainAxisCellCount: 0.6,
               child: ListTile(
                 shape: const RoundedRectangleBorder(
@@ -72,7 +72,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                 ),
               ),
             ),
-            StaggeredGridTile.count(
+            /*StaggeredGridTile.count(
               crossAxisCellCount: 2,
               mainAxisCellCount: 0.6,
               child: ListTile(
@@ -101,7 +101,7 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                   ),
                 ),
               ),
-            ),
+            ),*/
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
               mainAxisCellCount: 0.6,
@@ -142,47 +142,25 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                         width: 3.5,
                         strokeAlign: BorderSide.strokeAlignOutside),
                   ),
-                  title: FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Peso: ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: kSecondaryColor,
-                            fontSize: heightStaggered * 0.021),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "${widget.animal.weight} Kg",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                color: kPrimaryColor,
-                                fontSize: heightStaggered * 0.021),
-                          ),
-                        ],
-                      ),
+                  title: RichText(
+                    text: TextSpan(
+                      text: 'Peso: ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: kSecondaryColor,
+                          fontSize: heightStaggered * 0.021),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "${widget.animal.weight} Kg",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              color: kPrimaryColor,
+                              fontSize: heightStaggered * 0.021),
+                        ),
+                      ],
                     ),
                   ),
-                  trailing: Padding(
-                    padding: const EdgeInsets.only(right: 0, top: 5, left: 2),
-                    child: SizedBox(
-                      height: heightStaggered * 0.045,
-                      width: widthStaggered * 0.09,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 8),
-                        child: FloatingActionButton(
-                          onPressed: () => Navigator.pushNamed(
-                              context, Screens.weightHistory),
-                          backgroundColor: kDetailColor,
-                          child: Icon(
-                            Icons.area_chart_outlined,
-                            color: kBackgroundColor,
-                            size: heightStaggered * 0.02,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )),
+              ),
             ),
             StaggeredGridTile.count(
               crossAxisCellCount: 2,
