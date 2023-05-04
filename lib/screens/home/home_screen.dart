@@ -12,6 +12,7 @@ import '../../shared/constants/app_text_constants.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_screen.dart';
 import 'home_screen_repository.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -257,17 +258,28 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                   SizedBox(
                                     width: widthScreen * 0.4,
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: AspectRatio(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: AspectRatio(
                                           aspectRatio: 1,
-                                          child: Image(
-                                            image: NetworkImage(
-                                                '$kBaseUrl/image/${widget.animal.id}'),
-                                            fit: BoxFit.cover,
-                                            height: heightScreen * 0.02,
-                                            width: widthScreen * 0.02,
-                                          )),
-                                    ),
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                                '$kBaseUrl/image/${widget.animal.id}',
+                                            imageBuilder:
+                                                (context, imageProvider) =>
+                                                    Container(
+                                              height: heightScreen * 0.02,
+                                              width: widthScreen * 0.02,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) =>
+                                                const CircularProgressIndicator(),
+                                          ),
+                                        )),
                                   ),
                                 ],
                               ),
@@ -356,8 +368,8 @@ class _CardHomeScreenState extends State<CardHomeScreen> {
                                       onPressed: () => Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => FoodScreen(
-                                                  widget.animal.id))),
+                                              builder: (context) =>
+                                                  FoodScreen(widget.animal))),
                                       icon: Padding(
                                         padding: const EdgeInsets.only(
                                             right: 6, left: 0),

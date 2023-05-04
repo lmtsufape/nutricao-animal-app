@@ -99,6 +99,7 @@ class stateCardAnimal extends State<CardAnimal> {
                                 ),
                               ],
                             ),
+                            textAlign: TextAlign.left,
                           ),
                           Text(
                             widget.animal.name.toString(),
@@ -168,7 +169,7 @@ class stateCardAnimal extends State<CardAnimal> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    FoodScreen(widget.animal.id))),
+                                    FoodScreen(widget.animal))),
                         child: Icon(
                           Icons.restaurant_outlined,
                           color: kBackgroundColor,

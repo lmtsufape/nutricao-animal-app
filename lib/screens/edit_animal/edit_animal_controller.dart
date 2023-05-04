@@ -14,15 +14,15 @@ class EditAnimalController with ChangeNotifier {
     Navigator.popAndPushNamed(context, Screens.signin);
   }
 
-  void editAnimal(animalId, nome, sex, activityLevel, castrated, weight, height,
-      specie, context) async {
+  void editAnimal(
+      animalId, nome, sex, castrated, weight, height, specie, context) async {
     if (nome.isEmpty && weight.text.isEmpty && height.text.isEmpty) {
       if (kDebugMode) {
         print('Preencha os campos para editar');
       }
     } else {
       var succ = await _repository.patchAnimal(animalId, nome, sex,
-          activityLevel, castrated, weight, height, specie, context);
+           castrated, weight, height, specie, context);
     }
   }
 }

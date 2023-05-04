@@ -28,6 +28,9 @@ class EditAnimalScreen extends StatefulWidget {
   static ButtonStyle styleSalvar = ElevatedButton.styleFrom(
     backgroundColor: kSecondaryColor,
   );
+  static ButtonStyle styleRemover = ElevatedButton.styleFrom(
+    backgroundColor: Colors.redAccent,
+  );
 
   static ButtonStyle styleRemover = ElevatedButton.styleFrom(
     backgroundColor: Colors.redAccent,
@@ -47,10 +50,10 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
 
   int activityLevel = 1;
   int? age;
-  String specie = 'dog';
+  String specie = 'Cachorro';
   String breed = 'Sem Raça Definida';
   String sex = 'male';
-  bool isCastrated = true;
+  bool? isCastrated;
   EditAnimalController controller = EditAnimalController();
   TextEditingController nameController = TextEditingController();
   TextEditingController weightController = TextEditingController();
@@ -60,6 +63,8 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
   @override
   void initState() {
     super.initState();
+    specie = widget.animal.specie;
+    sex = widget.animal.sex;
     breeds = repository.getBreed(specie);
     signInController.getInstance(user);
   }
@@ -70,14 +75,14 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
     super.didChangeDependencies();
   }
 
-  Future<String> _getUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('name')!;
-    return userName;
-  }
-
   @override
   Widget build(BuildContext context) {
+    nameController.text = widget.animal.name;
+    breed = widget.animal.breed;
+    isCastrated = widget.animal.isCastrated;
+    weightController.text = widget.animal.weight;
+    heightController.text = widget.animal.height;
+
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
 
@@ -126,7 +131,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'dog',
+                    value: 'Cachorro',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -146,7 +151,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'cat',
+                    value: 'Gato',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(

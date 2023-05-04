@@ -12,6 +12,7 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/food_model.dart';
 
 import '../../shared/constants/app_text_constants.dart';
+import '../../shared/core/models/animal_model.dart';
 import '../screens_index.dart';
 
 class FoodRepository {
@@ -19,12 +20,11 @@ class FoodRepository {
   late String userToken;
   final FoodController _controller = FoodController();
   FoodModel? usedFood;
-  List<FoodModel> foodListComplete = [];
 
-  Future<List<String>> showTypes() async {
+  Future<List<FoodModel>> populateListFoods() async {
     Dio _dio = Dio();
-    List<String> categories = [];
 
+    List<FoodModel> foodListComplete = [];
     int i;
     final prefs = await SharedPreferences.getInstance();
 
@@ -56,43 +56,46 @@ class FoodRepository {
             response.data[i]["calcium"],
             response.data[i]["protein_value"],
             response.data[i]["fiber"],
+            response.data[i]["energetic_value"],
           ),
         );
 
-        compare = (response.data[i]["category"]);
+        /*compare = (response.data[i]["category"]);
+        if (categories.any((element) => element == compare) == false) {
+          categories.add(compare);
+        }*/
+      }
+    }
+    return foodListComplete;
+  }
+
+  Future<List<String>> showCategories() async {
+    List<String> categories = [];
+    List<FoodModel> list = await populateListFoods();
+    String compare;
+    if (list != null) {
+      for (int i = 0; i < list.length; i++) {
+        compare = (list[i].category);
         if (categories.any((element) => element == compare) == false) {
           categories.add(compare);
         }
       }
+
+      return categories;
     }
-    return categories;
+
+    return [];
   }
 
   Future<List<String>> showFoods(type) async {
-    Dio _dio = Dio();
     List<String> foods = [];
+    List<FoodModel> list = await populateListFoods();
 
     int i;
-    final prefs = await SharedPreferences.getInstance();
 
-    userId = prefs.getInt('id')!;
-    userToken = prefs.getString('token')!;
-
-    var response = await _dio.get(
-      '$kBaseUrl/foods',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
-        },
-      ),
-    );
-    var data = response.data as List<dynamic>;
-
-    for (i = 0; i < data.length; i++) {
-      if (response.data[i]['category'] == type) {
-        foods.add(response.data[i]['name']);
+    for (i = 0; i < list.length; i++) {
+      if (list[i].category == type) {
+        foods.add(list[i].name);
       }
     }
     return foods;
@@ -101,12 +104,12 @@ class FoodRepository {
   void getFood(int id) {
     late FoodModel aux;
     int i;
-    for (i = 0; i < foodListComplete.length; i++) {
+    /*for (i = 0; i < foodListComplete.length; i++) {
       if (id == foodListComplete[i].id) {
         aux = foodListComplete[i];
       }
-    }
-    print(aux.carbohydrates);
+    }*/
+    // print(aux.carbohydrates);
     //return ;
   }
 
@@ -141,37 +144,94 @@ class FoodRepository {
   }
 
   Future<bool> postMenu(bool addMenu, type, food, TextEditingController quant,
-      animalId, context) async {
+      AnimalModel animal, context) async {
     Dio _dio = Dio();
-
+    List<FoodModel> list = await populateListFoods();
     final prefs = await SharedPreferences.getInstance();
+    double quantity = double.parse(quant.text);
 
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    int aux = int.parse(quant.text);
+    FoodModel? foodModel;
 
-    var response = await _dio.post(
-      '$kBaseUrl/users/$userId/animals/$animalId/menu/snack',
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": "Bearer $userToken"
+    for (int i = 0; i < list.length; i++) {
+      if (food == list[i].name && type == list[i].category) {
+        foodModel = list[i];
+      }
+    }
+
+    if (foodModel != null) {
+      DateTime date = DateTime.now();
+      double energeticValue = double.parse(foodModel.energeticValue);
+
+      double amount = (quantity / 100) * energeticValue;
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/${animal.id}/record',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "food_id": foodModel.id.toString(),
+          "date": "${date.day}/${date.month}/${date.year}",
+          "hour": "${date.hour}:${date.minute}:${date.second}",
+          "animal_id": animal.id,
+          "amount": amount,
         },
-      ),
-      data: {
-        "category": type.toString(),
-        "name": food.toString(),
-        "amount": aux,
-      },
-    );
-    print(response.statusCode);
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      Navigator.pushNamed(context, Screens.home);
-      return true;
-    } else {
-      return false;
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Navigator.pushNamed(context, Screens.home);
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  void feedAnimal(type, food, quant, AnimalModel animal) async {
+    Dio _dio = Dio();
+    final prefs = await SharedPreferences.getInstance();
+
+    FoodModel? foodModel;
+
+    /*for (int i = 0; i < foodListComplete.length; i++) {
+      if (food == foodListComplete[i].name &&
+          type == foodListComplete[i].category) {
+        foodModel = foodListComplete[i];
+      }
+    }*/
+
+    if (foodModel != null) {
+      double carbohydrates = double.parse(foodModel.carbohydrates);
+      double proteins = double.parse(foodModel.proteins);
+      double lipids = double.parse(foodModel.lipids);
+
+      double amount = carbohydrates * 4 + proteins * 4 + lipids * 9;
+      userToken = prefs.getString('token')!;
+
+      var response = await _dio.post(
+        '$kBaseUrl/users/$userId/animals/${animal.id}/record',
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": "Bearer $userToken"
+          },
+        ),
+        data: {
+          "amount": amount.toString(),
+          "animal_id": animal.id.toString(),
+          "food_id": foodModel.id.toString()
+        },
+      );
+      print(response.statusCode);
     }
   }
 }
