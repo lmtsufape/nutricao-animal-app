@@ -32,10 +32,6 @@ class EditAnimalScreen extends StatefulWidget {
     backgroundColor: Colors.redAccent,
   );
 
-  static ButtonStyle styleRemover = ElevatedButton.styleFrom(
-    backgroundColor: Colors.redAccent,
-  );
-
   @override
   State<EditAnimalScreen> createState() => _EditAnimalScreenState();
 }
@@ -268,7 +264,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                   TextFieldCustomDate('Data de Nascimento', ageController, age),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top:8),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Seu animal é castrado(a)?',
                 style: TextStyle(
@@ -318,7 +314,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top:8),
+              padding: const EdgeInsets.only(left: 16, top: 8),
               child: Text(
                 'Nível de Atividade',
                 style: TextStyle(
@@ -327,7 +323,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top:8, right: 16, left: 16),
+              padding: const EdgeInsets.only(top: 8, right: 16, left: 16),
               child: DropdownSearch(
                 dropdownButtonProps: const DropdownButtonProps(
                   icon: Icon(
@@ -365,7 +361,6 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                               widget.animal.id,
                               nameController.text,
                               sex,
-                              activityLevel,
                               isCastrated,
                               weightController.text,
                               heightController.text,
@@ -378,18 +373,19 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: ElevatedButton(
-                            style: EditAnimalScreen.styleRemover,
-                            onPressed: (){
-                              showDialog(
-                                  context: context,
-                                  builder: (context) =>
-                                      DeleteAnimalDialog(
-                                          widget.animal.id));
-                            },
-                            child: Text("Remover", style: TextStyle(
-                                color: kBackgroundColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: heightScreen * kMediumLargeSize)),),
+                          style: EditAnimalScreen.styleRemover,
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    DeleteAnimalDialog(widget.animal.id));
+                          },
+                          child: Text("Remover",
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: heightScreen * kMediumLargeSize)),
+                        ),
                       )
                     ],
                   ),
