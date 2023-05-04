@@ -72,36 +72,6 @@ class stateStaggeredGridAnimal extends State<StaggeredGridAnimal> {
                 ),
               ),
             ),
-            /*StaggeredGridTile.count(
-              crossAxisCellCount: 2,
-              mainAxisCellCount: 0.6,
-              child: ListTile(
-                shape: const RoundedRectangleBorder(
-                  side: BorderSide(
-                      color: kPrimaryColor,
-                      width: 3.5,
-                      strokeAlign: BorderSide.strokeAlignOutside),
-                ),
-                title: RichText(
-                  text: TextSpan(
-                    text: 'Idade: ',
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        color: kSecondaryColor,
-                        fontSize: heightStaggered * 0.021),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: '3 anos',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            color: kPrimaryColor,
-                            fontSize: heightStaggered * 0.021),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),*/
             StaggeredGridTile.count(
               crossAxisCellCount: 4,
               mainAxisCellCount: 0.6,
