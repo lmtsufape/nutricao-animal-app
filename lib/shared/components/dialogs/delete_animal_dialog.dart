@@ -45,29 +45,31 @@ class DeleteAnimalDialog extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: kDetailColor,
+                  backgroundColor: kSecondaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-              const HorizontalSpacerBox(size: SpacerSize.large),
-              ElevatedButton(
-                onPressed: () {
-                  controller.deleteAnimal(context, id);
-                },
-                // ignore: sort_child_properties_last
-                child: const Text(
-                  'Excluir',
-                  style: TextStyle(
-                    color: kSecondaryColor,
-                    fontSize: 20,
+              Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: ElevatedButton(
+                  onPressed: () {
+                    controller.deleteAnimal(context, id);
+                  },
+                  // ignore: sort_child_properties_last
+                  child: const Text(
+                    'Excluir',
+                    style: TextStyle(
+                      color: kBackgroundColor,
+                      fontSize: 20,
+                    ),
                   ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: kBackgroundColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
