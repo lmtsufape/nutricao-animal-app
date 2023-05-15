@@ -35,7 +35,7 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
   late String userName;
   late Future<List<String>> breeds;
 
-  int activityLevel = 1;
+  String activityLevel = 'Ativo';
   int? age;
   String specie = 'dog';
   String breed = 'Sem Raça Definida';
@@ -323,10 +323,10 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
                     size: 35,
                   ),
                 ),
-                items: const [1, 2, 3],
+                items: const ['Sedentário', 'Normal', 'Ativo'],
                 onChanged: (data) {
                   setState(() {
-                    activityLevel = data as int;
+                    activityLevel = data.toString();
                   });
                 },
               ),

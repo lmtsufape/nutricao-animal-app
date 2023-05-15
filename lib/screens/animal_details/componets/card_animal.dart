@@ -145,22 +145,7 @@ class stateCardAnimal extends State<CardAnimal> {
                   children: [
                     SizedBox(
                       height: heightCard * 0.07,
-                      width: widthCard * 0.25,
-                      child: FloatingActionButton(
-                        heroTag: 'Menu',
-                        backgroundColor: kDetailColor,
-                        onPressed: () =>
-                            Navigator.pushNamed(context, Screens.privateMenu),
-                        child: Icon(
-                          Icons.menu_book_outlined,
-                          color: kBackgroundColor,
-                          size: widthCard * 0.08,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: heightCard * 0.07,
-                      width: widthCard * 0.25,
+                      width: widthCard * 0.45,
                       child: FloatingActionButton(
                         heroTag: 'Eat',
                         backgroundColor: kDetailColor,
@@ -178,7 +163,7 @@ class stateCardAnimal extends State<CardAnimal> {
                     ),
                     SizedBox(
                       height: heightCard * 0.07,
-                      width: widthCard * 0.25,
+                      width: widthCard * 0.45,
                       child: FloatingActionButton(
                         heroTag: 'Edit',
                         backgroundColor: kDetailColor,
