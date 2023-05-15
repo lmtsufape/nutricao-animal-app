@@ -342,7 +342,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
             ),
             const VerticalSpacerBox(size: SpacerSize.medium),
             Padding(
-              padding: const EdgeInsets.only(top: 26, bottom: 10),
+              padding: const EdgeInsets.only(top: 16, bottom: 10),
               child: Center(
                 child: Container(
                   width: widthScreen * 0.55,

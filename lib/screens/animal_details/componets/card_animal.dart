@@ -100,13 +100,20 @@ class stateCardAnimal extends State<CardAnimal> {
                               ],
                             ),
                           ),
-                          Text(
-                            widget.animal.name.toString(),
-                            style: TextStyle(
-                                color: kBackgroundColor,
-                                fontSize: heightCard * 0.022,
-                                fontWeight: FontWeight.w700),
-                            textAlign: TextAlign.center,
+                          SizedBox(
+                            width: widthCard * 0.42,
+                            child: FittedBox(
+                              alignment: Alignment.centerLeft,
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                widget.animal.name.toString(),
+                                style: TextStyle(
+                                    color: kBackgroundColor,
+                                    fontSize: heightCard * 0.022,
+                                    fontWeight: FontWeight.w700),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                           Divider(
                             height: heightCard * 0.03,
@@ -118,15 +125,22 @@ class stateCardAnimal extends State<CardAnimal> {
                                 fontSize: heightCard * 0.020),
                             textAlign: TextAlign.center,
                           ),
-                          Text(
-                            //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
-                            widget.animal.breed.toString(),
-                            style: TextStyle(
-                              color: kBackgroundColor,
-                              fontSize: heightCard * 0.022,
-                              fontWeight: FontWeight.w700,
+                          SizedBox(
+                            width: widthCard * 0.42,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                //Trocar para o nome da raça widget.animal.breed.toString(), quando arrumar a API
+                                widget.animal.breed.toString(),
+                                style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontSize: heightCard * 0.022,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
