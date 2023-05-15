@@ -23,7 +23,7 @@ class AddAnimalRepository with ChangeNotifier {
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    if (specie == 'Cachorro') {
+    if (specie == 'dog') {
       var response = await dio.get('$kBaseUrl/users/breed/Cachorro',
           options: Options(
             headers: {
@@ -66,6 +66,16 @@ class AddAnimalRepository with ChangeNotifier {
     return ['Falha'];
   }
 
+  int getActivity(activityLevel) {
+    if (activityLevel == 'Sedentário') {
+      return 1;
+    } else if (activityLevel == 'Normal') {
+      return 2;
+    } else {
+      return 3;
+    }
+  }
+
   void registerAnimal(name, specie, breed, sex, weight, height, isCastrated,
       activityLevel, imgPath, context) async {
     Dio dio = Dio();
@@ -98,7 +108,7 @@ class AddAnimalRepository with ChangeNotifier {
         "name": name.toString(),
         "sex": sex.toString(),
         "is_castrated": isCastrated,
-        "activity_level": activityLevel,
+        "activity_level": getActivity(activityLevel),
         "weight": weight.toString(),
         "height": height.toString(),
         "breed": breed.toString(),

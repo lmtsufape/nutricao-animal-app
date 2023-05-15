@@ -164,8 +164,11 @@ class FoodRepository {
     if (foodModel != null) {
       DateTime date = DateTime.now();
       double energeticValue = double.parse(foodModel.energeticValue);
-
+      print("${date.day}/${date.month}/${date.year}");
       double amount = (quantity / 100) * energeticValue;
+      print("${date.hour}:${date.minute}:${date.second}");
+      print(foodModel.id.toString());
+      print(amount);
 
       var response = await _dio.post(
         '$kBaseUrl/users/$userId/animals/${animal.id}/record',

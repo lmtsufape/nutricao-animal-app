@@ -81,78 +81,10 @@ class _FoodScreenState extends State<FoodScreen> {
                 left: 16,
                 bottom: 16,
               ),
-              child: Text('Name',
+              child: Text(widget.animal.name,
                   style: TextStyle(
                       color: kSecondaryColor,
                       fontSize: heightScreen * kMediumSize)),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
-              child: DropdownSearch<String>(
-                selectedItem: 'Selecione',
-                popupProps: const PopupProps.dialog(
-                  showSearchBox: true,
-                ),
-                dropdownButtonProps: const DropdownButtonProps(
-                  icon: Icon(
-                    Icons.arrow_circle_down_outlined,
-                    color: kDetailColor,
-                    size: 35,
-                  ),
-                ),
-                asyncItems: (String menu) =>
-                    _repository.showMenu(widget.animal),
-                onChanged: (data) {
-                  setState(
-                    () {
-                      /* Aqui vai atualizar a variável do cardápio escolhido, pode ser
-                      um booleano para fazer o preenchemento automático dos campos da tela
-                      "Assunto a ser conversado" */
-                    },
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16, bottom: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Container(
-                      height: 3,
-                      width: 190,
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                  Text(
-                    'OU',
-                    style: TextStyle(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.w900,
-                        fontSize: heightScreen * kLargeSize),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Container(
-                      height: 3,
-                      width: 190,
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16, bottom: 16),
-              child: Text(
-                'Comida fora do cardápio',
-                style: TextStyle(
-                    color: kPrimaryColor,
-                    fontSize: heightScreen * kMediumLargeSize,
-                    fontWeight: FontWeight.w900),
-              ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 4),
@@ -177,8 +109,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                asyncItems: (String categories) =>
-                    _repository.showCategories(),
+                asyncItems: (String categories) => _repository.showCategories(),
                 onChanged: (data) {
                   setState(
                     () {
@@ -191,7 +122,7 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 4),
+              padding: const EdgeInsets.only(left: 16, top: 20),
               child: Text(
                 'Comida',
                 style: TextStyle(
@@ -213,8 +144,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     size: 35,
                   ),
                 ),
-                asyncItems: (String foods) =>
-                    _repository.showFoods(type),
+                asyncItems: (String foods) => _repository.showFoods(type),
                 onChanged: (data) {
                   setState(
                     () {
@@ -224,36 +154,14 @@ class _FoodScreenState extends State<FoodScreen> {
                 },
               ),
             ),
-            const VerticalSpacerBox(size: SpacerSize.small),
-            TextFieldCustom('Quantidade(em gramas)', quantController, ''),
-            ListTile(
-              title: Text(
-                'Adicionar no cárdapio particular?',
-                style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w900,
-                    fontSize: heightScreen * 0.020),
-              ),
-              leading: Transform.scale(
-                scale: 2,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 2),
-                    child: Radio<bool>(
-                      toggleable: true,
-                      activeColor: kDetailColor,
-                      value: true,
-                      groupValue: addMenu,
-                      onChanged: (value) => setState(
-                        () {
-                          addMenu = value;
-                        },
-                      ),
-                    )),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child:
+                  TextFieldCustom('Quantidade(em gramas)', quantController, ''),
             ),
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.only(top: 90),
                 child: SizedBox(
                   width: widthScreen * 0.4,
                   height: heightScreen * 0.040,
