@@ -164,11 +164,8 @@ class FoodRepository {
     if (foodModel != null) {
       DateTime date = DateTime.now();
       double energeticValue = double.parse(foodModel.energeticValue);
-      print("${date.day}/${date.month}/${date.year}");
+
       double amount = (quantity / 100) * energeticValue;
-      print("${date.hour}:${date.minute}:${date.second}");
-      print(foodModel.id.toString());
-      print(amount);
 
       var response = await _dio.post(
         '$kBaseUrl/users/$userId/animals/${animal.id}/record',
@@ -181,10 +178,10 @@ class FoodRepository {
         ),
         data: {
           "food_id": foodModel.id.toString(),
-          "date": "${date.day}/${date.month}/${date.year}",
+          "date": "${date.month}/${date.day}/${date.year}",
           "hour": "${date.hour}:${date.minute}:${date.second}",
-          "animal_id": animal.id,
-          "amount": amount,
+          "animal_id": animal.id.toString(),
+          "amount": amount.toString(),
         },
       );
 
@@ -198,7 +195,7 @@ class FoodRepository {
     return false;
   }
 
-  void feedAnimal(type, food, quant, AnimalModel animal) async {
+  /* void feedAnimal(type, food, quant, AnimalModel animal) async {
     Dio _dio = Dio();
     final prefs = await SharedPreferences.getInstance();
 
@@ -236,5 +233,5 @@ class FoodRepository {
       );
       print(response.statusCode);
     }
-  }
+  }*/
 }

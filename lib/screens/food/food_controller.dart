@@ -63,7 +63,7 @@ class FoodController {
     }
   }
 
-  foodCalculate(type, food, TextEditingController quant) {
+  /*foodCalculate(type, food, TextEditingController quant) {
     /* A função é dada a cada 100 gramas, no caso
     se a pessoa alimentar com 100 gramas de algum certo alimento
     vai ser adicionado no animal um inteiro de 1 a 10 */
@@ -103,5 +103,5 @@ class FoodController {
       }
     }
     //return 5;
-  }
+  }*/
 }
