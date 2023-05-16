@@ -31,7 +31,7 @@ class AnimalDetailsController with ChangeNotifier {
     List<dynamic> list = response.data as List<dynamic>;
 
     for (int i = 0; i < list.length; i++) {
-      if ("${date.year}-${formatDate(date, [dd])}-${formatDate(date, [mm])}" ==
+      if ("${date.year}-${formatDate(date, [mm])}-${formatDate(date, [dd])}" ==
               response.data[i]['date'].toString() &&
           response.data[i]['animal_id'] == animal.id) {
         caloric += double.parse(response.data[i]['amount']);
