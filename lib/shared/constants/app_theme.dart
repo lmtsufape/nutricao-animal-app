@@ -18,36 +18,30 @@ class AppTheme extends ChangeNotifier {
     Future<String> userName,
   ) {
     return AppBar(
-        centerTitle: true,
-        title: FutureBuilder<String>(
-          future: userName,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text(
-                'Olá, ${snapshot.data}!',
-              );
-            } else if (snapshot.hasError) {
-              return Text("Error: ${snapshot.error}");
-            }
-            return const CircularProgressIndicator();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle_rounded),
-            onPressed: () => Navigator.pushNamed(context, Screens.editProfile),
-          ),
-        ]);
+      centerTitle: true,
+      title: FutureBuilder<String>(
+        future: userName,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text(
+              'Olá, ${snapshot.data}!',
+            );
+          } else if (snapshot.hasError) {
+            return Text("Error: ${snapshot.error}");
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
+    );
   }
 }
 
 // ignore: must_be_immutable
 class NavigationDrawerWidget extends StatelessWidget {
   static ButtonStyle style = ElevatedButton.styleFrom(
-    backgroundColor: kDetailColor,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
-    alignment: Alignment.centerLeft
-  );
+      backgroundColor: kDetailColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(150)),
+      alignment: Alignment.centerLeft);
   String userName;
   String email;
 
@@ -165,7 +159,8 @@ class NavigationDrawerWidget extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
-                      onTap: () => Navigator.pushNamed(context, Screens.addAnimal),
+                      onTap: () =>
+                          Navigator.pushNamed(context, Screens.addAnimal),
                       title: Text(
                         'Adicionar animal',
                         style: TextStyle(
@@ -195,7 +190,8 @@ class NavigationDrawerWidget extends StatelessWidget {
                               child: Text(
                                 'Sair',
                                 style: TextStyle(
-                                    color: kBackgroundColor, fontSize: heightScreen * 0.028),
+                                    color: kBackgroundColor,
+                                    fontSize: heightScreen * 0.028),
                               )),
                         ),
                         IconButton(
