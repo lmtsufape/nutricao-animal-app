@@ -12,19 +12,27 @@ class HomeScreenRepository {
     var userId = prefs.getInt('id');
     var userToken = prefs.getString('token');
 
-    var response = await dio.get(
-      '$kBaseUrl/users/$userId/animals',
-      options: Options(headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Bearer $userToken"
-      }),
-    );
-    if (response.statusCode == 200) {
-      var dataList = response.data['animals'] as List<dynamic>;
+    if (userId == null || userToken == null) {
+      return null;
+    }
+    try {
+      var response = await dio.get(
+        '$kBaseUrl/users/$userId/animals',
+        options: Options(headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": "Bearer $userToken"
+        }),
+      );
+      if (response.statusCode == 200) {
+        var dataList = response.data['animals'] as List<dynamic>;
 
-      return dataList;
-    } else {
+        return dataList;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
       return null;
     }
   }

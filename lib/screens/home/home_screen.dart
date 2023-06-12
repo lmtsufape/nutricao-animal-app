@@ -48,13 +48,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   Future<String> _getUserName() async {
     final prefs = await SharedPreferences.getInstance();
-    userName = prefs.getString('name')!;
+    userName = prefs.getString('name') == null ? '' : prefs.getString('name')!;
     return userName;
   }
 
   Future<String> _getEmail() async {
     final prefs = await SharedPreferences.getInstance();
-    email = prefs.getString('email')!;
+    email = prefs.getString('email') == null ? '' : prefs.getString('email')!;
     return email;
   }
 

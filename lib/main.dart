@@ -22,7 +22,7 @@ main() {
   });
 
   runApp(DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => MultiProvider(providers: [
             ChangeNotifierProvider(create: (_) => HomeScreenController()),
             ChangeNotifierProvider(create: (_) => SelectedItem()),

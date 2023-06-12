@@ -15,12 +15,15 @@ import 'package:thunderapp/screens/sign_up/sign_up_screen.dart';
 import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/splash/splash_screen.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('pt_BR', null);
     return MaterialApp(
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),
