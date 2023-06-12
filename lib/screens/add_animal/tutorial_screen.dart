@@ -17,8 +17,7 @@ class TutorialScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Image(
-              image: AssetImage(
-                  '/home/rievvy/Documentos/nutricao-animal-app/lib/assets/images/tutorial.jpeg'),
+              image: AssetImage('lib/assets/images/tutorial.jpeg'),
             ),
             Padding(
               padding: EdgeInsets.only(left: 20.0),

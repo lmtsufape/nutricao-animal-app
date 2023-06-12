@@ -42,8 +42,7 @@ class SignInScreen extends StatelessWidget {
                     const Spacer(),
                     const Center(
                       child: Image(
-                          image: AssetImage(
-                              '/home/rievvy/Documentos/nutricao-animal-app/lib/assets/images/logo.png')),
+                          image: AssetImage('lib/assets/images/logo.png')),
                     ),
                     Text('E-mail',
                         style: TextStyle(
