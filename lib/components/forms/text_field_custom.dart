@@ -15,7 +15,6 @@ class TextFieldCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final heightScreen = MediaQuery.of(context).size.height;
-    final widthScreen = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
       child: Column(
@@ -124,7 +123,8 @@ class textFieldCustomTutorial extends StatefulWidget {
       {super.key});
 
   @override
-  State<textFieldCustomTutorial> createState() => _textFieldCustomTutorialState();
+  State<textFieldCustomTutorial> createState() =>
+      _textFieldCustomTutorialState();
 }
 
 class _textFieldCustomTutorialState extends State<textFieldCustomTutorial> {
@@ -158,8 +158,14 @@ class _textFieldCustomTutorialState extends State<textFieldCustomTutorial> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 25),
-                child: IconButton(onPressed: () {},
-                  icon: Icon(Icons.question_mark, color: Colors.red, size: heightScreen * 0.05,),),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.question_mark,
+                    color: Colors.red,
+                    size: heightScreen * 0.05,
+                  ),
+                ),
               ),
             ],
           ),
