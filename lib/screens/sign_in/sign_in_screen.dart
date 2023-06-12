@@ -40,8 +40,15 @@ class SignInScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Spacer(),
+                    const Center(
+                      child: Image(
+                          image: AssetImage(
+                              '/home/rievvy/Documentos/nutricao-animal-app/lib/assets/images/logo.png')),
+                    ),
                     Text('E-mail',
-                        style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                        style: TextStyle(
+                            color: kBackgroundColor,
+                            fontSize: heightScreen * kMediumSize)),
                     CustomTextFormField(
                       hintText: 'email@example.com',
                       controller: controller.emailController,
@@ -50,7 +57,9 @@ class SignInScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
                       child: Text('Senha',
-                          style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                          style: TextStyle(
+                              color: kBackgroundColor,
+                              fontSize: heightScreen * kMediumSize)),
                     ),
                     CustomTextFormField(
                       hintText: 'Sua senha',
@@ -67,19 +76,21 @@ class SignInScreen extends StatelessWidget {
                     controller.status == SignInStatus.loading
                         ? const CircularProgressIndicator()
                         : Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: Center(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Center(
                               child: PrimaryButton(
                                   text: Text(
                                     'Entrar',
-                                    style: TextStyle(fontSize: heightScreen * kMediumLargeSize),
+                                    style: TextStyle(
+                                        fontSize:
+                                            heightScreen * kMediumLargeSize),
                                   ),
                                   onPressed: () => controller.signIn(
                                       context,
                                       controller.email.toString(),
                                       controller.password.toString())),
                             ),
-                        ),
+                          ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
