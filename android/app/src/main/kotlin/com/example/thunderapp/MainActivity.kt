@@ -1,4 +1,4 @@
-package com.example.thunderapp
+package com.lmts.nutripet
 
 import io.flutter.embedding.android.FlutterActivity
 

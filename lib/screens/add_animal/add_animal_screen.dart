@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_repository.dart';
 import 'package:thunderapp/screens/add_animal/image_profile.dart';
+import 'package:thunderapp/screens/add_animal/tutorial_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
@@ -248,6 +249,21 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: TextFieldCustom('Medida (Metros)', heightController, ''),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 4, left: 20),
+              child: Row(
+                children: [
+                  const Text('Como medir'),
+                  IconButton(
+                      icon: const Icon(Icons.help),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TutorialScreen(),
+                          ))),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),

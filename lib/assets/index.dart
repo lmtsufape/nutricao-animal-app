@@ -5,6 +5,6 @@ class Assets {
   ///the assets should be separated by sections
 
   //**IMAGES */
-  static const String logo = 'lib/assets/images/logo1.png';
+  static const String logo = 'lib/assets/images/Logo-NutriPet.png';
   static const String icon = 'lib/assets/images/icon.png';
 }
