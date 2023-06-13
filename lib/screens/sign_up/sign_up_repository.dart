@@ -7,10 +7,11 @@ import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/components/dialogs/add_user_dialog.dart';
 
 class SignUpRepository {
-  static void signUp(name, email, password, context) async {
+  static void signUp(name, cpf, email, password, context) async {
     final dio = Dio();
 
     if (name.toString().isEmpty ||
+        cpf.toString().isEmpty ||
         email.toString().isEmpty ||
         password.toString().isEmpty) {
       showDialog(
@@ -37,6 +38,7 @@ class SignUpRepository {
         ),
         data: {
           "name": name,
+          "cpf": cpf,
           "email": email,
           "password": password,
         },

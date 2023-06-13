@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 enum SignUpStatus {
   done,
@@ -18,6 +19,7 @@ class SignUpController with ChangeNotifier {
 
   //TextEditingController = recupera os valores dos campos
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _cpfController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -25,6 +27,7 @@ class SignUpController with ChangeNotifier {
 
   //Recebe uma string
   TextEditingController get nameController => _nameController;
+  TextEditingController get cpfController => _cpfController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
   TextEditingController get confirmPasswordController =>
@@ -34,8 +37,18 @@ class SignUpController with ChangeNotifier {
   var status = SignUpStatus.idle;
 }
 
-bool validateFields(String nome, String email, String senha, String confSenha) {
-  if (nome.isEmpty || email.isEmpty || senha.isEmpty || confSenha.isEmpty) {
+MaskTextInputFormatter cpfFormatter = MaskTextInputFormatter(
+    mask: '###.###.###-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy);
+
+bool validateFields(
+    String nome, String cpf, String email, String senha, String confSenha) {
+  if (nome.isEmpty ||
+      cpf.isEmpty ||
+      email.isEmpty ||
+      senha.isEmpty ||
+      confSenha.isEmpty) {
     return false;
   } else if (senha != confSenha) {
     return false;

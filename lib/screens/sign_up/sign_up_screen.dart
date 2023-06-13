@@ -45,14 +45,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Text(
                           'Cadastro de Usuário',
                           style: TextStyle(
-                              color: kBackgroundColor, fontSize: heightScreen * kLargeSize),
+                              color: kBackgroundColor,
+                              fontSize: heightScreen * kLargeSize),
                         ),
                         const SizedBox(
                           height: 30,
                         ),
                         Text(
                           'Nome de exibição',
-                          style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize),
+                          style: TextStyle(
+                              color: kBackgroundColor,
+                              fontSize: heightScreen * kMediumSize),
                         ),
                         CustomTextFormField(
                           hintText: 'Ana Vieira',
@@ -62,8 +65,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: Text(
+                            'CPF',
+                            style: TextStyle(
+                                color: kBackgroundColor,
+                                fontSize: heightScreen * kMediumSize),
+                          ),
+                        ),
+                        CustomTextFormField(
+                          maskFormatter: cpfFormatter,
+                          keyboardType: TextInputType.number,
+                          hintText: '555.555.555-55',
+                          controller: controller.cpfController,
+                        ),
+                        const VerticalSpacerBox(size: SpacerSize.small),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(
                             'E-mail',
-                            style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize),
+                            style: TextStyle(
+                                color: kBackgroundColor,
+                                fontSize: heightScreen * kMediumSize),
                           ),
                         ),
                         CustomTextFormField(
@@ -74,7 +95,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: Text('Senha',
-                              style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontSize: heightScreen * kMediumSize)),
                         ),
                         CustomTextFormField(
                           hintText: '********',
@@ -85,7 +108,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8),
                           child: Text('Confirmar senha',
-                              style: TextStyle(color: kBackgroundColor, fontSize: heightScreen * kMediumSize)),
+                              style: TextStyle(
+                                  color: kBackgroundColor,
+                                  fontSize: heightScreen * kMediumSize)),
                         ),
                         CustomTextFormField(
                           hintText: '********',
@@ -100,16 +125,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           padding: const EdgeInsets.only(top: 14),
                           child: Center(
                             child: PrimaryButton(
-                                text: Text('Finalizar', style: TextStyle(fontSize: heightScreen * kMediumSize),),
+                                text: Text(
+                                  'Finalizar',
+                                  style: TextStyle(
+                                      fontSize: heightScreen * kMediumSize),
+                                ),
                                 onPressed: () {
                                   if (validateFields(
                                       controller.nameController.text,
+                                      controller.cpfController.text,
                                       controller.emailController.text,
                                       controller.passwordController.text,
                                       controller
                                           .confirmPasswordController.text)) {
                                     SignUpRepository.signUp(
                                         controller.nameController.text,
+                                        controller.cpfController.text,
                                         controller.emailController.text,
                                         controller.passwordController.text,
                                         context);
