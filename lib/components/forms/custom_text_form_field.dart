@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField(
       {Key? key,
       this.label,
       this.controller,
+      this.maskFormatter,
       this.keyboardType,
       this.hintText,
       this.isPassword})
       : super(key: key);
   final String? label;
+  final MaskTextInputFormatter? maskFormatter;
   final String? hintText;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
@@ -41,7 +44,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   Widget build(BuildContext context) {
     return SizedBox(
       child: TextFormField(
+        inputFormatters:
+            widget.maskFormatter == null ? null : [widget.maskFormatter!],
         obscureText: _obscureText,
+        keyboardType: widget.keyboardType ?? TextInputType.text,
         controller: widget.controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
