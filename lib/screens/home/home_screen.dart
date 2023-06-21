@@ -35,12 +35,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     super.initState();
     _getUserName();
     _getEmail();
+    getAnimals = repository.getAnimalData(context);
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void didChangeDependencies() {
-    getAnimals = repository.getAnimalData(context);
     super.didChangeDependencies();
 
     _getUserName();
