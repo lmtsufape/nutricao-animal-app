@@ -59,6 +59,11 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
   @override
   void initState() {
     super.initState();
+    nameController.text = widget.animal.name;
+    breed = widget.animal.breed;
+    isCastrated = widget.animal.isCastrated;
+    weightController.text = widget.animal.weight;
+    heightController.text = widget.animal.height;
     specie = widget.animal.specie;
     sex = widget.animal.sex;
     breeds = repository.getBreed(specie);
@@ -73,16 +78,8 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
 
   @override
   Widget build(BuildContext context) {
-    nameController.text = widget.animal.name;
-    breed = widget.animal.breed;
-    isCastrated = widget.animal.isCastrated;
-    weightController.text = widget.animal.weight;
-    heightController.text = widget.animal.height;
-
     final heightScreen = MediaQuery.of(context).size.height;
     final widthScreen = MediaQuery.of(context).size.width;
-
-    final AppTheme formCustom = AppTheme();
 
     return Scaffold(
       backgroundColor: kBackgroundColor,
