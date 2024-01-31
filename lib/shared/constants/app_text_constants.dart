@@ -5,5 +5,5 @@
 ///the text should be in the following format: start the variable with the letter 'K' and then
 ///use camel case to separate the words
 
-const String kBaseUrl = 'http://gestaonutricaoanimal.ufape.edu.br/api';
+const String kBaseUrl = 'https://gestaonutricaoanimal.ufape.edu.br/api';
 const String kAppTitle = 'NutriPet';
