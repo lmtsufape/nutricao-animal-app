@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thunderapp/screens/food/food_repository.dart';
 
@@ -8,7 +7,7 @@ class FoodController {
   int feed = 0;
 
   void feedAnimal(type, food, quant, animal, context, addMenu) async {
-    FoodRepository _repository = FoodRepository();
+    FoodRepository repository = FoodRepository();
     if (addMenu != null) {
       addMenu = true;
     } else {
@@ -38,7 +37,7 @@ class FoodController {
               content:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 MaterialButton(
-                  onPressed: () => _repository.postMenu(
+                  onPressed: () => repository.postMenu(
                       addMenu, type, food, quant, animal, context),
                   color: kDetailColor,
                   child: const Text(

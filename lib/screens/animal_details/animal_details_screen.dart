@@ -3,7 +3,6 @@ import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../shared/core/models/animal_model.dart';
-import '../edit_animal/edit_animal_screen.dart';
 import 'componets/caloric_need_counter.dart';
 import 'componets/card_animal.dart';
 

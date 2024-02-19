@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thunderapp/components/utils/horizontal_spacer_box.dart';
-import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/components/dialogs/delete_animal_dialog.dart';
-import 'package:thunderapp/shared/constants/app_enums.dart';
 
 import '../../../shared/constants/app_text_constants.dart';
 import '../../../shared/constants/style_constants.dart';
@@ -70,7 +67,7 @@ class stateCardAnimal extends State<CardAnimal> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: widthCard * 0.42,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,7 +149,7 @@ class stateCardAnimal extends State<CardAnimal> {
                 height: heightCard * 0.045,
                 color: Colors.transparent,
               ),
-              Container(
+              SizedBox(
                 width: widthCard * 0.95,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

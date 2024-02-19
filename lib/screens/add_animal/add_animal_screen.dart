@@ -1,5 +1,4 @@
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_controller.dart';
@@ -9,7 +8,6 @@ import 'package:thunderapp/screens/add_animal/tutorial_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
 import 'package:thunderapp/shared/constants/app_enums.dart';
-import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import '../../components/forms/text_field_custom.dart';
 import '../../components/utils/vertical_spacer_box.dart';
@@ -235,7 +233,8 @@ class _AddAnimalScreenState extends State<AddAnimalScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
-              child: TextFieldCustom('Peso (Quilograma)', weightController, ''),
+              child: DecimalTextFieldCustom(
+                  'Peso (Quilograma)', weightController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),

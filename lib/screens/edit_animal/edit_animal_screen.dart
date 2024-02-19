@@ -1,24 +1,18 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/edit_animal/edit_animal_controller.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/animal_model.dart';
 
-import '../../components/forms/dropdown_custom.dart';
 import '../../components/forms/text_field_custom.dart';
 import '../../components/utils/vertical_spacer_box.dart';
 import '../../shared/components/dialogs/delete_animal_dialog.dart';
 import '../../shared/constants/app_enums.dart';
-import '../../shared/constants/app_theme.dart';
 import '../../shared/core/models/user_model.dart';
 import '../add_animal/add_animal_repository.dart';
-import '../add_animal/animal_sex.dart';
-import '../add_animal/castrated_widget.dart';
-import '../add_animal/image_profile.dart';
 import '../sign_in/sign_in_controller.dart';
 
 class EditAnimalScreen extends StatefulWidget {
@@ -124,7 +118,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'Cachorro',
+                    value: 'dog',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -144,7 +138,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: heightScreen * kMediumLargeSize)),
-                    value: 'Gato',
+                    value: 'cat',
                     groupValue: specie,
                     onChanged: (value) {
                       setState(
@@ -248,7 +242,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: TextFieldCustom('Peso (Quilograma)', weightController, ''),
+              child: DecimalTextFieldCustom('Peso (Quilograma)', weightController, ''),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8),
@@ -341,7 +335,7 @@ class _EditAnimalScreenState extends State<EditAnimalScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 10),
               child: Center(
-                child: Container(
+                child: SizedBox(
                   width: widthScreen * 0.55,
                   child: Row(
                     children: [

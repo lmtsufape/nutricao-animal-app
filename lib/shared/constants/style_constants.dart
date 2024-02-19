@@ -5,11 +5,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/**FONT CONFIGURATION*/
+/// FONT CONFIGURATION
 final kDefaultFontFamily = GoogleFonts.poppins().fontFamily;
 final kLabelFontFamily = GoogleFonts.inter().fontFamily;
 
-/**COLORS */
+/// COLORS
 const Color kPrimaryColor = Color(0xFF2E5870);
 const Color kBackgroundColor = Color(0xFFE8EFF3);
 const Color kSecondaryColor = Color(0xFF1AA3F0);

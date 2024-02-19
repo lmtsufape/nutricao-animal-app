@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => AddAnimalScreen(),
+                            builder: (context) => const AddAnimalScreen(),
                           ),
                         );
                       },
@@ -186,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddAnimalScreen())),
+                            builder: (context) => const AddAnimalScreen())),
                   ),
                 ),
               );

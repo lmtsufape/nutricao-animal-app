@@ -5,7 +5,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../../../shared/constants/style_constants.dart';
 import '../../../shared/core/models/animal_model.dart';
-import '../../screens_index.dart';
 
 class StaggeredGridAnimal extends StatefulWidget {
   AnimalModel animal;

@@ -2,7 +2,6 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
-import 'package:thunderapp/screens/edit_animal/edit_animal_screen.dart';
 import 'package:thunderapp/screens/edit_food/edit_food_screen.dart';
 import 'package:thunderapp/screens/edit_profile/edit_profile_screen.dart';
 import 'package:thunderapp/screens/food_details/food_details_screen.dart';
@@ -16,7 +15,6 @@ import 'package:thunderapp/shared/constants/app_theme.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/splash/splash_screen.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -58,7 +56,7 @@ class App extends StatelessWidget {
         Screens.foodDetails: (BuildContext context) =>
             const FoodDetailsScreen(),
         //Screens.animalDetails: (BuildContext context) => AnimalDetailsScreen(),
-        Screens.addAnimal: (BuildContext context) => AddAnimalScreen(),
+        Screens.addAnimal: (BuildContext context) => const AddAnimalScreen(),
         Screens.home: (BuildContext context) => const HomeScreen(),
       },
     );
