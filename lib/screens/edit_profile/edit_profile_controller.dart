@@ -5,7 +5,7 @@ import 'package:thunderapp/screens/edit_profile/edit_profile_repository.dart';
 import '../screens_index.dart';
 
 class EditProfileController {
-  EditProfileRepository _repository = EditProfileRepository();
+  final EditProfileRepository _repository = EditProfileRepository();
 
   logoff(context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -1,6 +1,5 @@
 import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/screens/sign_in/sign_in_controller.dart';
-import 'package:thunderapp/screens/sign_in/sign_in_repository.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:flutter/material.dart';
 

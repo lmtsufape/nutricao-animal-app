@@ -6,8 +6,8 @@ import 'package:image_picker/image_picker.dart';
 class ImagePickerController with ChangeNotifier {
   Future<File?> pickImageFromGalery() async {
     try {
-      FilePickerResult? result = await FilePicker.platform
-          .pickFiles(allowedExtensions: ['jpg'], type: FileType.custom);
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+          allowedExtensions: ['jpg', 'jpeg', 'png'], type: FileType.custom);
 
       if (result != null) {
         File file = File(result.files.single.path!);

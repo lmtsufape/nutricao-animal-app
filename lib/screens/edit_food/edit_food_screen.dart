@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/screens_index.dart';
 
 import 'package:thunderapp/shared/constants/app_number_constants.dart';

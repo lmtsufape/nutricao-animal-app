@@ -84,16 +84,11 @@ class AddAnimalRepository with ChangeNotifier {
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    if (name.toString().isEmpty ||
-        breed.toString().isEmpty ||
-        weight.toString().isEmpty ||
-        height.toString().isEmpty ||
-        activityLevel.toString().isEmpty ||
-        imgPath == null) {
+    if (name.toString().isEmpty) {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: const Text('Impossível cadastrar animal'),
+                title: const Text('Impossível cadastrar animal (NOME)'),
                 content: MaterialButton(
                   onPressed: () => Navigator.of(context).pop(),
                   color: kDetailColor,
@@ -103,6 +98,80 @@ class AddAnimalRepository with ChangeNotifier {
                   ),
                 ),
               ));
+    } else if (breed.toString().isEmpty) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: const Text('Impossível cadastrar animal (RAÇA)'),
+                content: MaterialButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  color: kDetailColor,
+                  child: const Text(
+                    'Ok!',
+                    style: TextStyle(color: kBackgroundColor),
+                  ),
+                ),
+              ));
+    } else if (weight.toString().isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Impossível cadastrar animal (PESO)'),
+          content: MaterialButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: kDetailColor,
+            child: const Text(
+              'Ok!',
+              style: TextStyle(color: kBackgroundColor),
+            ),
+          ),
+        ),
+      );
+    } else if (height.toString().isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Impossível cadastrar animal (ALTURA)'),
+          content: MaterialButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: kDetailColor,
+            child: const Text(
+              'Ok!',
+              style: TextStyle(color: kBackgroundColor),
+            ),
+          ),
+        ),
+      );
+    } else if (activityLevel.toString().isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Impossível cadastrar animal (NIVEL DE ATIVIDADE)'),
+          content: MaterialButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: kDetailColor,
+            child: const Text(
+              'Ok!',
+              style: TextStyle(color: kBackgroundColor),
+            ),
+          ),
+        ),
+      );
+    } else if (imgPath == null) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Impossível cadastrar animal (IMAGEM)'),
+          content: MaterialButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: kDetailColor,
+            child: const Text(
+              'Ok!',
+              style: TextStyle(color: kBackgroundColor),
+            ),
+          ),
+        ),
+      );
     } else {
       final body = FormData.fromMap({
         "name": name.toString(),
@@ -133,10 +202,20 @@ class AddAnimalRepository with ChangeNotifier {
           print(response.statusCode);
         }
       } catch (e) {
+        var errorMessage;
+        if (e is DioError) {
+          final dioError = e;
+          if (dioError.response != null) {
+            errorMessage = dioError.response!.data['errors'];
+            print('Erro: $errorMessage');
+            print("Erro ${e.toString()}");
+          }
+        }
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-                  title: const Text('Impossível cadastrar animal'),
+                  title: Text(
+                      'Impossível cadastrar animal $errorMessage, ${e.toString()}'),
                   content: MaterialButton(
                     onPressed: () => Navigator.of(context).pop(),
                     color: kDetailColor,

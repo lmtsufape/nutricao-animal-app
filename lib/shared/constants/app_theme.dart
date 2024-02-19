@@ -146,20 +146,6 @@ class NavigationDrawerWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: ListTile(
                       onTap: () =>
-                          Navigator.pushNamed(context, Screens.noRegFood),
-                      title: Text(
-                        'Sugerir nova comida',
-                        style: TextStyle(
-                            color: kBackgroundColor,
-                            fontSize: heightScreen * kLargeSize,
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ListTile(
-                      onTap: () =>
                           Navigator.pushNamed(context, Screens.addAnimal),
                       title: Text(
                         'Adicionar animal',

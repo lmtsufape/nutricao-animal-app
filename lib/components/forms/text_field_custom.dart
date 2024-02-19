@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 
 import '../../shared/constants/style_constants.dart';
@@ -30,8 +31,53 @@ class TextFieldCustom extends StatelessWidget {
             decoration: InputDecoration(
               floatingLabelBehavior: FloatingLabelBehavior.never,
               label: Text(label),
-              contentPadding: EdgeInsets.all(14),
-              border: OutlineInputBorder(),
+              contentPadding: const EdgeInsets.all(14),
+              border: const OutlineInputBorder(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DecimalTextFieldCustom extends StatelessWidget {
+  final String _fieldLabel;
+  final TextEditingController controller;
+  final String label;
+
+  const DecimalTextFieldCustom(this._fieldLabel, this.controller, this.label,
+      {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final heightScreen = MediaQuery.of(context).size.height;
+
+    // Defina a máscara para aceitar números e adicionar o ponto decimal automaticamente
+    final maskTextInputFormatter = MaskTextInputFormatter(
+      mask: '##.##',
+      filter: {"#": RegExp(r'[0-9]')},
+    );
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _fieldLabel,
+            style: TextStyle(
+                color: kSecondaryColor, fontSize: heightScreen * kMediumSize),
+          ),
+          TextFormField(
+            controller: controller,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: [maskTextInputFormatter],
+            decoration: InputDecoration(
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              labelText: label,
+              contentPadding: const EdgeInsets.all(14),
+              border: const OutlineInputBorder(),
             ),
           ),
         ],
@@ -151,8 +197,8 @@ class _textFieldCustomTutorialState extends State<textFieldCustomTutorial> {
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     label: Text(widget.label),
-                    contentPadding: EdgeInsets.all(14),
-                    border: OutlineInputBorder(),
+                    contentPadding: const EdgeInsets.all(14),
+                    border: const OutlineInputBorder(),
                   ),
                 ),
               ),

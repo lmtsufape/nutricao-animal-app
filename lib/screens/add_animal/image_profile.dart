@@ -52,7 +52,7 @@ class _ImageProfileState extends State<ImageProfile> {
 }
 
 Widget bottomSheet(AddAnimalController controller) {
-  AddAnimalController _controller = controller;
+  AddAnimalController controller0 = controller;
   return Container(
     height: 100.0,
     width: 100,
@@ -75,7 +75,7 @@ Widget bottomSheet(AddAnimalController controller) {
           ElevatedButton.icon(
             icon: const Icon(Icons.camera),
             onPressed: () {
-              _controller.selectImageCam();
+              controller0.selectImageCam();
             },
             label: const Text("Camera"),
           ),
@@ -83,7 +83,7 @@ Widget bottomSheet(AddAnimalController controller) {
           ElevatedButton.icon(
             icon: const Icon(Icons.image),
             onPressed: () {
-              _controller.selectImage();
+              controller0.selectImage();
             },
             label: const Text("Gallery"),
           ),

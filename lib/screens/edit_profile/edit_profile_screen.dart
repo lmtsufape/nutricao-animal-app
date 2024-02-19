@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:thunderapp/screens/add_animal/add_animal_screen.dart';
 import 'package:thunderapp/screens/edit_profile/edit_profile_controller.dart';
-import 'package:thunderapp/screens/edit_profile/edit_profile_repository.dart';
-import 'package:thunderapp/screens/screens_index.dart';
 import 'package:thunderapp/shared/constants/app_number_constants.dart';
 import 'package:thunderapp/shared/constants/style_constants.dart';
 
-import '../../components/forms/text_field_custom.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({Key? key}) : super(key: key);

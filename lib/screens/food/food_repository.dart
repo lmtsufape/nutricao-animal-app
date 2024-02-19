@@ -1,14 +1,10 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:thunderapp/screens/food/food_controller.dart';
 
-import 'package:thunderapp/screens/home/home_screen.dart';
-import 'package:thunderapp/shared/constants/style_constants.dart';
 import 'package:thunderapp/shared/core/models/food_model.dart';
 
 import '../../shared/constants/app_text_constants.dart';
@@ -22,7 +18,7 @@ class FoodRepository {
   FoodModel? usedFood;
 
   Future<List<FoodModel>> populateListFoods() async {
-    Dio _dio = Dio();
+    Dio dio = Dio();
 
     List<FoodModel> foodListComplete = [];
     int i;
@@ -31,7 +27,7 @@ class FoodRepository {
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    var response = await _dio.get(
+    var response = await dio.get(
       '$kBaseUrl/foods',
       options: Options(
         headers: {
@@ -73,16 +69,14 @@ class FoodRepository {
     List<String> categories = [];
     List<FoodModel> list = await populateListFoods();
     String compare;
-    if (list != null) {
-      for (int i = 0; i < list.length; i++) {
-        compare = (list[i].category);
-        if (categories.any((element) => element == compare) == false) {
-          categories.add(compare);
-        }
+    for (int i = 0; i < list.length; i++) {
+      compare = (list[i].category);
+      if (categories.any((element) => element == compare) == false) {
+        categories.add(compare);
       }
-
-      return categories;
     }
+
+    return categories;
 
     return [];
   }
@@ -114,7 +108,7 @@ class FoodRepository {
   }
 
   Future<List<String>> showMenu(animalId) async {
-    Dio _dio = Dio();
+    Dio dio = Dio();
     List<String> menu = [];
 
     int i;
@@ -123,7 +117,7 @@ class FoodRepository {
     userId = prefs.getInt('id')!;
     userToken = prefs.getString('token')!;
 
-    var response = await _dio.get(
+    var response = await dio.get(
       '$kBaseUrl/users/$userId/animals/$animalId/menu',
       options: Options(
         headers: {
@@ -145,7 +139,7 @@ class FoodRepository {
 
   Future<bool> postMenu(bool addMenu, type, food, TextEditingController quant,
       AnimalModel animal, context) async {
-    Dio _dio = Dio();
+    Dio dio = Dio();
     List<FoodModel> list = await populateListFoods();
     final prefs = await SharedPreferences.getInstance();
     double quantity = double.parse(quant.text);
@@ -167,7 +161,7 @@ class FoodRepository {
 
       double amount = (quantity / 100) * energeticValue;
 
-      var response = await _dio.post(
+      var response = await dio.post(
         '$kBaseUrl/users/$userId/animals/${animal.id}/record',
         options: Options(
           headers: {
