@@ -50,7 +50,6 @@ dependencies:
   shared_preferences: ^2.0.15
   path_provider: ^2.0.10
   logging: ^1.0.2
- 
   device_preview: ^1.1.0
   http: ^0.13.5
   material: ^1.0.0+2
@@ -89,6 +88,7 @@ flutter:
   assets:
 
     - lib/assets/images/
+    - lib/assets/ufape-edu-br.pem
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

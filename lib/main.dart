@@ -14,6 +14,11 @@ import 'package:thunderapp/shared/core/selected_item.dart';
 
 main() {
   WidgetsFlutterBinding.ensureInitialized();
+  ByteData data =
+      await PlatformAssetBundle().load('lib/assets/ufape-edu-br.pem');
+  SecurityContext.defaultContext
+      .setTrustedCertificatesBytes(
+          data.buffer.asUint8List());
   Logger.root.level = Level.ALL; // defaults to Level.INFO
   Logger.root.onRecord.listen((record) {
     if (kDebugMode) {
